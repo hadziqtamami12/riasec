@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDimensiPasangansTable extends Migration
+class CreateStatisticsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateDimensiPasangansTable extends Migration
      */
     public function up()
     {
-        Schema::create('dimensi_pasangans', function (Blueprint $table) {
+        Schema::create('statistics', function (Blueprint $table) {
             $table->id();
-            $table->integer('dimensiA');
-            $table->integer('dimensiB');
-            $table->string('color');
+            $table->foreignId('program_studi_id');
+            $table->foreignId('dimensi_id');
+            $table->integer('presentase');
+            $table->integer('total_used')->default(0);
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ class CreateDimensiPasangansTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dimensi_pasangans');
+        Schema::dropIfExists('statistics');
     }
 }

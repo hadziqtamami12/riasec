@@ -20,7 +20,7 @@
                
                @include('layouts.alert.alert')
 
-               <form method="POST" action="{{ route('partnertipe.update', $partneralami->id) }}" class="section contact">
+               <form method="POST" action="{{ route('partnertipe.update', $partneralami) }}" class="section contact">
                   @method('PUT')
                   @csrf
 
@@ -46,7 +46,7 @@
                                     <div class="form-group">
                                        <label for="partner_tipe">Partner Tipe</label>
                                        <select class="form-control" name="partner_tipe">
-                                          <option value="{{ $partneralami->partner_tipe }}" selected>{{ $partneralami->tipekepribadian->namatipe }}</option>
+                                          <option value="{{ $partneralami->partner_tipe }}" selected>{{ $tipe_select->namatipe }}</option>
                                           @foreach ($tipekep as $tipe)
                                              <option value="{{$tipe->id}}">
                                                 {{ $tipe->namatipe }}

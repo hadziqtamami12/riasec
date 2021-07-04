@@ -1,6 +1,6 @@
 @extends('layouts.appuser')
 
-@section('page_title','Profile | ' . Auth::user()->slug)
+@section('page_title','Manage Account')
 
 @section('nav_header')
    <!--  BEGIN NAVBAR  -->
@@ -39,8 +39,8 @@
 
                      <nav class="breadcrumb-one" aria-label="breadcrumb">
                            <ol class="breadcrumb">
-                              <li class="breadcrumb-item"><a href="javascript:void(0);">Profile</a></li>
-                              <li class="breadcrumb-item active" aria-current="page"><span>{{ Auth::user()->name }}</span></li>
+                              <li class="breadcrumb-item"><a href="javascript:void(0);">MBTI</a></li>
+                              <li class="breadcrumb-item active" aria-current="page"><span>Manage Account</span></li>
                            </ol>
                      </nav>
 
@@ -142,4 +142,12 @@
 
    </div> {{-- account-settings-container --}}
 </div>
+@endsection
+@section('trigger')
+<script src="{{asset('plugins/select2/select2.min.js')}}"></script>
+<script>
+   $('select[name="programstudi_id"]').select2({
+      placeholder: "Pilih Program Studi"
+   })
+</script>
 @endsection

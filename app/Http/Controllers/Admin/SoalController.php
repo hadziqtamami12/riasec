@@ -148,22 +148,17 @@ class SoalController extends Controller
         // return response()->json('success', 201);
     }
 
-
-    public function destroy($id)
+    /**
+     * Hapus Soal
+     *
+     * @param App\Models\Soal $id
+     */
+    public function destroy(Soal $id)
     {
-        $daftarsoal = Soal::find($id);
+        Pernyataan::whereIn('id', [$id->pernyataanA, $id->pernyataanB])->delete(); # hapus data berdasarkan pernyataan pada soal
+        $id->delete();
+        return response()->json('success', 204);
 
-        Pernyataan::find($daftarsoal->pernyataanA)->delete(); # hapus data berdasarkan pernyataan pada soal
-        Pernyataan::find($daftarsoal->pernyataanB)->delete(); # hapus data berdasarkan pernyataan pada soal;
 
-        # hapus data soal dan pernyataan
-        if (!empty($daftarsoal)) {
-            $daftarsoal->delete();
-            return response()->json('success', 204);
-        }else {
-            return response()->json([
-                'error' => 'Soal tidak ditemukan'], 404);
-        }
-        // return redirect('soal')->with('success',' Soal Berhasil dihapus');
     }
 }

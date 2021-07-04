@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use App\Models\TipekepProfesi;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\{TipekepProfesi, TipeKepribadian};
 
 class ProfesiTipeController extends Controller
 {
@@ -34,9 +34,7 @@ class ProfesiTipeController extends Controller
      */
     public function create()
     {
-        $tipekep = DB::table('tipe_kepribadians')
-        ->select('id','namatipe')
-        ->get();
+        $tipekep = TipeKepribadian::all();
         $pageActive = "Saran Profesi Tipe Kepribadian";
         $pageName = "Tambah Saran Profesi";
         return view('admin.tipekepribadian.profesi.create', compact('tipekep','pageActive','pageName'));
@@ -55,7 +53,7 @@ class ProfesiTipeController extends Controller
             'profesi_tipe' => 'required|string'
         ]);
 
-        TipekepProfesi::create($request->all());
+        TipekepProfesi::create($request->only(['tipekep_id', 'profesi_id']));
         return redirect()->route('profesitipe.index')->with('success','Saran profesi berhasil ditambahkan');
     }
 
@@ -83,9 +81,7 @@ class ProfesiTipeController extends Controller
         $pageActive = "Saran Profesi Tipe Kepribadian";
         $pageName = "Ubah Saran Profesi";
 
-        $tipekep = DB::table('tipe_kepribadians')
-        ->select('id','namatipe')
-        ->get();
+        $tipekep = TipeKepribadian::all();
 
         # mengirim collection pada view saranprofesi
         return view('admin.tipekepribadian.profesi.edit', compact('saranprofesi','pageActive','pageName','tipekep'));
@@ -98,15 +94,14 @@ class ProfesiTipeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, TipekepProfesi $id)
     {
         $request->validate([
             'tipekep_id' => 'required',
             'profesi_tipe' => 'required|string'
         ]);
 
-        $saranprofesi = TipekepProfesi::find($id);
-        $saranprofesi->update($request->all());
+        $id->update($request->only(['tipekep_id', 'profesi_tipe']));
         return redirect()->route('profesitipe.index')->with('success','Saran profesi berhasil diubah');
     }
 

@@ -224,12 +224,12 @@
 .searchable-container .searchable-items.list .items .user-meta-info .user-work {
   margin-bottom: 0;
   color: #888ea8;
-  font-weight: 500;
+  font-weight: 700;
   font-size: 13px; }
 
 .searchable-container .searchable-items.list .items .user-email p {
   margin-bottom: 0;
-  color: #888ea8;
+  color: #515365;
   font-weight: 600; }
 
 .searchable-container .searchable-items.list .items .user-email .info-title {
@@ -245,8 +245,8 @@
 
 .searchable-container .searchable-items.list .items .user-phone p {
   margin-bottom: 0;
-  color: #888ea8;
-  font-weight: 600;
+  color: #515365;
+  font-weight: 700;
   font-size: 13px; }
 
 .searchable-container .searchable-items.list .items .user-phone .info-title {
@@ -335,8 +335,9 @@
       color: #3b3f5c;
       margin-bottom: 11px; }
     .searchable-container .searchable-items.grid .items .user-email p {
-      color: #888ea8;
+      color:  #515365;
       font-size: 13px;
+      font-weight: 700;
       margin-bottom: 11px; }
   .searchable-container .searchable-items.grid .items .user-location {
     display: flex;
@@ -348,8 +349,9 @@
       margin-bottom: 11px;
       margin-right: 10px; }
     .searchable-container .searchable-items.grid .items .user-location p {
-      color: #888ea8;
+      color:  #515365;
       font-size: 13px;
+      font-weight: 700;
       margin-bottom: 11px; }
   .searchable-container .searchable-items.grid .items .user-phone {
     display: flex;
@@ -360,8 +362,9 @@
       color: #3b3f5c;
       margin-bottom: 11px; }
     .searchable-container .searchable-items.grid .items .user-phone p {
-      color: #888ea8;
+      color:  #515365;
       font-size: 13px;
+      font-weight: 700;
       margin-bottom: 11px;
       margin-right: 10px; }
   .searchable-container .searchable-items.grid .items .action-btn {

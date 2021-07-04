@@ -1,7 +1,7 @@
 @extends('layouts.appadmin')
 
 @section('page_title')
-   {{"Daftar Soal"}}
+   {{"Daftar Program Studi"}}
 @endsection
 
 @section('nav_header')

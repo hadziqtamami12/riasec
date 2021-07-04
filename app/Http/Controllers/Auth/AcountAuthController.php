@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Traits\UploadTrait;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Str;
-use App\Models\{Role,User};
-use App\Traits\UploadTrait;
 use Illuminate\Support\Facades\{Hash,DB};
+use App\Models\{Role, User, ProgramStudi};
 
 class AcountAuthController extends Controller
 {
@@ -27,7 +27,17 @@ class AcountAuthController extends Controller
     {
         $pageActive = "Data Pengguna";
         $pageName = "Data Pengguna";
-        $dataUser = User::with('programstudi','roles')->get();
+        $dataUser = User::with('programstudi','roles')->get()->map(function($item){
+            return(object)[
+                'id' => $item->id,
+                'name' => $item->name,
+                'email' => $item->email,
+                'roles' => $item->roles->implode('name',','),
+                'image' =>$item->image,
+                'nim' => $item->nim,
+                'programstudi' => $item->programstudi,
+            ];
+        });
         return view('admin.user.index',compact('pageActive','pageName','dataUser'));
     }
 
@@ -38,9 +48,7 @@ class AcountAuthController extends Controller
      */
     public function createUser()
     {
-        $programstudi = DB::table('program_studis')
-        ->select('id','program_studi')
-        ->get();
+        $programstudi = ProgramStudi::all();
 
         $pageActive = "Tambah Data Pengguna User";
 
@@ -83,9 +91,7 @@ class AcountAuthController extends Controller
      */
     public function createAdmin()
     {
-        $programstudi = DB::table('program_studis')
-        ->select('id','program_studi')
-        ->get();
+        $programstudi = ProgramStudi::all();
 
         $pageActive = "Tambah Data Pengguna";
         $pageName = "Tambah Data Pengguna";
@@ -131,9 +137,7 @@ class AcountAuthController extends Controller
     public function edit($id)
     {
         $acount = User::find($id);
-        $programstudi = DB::table('program_studis')
-        ->select('id','program_studi')
-        ->get(); # get data programstudi
+        $programstudi = ProgramStudi::all(); # get data programstudi
 
         // $prodi_select = DB::table('program_studis')->find($acount->programstudi_id);
         return view('admin.user.edit',compact('acount','programstudi'));

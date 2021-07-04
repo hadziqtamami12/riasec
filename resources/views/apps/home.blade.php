@@ -71,13 +71,15 @@
          </div> {{-- Rules-Wrapper --}}
 
          <div class="personality-section">
-            <h2>16 Tipe Kepribadian</h2>
+            <h2>
+               <a href="{{ route('tipekepribadian') }}">16 Tipe Kepribadian</a>
+            </h2>
             <div class="row">
 
                <div class="col-lg-3 col-md-6 mb-lg-0 mb-4">
                   <div class="card" data-aos="fade-up" data-aos-duration="1000">
                      <img src="assets/images/mbti/img1.png" class="card-img-top cardImg" alt="ENTP">
-                     <div class="cardbgtwo"><h2 class="cardTitle">ENTP</h2></div>
+                     <div class="cardbg{{ ceil(2)}}"><h2 class="cardTitle">ENTP</h2></div>
                      <div class="card-body">
                         <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo repellendus voluptas accusantium fugiat harum libero, minima incidunt adipisci, vero obcaecati, perspiciatis alias suscipit iste quae.</p>
                         <a href="#" class="btn btn-outline-dark btn-sm">Lebih lanjut <i class="fas fa-angle-double-right"></i></a>
@@ -87,7 +89,7 @@
                <div class="col-lg-3 col-md-6 mb-lg-0 mb-4">
                   <div class="card" data-aos="fade-up" data-aos-duration="1300">
                      <img src="assets/images/mbti/img6.png" class="card-img-top cardImg" alt="INTJ">
-                     <div class="cardbgtwo"><h2 class="cardTitle">INTJ</h2></div>
+                     <div class="cardbg{{ ceil(2)}}"><h2 class="cardTitle">INTJ</h2></div>
                      <div class="card-body">
                         <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo repellendus voluptas accusantium fugiat harum libero, minima incidunt adipisci, vero obcaecati, perspiciatis alias suscipit iste quae.</p>
                         <a href="#" class="btn btn-outline-dark btn-sm">Lebih lanjut <i class="fas fa-angle-double-right"></i></a>
@@ -97,7 +99,7 @@
                <div class="col-lg-3 col-md-6 mb-md-0 mb-4">
                   <div class="card" data-aos="fade-up" data-aos-duration="1600">
                      <img src="assets/images/mbti/img7.png" class="card-img-top cardImg" alt="ENTJ">
-                     <div class="cardbgtwo"><h2 class="cardTitle">ENTJ</h2></div>
+                     <div class="cardbg{{ ceil(2)}}"><h2 class="cardTitle">ENTJ</h2></div>
                      <div class="card-body">
                         <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo repellendus voluptas accusantium fugiat harum libero, minima incidunt adipisci, vero obcaecati, perspiciatis alias suscipit iste quae.</p>
                         <a href="#" class="btn btn-outline-dark btn-sm">Lebih lanjut <i class="fas fa-angle-double-right"></i></a>
@@ -107,7 +109,7 @@
                <div class="col-lg-3 col-md-6 mb-md-0 mb-4">
                   <div class="card" data-aos="fade-up" data-aos-duration="1900">
                      <img src="assets/images/mbti/img8.png" class="card-img-top cardImg" alt="INTP">
-                     <div class="cardbgtwo"><h2 class="cardTitle">INTP</h2></div>
+                     <div class="cardbg{{ ceil(2)}}"><h2 class="cardTitle">INTP</h2></div>
                      <div class="card-body">
                         <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo repellendus voluptas accusantium fugiat harum libero, minima incidunt adipisci, vero obcaecati, perspiciatis alias suscipit iste quae.</p>
                         <a href="#" class="btn btn-outline-dark btn-sm">Lebih lanjut <i class="fas fa-angle-double-right"></i></a>

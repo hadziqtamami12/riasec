@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use App\Models\TipekepKelebihan;
+use App\Models\{TipekepKelebihan, TipeKepribadian};
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
@@ -34,9 +34,7 @@ class KelebihanTipeController extends Controller
      */
     public function create()
     {
-        $tipekep = DB::table('tipe_kepribadians')
-        ->select('id','namatipe')
-        ->get();
+        $tipekep = TipeKepribadian::all();
         $pageActive = "Kelebihan Tipe Kepribadian";
         $pageName = "Tambah Kelebihan Tipe Kepribadian";
         return view('admin.tipekepribadian.kelebihan.create', compact('tipekep','pageName','pageActive'));
@@ -55,7 +53,7 @@ class KelebihanTipeController extends Controller
             'kelebihan_tipe' => 'required|string'
         ]);
 
-        TipekepKelebihan::create($request->all());
+        TipekepKelebihan::create($request->only(['tipekep_id', 'kelebihan_tipe']));
         return redirect()->route('kelebihantipe.index')->with('success','Kelebihan Tipe Kepribadian berhasil ditambahkan');
     }
 
@@ -76,16 +74,14 @@ class KelebihanTipeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(TipekepKelebihan $id)
     {
-        $kelebihantipe = TipekepKelebihan::find($id);
+        $kelebihantipe = $id;
 
         $pageActive = "Kelebihan Tipe Kepribadian";
         $pageName = "Ubah Kelebihan Tipe Kepribadian";
 
-        $tipekep = DB::table('tipe_kepribadians')
-        ->select('id','namatipe')
-        ->get();
+        $tipekep = TipeKepribadian::all();
         
         # mengirim collection pada view kelebihan
         return view('admin.tipekepribadian.kelebihan.edit', compact('kelebihantipe','tipekep','pageName','pageActive'));
@@ -98,15 +94,14 @@ class KelebihanTipeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, TipekepKelebihan $id)
     {
         $request->validate([
             'tipekep_id' => 'required',
             'kelebihan_tipe' => 'required|string'
         ]);
 
-        $kelebihantipe = TipekepKelebihan::find($id);
-        $kelebihantipe->update($request->all());
+        $id->update($request->only(['tipekep_id', 'kelebihan_tipe']));
         return redirect()->route('kelebihantipe.index')->with('success','Kelebihan Tipe berhasil diubah');
     }
 
@@ -116,10 +111,9 @@ class KelebihanTipeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(TipekepKelebihan $id)
     {
-        $kelebihantipe = TipekepKelebihan::find($id);
-        $kelebihantipe->delete();
+        $id->delete();
         return redirect()->route('kelebihantipe.index')->with('success','Kelebihan Tipe berhasil dihapus');
     }
 }

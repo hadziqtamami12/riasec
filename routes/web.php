@@ -3,11 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Role\RoleController;
-use App\Http\Controllers\Admin\SoalController;
 use App\Http\Controllers\Auth\AcountAuthController;
-use App\Http\Controllers\App\TestKepribadianController;
+use App\Http\Controllers\App\{TestKepribadianController, ArtikelTipeController};
 use App\Http\Controllers\Auth\{UserAuthController, ProfileController, RecoveryController};
-use App\Http\Controllers\Admin\{CiriTipeController, PartnerTipeController, ProfesiTipeController,KelebihanTipeController, KekuranganTipeController, TipeKepribadianController, ProgramStudiController};
+use App\Http\Controllers\Admin\{CiriTipeController, SoalController, PartnerTipeController, ProfesiTipeController,KelebihanTipeController, KekuranganTipeController, TipeKepribadianController, ProgramStudiController};
 
 Route::get('/', function () {
     return view('welcome');
@@ -46,8 +45,8 @@ Route::middleware(['auth'])->group(function () {
 */
 Route::group(['middleware' => 'role:user'], function() {
 
-    Route::view('tipekepribadian', 'apps.tipekepribadian')->name('tipekepribadian');
-    Route::view('/artikel', 'apps.artikel')->name('artikel');
+    Route::get('tipekepribadian', [ArtikelTipeController::class, 'artikel'])->name('tipekepribadian');
+    Route::get('/artikel/{tipe}', [ArtikelTipeController::class, 'readmore'])->name('artikel');
     Route::view('/contact', 'apps.contact')->name('contact');
 
 });

@@ -145,7 +145,7 @@
 <script src="{{asset('plugins/select2/select2.min.js')}}"></script>
 <script>
    $('select[name="programstudi_id"]').select2({
-      placeholder: "Pilih dimensi yang digunakan"
+      placeholder: "Pilih Program Studi"
    })
 </script>
 @endsection

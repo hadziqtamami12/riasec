@@ -65,5 +65,12 @@
       </div> {{-- scrollspy-example--}}
    </div> {{-- account-content --}}
 </div> {{-- account-settings-container --}}
-
+@endsection
+@section('trigger')
+<script src="{{asset('plugins/select2/select2.min.js')}}"></script>
+<script>
+   $('select[name="tipekep_id"]').select2({
+      placeholder: "Pilih Tipe Kepribadian"
+   })
+</script>
 @endsection

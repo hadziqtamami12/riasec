@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use App\Models\TipekepPartner;
+use App\Models\{TipekepPartner, TipeKepribadian};
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
@@ -23,7 +23,9 @@ class PartnerTipeController extends Controller
     {
         $pageActive = "Partner";
         $pageName = "Partner Alami Tipe Kepribadian";
+
         $partneralami = TipekepPartner::with('tipekepribadian')->get();
+
         return view('admin.tipekepribadian.partner.index', compact('pageActive','pageName','partneralami'));
     }
 
@@ -35,9 +37,7 @@ class PartnerTipeController extends Controller
      */
     public function create()
     {
-        $tipekep = DB::table('tipe_kepribadians')
-        ->select('id','namatipe')
-        ->get();
+        $tipekep = TipeKepribadian::all();
 
         $pageActive = "Partner Alami Tipe Kepribadian";
         $pageName = "Tambah Partner Tipe";
@@ -57,7 +57,7 @@ class PartnerTipeController extends Controller
             'partner_tipe' => 'required'
         ]);
         
-        TipekepPartner::create($request->all());
+        TipekepPartner::create($request->only(['tipekep_id', 'partner_tipe']));
         return redirect()->route('partnertipe.index')->with('success','Partner Tipe berhasil ditambahkan');
     }
 
@@ -78,19 +78,19 @@ class PartnerTipeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(TipekepPartner $id)
     {
-        $partneralami = TipekepPartner::find($id);
+        $partneralami = $id;
 
         $pageActive = "Partner Alami Tipe Kepribadian";
         $pageName = "Ubah Partner Tipe";
 
-        $tipekep = DB::table('tipe_kepribadians')
-        ->select('id','namatipe')
-        ->get();
+        $tipekep = TipeKepribadian::all();
+
+        $tipe_select = DB::table('tipe_kepribadians')->find($partneralami->tipekep_id);
 
         # mengirim collection pada view parner
-        return view('admin.tipekepribadian.partner.edit', compact('partneralami','pageName','pageActive','tipekep'));
+        return view('admin.tipekepribadian.partner.edit', compact('partneralami','pageName','pageActive','tipekep', 'tipe_select'));
     }
 
     /**
@@ -100,15 +100,14 @@ class PartnerTipeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, TipekepPartner $id)
     {
         $request->validate([
             'tipekep_id' => 'required',
             'partner_tipe' => 'required'
         ]);
         
-        $partneralami = TipekepPartner::find($id);
-        $partneralami->update($request->all());
+        $id->update($request->only(['tipekep_id', 'partner_tipe']));
         return redirect()->route('partnertipe.index')->with('success','Partner Tipe berhasil diubah');
     }
 
@@ -118,10 +117,9 @@ class PartnerTipeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(TipekepPartner $id)
     {
-        $partneralami = TipekepPartner::find($id);
-        $partneralami->delete();
+        $id->delete();
         return redirect()->route('partnertipe.index')->with('success','Partner Tipe berhasil dihapus');
     }
 }

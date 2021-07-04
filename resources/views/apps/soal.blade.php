@@ -107,7 +107,7 @@
          
          axios.post("{{route('finishTest', ['id' => $tests['id']])}}",{
             present : jawabans
-         }).then(function(){
+         }).then(() => {
             window.location.href = "{{ route('hasil', ['id' => $tests['id']]) }}"
          });
 

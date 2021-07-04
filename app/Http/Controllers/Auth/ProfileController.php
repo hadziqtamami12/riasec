@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Models\User;
 use App\Traits\UploadTrait;
 use Illuminate\Support\Str;
+use App\Models\ProgramStudi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -27,13 +28,10 @@ class ProfileController extends Controller
         if (Auth::user()) {
 
             $profile = User::find(Auth::user()->id);
-            $programstudi = DB::table('program_studis')
-            ->select('id','program_studi')
-            ->get(); # get data programstudi
             
-            $prodi_select = DB::table('program_studis')->find($profile->programstudi_id);
-
-            return view('accounts.profile.editprofile', compact('programstudi','prodi_select'));
+            $programstudi = ProgramStudi::all(); # get value programstudi
+            
+            return view('accounts.profile.editprofile', compact('programstudi'));
         } else {
             return redirect()->back();
         }

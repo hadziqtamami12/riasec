@@ -558,7 +558,7 @@ strong {
   right: -16px;
 }
 
-.faq .faq-layouting .personality-section .card .cardbgone {
+.faq .faq-layouting .personality-section .card .cardbg1 {
   height: 150px;
   background: -webkit-gradient(linear, left top, right top, from(rgba(69, 190, 119, 0.8)), to(rgba(169, 229, 90, 0.8)));
   background: linear-gradient(to right, rgba(69, 190, 119, 0.8), rgba(169, 229, 90, 0.8));
@@ -574,10 +574,10 @@ strong {
   justify-content: center;
 }
 
-.faq .faq-layouting .personality-section .card .cardbgtwo {
+.faq .faq-layouting .personality-section .card .cardbg2 {
   height: 150px;
-  background: -webkit-gradient(linear, left top, right top, from(rgba(162, 60, 247, 0.8)), to(rgba(254, 0, 254, 0.8)));
-  background: linear-gradient(to right, rgba(162, 60, 247, 0.8), rgba(254, 0, 254, 0.8));
+  background: -webkit-gradient(linear, left top, right top, from(rgba(164, 80, 139, .9)), to(rgba(254, 0, 254, 0.8)));
+  background: linear-gradient(to right, rgba(164, 80, 139, .9), rgba(254, 0, 254, 0.8));
   border-radius: .8rem;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -590,7 +590,7 @@ strong {
   justify-content: center;
 }
 
-.faq .faq-layouting .personality-section .card .cardbgthree {
+.faq .faq-layouting .personality-section .card .cardbg3 {
   height: 150px;
   background: -webkit-gradient(linear, left top, right top, from(rgba(241, 169, 60, 0.8)), to(rgba(255, 236, 65, 0.8)));
   background: linear-gradient(to right, rgba(241, 169, 60, 0.8), rgba(255, 236, 65, 0.8));
@@ -606,7 +606,7 @@ strong {
   justify-content: center;
 }
 
-.faq .faq-layouting .personality-section .card .cardbgfour {
+.faq .faq-layouting .personality-section .card .cardbg4 {
   height: 150px;
   background: -webkit-gradient(linear, left top, right top, from(rgba(79, 172, 254, 0.8)), to(rgba(0, 242, 254, 0.8)));
   background: linear-gradient(to right, rgba(79, 172, 254, 0.8), rgba(0, 242, 254, 0.8));
@@ -885,7 +885,7 @@ strong {
 
 #content .container .container .landingContent .landingText h3 {
   margin: 6px !important;
-  font-size: 23px;
+  font-size: 21px;
   opacity: 0.8;
   line-height: normal;
   font-weight: 600;

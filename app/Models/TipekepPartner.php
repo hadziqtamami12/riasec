@@ -18,4 +18,15 @@ class TipekepPartner extends Model
     {
         return $this->belongsTo(TipeKepribadian::class, 'tipekep_id', 'id');
     }
+
+    /**
+     * Get the user that owns the TipekepPartner
+     * for artikel and result click 
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+    */
+    public function partner()
+    {
+        return $this->belongsTo(TipeKepribadian::class, 'partner_tipe');
+    }
+
 }

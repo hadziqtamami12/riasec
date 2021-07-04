@@ -76,11 +76,11 @@
                      </div>
 
                      <div class="user-phone">
-                        <h4 style="margin-left: 3px;">Program Studi</h4>
+                        <h4 style="margin-left: 0;">Program Studi</h4>
                      </div>
 
                      <div class="action-btn">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2  delete-multiple"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
+                        <h4>Action</h4>
                      </div>
                   </div>
             </div>
@@ -91,25 +91,24 @@
                      <div class="user-profile">
                         <img src="{{asset($item->image)}}" alt="avatar">
                         <div class="user-meta-info">
-                              <p class="user-name" data-name="Alan Green">{{$item->name}}</p>
-                              <p class="user-work" data-occupation="Web Developer"></p>
-                              {{-- {{$item->roles}} --}}
+                              <p class="user-name">{{$item->name}}</p>
+                              <p class="user-work">{{$item->roles}}</p>
                         </div>
                      </div>
 
                      <div class="user-email">
                         <p class="info-title">Email: </p>
-                        <p class="usr-email-addr" data-email="alan@mail.com">{{$item->email}}</p>
+                        <p class="usr-email-addr">{{$item->email}}</p>
                      </div>
 
                      <div class="user-location">
                         <p class="info-title">NIM: </p>
-                        <p class="usr-location" data-location="Boston, USA">{{$item->nim}}</p>
+                        <p class="usr-location">{{$item->nim}}</p>
                      </div>
 
                      <div class="user-phone">
                         <p class="info-title">Prodi: </p>
-                        <p class="usr-ph-no" data-phone="+1 (070) 123-4567">{{$item->programstudi->program_studi}}</p>
+                        <p class="usr-ph-no">{{$item->programstudi->program_studi}}</p>
                      </div>
 
                      <div class="action-btn">

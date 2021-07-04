@@ -185,10 +185,9 @@ class TipeKepribadianController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(TipeKepribadian $id)
     {
-        $tipekepribadian = TipeKepribadian::find($id);
-        $tipekepribadian->delete();
+        $id->delete();
         return redirect()->route('tipekep.index')->with('success','Data Tipe Kepribadian berhasi dihapus');
     }
 }

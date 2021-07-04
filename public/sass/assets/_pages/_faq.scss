@@ -256,10 +256,10 @@
 					top: -50px;
 					right: -16px;
 				}
-				.cardbgone {
+				.cardbg1 {
 					height: 150px;
-					background: -webkit-gradient(linear, left top, right top, from(rgba(69, 190, 119, 0.8)), to(rgba(169, 229, 90, 0.8)));
-					background: linear-gradient(to right, rgba(69, 190, 119, 0.8), rgba(169, 229, 90, 0.8));
+					background: -webkit-gradient(linear, left top, right top, from(rgba(69, 190, 119, .9)), to(rgba(169, 229, 90, .8)));
+					background: linear-gradient(to right, rgba(69, 190, 119, .9), rgba(169, 229, 90, .8));
 					border-radius: .8rem;
 					display: -webkit-box;
 					display: -ms-flexbox;
@@ -271,10 +271,10 @@
 					-ms-flex-pack: center;
 					justify-content: center;
 				}
-				.cardbgtwo {
+				.cardbg2 {
 					height: 150px;
-					background: -webkit-gradient(linear, left top, right top, from(rgba(162, 60, 247, 0.8)), to(rgba(254, 0, 254, 0.8)));
-					background: linear-gradient(to right, rgba(162, 60, 247, 0.8), rgba(254, 0, 254, 0.8));
+					background: -webkit-gradient(linear, left top, right top, from(rgba(164, 80, 139, .9)), to(rgba(254, 0, 254, .8)));
+					background: linear-gradient(to right, rgba(164, 80, 139, .9), rgba(254, 0, 254, .8));
 					border-radius: .8rem;
 					display: -webkit-box;
 					display: -ms-flexbox;
@@ -286,10 +286,10 @@
 					-ms-flex-pack: center;
 					justify-content: center;
 				}
-				.cardbgthree {
+				.cardbg3 {
 					height: 150px;
-					background: -webkit-gradient(linear, left top, right top, from(rgba(241, 169, 60, 0.8)), to(rgba(255, 236, 65, 0.8)));
-					background: linear-gradient(to right, rgba(241, 169, 60, 0.8), rgba(255, 236, 65, 0.8));
+					background: -webkit-gradient(linear, left top, right top, from(rgba(241, 169, 60, .9)), to(rgba(255, 236, 65, .8)));
+					background: linear-gradient(to right, rgba(241, 169, 60, .9), rgba(255, 236, 65, .8));
 					border-radius: .8rem;
 					display: -webkit-box;
 					display: -ms-flexbox;
@@ -301,10 +301,10 @@
 					-ms-flex-pack: center;
 					justify-content: center;
 				}
-				.cardbgfour {
+				.cardbg4 {
 					height: 150px;
-					background: -webkit-gradient(linear, left top, right top, from(rgba(79, 172, 254, 0.8)), to(rgba(0, 242, 254, 0.8)));
-					background: linear-gradient(to right, rgba(79, 172, 254, 0.8), rgba(0, 242, 254, 0.8));
+					background: -webkit-gradient(linear, left top, right top, from(rgba(79, 172, 254, .9)), to(rgba(0, 242, 254, .8)));
+					background: linear-gradient(to right, rgba(79, 172, 254, .9), rgba(0, 242, 254, .8));
 					border-radius: .8rem;
 					display: -webkit-box;
 					display: -ms-flexbox;

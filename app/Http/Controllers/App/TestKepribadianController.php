@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use App\Models\{TestKepribadian, TipeKepribadian, DimensiPasangan, Presentase, Dimensi, Soal};
+use App\Models\{TestKepribadian, TipeKepribadian, DimensiPasangan, Presentase, Dimensi, Soal, Statistic, ProgramStudi};
 
 class TestKepribadianController extends Controller
 {
@@ -45,9 +45,12 @@ class TestKepribadianController extends Controller
     public function finish($id, Request $request){
 
         # mengecek sesi test
-        if (empty(TestKepribadian::where('user_id', $request->user()->id)
+        $test = TestKepribadian::where('user_id', $request->user()->id)
         ->where('finished_at', NULL)
-        ->find($id))) return response()->json(['errors' => 'ID tes tidak ditemukan'], 419);
+        ->find($id);
+
+        if (empty($test))
+            return response()->json(['errors' => 'ID tes tidak ditemukan'], 419);
 
         # validasi inputan hasil persentase
         $request->validate([
@@ -57,25 +60,33 @@ class TestKepribadianController extends Controller
             'present.*.value' => 'integer|between:0,100' # tidak lebih dari jumlah soal yang ada
         ]);
 
+        $prodi = ProgramStudi::find($request->user()->programstudi_id);
+
         $columnID = array_column($request->get('present'), 'id');
         $hasil = '';
         $insert = [];
 
         foreach(DimensiPasangan::with(['dimA', 'dimB'])->get() as $dimensi) {
 
-            # mendapatkan hasil presentase masing-masing dimensi
-            $kiri = $request->get('present')[array_search($dimensi->dimensiA, $columnID)];
-            $kanan = $request->get('present')[array_search($dimensi->dimensiB, $columnID)];
+            # mendapatkan hasil presentase masing-masing dimensi / 0
+            $kiri = $request->get('present')[array_search($dimensi->dimensiA, $columnID)]['value'] ?? 0;
+            $kanan = $request->get('present')[array_search($dimensi->dimensiB, $columnID)]['value'] ?? 0;
 
             // # cari apakah sisi sebelah kiri lebih besar dari kanan atau sebaliknya
-            $hasil .= $kiri['value'] > $kanan['value'] ? $dimensi->dimA->code : $dimensi->dimB->code;
+            $hasil .= $kiri > $kanan ? $dimensi->dimA->code : $dimensi->dimB->code;
 
             // # validasi total wajib 100 persen
-            // if ($kiri['value'] + $kanan['value'] !== 100) return response()->json(['errors' => 'Hasil tidak seimbang'], 419);
+            // if ($kiri + $kanan !== 100) return response()->json(['errors' => 'Hasil tidak seimbang'], 419);
+            $left = $this->parsePresentasi($kiri, $kanan);
+            $right = $this->parsePresentasi($kanan, $kiri);
             
             # insert hasil presentase pada masing-masing dimensi
-            $insert[] = ['dimensi_id' => $dimensi->dimensiA, 'test_id' => $id, 'totalpresent' => ($kiri['value']/ ($kiri['value'] + $kanan['value'])) * 100 ];
-            $insert[] = ['dimensi_id' => $dimensi->dimensiB, 'test_id' => $id, 'totalpresent' => ($kanan['value']/ ($kiri['value'] + $kanan['value'])) * 100 ];
+            $insert[] = ['dimensi_id' => $dimensi->dimensiA, 'test_id' => $id, 'totalpresent' => $left];
+            $insert[] = ['dimensi_id' => $dimensi->dimensiB, 'test_id' => $id, 'totalpresent' => $right];
+
+            // Masukkan Ke Statistik
+            $this->fillStatistic($prodi, $dimensi->dimensiA, $left);
+            $this->fillStatistic($prodi, $dimensi->dimensiB, $right);
         }
 
         # cari tipe kepribadian
@@ -86,10 +97,13 @@ class TestKepribadianController extends Controller
         Presentase::insert($insert);
 
         # selesaikan tes & output Tipe Keprtibadian
-        TestKepribadian::where('id', $id)->update([
+        $test->update([
             'finished_at' => now()->toDateTimeString(),
             'tipekep_id' => $tipe->id
         ]);
+
+        // Tambahkan total test dalam prodi
+        $prodi->update(['jumlah_tes' => ++$prodi->jumlah_tes]);
 
         return response()->json($tipe, 201);
     }
@@ -104,9 +118,40 @@ class TestKepribadianController extends Controller
         return view('apps.hasil', [
             'hasil' => TestKepribadian::where('user_id', Auth::id())
             ->with(['tipe' => function($q) {
-                return $q->with('ciriTipekeps', 'kelebihanTipekeps', 'kekuranganTipekeps', 'profesiTipekeps', 'partnerTipekeps');
+                return $q->with('ciriTipekeps', 'kelebihanTipekeps', 'kekuranganTipekeps', 'profesiTipekeps', 'partnerTipekeps.partner');
             }])->with('presentases')->findOrFail($id),
             'dimensis' => DimensiPasangan::with('dimA', 'dimB')->get()
+        ]);
+    }
+
+    /**
+     * [Fungsi Bersama] Parsing Persentase
+     */
+    private function parsePresentasi($validated, $other)
+    {
+        return ($validated / ($validated + $other)) * 100;
+    }
+
+
+    /**
+     * Isi Statistik
+     */
+    public function fillStatistic(ProgramStudi $prodi, $dimensi, $presentase)
+    {
+        $check = Statistic::where('program_studi_id', $prodi->id)
+        ->where('dimensi_id', $dimensi)->first();
+
+        $used = $check ? 1 + $check->total_used : 1;
+
+        return Statistic::updateOrCreate([
+            'program_studi_id' => $prodi->id,
+            'dimensi_id' => $dimensi
+        ], [
+            'presentase' => $check ? (
+                ($check->presentase * $check->total_used)
+                + $presentase)
+                / $used : $presentase,
+            'total_used' => $used
         ]);
     }
 }

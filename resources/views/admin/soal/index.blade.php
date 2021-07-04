@@ -32,7 +32,7 @@
                <thead>
                   <tr>
                      <th>No.</th>
-                     <th class="text-center">Soal</th>
+                     <th>Soal</th>
                      <th> Pernyataan A</th>
                      <th>Pernyataan B</th>
                      <th>Action</th>
@@ -65,7 +65,7 @@
                <tfoot>
                   <tr>
                      <th>No.</th>
-                     <th class="text-center">Soal</th>
+                     <th>Soal</th>
                      <th>Pernyataan A</th>
                      <th>Pernyataan B</th>
                      <th>Action</th>

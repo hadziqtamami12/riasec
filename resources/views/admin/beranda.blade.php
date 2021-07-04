@@ -83,7 +83,7 @@
                borderColor: "{{ $key->borderColor }}",
                pointBorderColor: "{{ $key->pointBorderColor }}",
                pointBackgroundColor: "rgba(179,181,198,1)",
-               data: [60,65,70,60,85,65,25,40]
+               data: {{ $key->statistics }}
             },
          ]
          },

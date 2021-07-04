@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\TipekepCiri;
+use App\Models\{TipekepCiri, TipeKepribadian};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -34,9 +34,7 @@ class CiriTipeController extends Controller
      */
     public function create()
     {
-        $tipekep = DB::table('tipe_kepribadians')
-        ->select('id','namatipe')
-        ->get();
+        $tipekep = TipeKepribadian::all();
         $pageActive = "Ciri-ciri Kepribadian";
         $pageName = "Tambah Ciri-ciri Kepribadian";
         return view('admin.tipekepribadian.ciriciri.create', compact('tipekep','pageName','pageActive'));
@@ -55,7 +53,7 @@ class CiriTipeController extends Controller
             'ciri_kepribadian' => 'required|string'
         ]);
 
-        TipekepCiri::create($request->all());
+        TipekepCiri::create($request->only(['tipekep_id', 'ciri_kepribadian']));
         return redirect()->route('ciritipe.index')->with('success','Ciri Kepribadian berhasil ditambahkan');
     }
 
@@ -76,16 +74,14 @@ class CiriTipeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(TipekepCiri $id)
     {
-        $ciriciri = TipekepCiri::find($id);
+        $ciriciri = $id;
 
         $pageActive = "Ciri-ciri Kepribadian";
         $pageName = "Ubah Ciri-ciri Kepribadian";
 
-        $tipekep = DB::table('tipe_kepribadians')
-        ->select('id','namatipe')
-        ->get();
+        $tipekep = TipeKepribadian::all();
         
         # mengirim collection pada view ciriciri
         return view('admin.tipekepribadian.ciriciri.edit', compact('ciriciri','tipekep','pageName','pageActive'));
@@ -98,15 +94,15 @@ class CiriTipeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, TipekepCiri $id)
     {
         $request->validate([
             'tipekep_id' => 'required',
             'ciri_kepribadian' => 'required|string'
         ]);
 
-        $ciriciri = TipekepCiri::find($id);
-        $ciriciri->update($request->all());
+        $id->update($request->only(['tipekep_id', 'ciri_kepribadian']));
+
         return redirect()->route('ciritipe.index')->with('success','Ciri Kepribadian berhasil diubah');
     }
 
@@ -116,10 +112,9 @@ class CiriTipeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(TipekepCiri $id)
     {
-        $ciritipe = TipekepCiri::find($id);
-        $ciritipe->delete();
+        $id->delete();
         return redirect()->route('ciritipe.index')->with('success','Ciri Kepribadian berhasi dihapus');
     }
 }

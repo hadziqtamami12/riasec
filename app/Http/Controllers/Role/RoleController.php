@@ -24,15 +24,25 @@ class RoleController extends Controller
      * Mengarahkan role admin pada halaman khusus admin
      */
     public function roleAdmin(){
+
         #get relasi tabel test
         $tipe = TipeKepribadian::withCount('tests')->get();
         $pageName = "Recap Hasil Test Kepribadian";
         # get data hasil test kepribadian
         return view('admin.beranda', [
-            'dimensi' => Dimensi::all()->pluck('keterangan')->toJson(),
+            'dimensi' => Dimensi::orderBy('id')->get()->pluck('keterangan')->toJson(),
             'tipe' => $tipe->pluck('namatipe')->toJson(),
             'dominasi' => $tipe->pluck('tests_count')->toJson(),
-            'prodi' => ProgramStudi::all()
+            'prodi' => ProgramStudi::with('statistics')->get()->map(function($item) {
+                return (object) [
+                    'id' => $item->id,
+                    'program_studi' => $item->program_studi,
+                    'backgroundColor' => $item->backgroundColor,
+                    'borderColor' => $item->borderColor,
+                    'pointBorderColor' => $item->pointBorderColor,
+                    'statistics' => $item->statistics->pluck('presentase')->toJson()
+                ];
+            })
         ],compact('pageName'));
     }
 }

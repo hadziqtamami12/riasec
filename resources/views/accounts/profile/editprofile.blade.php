@@ -112,7 +112,7 @@
                                              <div class="form-group">
                                                 <label for="profession">Program Studi</label>
                                                 <select class="form-control prodi" name="programstudi_id">
-                                                   <option value="{{ Auth::user()->programstudi_id }}" selected> {{ $prodi_select->program_studi }}</option>
+                                                   <option value="{{ Auth::user()->programstudi_id }}" selected> {{ Auth::user()->programstudi->program_studi }}</option>
                                                    @foreach ($programstudi as $prodi)
                                                       <option value="{{$prodi->id}}">
                                                          {{ $prodi->program_studi }}

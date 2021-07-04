@@ -1,4 +1,5 @@
 @extends('layouts.appuser')
+
 @section('page_title')
    {{'Hasil Test| ' . Auth::user()->slug}}
 @endsection
@@ -29,16 +30,16 @@
       <div class="row">
 
          <section id="artikelTop" class="col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
-               <div class="landingContent">
-                  <div class="landingImage">
-                     <img src="../assets/images/mbti/img2.png" alt="landing-image">
-                  </div>
-                  <div class="landingText">
-                     <h1>{{ $hasil->tipe->namatipe }}</h1>
-                     <h3>&#40; {{ $hasil->tipe->keterangan_tipe }} &#41;</h3>
-                     <h2>{{ $hasil->tipe->julukan_tipe }}</h2>
-                  </div>
-               </div> <!-- landing-content -->
+            <div class="landingContent">
+               <div class="landingImage">
+                  <img src="../assets/images/mbti/img2.png" alt="landing-image">
+               </div>
+               <div class="landingText">
+                  <h1>{{ $hasil->tipe->namatipe }}</h1>
+                  <h3>&#40; {{ $hasil->tipe->keterangan_tipe }} &#41;</h3>
+                  <h2>{{ $hasil->tipe->julukan_tipe }}</h2>
+               </div>
+            </div> <!-- landing-content -->
          </section>
          {{-- progress-bar --}}
 
@@ -93,83 +94,83 @@
          {{-- progress-bar --}}
 
          <section id="artikelTipe" class="col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
-               <div class="artikel-tipe" data-aos="zoom-in-up" data-aos-duration="1000">
-                  <div class="row">
-                     <div class="col-md-12">
-                           <h3>Tipe Kepribadian&nbsp;<span>{{ $hasil->tipe->namatipe }}</span></h3>
-                           <div class="row">
-                              <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-                                 <p>{{ $hasil->tipe->deskripsi_tipe }}</p>
-                              </div>
-                           </div>
+            <div class="artikel-tipe" data-aos="zoom-in-up" data-aos-duration="1000">
+               <div class="row">
+                  <div class="col-md-12">
+                     <h3>Tipe Kepribadian&nbsp;<span>{{ $hasil->tipe->namatipe }}</span></h3>
+                     <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                           <p>{{ $hasil->tipe->deskripsi_tipe }}</p>
+                        </div>
                      </div>
                   </div>
                </div>
+            </div>
          </section>
 
          <section id="artikelCiriTipe" class="col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
-               <div class="artikel-tipe" data-aos="zoom-in-up" data-aos-duration="1000">
-                  <div class="row">
-                     <div class="col-md-12">
-                           <h3>Ciri Kepribadian&nbsp;<span>{{ $hasil->tipe->namatipe }}</span></h3>
-                           <div class="row">
-                              <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-                                 <ul class="">
-                                    @foreach($hasil->tipe->ciriTipekeps as $ciri)
-                                    <li class="list-unstyled">
-                                       <div class="icon-svg">
-                                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                                       </div>
-                                       {{ $ciri->ciri_kepribadian }}
-                                    </li>
-                                    @endforeach
-                                 </ul>
-                              </div>
-                           </div>
+            <div class="artikel-tipe" data-aos="zoom-in-up" data-aos-duration="1000">
+               <div class="row">
+                  <div class="col-md-12">
+                     <h3>Ciri Kepribadian&nbsp;<span>{{ $hasil->tipe->namatipe }}</span></h3>
+                     <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                           <ul class="">
+                              @foreach($hasil->tipe->ciriTipekeps as $ciri)
+                              <li class="list-unstyled">
+                                 <div class="icon-svg">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                 </div>
+                                 {{ $ciri->ciri_kepribadian }}
+                              </li>
+                              @endforeach
+                           </ul>
+                        </div>
                      </div>
                   </div>
                </div>
+            </div>
          </section>
 
-         <section id="artikelKelebihan" class="col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
-               <div class="artikel-tipe" data-aos="zoom-in-up" data-aos-duration="1000">
-                  <div class="row">
-                     <div class="col-md-6">
-                           <h3>Kelebihan :</h3>
-                           <div class="row">
-                              <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-                                 <ul class="">
-                                    @foreach($hasil->tipe->kelebihanTipekeps as $kelebihan)
-                                    <li class="list-unstyled">
-                                       <div class="icon-svg">
-                                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                                       </div>
-                                       {{ $kelebihan->kelebihan_tipe }}
-                                    </li>
-                                    @endforeach
-                                 </ul>
-                              </div>
+         <section id="artikelKelebihan" class="col-md-12 col-12 layout-spacing">
+            <div class="artikel-tipe" data-aos="zoom-in-up" data-aos-duration="1000">
+               <div class="row">
+                  <div class="col-md-6">
+                        <h3>Kelebihan :</h3>
+                        <div class="row">
+                           <div class="col-md-12 col-12">
+                              <ul class="">
+                                 @foreach($hasil->tipe->kelebihanTipekeps as $kelebihan)
+                                 <li class="list-unstyled" style="white-space: normal;">
+                                    <div class="icon-svg">
+                                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                    </div>
+                                    {{ $kelebihan->kelebihan_tipe }}
+                                 </li>
+                                 @endforeach
+                              </ul>
                            </div>
-                     </div>
-                     <div class="col-md-6">
-                           <h3>Kekurangan :</h3>
-                           <div class="row">
-                              <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-                                 <ul class="">
-                                    @foreach($hasil->tipe->kekuranganTipekeps as $kekurangan)
-                                    <li class="list-unstyled">
-                                       <div class="icon-svg">
-                                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                                       </div>
-                                       {{ $kekurangan->kekurangan_tipe }}
-                                    </li>
-                                    @endforeach
-                                 </ul>
-                              </div>
+                        </div>
+                  </div>
+                  <div class="col-md-6">
+                        <h3>Kekurangan :</h3>
+                        <div class="row">
+                           <div class="col-md-12 col-12">
+                              <ul class="">
+                                 @foreach($hasil->tipe->kekuranganTipekeps as $kekurangan)
+                                 <li class="list-unstyled">
+                                    <div class="icon-svg">
+                                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                    </div>
+                                    {{ $kekurangan->kekurangan_tipe }}
+                                 </li>
+                                 @endforeach
+                              </ul>
                            </div>
-                     </div>
+                        </div>
                   </div>
                </div>
+            </div>
          </section>
 
          <section id="artikelPartner" class="col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
@@ -179,7 +180,18 @@
                         <h3>Partner Alami&nbsp;:</h3>
                         <div class="row">
                            <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-                              <h1>ENTJ &amp; ISTJ</h1>
+                              <h1>
+                                 @foreach($hasil->tipe->partnerTipekeps as $key => $partner)
+                                 <a href="{{ route('artikel', ['tipe' => $partner->partner_tipe ]) }}">
+                                    {{ $partner->partner->namatipe }}
+                                 </a>
+                                 @if(2 + $key == $hasil->tipe->partnerTipekeps->count())
+                                    &amp;
+                                 @elseif(1 + $key != $hasil->tipe->partnerTipekeps->count())
+                                    &#44;
+                                 @endif
+                                 @endforeach
+                              </h1>
                            </div>
                         </div>
                   </div>
@@ -207,42 +219,42 @@
                            </div>
                            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
                               <ul class="">
-                                    <li class="list-unstyled">
-                                       <div class="icon-svg">
-                                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                                       </div>
-                                       Tidak ada .
-                                    </li>
-                                    <li class="list-unstyled">
-                                       <div class="icon-svg">
-                                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                                       </div>
-                                       Jawab pertanyaan
-                                    </li>
-                                    <li class="list-unstyled">
-                                       <div class="icon-svg">
-                                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                                       </div>
-                                       Jawab pertanyaan
-                                    </li>
-                                    <li class="list-unstyled">
-                                       <div class="icon-svg">
-                                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                                       </div>
-                                       Hasil penilaian
-                                    </li>
-                                    <li class="list-unstyled">
-                                       <div class="icon-svg">
-                                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                                       </div>
-                                       Hasil penilaian
-                                    </li>
-                                    <li class="list-unstyled">
-                                       <div class="icon-svg">
-                                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                                       </div>
-                                       Hasil penilaian
-                                    </li>
+                                 <li class="list-unstyled">
+                                    <div class="icon-svg">
+                                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                    </div>
+                                    Tidak ada .
+                                 </li>
+                                 <li class="list-unstyled">
+                                    <div class="icon-svg">
+                                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                    </div>
+                                    Jawab pertanyaan
+                                 </li>
+                                 <li class="list-unstyled">
+                                    <div class="icon-svg">
+                                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                    </div>
+                                    Jawab pertanyaan
+                                 </li>
+                                 <li class="list-unstyled">
+                                    <div class="icon-svg">
+                                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                    </div>
+                                    Hasil penilaian
+                                 </li>
+                                 <li class="list-unstyled">
+                                    <div class="icon-svg">
+                                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                    </div>
+                                    Hasil penilaian
+                                 </li>
+                                 <li class="list-unstyled">
+                                    <div class="icon-svg">
+                                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                    </div>
+                                    Hasil penilaian
+                                 </li>
                               </ul>
                            </div>
                         </div>

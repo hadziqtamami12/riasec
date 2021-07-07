@@ -1,7 +1,7 @@
 @extends('layouts.appuser')
 
 @section('page_title')
-   {{'Hasil Test| ' . Auth::user()->slug}}
+   {{'Hasil Test | ' . Auth::user()->slug}}
 @endsection
 
 @section('nav_header')
@@ -17,12 +17,13 @@
                <!-- <a href="#artikelTop" class=" nav-link">Tipe Kepribadian</a> -->
                <a href="#artikelTipe" class="active nav-link">Tentang</a>
                <a href="#artikelCiriTipe" class="nav-link">Ciri Kepribadian</a>
-               <a href="#artikelKelebihan" class="nav-link">Kelebihan &amp; Kekurangan</a>
-               <a href="#artikelPartner" class="nav-link">Partner</a>
+               <a href="#artikelKelebihan" class="nav-link">Kelebihan Tipe</a>
+               <a href="#artikelKekurangan" class="nav-link">Kekurangan Tipe</a>
+               <a href="#artikelPartner" class="nav-link">Partner Tipe</a>
                <a href="#artikelPekerjaan" class="nav-link">Saran Profesi</a>
                <a href="#artikelLain1" class="nav-link">Arti Kesuksesan</a>
                <a href="#artikelSaran" class="nav-link">Saran Pengembangan</a>
-               <a href="#artikelLain2" class="nav-link">Hidup Bahagia</a>
+               <a href="#artikelLain2" class="nav-link">Hidup Bahagia Pada Tipe</a>
          </div>
       </div> <!-- sidenav -->
 
@@ -32,7 +33,7 @@
          <section id="artikelTop" class="col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
             <div class="landingContent">
                <div class="landingImage">
-                  <img src="../assets/images/mbti/img2.png" alt="landing-image">
+                  <img src="{{asset('assets/images/mbti/img2.png')}}" alt="landing-image">
                </div>
                <div class="landingText">
                   <h1>{{ $hasil->tipe->namatipe }}</h1>
@@ -85,8 +86,15 @@
                               @endforeach
 
                            </div> <!-- /present-content -->
-                        </div>
-                     </div>
+                        </div> {{-- col-12 --}}
+                        
+                        {{-- button cetak --}}
+                        <div class="col-12 cetak text-center"> 
+                           <a href="{{ route('cetak', ['id' => $id]) }}" class="btn btn-send" style="font-size: 16px; font-weight: 600;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-printer"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+                              Print</a>
+                        </div> {{-- button cetak --}}
+
+                     </div> {{-- row --}}
                   </div>
                </div>
             </div>
@@ -109,7 +117,7 @@
          </section>
 
          <section id="artikelCiriTipe" class="col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
-            <div class="artikel-tipe" data-aos="zoom-in-up" data-aos-duration="1000">
+            <div class="artikel-tipe" data-aos="zoom-in-up" data-aos-duration="800">
                <div class="row">
                   <div class="col-md-12">
                      <h3>Ciri Kepribadian&nbsp;<span>{{ $hasil->tipe->namatipe }}</span></h3>
@@ -132,44 +140,51 @@
             </div>
          </section>
 
-         <section id="artikelKelebihan" class="col-md-12 col-12 layout-spacing">
-            <div class="artikel-tipe" data-aos="zoom-in-up" data-aos-duration="1000">
+         <section id="artikelKelebihan" class="col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
+            <div class="artikel-tipe" data-aos="zoom-in-up" data-aos-duration="800">
                <div class="row">
-                  <div class="col-md-6">
-                        <h3>Kelebihan :</h3>
-                        <div class="row">
-                           <div class="col-md-12 col-12">
-                              <ul class="">
-                                 @foreach($hasil->tipe->kelebihanTipekeps as $kelebihan)
-                                 <li class="list-unstyled" style="white-space: normal;">
-                                    <div class="icon-svg">
-                                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                                    </div>
-                                    {{ $kelebihan->kelebihan_tipe }}
-                                 </li>
-                                 @endforeach
-                              </ul>
-                           </div>
+                  <div class="col-md-12 col-12">
+                     <h3>Kelebihan&nbsp;<span>{{ $hasil->tipe->namatipe  }}</span>&nbsp;:</h3>
+                     <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                           <ul>
+                              @foreach($hasil->tipe->kelebihanTipekeps as $kelebihan)
+                              <li class="list-unstyled" style="white-space: normal;">
+                                 <div class="icon-svg">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                 </div>
+                                 {{ $kelebihan->kelebihan_tipe }}
+                              </li>
+                              @endforeach
+                           </ul>
                         </div>
-                  </div>
-                  <div class="col-md-6">
-                        <h3>Kekurangan :</h3>
-                        <div class="row">
-                           <div class="col-md-12 col-12">
-                              <ul class="">
-                                 @foreach($hasil->tipe->kekuranganTipekeps as $kekurangan)
-                                 <li class="list-unstyled">
-                                    <div class="icon-svg">
-                                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                                    </div>
-                                    {{ $kekurangan->kekurangan_tipe }}
-                                 </li>
-                                 @endforeach
-                              </ul>
-                           </div>
-                        </div>
+                     </div>
                   </div>
                </div>
+            </div>
+         </section>
+
+         <section id="artikelKekurangan" class="col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
+            <div class="artikel-tipe" data-aos="zoom-in-up" data-aos-duration="800">
+                  <div class="row">
+                     <div class="col-md-12 col-12">
+                        <h3>Kekurangan&nbsp;<span>{{ $hasil->tipe->namatipe  }}</span>&nbsp;:</h3>
+                        <div class="row">
+                              <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                                 <ul class="">
+                                    @foreach($hasil->tipe->kekuranganTipekeps as $kekurangan)
+                                    <li class="list-unstyled">
+                                       <div class="icon-svg">
+                                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                       </div>
+                                       {{ $kekurangan->kekurangan_tipe }}
+                                    </li>
+                                    @endforeach
+                                 </ul>
+                              </div>
+                        </div>
+                     </div>
+                  </div>
             </div>
          </section>
 
@@ -185,11 +200,11 @@
                                  <a href="{{ route('artikel', ['tipe' => $partner->partner_tipe ]) }}">
                                     {{ $partner->partner->namatipe }}
                                  </a>
-                                 @if(2 + $key == $hasil->tipe->partnerTipekeps->count())
-                                    &amp;
-                                 @elseif(1 + $key != $hasil->tipe->partnerTipekeps->count())
-                                    &#44;
-                                 @endif
+                                    @if(2 + $key == $hasil->tipe->partnerTipekeps->count())
+                                       &amp;
+                                    @elseif(1 + $key != $hasil->tipe->partnerTipekeps->count())
+                                       &#44;
+                                    @endif
                                  @endforeach
                               </h1>
                            </div>
@@ -200,12 +215,12 @@
          </section>
 
          <section id="artikelPekerjaan" class="col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
-            <div class="artikel-tipe" data-aos="zoom-in-up" data-aos-duration="1000">
+            <div class="artikel-tipe" data-aos="zoom-in-up" data-aos-duration="800">
                <div class="row">
                   <div class="col-md-12">
                         <h3>Saran Profesi <span>{{ $hasil->tipe->namatipe }}</span></h3>
                         <div class="row">
-                           <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                           <div class="col-lg-12 col-md-12 col-sm-12 col-12">
                               <ul class="">
                                  @foreach($hasil->tipe->profesiTipekeps as $profesi)
                                  <li class="list-unstyled">
@@ -217,46 +232,6 @@
                                  @endforeach
                               </ul>
                            </div>
-                           <div class="col-lg-6 col-md-6 col-sm-12 col-12">
-                              <ul class="">
-                                 <li class="list-unstyled">
-                                    <div class="icon-svg">
-                                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                                    </div>
-                                    Tidak ada .
-                                 </li>
-                                 <li class="list-unstyled">
-                                    <div class="icon-svg">
-                                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                                    </div>
-                                    Jawab pertanyaan
-                                 </li>
-                                 <li class="list-unstyled">
-                                    <div class="icon-svg">
-                                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                                    </div>
-                                    Jawab pertanyaan
-                                 </li>
-                                 <li class="list-unstyled">
-                                    <div class="icon-svg">
-                                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                                    </div>
-                                    Hasil penilaian
-                                 </li>
-                                 <li class="list-unstyled">
-                                    <div class="icon-svg">
-                                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                                    </div>
-                                    Hasil penilaian
-                                 </li>
-                                 <li class="list-unstyled">
-                                    <div class="icon-svg">
-                                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                                    </div>
-                                    Hasil penilaian
-                                 </li>
-                              </ul>
-                           </div>
                         </div>
                   </div>
                </div>
@@ -264,7 +239,7 @@
          </section>
 
          <section id="artikelLain1" class="col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
-            <div class="artikel-tipe" data-aos="zoom-in-up" data-aos-duration="1000">
+            <div class="artikel-tipe" data-aos="zoom-in-up" data-aos-duration="800">
                <div class="row">
                   <div class="col-md-12">
                      <h3>Apa arti Sukses bagi <span>{{ $hasil->tipe->namatipe }}</span> &#63;</h3>
@@ -313,4 +288,8 @@
 
    </div> <!-- container 2 -->
 </div> <!-- container 1 -->
+@endsection
+
+@section('footer')
+   @include('layouts.footer.foouser')
 @endsection

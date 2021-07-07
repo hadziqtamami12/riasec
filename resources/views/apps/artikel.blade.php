@@ -59,9 +59,9 @@
             </section>
 
             <section id="artikelCiriTipe" class="col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
-               <div class="artikel-tipe" data-aos="zoom-in-up" data-aos-duration="1000">
+               <div class="artikel-tipe" data-aos="zoom-in-up" data-aos-duration="800">
                      <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-12 col-12">
                            <h3>Ciri Kepribadian&nbsp;<span>{{ $readmore->namatipe }}</span></h3>
                            <div class="row">
                                  <div class="col-lg-12 col-md-12 col-sm-12 col-12">
@@ -83,10 +83,10 @@
             </section>
 
             <section id="artikelKelebihan" class="col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
-               <div class="artikel-tipe" data-aos="zoom-in-up" data-aos-duration="1000">
+               <div class="artikel-tipe" data-aos="zoom-in-up" data-aos-duration="800">
                   <div class="row">
-                     <div class="col-md-6">
-                        <h3>Kelebihan :</h3>
+                     <div class="col-md-12 col-12">
+                        <h3>Kelebihan&nbsp;<span>{{ $readmore->namatipe }}</span>&nbsp;:</h3>
                         <div class="row">
                            <div class="col-lg-12 col-md-12 col-sm-12 col-12">
                               <ul>
@@ -102,24 +102,31 @@
                            </div>
                         </div>
                      </div>
-                     <div class="col-md-6">
-                        <h3>Kekurangan :</h3>
-                        <div class="row">
-                           <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-                              <ul class="" >
-                                 @foreach ($kekurangans as $kekurangan)    
-                                 <li class="list-unstyled" >
-                                    <div class="icon-svg">
-                                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                                    </div>
-                                    {{ $kekurangan->kekurangan_tipe }}
-                                 </li>
-                                 @endforeach
-                              </ul>
+                  </div>
+               </div>
+            </section>
+
+            <section id="artikelKekurangan" class="col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
+               <div class="artikel-tipe" data-aos="zoom-in-up" data-aos-duration="800">
+                     <div class="row">
+                        <div class="col-md-12 col-12">
+                           <h3>Kekurangan&nbsp;<span>{{ $readmore->namatipe }}</span>&nbsp;:</h3>
+                           <div class="row">
+                                 <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <ul class="">
+                                       @foreach ($kekurangans as $kekurangan)    
+                                       <li class="list-unstyled" >
+                                          <div class="icon-svg">
+                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                          </div>
+                                          {{ $kekurangan->kekurangan_tipe }}
+                                       </li>
+                                       @endforeach
+                                    </ul>
+                                 </div>
                            </div>
                         </div>
                      </div>
-                  </div>
                </div>
             </section>
 
@@ -146,12 +153,12 @@
             </section>
 
             <section id="artikelPekerjaan" class="col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
-               <div class="artikel-tipe" data-aos="zoom-in-up" data-aos-duration="1000">
+               <div class="artikel-tipe" data-aos="zoom-in-up" data-aos-duration="800">
                      <div class="row">
                         <div class="col-md-12 col-12">
                            <h3>Saran Profesi <span>{{ $readmore->namatipe }}</span></h3>
                            <div class="row">
-                                 <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                 <div class="col-lg-12 col-md-12 col-sm-12 col-12">
                                     <ul class="">
                                        @foreach ($profesis as $profesi)    
                                        <li class="list-unstyled">
@@ -163,46 +170,6 @@
                                        @endforeach
                                     </ul>
                                  </div>
-                                 <div class="col-lg-6 col-md-6 col-sm-12 col-12">
-                                    <ul class="">
-                                       <li class="list-unstyled">
-                                             <div class="icon-svg">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                                             </div>
-                                             Tidak ada .
-                                       </li>
-                                       <li class="list-unstyled">
-                                             <div class="icon-svg">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                                             </div>
-                                             Jawab pertanyaan
-                                       </li>
-                                       <li class="list-unstyled">
-                                             <div class="icon-svg">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                                             </div>
-                                             Jawab pertanyaan
-                                       </li>
-                                       <li class="list-unstyled">
-                                             <div class="icon-svg">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                                             </div>
-                                             Hasil penilaian
-                                       </li>
-                                       <li class="list-unstyled">
-                                             <div class="icon-svg">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                                             </div>
-                                             Hasil penilaian
-                                       </li>
-                                       <li class="list-unstyled">
-                                             <div class="icon-svg">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                                             </div>
-                                             Hasil penilaian
-                                       </li>
-                                    </ul>
-                                 </div>
                            </div>
                         </div>
                      </div>
@@ -210,10 +177,10 @@
             </section>
 
             <section id="artikelLain1" class="col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
-               <div class="artikel-tipe" data-aos="zoom-in-up" data-aos-duration="1000">
+               <div class="artikel-tipe" data-aos="zoom-in-up" data-aos-duration="800">
                   <div class="row">
                      <div class="col-md-12">
-                        <h3>Apa arti Sukses bagi <span>ESFP</span> &#63;</h3>
+                        <h3>Apa arti Sukses bagi <span>{{ $readmore->namatipe }}</span> &#63;</h3>
                         <div class="row">
                            <div class="col-lg-12 col-md-12 col-sm-12 col-12">
                               <p>{{$readmore->arti_sukses}}</p>
@@ -243,10 +210,10 @@
                <div class="artikel-tipe" >
                   <div class="row">
                      <div class="col-md-12">
-                        <h3>Hidup Bahagia di Dunia kita sebagai&nbsp;<span>ESFP</span></h3>
+                        <h3>Hidup Bahagia di Dunia kita sebagai&nbsp;<span>{{ $readmore->namatipe }}</span></h3>
                         <div class="row">
                            <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-                              <p>{{ $readmore->kebahagian_tipe }}</p>
+                              <p>{{ $readmore->kebahagiaan_tipe }}</p>
                            </div>
                         </div>
                      </div>
@@ -260,10 +227,6 @@
    </div> <!-- container 1 -->
 @endsection
 
-{{-- @section('footer')
+@section('footer')
    @include('layouts.footer.foouser')
 @endsection
-
-@section('scroll')
-   @include('layouts.scroll.up')
-@endsection --}}

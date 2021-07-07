@@ -70,7 +70,7 @@
             </div>
          </div> {{-- Rules-Wrapper --}}
 
-         <div class="personality-section">
+         {{-- <div class="personality-section">
             <h2>
                <a href="{{ route('tipekepribadian') }}">16 Tipe Kepribadian</a>
             </h2>
@@ -118,7 +118,7 @@
                </div>
 
             </div>
-         </div> {{-- Personality --}} 
+         </div> {{-- Personality --}}
 
       </div> <!-- Faq-Layouting -->
 

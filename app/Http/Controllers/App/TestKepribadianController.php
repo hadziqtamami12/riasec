@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\App;
 
+// use Barryvdh\DomPDF\PDF;
+use Barryvdh\DomPDF\Facade as PDF;
 use App\Traits\TestTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -120,7 +122,8 @@ class TestKepribadianController extends Controller
             ->with(['tipe' => function($q) {
                 return $q->with('ciriTipekeps', 'kelebihanTipekeps', 'kekuranganTipekeps', 'profesiTipekeps', 'partnerTipekeps.partner');
             }])->with('presentases')->findOrFail($id),
-            'dimensis' => DimensiPasangan::with('dimA', 'dimB')->get()
+            'dimensis' => DimensiPasangan::with('dimA', 'dimB')->get(),
+            'id' => $id
         ]);
     }
 
@@ -136,7 +139,7 @@ class TestKepribadianController extends Controller
     /**
      * Isi Statistik
      */
-    public function fillStatistic(ProgramStudi $prodi, $dimensi, $presentase)
+    private function fillStatistic(ProgramStudi $prodi, $dimensi, $presentase)
     {
         $check = Statistic::where('program_studi_id', $prodi->id)
         ->where('dimensi_id', $dimensi)->first();
@@ -153,5 +156,21 @@ class TestKepribadianController extends Controller
                 / $used : $presentase,
             'total_used' => $used
         ]);
+    }
+
+    /**
+     * Cetak Hasil menjasi PDF
+     */ 
+    public function printPDF($id)
+    {   
+        $pdf = PDF::loadView('export.print', [
+            'hasil' => TestKepribadian::where('user_id', Auth::id())
+            ->with('presentases', 'tipe')->findOrFail($id),
+            'dimensis' => DimensiPasangan::with('dimA', 'dimB')->get()
+        ]);
+
+        $pdf->setPaper('a4', 'landscape');
+
+        return $pdf->stream('Test-Kerpibadian.pdf');
     }
 }

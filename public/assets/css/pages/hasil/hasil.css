@@ -227,6 +227,11 @@ body {
   font-weight: 600;
   margin-bottom: 16px;
   color: rgba(59, 63, 92, 0.9);
+  word-wrap: break-word;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
 }
 
 .hasil .hasil-layouting .artikel-tipe ul li:hover {

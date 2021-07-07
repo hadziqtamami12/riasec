@@ -36,6 +36,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('test',[TestKepribadianController::class, 'startTest'])->name('startTest');
     Route::post('finish/{id}', [TestKepribadianController::class, 'finish'])->name('finishTest'); # simpan hasil tes dan prentase dimensi
     Route::get('hasil/{id}', [TestKepribadianController::class, 'hasil'])->name('hasil');
+    # print hasil pdf
+    Route::get('pdf/{id}', [TestKepribadianController::class,'printPDF'])->name('cetak');
 });
 
 /*

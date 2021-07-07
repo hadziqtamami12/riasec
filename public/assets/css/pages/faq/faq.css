@@ -162,7 +162,7 @@ body {
 
 .faq .faq-layouting .personality-section .card .card-body .card-text {
   letter-spacing: 1px;
-  color: #888ea8;
+  color: rgba(83, 87, 104, 1);
   display: -webkit-box;
   overflow: hidden;
   -webkit-line-clamp: 5;

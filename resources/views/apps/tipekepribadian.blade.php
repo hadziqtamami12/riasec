@@ -13,7 +13,7 @@
       <section id="landing">
          <div class="landingContent2">
             <div class="landingText" data-aos="fade-right" data-aos-duration="2000">
-               <h1>Mengenal 16 <span> Tipe <br>  Kepribadian</span> Manusia</h1>
+               <h1>Mengenal 16 <span> Tipe  Kepribadian</span> Manusia</h1>
                <h3>Beberapa Tipe Kepribadian Mungkin terlihat sama<br> Disini</h3>
             </div>
          </div> <!-- landing-content -->
@@ -24,13 +24,13 @@
 
             <div class="personality-section">
                <div class="infoHeader" data-aos="fade-up" data-aos-duration="1000">
-                  <h2><span style="color:rgb(248, 164, 55)">Tipe Kepribadian</span></h2>
-                  <h5>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam, asperiores distinctio.</h5>
+                  <h2><span style="color:rgb(248, 164, 55)">Myers-Briggs Type Indicator</span></h2>
+                  <h5>16 Tipe Kepribadian</h5>
                </div>
                <div class="row">
                   {{-- Total 16, dibagi 4 warna. Awal dari 1. 1/4 => 0,25. Dengan fungsi ceil, 0,25 diconvert jadi 1. --}}
                   @foreach ($tipes as $key => $tipe)
-                     <div class="col-lg-3 col-md-6 mb-4 ">
+                     <div class="col-lg-3 col-md-6 tipekep">
                         <div class="card" data-aos="fade-up" data-aos-duration="1000">
                            {{-- Change Image Later --}}
                            <img src="../assets/images/mbti/img5.png" class="card-img-top cardImg" alt="{{ $tipe->namatipe }}">

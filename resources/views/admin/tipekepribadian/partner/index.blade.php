@@ -32,15 +32,22 @@
                      <th>No.</th>
                      <th>Tipe Kepribadian</th>
                      <th>Partner Tipe</th>
-                     <th>Action</th>
+                     {{-- <th>Partner Tipe</th> --}}
+                     <th class="text-center">Action</th>
                   </tr> 
                </thead>
                <tbody>
-                  @foreach ($partneralami as $tipe)
+                  @foreach ( $partneralami as $tipe )
                   <tr>
-                     <td scope="row">{{$loop->iteration}}</td>
-                     <td>{{$tipe->tipekepribadian->namatipe}}</td>
-                     <td>{{$tipe->partner_tipe}}</td>
+                     <td scope="row">{{ $loop->iteration }}</td>
+                     <td>{{ $tipe->tipekepribadian->namatipe }}</td>
+                     <td>{{ $tipe->partner_tipe }}</td>
+                     {{-- @foreach ($tipe->partnerTipekeps as $key => $partner)
+                        <td href="{{ route('artikel', ['tipe' => $partner->partner_tipe ]) }}">
+                           {{ $partner->partner_tipe }}
+                        </td>
+                     @endforeach --}}
+
                      <td class="text-center">
                         <form action="{{ route('partnertipe.destroy', $tipe->id) }}" method="post" class="dropdown custom-dropdown">
                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -63,7 +70,8 @@
                      <th>No.</th>
                      <th>Tipe Kepribadian</th>
                      <th>Partner Tipe</th>
-                     <th>Action</th>
+                     {{-- <th>Partner Tipe</th> --}}
+                     <th class="text-center">Action</th>
                   </tr>
                </tfoot>
             </table>

@@ -17,15 +17,7 @@
          
          <div class="row">
             <div class="col-xl-12 col-lg-12 col-md-12 layout-spacing">
-               @if ($errors->any())
-                  <div class="alert alert-danger">
-                     <ul>
-                        @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                        @endforeach
-                     </ul>
-                  </div><br/>
-               @endif
+               @include('layouts.alert.alert')
                <form class="section contact">
                   @csrf
 

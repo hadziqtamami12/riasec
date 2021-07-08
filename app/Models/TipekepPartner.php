@@ -26,7 +26,7 @@ class TipekepPartner extends Model
     */
     public function partner()
     {
-        return $this->belongsTo(TipeKepribadian::class, 'partner_tipe');
+        return $this->belongsTo(TipeKepribadian::class, 'tipekep_id', 'id');
     }
 
 }

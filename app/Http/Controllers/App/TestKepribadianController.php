@@ -126,7 +126,7 @@ class TestKepribadianController extends Controller
             'id' => $id
         ]);
     }
-
+        # nested data untuk mengambil value
     /**
      * [Fungsi Bersama] Parsing Persentase
      */

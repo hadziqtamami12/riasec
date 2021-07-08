@@ -25,10 +25,10 @@ class PartnerTipeController extends Controller
         $pageName = "Partner Alami Tipe Kepribadian";
 
         $partneralami = TipekepPartner::with('tipekepribadian')->get();
-
+        // $partneralami = TipeKepribadian::with('partnerTipekeps.partner')->get();
+        
         return view('admin.tipekepribadian.partner.index', compact('pageActive','pageName','partneralami'));
     }
-
 
     /**
      * Show the form for creating a new resource.

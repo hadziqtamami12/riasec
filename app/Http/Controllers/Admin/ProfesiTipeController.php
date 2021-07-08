@@ -53,7 +53,7 @@ class ProfesiTipeController extends Controller
             'profesi_tipe' => 'required|string'
         ]);
 
-        TipekepProfesi::create($request->only(['tipekep_id', 'profesi_id']));
+        TipekepProfesi::create($request->only(['tipekep_id', 'profesi_tipe']));
         return redirect()->route('profesitipe.index')->with('success','Saran profesi berhasil ditambahkan');
     }
 

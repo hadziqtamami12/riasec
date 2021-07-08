@@ -53,7 +53,7 @@ class KekuranganTipeController extends Controller
             'kekurangan_tipe' => 'required|string'
         ]);
 
-        TipekepKekurangan::create($request->get(['tipekep_id', 'kekurangan_tipe']));
+        TipekepKekurangan::create($request->only(['tipekep_id', 'kekurangan_tipe']));
         return redirect()->route('kekurangantipe.index')->with('success','Kekurangan Tipe Kepribadian berhasil ditambahkan');
     }
 

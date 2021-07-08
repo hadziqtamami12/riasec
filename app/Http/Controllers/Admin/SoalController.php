@@ -8,6 +8,11 @@ use App\Models\{DimensiPasangan,Pernyataan, Soal};
 
 class SoalController extends Controller
 {
+    // public function __construct()
+    // {
+    //     $this->middleware('role:admin');
+    // }
+
     /**
      * Tampilkan data Soal dan Pernyataan
     */
@@ -157,8 +162,7 @@ class SoalController extends Controller
     {
         Pernyataan::whereIn('id', [$id->pernyataanA, $id->pernyataanB])->delete(); # hapus data berdasarkan pernyataan pada soal
         $id->delete();
-        return response()->json('success', 204);
-
-
+        return redirect('soal')->with('success','Soal berhasil di hapus');
+        // return response()->json('success', 204);
     }
 }

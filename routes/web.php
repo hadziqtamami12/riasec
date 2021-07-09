@@ -130,13 +130,14 @@ Route::middleware(['auth'])->group(function () {
             Route::delete('profesitipe/{id}',[ProfesiTipeController::class,'destroy'])->name('profesitipe.destroy'); # delete data profesitiperibadian
         
         // todo : Session Tambahan Partner Kepribadian
-            Route::get('partnertipe',[PartnerTipeController::class,'index'])->name('partnertipe.index'); # view all tipe kerpibadian
+            Route::resource('partnertipe', PartnerTipeController::class)->except(['show']);
+            /* Route::get('partnertipe',[PartnerTipeController::class,'index'])->name('partnertipe.index'); # view all tipe kerpibadian
             Route::get('partnertipe/insert', [PartnerTipeController::class,'create'])->name('partnertipe.create'); # view form create
             Route::get('partnertipe/{id}/edit',[PartnerTipeController::class,'edit'])->name('partnertipe.edit'); # view form edit
             Route::get('partnertipe/{id}',[PartnerTipeController::class,'show'])->name('partnertipe.show'); # view show
             Route::post('partnertipe', [PartnerTipeController::class,'store'])->name('partnertipe.store'); # tambah data baru partnertiperibadian
             Route::put('partnertipe/{id}', [PartnerTipeController::class, 'update'])->name('partnertipe.update'); # update data partnertiperibadian
-            Route::delete('partnertipe/{id}',[PartnerTipeController::class,'destroy'])->name('partnertipe.destroy'); # delete data partnertiperibadian
+            Route::delete('partnertipe/{id}',[PartnerTipeController::class,'destroy'])->name('partnertipe.destroy'); # delete data partnertiperibadian */
         
         // todo : Session CRUD Program Studi
         Route::get('programstudi', [ProgramStudiController::class,'index'])->name('programstudi.index'); # view all program studi

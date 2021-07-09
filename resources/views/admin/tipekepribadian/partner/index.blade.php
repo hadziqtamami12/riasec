@@ -40,13 +40,12 @@
                   @foreach ( $partneralami as $tipe )
                   <tr>
                      <td scope="row">{{ $loop->iteration }}</td>
-                     <td>{{ $tipe->tipekepribadian->namatipe }}</td>
-                     <td>{{ $tipe->partner_tipe }}</td>
-                     {{-- @foreach ($tipe->partnerTipekeps as $key => $partner)
-                        <td href="{{ route('artikel', ['tipe' => $partner->partner_tipe ]) }}">
-                           {{ $partner->partner_tipe }}
-                        </td>
-                     @endforeach --}}
+                     <td>{{ $tipe->namatipe }}</td>
+                     <td>
+                     @foreach ($tipe->partnerTipekeps as $key => $partner)
+                           {{ $partner->partner->namatipe }} <br>
+                     @endforeach
+                     </td>
 
                      <td class="text-center">
                         <form action="{{ route('partnertipe.destroy', $tipe->id) }}" method="post" class="dropdown custom-dropdown">

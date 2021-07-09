@@ -44,8 +44,7 @@
                               <div class="col-md-12 mb-4">
                                     <div class="form-group">
                                        <label for="partner_tipe">Partner Tipe</label>
-                                       <select class="form-control" name="partner_tipe">
-                                          <option selected disabled>Masukan Nama TipeKepribadian</option>
+                                       <select class="form-control" name="partner_tipe[]" multiple>
                                           @foreach ($tipekep as $tipe)
                                              <option value="{{$tipe->id}}">
                                                 {{ $tipe->namatipe }}
@@ -79,6 +78,6 @@
    // tipe kepribadian
    $('select[name="tipekep_id"]').select2({})
    // partner tipe
-   $('select[name="partner_tipe"]').select2({})
+   $('select[name="partner_tipe[]"]').select2({})
 </script>
 @endsection

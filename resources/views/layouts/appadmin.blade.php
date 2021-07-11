@@ -129,6 +129,7 @@
    
    <!-- BEGIN GLOBAL MANDATORY STYLES -->
    <script src="{{asset('assets/js/libs/jquery-3.1.1.min.js')}}"></script>
+   <script src="{{asset('plugins/jquery-ui/jquery-ui.min.js')}}"></script>
    <script src="{{asset('bootstrap/js/popper.min.js')}}"></script>
    <script src="{{asset('bootstrap/js/bootstrap.min.js')}}"></script>
    <script src="{{asset('plugins/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
@@ -142,14 +143,11 @@
    <script src="{{asset('js/app.js')}}"></script>
    <script src="{{asset('plugins/dropify/dropify.min.js')}}"></script>
    {{-- User Crud --}}
-   <script src="{{asset('plugins/jquery-ui/jquery-ui.min.js')}}"></script>
    <script src="{{asset('assets/js/apps/contact.js')}}"></script>
    {{-- Form Create --}}
    <script src="{{asset('plugins/blockui/jquery.blockUI.min.js')}}"></script>
    <script src="{{asset('assets/js/users/account-settings.js')}}"></script>
    <!-- END GLOBAL MANDATORY STYLES -->
-
-   @yield('trigger')
 
    <!-- BEGIN PAGE LEVEL SCRIPTS -->
    {{-- feather icon --}}
@@ -169,12 +167,15 @@
                "sSearchPlaceholder": "Search...",
                "sLengthMenu": "Results :  _MENU_",
             },
-            "lengthMenu": [7, 10, 20, 50],
+            "lengthMenu": [7, 10, 20],
             "pageLength": 7
       });
 
       multiCheck(c1);
    </script>
    <!-- END PAGE LEVEL SCRIPTS -->
+
+   @yield('trigger')
+
 </body>
 </html>

@@ -8,11 +8,6 @@ use App\Models\{DimensiPasangan,Pernyataan, Soal};
 
 class SoalController extends Controller
 {
-    // public function __construct()
-    // {
-    //     $this->middleware('role:admin');
-    // }
-
     /**
      * Tampilkan data Soal dan Pernyataan
     */

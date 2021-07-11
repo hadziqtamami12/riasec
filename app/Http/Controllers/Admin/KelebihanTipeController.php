@@ -9,11 +9,6 @@ use App\Http\Controllers\Controller;
 
 class KelebihanTipeController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('role:admin');
-    }
-    
     /**
      * Display a listing of the resource.
      *
@@ -63,7 +58,7 @@ class KelebihanTipeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(TipekepKelebihan $kelebihantipe)
     {
         //
     }
@@ -74,10 +69,8 @@ class KelebihanTipeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(TipekepKelebihan $id)
+    public function edit(TipekepKelebihan $kelebihantipe)
     {
-        $kelebihantipe = $id;
-
         $pageActive = "Kelebihan Tipe Kepribadian";
         $pageName = "Ubah Kelebihan Tipe Kepribadian";
 
@@ -94,14 +87,14 @@ class KelebihanTipeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TipekepKelebihan $id)
+    public function update(Request $request, TipekepKelebihan $kelebihantipe)
     {
         $request->validate([
             'tipekep_id' => 'required',
             'kelebihan_tipe' => 'required|string'
         ]);
 
-        $id->update($request->only(['tipekep_id', 'kelebihan_tipe']));
+        $kelebihantipe->update($request->only(['tipekep_id', 'kelebihan_tipe']));
         return redirect()->route('kelebihantipe.index')->with('success','Kelebihan Tipe berhasil diubah');
     }
 
@@ -111,9 +104,9 @@ class KelebihanTipeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TipekepKelebihan $id)
+    public function destroy(TipekepKelebihan $kelebihantipe)
     {
-        $id->delete();
+        $kelebihantipe->delete();
         return redirect()->route('kelebihantipe.index')->with('success','Kelebihan Tipe berhasil dihapus');
     }
 }

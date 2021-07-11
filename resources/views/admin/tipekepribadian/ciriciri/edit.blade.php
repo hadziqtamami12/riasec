@@ -20,7 +20,7 @@
                
                @include('layouts.alert.alert')
 
-               <form method="POST" action="{{ route('ciritipe.update', $ciriciri->id) }}" class="section contact" role="form">
+               <form method="POST" action="{{ route('ciritipe.update', $ciritipe->id ) }}" class="section contact" role="form">
                   @method('PUT')
                   @csrf
 
@@ -33,9 +33,9 @@
                                     <div class="form-group">
                                        <label for="tipekep_id">Nama Tipe Kepribadian</label>
                                        <select class="form-control" name="tipekep_id">
-                                          <option value="{{ $ciriciri->tipekep_id }}" selected>{{ $ciriciri->tipekepribadian->namatipe }}</option>
+
                                           @foreach ($tipekep as $tipe)
-                                             <option value="{{$tipe->id}}">
+                                             <option value="{{$tipe->id}}" {{ $ciritipe->tipekep_id == $tipe->id ? 'selected' : '' }}>
                                                 {{ $tipe->namatipe }}
                                              </option>
                                           @endforeach
@@ -45,7 +45,7 @@
                               <div class="col-md-12 mb-4">
                                     <div class="form-group">
                                        <label for="ciri_kepribadian">Ciri Kepribadian</label>
-                                       <input type="teks" class="form-control @error('ciri_kepribadian') is-invalid @enderror" name="ciri_kepribadian" value="{{old('ciri_kepribadian', $ciriciri->ciri_kepribadian)}}" placeholder="rgba(205, 161, 66, 0.3)">
+                                       <input type="teks" class="form-control @error('ciri_kepribadian') is-invalid @enderror" name="ciri_kepribadian" value="{{old('ciri_kepribadian', $ciritipe->ciri_kepribadian)}}" placeholder="rgba(205, 161, 66, 0.3)">
                                        @error('ciri_kepribadian') <div class="invalid-feedback">{{$message}}</div>@enderror
                                     </div>
                               </div>

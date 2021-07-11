@@ -155,25 +155,25 @@ function addContact() {
   });  
 }
 
-$('#addContactModal').on('hidden.bs.modal', function (e) {
-    var $_name = document.getElementById('c-name');
-    var $_email = document.getElementById('c-email');
-    var $_occupation = document.getElementById('c-occupation');
-    var $_phone = document.getElementById('c-phone');
-    var $_location = document.getElementById('c-location');
-    var $_getValidationField = document.getElementsByClassName('validation-text');
+// $('#addContactModal').on('hidden.bs.modal', function (e) {
+//     var $_name = document.getElementById('c-name');
+//     var $_email = document.getElementById('c-email');
+//     var $_occupation = document.getElementById('c-occupation');
+//     var $_phone = document.getElementById('c-phone');
+//     var $_location = document.getElementById('c-location');
+//     var $_getValidationField = document.getElementsByClassName('validation-text');
 
-    var $_setNameValueEmpty = $_name.value = '';
-    var $_setEmailValueEmpty = $_email.value = '';
-    var $_setOccupationValueEmpty = $_occupation.value = '';
-    var $_setPhoneValueEmpty = $_phone.value = '';
-    var $_setLocationValueEmpty = $_location.value = '';
+//     var $_setNameValueEmpty = $_name.value = '';
+//     var $_setEmailValueEmpty = $_email.value = '';
+//     var $_setOccupationValueEmpty = $_occupation.value = '';
+//     var $_setPhoneValueEmpty = $_phone.value = '';
+//     var $_setLocationValueEmpty = $_location.value = '';
 
-    for (var i = 0; i < $_getValidationField.length; i++) {
-      e.preventDefault();
-      $_getValidationField[i].style.display = 'none';
-    }
-})
+//     for (var i = 0; i < $_getValidationField.length; i++) {
+//       e.preventDefault();
+//       $_getValidationField[i].style.display = 'none';
+//     }
+// })
 
 function editContact() {
   $('.edit').on('click', function(event) {
@@ -284,36 +284,36 @@ getNameInput = document.getElementById('c-name');
 
 getEmailInput = document.getElementById('c-email');
 
-getEmailInput.addEventListener('input', function() {
+// getEmailInput.addEventListener('input', function() {
 
-    getEmailInputValue = this.value;
+//     getEmailInputValue = this.value;
 
-    if (getEmailInputValue == "") {
-      $_getValidationField[1].innerHTML = 'Email Required';
-      $_getValidationField[1].style.display = 'block';
-    } else if((reg.test(getEmailInputValue) == false)) {
-      $_getValidationField[1].innerHTML = 'Invalid Email';
-      $_getValidationField[1].style.display = 'block';
-    } else {
-      $_getValidationField[1].style.display = 'none';
-    }
+//     if (getEmailInputValue == "") {
+//       $_getValidationField[1].innerHTML = 'Email Required';
+//       $_getValidationField[1].style.display = 'block';
+//     } else if((reg.test(getEmailInputValue) == false)) {
+//       $_getValidationField[1].innerHTML = 'Invalid Email';
+//       $_getValidationField[1].style.display = 'block';
+//     } else {
+//       $_getValidationField[1].style.display = 'none';
+//     }
 
-})
+// })
 
 getPhoneInput = document.getElementById('c-phone');
 
-getPhoneInput.addEventListener('input', function() {
+// getPhoneInput.addEventListener('input', function() {
 
-  getPhoneInputValue = this.value;
+//   getPhoneInputValue = this.value;
 
-  if (getPhoneInputValue == "") {
-    $_getValidationField[2].innerHTML = 'Phone Number Required';
-    $_getValidationField[2].style.display = 'block';
-  } else if((phoneReg.test(getPhoneInputValue) == false)) {
-    $_getValidationField[2].innerHTML = 'Invalid (Enter 10 Digits)';
-    $_getValidationField[2].style.display = 'block';
-  } else {
-    $_getValidationField[2].style.display = 'none';
-  }
+//   if (getPhoneInputValue == "") {
+//     $_getValidationField[2].innerHTML = 'Phone Number Required';
+//     $_getValidationField[2].style.display = 'block';
+//   } else if((phoneReg.test(getPhoneInputValue) == false)) {
+//     $_getValidationField[2].innerHTML = 'Invalid (Enter 10 Digits)';
+//     $_getValidationField[2].style.display = 'block';
+//   } else {
+//     $_getValidationField[2].style.display = 'none';
+//   }
 
-})
+// })

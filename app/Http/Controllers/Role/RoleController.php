@@ -29,11 +29,14 @@ class RoleController extends Controller
         $tipe = TipeKepribadian::withCount('tests')->get();
         $pageName = "Recap Hasil Test Kepribadian";
         # get data hasil test kepribadian
+        
         return view('admin.beranda', [
-            'dimensi' => Dimensi::orderBy('id')->get()->pluck('keterangan')->toJson(),
-            'tipe' => $tipe->pluck('namatipe')->toJson(),
-            'dominasi' => $tipe->pluck('tests_count')->toJson(),
-            'prodi' => ProgramStudi::with('statistics')->get()->map(function($item) {
+            'dimensi' => Dimensi::orderBy('id')->get()->pluck('keterangan')->toJson(), # untuk mengambil data keterangan dimensi
+            'tipe' => $tipe->pluck('namatipe')->toJson(), # untuk mengambil data nama tipekepribadian
+            'dominasi' => $tipe->pluck('tests_count')->toJson(), # untuk statistik kecenderungan kepribadian
+            # function untuk membentuk grafik pada setiap prodi, dengan menampilkan data dari hasil test yang dilakukan oleh pengguna
+            # data yang ditampilkan meliputi nama prodi dan juga warna identitas dari program studi itu sendiri. 
+            'prodi' => ProgramStudi::with('statistics')->get()->map(function($item) { 
                 return (object) [
                     'id' => $item->id,
                     'program_studi' => $item->program_studi,

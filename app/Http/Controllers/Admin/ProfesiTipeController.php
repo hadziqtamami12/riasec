@@ -9,11 +9,6 @@ use App\Models\{TipekepProfesi, TipeKepribadian};
 
 class ProfesiTipeController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('role:admin');
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -60,10 +55,10 @@ class ProfesiTipeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  TipeKepribadian  $profesitipe
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(TipeKepribadian $profesitipe)
     {
         //
     }
@@ -74,9 +69,8 @@ class ProfesiTipeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(TipekepProfesi $profesitipe)
     {
-        $saranprofesi = TipekepProfesi::find($id);
 
         $pageActive = "Saran Profesi Tipe Kepribadian";
         $pageName = "Ubah Saran Profesi";
@@ -84,24 +78,24 @@ class ProfesiTipeController extends Controller
         $tipekep = TipeKepribadian::all();
 
         # mengirim collection pada view saranprofesi
-        return view('admin.tipekepribadian.profesi.edit', compact('saranprofesi','pageActive','pageName','tipekep'));
+        return view('admin.tipekepribadian.profesi.edit', compact('profesitipe','pageActive','pageName','tipekep'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  TipekepProfesi  $profesitipe
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TipekepProfesi $id)
+    public function update(Request $request, TipekepProfesi $profesitipe)
     {
         $request->validate([
             'tipekep_id' => 'required',
             'profesi_tipe' => 'required|string'
         ]);
 
-        $id->update($request->only(['tipekep_id', 'profesi_tipe']));
+        $profesitipe->update($request->only(['tipekep_id', 'profesi_tipe']));
         return redirect()->route('profesitipe.index')->with('success','Saran profesi berhasil diubah');
     }
 
@@ -111,10 +105,9 @@ class ProfesiTipeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(TipekepProfesi $profesitipe)
     {
-        $saranprofesi = TipekepProfesi::find($id);
-        $saranprofesi->delete();
+        $profesitipe->delete();
         return redirect()->route('profesitipe.index')->with('success','Saran profesi berhasil dihapus');
     }
 }

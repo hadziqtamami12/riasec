@@ -2,9 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\{Model, SoftDeletes, Factories\HasFactory};
 
 class ProgramStudi extends Model
 {
@@ -12,8 +11,27 @@ class ProgramStudi extends Model
     protected $fillable = ['program_studi','slug','backgroundColor','borderColor','pointBorderColor', 'jumlah_tes'];
     
     # soft delete 
-    protected $dates = ['deleted_at'];
-    
+    protected $dates = ['deleted_at', 'created_at', 'updated_at'];
+
+    /**
+     * The "booted" method of the model.
+     *
+     * @return void
+     */
+    protected static function booted()
+    {
+        static::creating(function ($prodi) {
+            $prodi->slug = Str::slug($prodi->program_studi);
+            // $prodi->saveQuietly();
+        });
+
+        static::updating(function ($prodi) {
+            $prodi->slug = Str::slug($prodi->program_studi);
+            $prodi->saveQuietly();
+        });
+    }
+    # menambahkan dilayar belakang untuk mencegah duplikasi
+
     /**
      * Relasi User dengan ProgramStudi
      *  one(programstudi) to many(user)

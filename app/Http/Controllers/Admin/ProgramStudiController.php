@@ -10,11 +10,6 @@ use App\Http\Controllers\Controller;
 class ProgramStudiController extends Controller
 {
 
-    public function __construct()
-    {
-        $this->middleware('role:admin');
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -48,6 +43,7 @@ class ProgramStudiController extends Controller
      */
     public function store(Request $request)
     {
+        $regex = '';
         $request->validate([
             'program_studi' => 'required|string',
             'backgroundColor' => 'required|string',
@@ -55,10 +51,8 @@ class ProgramStudiController extends Controller
             'pointBorderColor' => 'required|string'
         ]);
 
-        $request->request->add(['slug' => Str::slug($request->program_studi)]);
-
         ProgramStudi::create(
-            $request->only(['program_studi', 'backgroundColor', 'borderColor', 'pointBorderColor', 'slug'])
+            $request->only(['program_studi', 'backgroundColor', 'borderColor', 'pointBorderColor'])
         );
 
         // return response()->json($programstudi, 200);
@@ -82,11 +76,10 @@ class ProgramStudiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(ProgramStudi $id)
+    public function edit(ProgramStudi $programstudi)
     {
-        $data = $id;
         $pageName = "Edit Program Studi";
-        return view('admin.programstudi.edit',compact('data','pageName'));
+        return view('admin.programstudi.edit',compact('programstudi','pageName'));
     }
 
     /**
@@ -96,7 +89,7 @@ class ProgramStudiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ProgramStudi $id)
+    public function update(Request $request, ProgramStudi $programstudi)
     {
         $request->validate([
             'program_studi' => 'required|string',
@@ -105,10 +98,8 @@ class ProgramStudiController extends Controller
             'pointBorderColor' => 'required|string'
         ]);
 
-        $request->request->add(['slug' => Str::slug($request->program_studi)]);
-
-        $id->update(
-            $request->only(['program_studi', 'backgroundColor', 'borderColor', 'pointBorderColor', 'slug'])
+        $programstudi->update(
+            $request->only(['program_studi', 'backgroundColor', 'borderColor', 'pointBorderColor'])
         );
 
         return redirect()->route('programstudi.index')->with('success','Daftar Program Studi Berhasil Diperbarui');
@@ -120,9 +111,9 @@ class ProgramStudiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ProgramStudi $id)
+    public function destroy(ProgramStudi $programstudi)
     {
-        $id->delete();
+        $programstudi->delete();
         return redirect()->route('programstudi.index')->with('success','Program Studi Berhasi Dihapus');
     }
 }

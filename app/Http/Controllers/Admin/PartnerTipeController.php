@@ -9,10 +9,6 @@ use App\Http\Controllers\Controller;
 
 class PartnerTipeController extends Controller
 {
-    /* public function __construct()
-    {
-        $this->middleware('role:admin');
-    } */
 
     /**
      * Display a listing of the resource.
@@ -59,7 +55,7 @@ class PartnerTipeController extends Controller
             'partner_tipe.*' => 'required|exists:App\Models\TipeKepribadian,id|different:tipekep_id|distinct'
         ]);
 
-        return $this->autosave($request->tipekep_id, $request->partner, 'Partner Tipe berhasil ditambahkan');
+        return $this->autosave($request->tipekep_id, $request->partner_tipe, 'Partner Tipe berhasil ditambahkan');
     }
 
     /**
@@ -79,36 +75,35 @@ class PartnerTipeController extends Controller
      * @param  TipeKepribadian  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(TipeKepribadian $id)
+    public function edit(TipeKepribadian $partnertipe)
     {
-        $partneralami = $id;
-
         $pageActive = "Partner Alami Tipe Kepribadian";
         $pageName = "Ubah Partner Tipe";
 
-        $tipekep = TipeKepribadian::all();
+        $tipekep = TipeKepribadian::where('id','!=', $partnertipe->id)->get();
 
-        $tipe_select = DB::table('tipe_kepribadians')->find($partneralami->tipekep_id);
+        // $tipe_select = DB::table('tipe_kepribadians')->find($partnertipe->tipekep_id);
+        $tipe_selected = $partnertipe->partnerTipekeps()->get()->pluck('partner_tipe')->toJson();
 
         # mengirim collection pada view parner
-        return view('admin.tipekepribadian.partner.edit', compact('partneralami','pageName','pageActive','tipekep', 'tipe_select'));
+        return view('admin.tipekepribadian.partner.edit', compact('partnertipe','pageName','pageActive','tipekep', 'tipe_selected'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  TipeKepribadian  $id
+     * @param  TipeKepribadian  $partner
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TipeKepribadian $id)
+    public function update(Request $request, TipeKepribadian $partnertipe)
     {
         $request->validate([
             'partner_tipe' => 'required|array|min:1|max:3',
             'partner_tipe.*' => 'required|exists:App\Models\TipeKepribadian,id|different:tipekep_id|distinct'
         ]);
 
-        return $this->autosave($id->id, $request->partner_tipe, 'Partner Tipe berhasil diubah');
+        return $this->autosave($partnertipe->id, $request->partner_tipe, 'Partner Tipe berhasil diubah');
     }
 
     /**
@@ -117,9 +112,9 @@ class PartnerTipeController extends Controller
      * @param  TipekepPartner  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TipekepPartner $id)
+    public function destroy(TipeKepribadian $partnertipe)
     {
-        $id->delete();
+        $partnertipe->delete();
         return redirect()->route('partnertipe.index')->with('success','Partner Tipe berhasil dihapus');
     }
 
@@ -127,11 +122,11 @@ class PartnerTipeController extends Controller
      * Joining Saved at Store and Update
      * 
      * @param  int $tipe
-     * @param  array $partners
+     * @param  array|null $partners
      * @param mixed $message
      * @return \Illuminate\Http\Response
      */
-    private function autosave($tipe, $partners, $message)
+    private function autosave($tipe, array $partners, $message)
     {
         // hapus yang sudah ada sebelumnya
         TipekepPartner::whereNotIn('partner_tipe', $partners)

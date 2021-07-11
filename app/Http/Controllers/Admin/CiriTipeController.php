@@ -9,11 +9,6 @@ use App\Http\Controllers\Controller;
 
 class CiriTipeController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('role:admin');
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -63,7 +58,7 @@ class CiriTipeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(TipekepCiri $ciriciri)
     {
         //
     }
@@ -74,17 +69,15 @@ class CiriTipeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(TipekepCiri $id)
+    public function edit(TipekepCiri $ciritipe)
     {
-        $ciriciri = $id;
-
         $pageActive = "Ciri-ciri Kepribadian";
         $pageName = "Ubah Ciri-ciri Kepribadian";
 
         $tipekep = TipeKepribadian::all();
         
         # mengirim collection pada view ciriciri
-        return view('admin.tipekepribadian.ciriciri.edit', compact('ciriciri','tipekep','pageName','pageActive'));
+        return view('admin.tipekepribadian.ciriciri.edit', compact('ciritipe','tipekep','pageName','pageActive'));
     }
 
     /**
@@ -94,14 +87,14 @@ class CiriTipeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TipekepCiri $id)
+    public function update(Request $request, TipekepCiri $ciritipe)
     {
         $request->validate([
             'tipekep_id' => 'required',
             'ciri_kepribadian' => 'required|string'
         ]);
 
-        $id->update($request->only(['tipekep_id', 'ciri_kepribadian']));
+        $ciritipe->update($request->only(['tipekep_id', 'ciri_kepribadian']));
 
         return redirect()->route('ciritipe.index')->with('success','Ciri Kepribadian berhasil diubah');
     }
@@ -112,9 +105,9 @@ class CiriTipeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TipekepCiri $id)
+    public function destroy(TipekepCiri $ciritipe)
     {
-        $id->delete();
+        $ciritipe->delete();
         return redirect()->route('ciritipe.index')->with('success','Ciri Kepribadian berhasi dihapus');
     }
 }

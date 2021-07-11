@@ -20,7 +20,7 @@
                
                @include('layouts.alert.alert')
 
-               <form method="POST" action="{{ route('profesitipe.update', $saranprofesi->id) }}" class="section contact">
+               <form method="POST" action="{{ route('profesitipe.update', $profesitipe->id) }}" class="section contact">
                   @method('PUT')
                   @csrf
 
@@ -33,9 +33,8 @@
                                     <div class="form-group">
                                        <label for="namatipe">Nama Tipe Kepribadian</label>
                                        <select class="form-control" name="tipekep_id">
-                                          <option value="{{ $saranprofesi->tipekep_id }}" selected>{{ $saranprofesi->tipekepribadian->namatipe }}</option>
                                           @foreach ($tipekep as $tipe)
-                                             <option value="{{$tipe->id}}">
+                                             <option value="{{$tipe->id}}" {{ $tipe->id == $profesitipe->tipekep_id ? 'selected' : '' }}>
                                                 {{ $tipe->namatipe }}
                                              </option>
                                           @endforeach
@@ -45,7 +44,7 @@
                               <div class="col-md-12 mb-4">
                                     <div class="form-group">
                                        <label for="profesi_tipe">Saran Profesi</label>
-                                       <input type="teks" class="form-control @error('profesi_tipe') is-invalid @enderror" name="profesi_tipe" value="{{old('profesi_tipe', $saranprofesi->profesi_tipe )}}">
+                                       <input type="teks" class="form-control @error('profesi_tipe') is-invalid @enderror" name="profesi_tipe" value="{{old('profesi_tipe', $profesitipe->profesi_tipe )}}">
                                        @error('profesi_tipe') <div class="invalid-feedback">{{$message}}</div>@enderror
                                     </div>
                               </div>

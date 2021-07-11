@@ -94,58 +94,23 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('tipekep/{id}',[TipeKepribadianController::class,'destroy'])->name('tipekep.destroy'); # delete data tipekepribadian
             
         // todo : Session Tambahan Ciri Kepribadian
-            Route::get('ciritipe',[CiriTipeController::class,'index'])->name('ciritipe.index'); # view all tipe kerpibadian
-            Route::get('ciritipe/insert', [CiriTipeController::class,'create'])->name('ciritipe.create'); # view form create
-            Route::get('ciritipe/{id}/edit',[CiriTipeController::class,'edit'])->name('ciritipe.edit'); # view form edit
-            Route::get('ciritipe/{id}',[CiriTipeController::class,'show'])->name('ciritipe.show'); # view show
-            Route::post('ciritipe', [CiriTipeController::class,'store'])->name('ciritipe.store'); # tambah data baru ciritiperibadian
-            Route::put('ciritipe/{id}', [CiriTipeController::class, 'update'])->name('ciritipe.update'); # update data ciritiperibadian
-            Route::delete('ciritipe/{id}',[CiriTipeController::class,'destroy'])->name('ciritipe.destroy'); # delete data tipekepribadian
+        Route::resource('ciritipe', CiriTipeController::class)->except(['show']);
         
         // todo : Session Tambahan Kelebihan Kepribadian
-            Route::get('kelebihantipe',[KelebihanTipeController::class,'index'])->name('kelebihantipe.index'); # view all tipe kerpibadian
-            Route::get('kelebihantipe/insert', [KelebihanTipeController::class,'create'])->name('kelebihantipe.create'); # view form create
-            Route::get('kelebihantipe/{id}/edit',[KelebihanTipeController::class,'edit'])->name('kelebihantipe.edit'); # view form edit
-            Route::get('kelebihantipe/{id}',[KelebihanTipeController::class,'show'])->name('kelebihantipe.show'); # view show
-            Route::post('kelebihantipe', [KelebihanTipeController::class,'store'])->name('kelebihantipe.store'); # tambah data baru kelebihantiperibadian
-            Route::put('kelebihantipe/{id}', [KelebihanTipeController::class, 'update'])->name('kelebihantipe.update'); # update data kelebihantiperibadian
-            Route::delete('kelebihantipe/{id}',[KelebihanTipeController::class,'destroy'])->name('kelebihantipe.destroy'); # delete data kelebihantiperibadian
+        Route::resource('kelebihantipe', KelebihanTipeController::class)->except(['show']);
         
         // todo : Session Tambahan Kekurangan Kepribadian
-            Route::get('kekurangantipe',[KekuranganTipeController::class,'index'])->name('kekurangantipe.index'); # view all tipe kerpibadian
-            Route::get('kekurangantipe/insert', [KekuranganTipeController::class,'create'])->name('kekurangantipe.create'); # view form create
-            Route::get('kekurangantipe/{id}/edit',[KekuranganTipeController::class,'edit'])->name('kekurangantipe.edit'); # view form edit
-            Route::get('kekurangantipe/{id}',[KekuranganTipeController::class,'show'])->name('kekurangantipe.show'); # view show
-            Route::post('kekurangantipe', [KekuranganTipeController::class,'store'])->name('kekurangantipe.store'); # tambah data baru kekurangantiperibadian
-            Route::put('kekurangantipe/{id}', [KekuranganTipeController::class, 'update'])->name('kekurangantipe.update'); # update data kekurangantiperibadian
-            Route::delete('kekurangantipe/{id}',[KekuranganTipeController::class,'destroy'])->name('kekurangantipe.destroy'); # delete data kekurangantiperibadian
+        Route::resource('kekurangantipe',KekuranganTipeController::class)->except(['show']);
             
         // todo : Session Tambahan Profesi Kepribadian
-            Route::get('profesitipe',[ProfesiTipeController::class,'index'])->name('profesitipe.index'); # view all tipe kerpibadian
-            Route::get('profesitipe/insert', [ProfesiTipeController::class,'create'])->name('profesitipe.create'); # view form create
-            Route::get('profesitipe/{id}/edit',[ProfesiTipeController::class,'edit'])->name('profesitipe.edit'); # view form edit
-            Route::get('profesitipe/{id}',[ProfesiTipeController::class,'show'])->name('profesitipe.show'); # view show
-            Route::post('profesitipe', [ProfesiTipeController::class,'store'])->name('profesitipe.store'); # tambah data baru profesitiperibadian
-            Route::put('profesitipe/{id}', [ProfesiTipeController::class, 'update'])->name('profesitipe.update'); # update data profesitiperibadian
-            Route::delete('profesitipe/{id}',[ProfesiTipeController::class,'destroy'])->name('profesitipe.destroy'); # delete data profesitiperibadian
+        Route::resource('profesitipe', ProfesiTipeController::class)->except(['show']);
         
         // todo : Session Tambahan Partner Kepribadian
-            Route::resource('partnertipe', PartnerTipeController::class)->except(['show']);
-            /* Route::get('partnertipe',[PartnerTipeController::class,'index'])->name('partnertipe.index'); # view all tipe kerpibadian
-            Route::get('partnertipe/insert', [PartnerTipeController::class,'create'])->name('partnertipe.create'); # view form create
-            Route::get('partnertipe/{id}/edit',[PartnerTipeController::class,'edit'])->name('partnertipe.edit'); # view form edit
-            Route::get('partnertipe/{id}',[PartnerTipeController::class,'show'])->name('partnertipe.show'); # view show
-            Route::post('partnertipe', [PartnerTipeController::class,'store'])->name('partnertipe.store'); # tambah data baru partnertiperibadian
-            Route::put('partnertipe/{id}', [PartnerTipeController::class, 'update'])->name('partnertipe.update'); # update data partnertiperibadian
-            Route::delete('partnertipe/{id}',[PartnerTipeController::class,'destroy'])->name('partnertipe.destroy'); # delete data partnertiperibadian */
+        Route::resource('partnertipe', PartnerTipeController::class)->except(['show']);
         
         // todo : Session CRUD Program Studi
-        Route::get('programstudi', [ProgramStudiController::class,'index'])->name('programstudi.index'); # view all program studi
-        Route::get('programstudi/insert', [ProgramStudiController::class,'create'])->name('programstudi.create'); # view form create
-        Route::get('programstudi/{id}/edit', [ProgramStudiController::class,'edit'])->name('programstudi.edit'); # view form edit
-        Route::post('programstudi', [ProgramStudiController::class,'store'])->name('programstudi.store'); # tambah data baru programstudi
-        Route::put('programstudi/{id}', [ProgramStudiController::class, 'update'])->name('programstudi.update'); # update data programstudi
-        Route::delete('programstudi/{id}',[ProgramStudiController::class,'destroy'])->name('programstudi.destroy'); # delete data programstudi
+        Route::resource('programstudi', ProgramStudiController::class)->except(['show']);
+
         // todo : Session CRUD Soal & Jawaban
         Route::get('soal', [SoalController::class,'index'])->name('soal.index'); # view index
         Route::get('soal/insert', [SoalController::class, 'view'])->name('soal.create'); # view create form

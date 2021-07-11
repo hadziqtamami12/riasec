@@ -9,11 +9,7 @@ use App\Http\Controllers\Controller;
 
 class KekuranganTipeController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('role:admin');
-    }
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -63,7 +59,7 @@ class KekuranganTipeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(TipekepKekurangan $kekurangantipe)
     {
         //
     }
@@ -74,10 +70,8 @@ class KekuranganTipeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(TipekepKekurangan $id)
+    public function edit(TipekepKekurangan $kekurangantipe)
     {
-        $kekurangantipe = $id;
-
         $pageActive = "Kekurangan Tipe Kepribadian";
         $pageName = "Ubah Kekurangan Tipe Kepribadian";
 
@@ -94,14 +88,14 @@ class KekuranganTipeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TipekepKekurangan $id)
+    public function update(Request $request, TipekepKekurangan $kekurangantipe)
     {
         $request->validate([
             'tipekep_id' => 'required',
             'kekurangan_tipe' => 'required|string'
         ]);
 
-        $id->update($request->only(['tipekep_id', 'kekurangan_tipe']));
+        $kekurangantipe->update($request->only(['tipekep_id', 'kekurangan_tipe']));
         return redirect()->route('kekurangantipe.index')->with('success','Kekurangan Tipe berhasil diubah');
     }
 
@@ -111,9 +105,9 @@ class KekuranganTipeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TipekepKekurangan $id)
+    public function destroy(TipekepKekurangan $kekurangantipe)
     {
-        $id->delete();
+        $kekurangantipe->delete();
         return redirect()->route('kekurangantipe.index')->with('success','Kekurangan Tipe berhasil dihapus');
     }
 }

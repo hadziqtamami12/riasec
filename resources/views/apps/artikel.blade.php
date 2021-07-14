@@ -33,7 +33,7 @@
             <section id="artikelTop" class="col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
                <div class="landingContent ">
                      <div class="landingImage">
-                        <img src="../assets/images/mbti/img2.png" alt="landing-image">
+                        <img src="{{ $readmore->image }}" onerror="this.src='{{asset('assets/images/300x300.jpg')}}'">
                      </div>
                      <div class="landingText">
                         <h1>{{ $readmore->namatipe }}</h1>

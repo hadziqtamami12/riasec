@@ -46,7 +46,7 @@
                      <td scope="row">{{$loop->iteration}}</td>
                      <td>{{$tipe->namatipe}}</td>
                      <td>
-                        <span><img src="{{asset($tipe->image)}}" class="rounded-circle profile-img" alt="avatar" style="width: auto; height: 90px;"></span>
+                        <span><img src="{{asset($tipe->image)}}" class="rounded-circle profile-img" alt="avatar" style="width: auto; height: 70px;"></span>
                      </td>
                      <td>{{$tipe->keterangan_tipe}}</td>
                      <td>{{$tipe->julukan_tipe}}</td>

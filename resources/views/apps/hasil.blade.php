@@ -197,7 +197,7 @@
                            <div class="col-lg-12 col-md-12 col-sm-12 col-12">
                               <h1>
                                  @foreach($hasil->tipe->partnerTipekeps as $key => $partner)
-                                 <a href="{{ route('artikel', ['tipe' => $partner->partner_tipe ]) }}">
+                                 <a href="{{ route('artikel', ['tipe' => $partner->partner->slug ]) }}">
                                     {{ $partner->partner->namatipe }}
                                  </a>
                                     @if(2 + $key == $hasil->tipe->partnerTipekeps->count())

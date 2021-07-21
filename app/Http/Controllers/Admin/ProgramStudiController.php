@@ -19,7 +19,7 @@ class ProgramStudiController extends Controller
     {
         $pageActive = "Prodi";
         $pageName = "Daftar Program Studi";
-        $data = ProgramStudi::all();
+        $data = ProgramStudi::all(); # get data programstudi
         return view('admin.programstudi.index', compact('data','pageActive','pageName'));
     }
 
@@ -79,6 +79,7 @@ class ProgramStudiController extends Controller
     public function edit(ProgramStudi $programstudi)
     {
         $pageName = "Edit Program Studi";
+        # mengirim collection pada view programstudi
         return view('admin.programstudi.edit',compact('programstudi','pageName'));
     }
 

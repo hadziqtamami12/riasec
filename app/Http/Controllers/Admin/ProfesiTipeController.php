@@ -18,7 +18,7 @@ class ProfesiTipeController extends Controller
     {
         $pageActive = "Profesi";
         $pageName = "Saran Profesi Tipe Kepribadian";
-        $saranprofesi = TipekepProfesi::with('tipekepribadian')->get();
+        $saranprofesi = TipekepProfesi::with('tipekepribadian')->get(); # get value profesi & relasi tipekepribadian
         return view('admin.tipekepribadian.profesi.index', compact('pageActive','pageName','saranprofesi'));
     }
 
@@ -29,7 +29,7 @@ class ProfesiTipeController extends Controller
      */
     public function create()
     {
-        $tipekep = TipeKepribadian::all();
+        $tipekep = TipeKepribadian::all(); # get relasi tipekepribadian
         $pageActive = "Saran Profesi Tipe Kepribadian";
         $pageName = "Tambah Saran Profesi";
         return view('admin.tipekepribadian.profesi.create', compact('tipekep','pageActive','pageName'));
@@ -71,11 +71,10 @@ class ProfesiTipeController extends Controller
      */
     public function edit(TipekepProfesi $profesitipe)
     {
-
         $pageActive = "Saran Profesi Tipe Kepribadian";
         $pageName = "Ubah Saran Profesi";
 
-        $tipekep = TipeKepribadian::all();
+        $tipekep = TipeKepribadian::all(); # get relasi tipekepribadian
 
         # mengirim collection pada view saranprofesi
         return view('admin.tipekepribadian.profesi.edit', compact('profesitipe','pageActive','pageName','tipekep'));

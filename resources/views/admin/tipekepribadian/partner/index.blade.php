@@ -32,7 +32,6 @@
                      <th>No.</th>
                      <th>Tipe Kepribadian</th>
                      <th>Partner Tipe</th>
-                     {{-- <th>Partner Tipe</th> --}}
                      <th class="text-center">Action</th>
                   </tr> 
                </thead>
@@ -40,10 +39,10 @@
                   @foreach ( $partneralami as $tipe )
                   <tr>
                      <td scope="row">{{ $loop->iteration }}</td>
-                     <td>{{ $tipe->namatipe }}</td>
+                     <td><b>{{ $tipe->namatipe }}</b></td>
                      <td>
                      @foreach ($tipe->partnerTipekeps as $key => $partner)
-                           {{ $partner->partner->namatipe }} <br>
+                        <b>{{ $partner->partner->namatipe }}</b> <br>
                      @endforeach
                      </td>
 
@@ -53,7 +52,6 @@
                               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
                            </a>
                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink1">
-                              {{-- <a class="dropdown-item btn btn-sm" style="padding-left: 22px;" href="{{route('showTipe', $tipe->id)}}">View</a> --}}
                               <a class="dropdown-item btn btn-sm text-warning" style="padding-left: 22px;" href="{{ route('partnertipe.edit', $tipe->id) }}">Edit</a>
                               @csrf
                               @method('DELETE')
@@ -69,7 +67,6 @@
                      <th>No.</th>
                      <th>Tipe Kepribadian</th>
                      <th>Partner Tipe</th>
-                     {{-- <th>Partner Tipe</th> --}}
                      <th class="text-center">Action</th>
                   </tr>
                </tfoot>

@@ -18,7 +18,7 @@ class CiriTipeController extends Controller
     {
         $pageActive = "Ciri";
         $pageName = "Ciri-ciri Tipe Kepribadian";
-        $ciritipe = TipekepCiri::with('tipekepribadian')->get();
+        $ciritipe = TipekepCiri::with('tipekepribadian')->get(); # get value ciri & relasi tipekerpibadian
         return view('admin.tipekepribadian.ciriciri.index', compact('pageActive','pageName','ciritipe'));
     }
 
@@ -29,7 +29,7 @@ class CiriTipeController extends Controller
      */
     public function create()
     {
-        $tipekep = TipeKepribadian::all();
+        $tipekep = TipeKepribadian::all(); # get relasi tipekepribadian
         $pageActive = "Ciri-ciri Kepribadian";
         $pageName = "Tambah Ciri-ciri Kepribadian";
         return view('admin.tipekepribadian.ciriciri.create', compact('tipekep','pageName','pageActive'));
@@ -74,7 +74,7 @@ class CiriTipeController extends Controller
         $pageActive = "Ciri-ciri Kepribadian";
         $pageName = "Ubah Ciri-ciri Kepribadian";
 
-        $tipekep = TipeKepribadian::all();
+        $tipekep = TipeKepribadian::all(); # get relasi tipekepribadian
         
         # mengirim collection pada view ciriciri
         return view('admin.tipekepribadian.ciriciri.edit', compact('ciritipe','tipekep','pageName','pageActive'));

@@ -38,12 +38,12 @@
                               <h2 class="cardTitle">{{ $tipe->namatipe }}</h2>
                            </div>
                            <div class="card-body">
-                                 <p class="card-text">
-                                    {{ $tipe->deskripsi_tipe}}
-                                 </p>
-                                 <a href="{{ route('artikel', ['tipe' => $tipe->id]) }}" class="btn btn-outline-dark btn-sm">
-                                    Lebih lanjut <i class="fas fa-angle-double-right"></i>
-                                 </a>
+                              <p class="card-text">
+                                 {{ $tipe->deskripsi_tipe}}
+                              </p>
+                              <a href="{{ route('artikel', ['tipe' => $tipe->slug]) }}" class="btn btn-outline-dark btn-sm">
+                                 Lebih lanjut <i class="fas fa-angle-double-right"></i>
+                              </a>
                            </div>
                         </div>
                      </div>

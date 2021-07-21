@@ -58,14 +58,13 @@ Route::middleware(['auth'])->group(function () {
     Route::group(['middleware' => 'role:user'], function() {
 
         Route::get('tipekepribadian', [ArtikelTipeController::class, 'artikel'])->name('tipekepribadian');
-        Route::get('/artikel/{tipe}', [ArtikelTipeController::class, 'readmore'])->name('artikel');
+        Route::get('/artikel/{tipe:slug}', [ArtikelTipeController::class, 'readmore'])->name('artikel');
         Route::view('/contact', 'apps.contact')->name('contact');
         # print hasil pdf
         Route::get('pdf/{id}', [TestKepribadianController::class,'printPDF'])->name('cetak');
 
     }); # role 'user'
-
-
+    
 /*
     ===============================
 			Session Admin

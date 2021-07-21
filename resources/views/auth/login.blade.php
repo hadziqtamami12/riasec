@@ -12,7 +12,7 @@
       <h1 class="">Sign In</h1>
       <p class="">Masuk ke akun Anda untuk melanjutkan.</p>
       
-      <form action="login" method="post" class="text-left">
+      <form action="{{ route('auth.check') }}" method="post" class="text-left">
          @csrf
          <div class="form">
 

@@ -8,8 +8,12 @@ trait TestTrait
 {
 
    /**
-    * Untuk Test Baru (jika pengguna sebelumnya belum menyelesaikan sesitest, pakai id lama)
     * @return array
+    * Function createSoal digunakan untuk menampilkan soal yang sudah berelasi dengan pernyataan didalamnya,
+    * dan juga record data test berupa id test dan juga id user yang nantinya disimpan pada database
+    *
+    * Untuk Test Baru (jika pengguna sebelumnya belum menyelesaikan sesitest, maka akan pakai id_test lama
+    * sampai dengan user tersebut menyelesaikan sesitest sepenuhnya)
    */
    public function createSoal()
    {

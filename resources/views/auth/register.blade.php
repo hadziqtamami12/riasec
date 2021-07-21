@@ -9,7 +9,7 @@
 
    <h1 class="">Register</h1>
    <p class="signup-link register">Sudah memiliki akun? <a href="{{Route('formlogin')}}">Masuk</a></p>
-   <form action="register" method="post" class="text-left">
+   <form action="{{ route(auth.create) }}" method="post" class="text-left">
       @csrf
       <div class="form">
 

@@ -6,6 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\{BelongsTo, BelongsToMany, HasMany, HasOne};
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -38,7 +39,8 @@ class User extends Authenticatable
         'remember_token',
     ];
     # soft delete 
-    protected $dates = ['deleted_at'];
+    protected $dates = ['created_at', 'updated_at', 'deleted_at'];
+
     /**
      * The attributes that should be cast to native types.
      *
@@ -50,8 +52,11 @@ class User extends Authenticatable
 
     /**
      * Relasi dengan tabel Role
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function roles(){
+    public function roles(): BelongsToMany
+    {
         return $this->belongsToMany(Role::class,'role_users');
     }
 
@@ -66,13 +71,19 @@ class User extends Authenticatable
     /**
      * Relasi User dengan ProgramStudi
      *  one(ProgramStudi) to many(User)
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function programstudi()
+    public function programstudi(): BelongsTo
     {
         return $this->belongsTo(ProgramStudi::class);
     }
 
-    # setting image profile
+    /**
+     * Setting image profile
+     * 
+     * @return mixed
+    */
     public function getImageAttribute()
     {
         return $this->profile_image;
@@ -81,9 +92,22 @@ class User extends Authenticatable
     /**
      * Relasi User dengan Tes
      *  one(user) to many(tes)
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function tests()
+    public function tests(): HasMany
     {
         return $this->hasMany(TestKepribadian::class);
+    }
+
+
+    /**
+     * Get the currentTest associated with the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function currentTest(): HasOne
+    {
+        return $this->hasOne(TestKepribadian::class)->where('finished_at', null);
     }
 }

@@ -18,7 +18,7 @@ class KelebihanTipeController extends Controller
     {
         $pageActive = "Kelebihan";
         $pageName = "Kelebihan Tipe Kepribadian";
-        $kelebihantipe = TipekepKelebihan::with('tipekepribadian')->get();
+        $kelebihantipe = TipekepKelebihan::with('tipekepribadian')->get(); # get value kelebihan $ relasi tipekepribadian
         return view('admin.tipekepribadian.kelebihan.index', compact('pageActive','pageName','kelebihantipe'));
     }
 
@@ -29,7 +29,7 @@ class KelebihanTipeController extends Controller
      */
     public function create()
     {
-        $tipekep = TipeKepribadian::all();
+        $tipekep = TipeKepribadian::all(); # get relasi tipekepribadian
         $pageActive = "Kelebihan Tipe Kepribadian";
         $pageName = "Tambah Kelebihan Tipe Kepribadian";
         return view('admin.tipekepribadian.kelebihan.create', compact('tipekep','pageName','pageActive'));
@@ -74,7 +74,7 @@ class KelebihanTipeController extends Controller
         $pageActive = "Kelebihan Tipe Kepribadian";
         $pageName = "Ubah Kelebihan Tipe Kepribadian";
 
-        $tipekep = TipeKepribadian::all();
+        $tipekep = TipeKepribadian::all(); # get relasi tipekepribadian
         
         # mengirim collection pada view kelebihan
         return view('admin.tipekepribadian.kelebihan.edit', compact('kelebihantipe','tipekep','pageName','pageActive'));

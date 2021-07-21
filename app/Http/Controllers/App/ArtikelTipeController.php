@@ -19,7 +19,7 @@ class ArtikelTipeController extends Controller
     }
 
     /**
-     * Read Artikel
+     * Read Artikel, menampilkan artikel dari masing2 tipekepribadian 
      */
     public function readmore(TipeKepribadian $tipe)
     {

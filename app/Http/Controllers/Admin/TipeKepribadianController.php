@@ -26,7 +26,7 @@ class TipeKepribadianController extends Controller
     {
         $pageActive = "tipe";
         $pageName = "Daftar Tipe Kepribadiain";
-        $tipekepribadian = TipeKepribadian::all();
+        $tipekepribadian = TipeKepribadian::all(); # get value tipekepribadian
         return view('admin.tipekepribadian.index', compact('pageActive','pageName','tipekepribadian'));
     }
 
@@ -145,15 +145,15 @@ class TipeKepribadianController extends Controller
         ]);
 
         # Dapatkan tipekepribadian saat ini
-        $tipekepribadian = TipeKepribadian::findOrFail($request->id);
-        $tipekepribadian->namatipe = $request->input('namatipe');
-        $tipekepribadian->slug = Str::slug($request->input('namatipe'));
-        $tipekepribadian->keterangan_tipe = $request->input('keterangan_tipe');
-        $tipekepribadian->julukan_tipe = $request->input('julukan_tipe');
-        $tipekepribadian->deskripsi_tipe = $request->input('deskripsi_tipe');
-        $tipekepribadian->arti_sukses = $request->input('arti_sukses');
-        $tipekepribadian->saran_pengembangan = $request->input('saran_pengembangan');
-        $tipekepribadian->kebahagiaan_tipe = $request->input('kebahagiaan_tipe');
+        $tipekep = TipeKepribadian::findOrFail($id);
+        $tipekep->namatipe = $request->input('namatipe');
+        $tipekep->slug = Str::slug($request->input('namatipe'));
+        $tipekep->keterangan_tipe = $request->input('keterangan_tipe');
+        $tipekep->julukan_tipe = $request->input('julukan_tipe');
+        $tipekep->deskripsi_tipe = $request->input('deskripsi_tipe');
+        $tipekep->arti_sukses = $request->input('arti_sukses');
+        $tipekep->saran_pengembangan = $request->input('saran_pengembangan');
+        $tipekep->kebahagiaan_tipe = $request->input('kebahagiaan_tipe');
         
         # Periksa apakah gambar tipekepribadian telah diungah
         if ($request->has('image_tipe')) {
@@ -166,16 +166,16 @@ class TipeKepribadianController extends Controller
             # Buat jalur file tempat gambar akan disimpan[ folder path + file name + file extension]
             $filePath = $folder . $name. '.' . $image->getClientOriginalExtension();
             # menghapus foto yang sudah ada dan menganti dengan yang baru
-            if ($tipekepribadian->image != null) {
-                $this->deleteOne($tipekepribadian->image);
+            if ($tipekep->image != null) {
+                $this->deleteOne($tipekep->image);
             }
             # Unggah gambar + memperbarui gambar
             $this->uploadOne($image, $folder, 'public', $name);
             # Setel jalur gambar profil tipekepribadian di database ke filePath
-            $tipekepribadian->image_tipe = $filePath;
+            $tipekep->image_tipe = $filePath;
         }
         // simpan data User pada Database
-        $tipekepribadian->save();
+        $tipekep->save();
         return redirect('tipekep')->with('success','Data Tipe Kepribadian berhasil ditambahkan');
     }
 

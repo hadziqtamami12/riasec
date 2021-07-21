@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\App;
 
-// use Barryvdh\DomPDF\PDF;
 use Barryvdh\DomPDF\Facade as PDF;
 use App\Traits\TestTrait;
 use Illuminate\Http\Request;
@@ -14,26 +13,24 @@ use App\Models\{TestKepribadian, TipeKepribadian, DimensiPasangan, Presentase, D
 class TestKepribadianController extends Controller
 {
     use TestTrait;
-        /**
+    /**
      * Mulai sesi test baru
-     * [Menampilkan Response Soal Random ]
+     * [ Menampilkan Response Soal Random ]
      * @return void|\Illuminate\Http\JsonResponse
     */
     public function start(){
-
         # Buat ID Test baru & ambil Soal(dari Traits)
-
         return response()->json($this->createSoal() ,201);
     }
 
     /**
      * Mulai sesi test baru
-     * [Menampilkan view Soal ]
+     * [ Menampilkan view Soal ]
      * @return void|\Illuminate\Http\JsonResponse
     */
     public function startTest()
     {
-        # direct response json to view
+        # Direct response json to view, buat id_test baru & ambil data soal(dari Trait)
         $tests = $this->createSoal();
         $dimensis = Dimensi::select('id', DB::raw("0 as value"))->get()->toJson();
 
@@ -46,23 +43,25 @@ class TestKepribadianController extends Controller
     */
     public function finish($id, Request $request){
 
-        # mengecek sesi test
-        $test = TestKepribadian::where('user_id', $request->user()->id)
-        ->where('finished_at', NULL)
-        ->find($id);
-
+        # mengecek sesi test, dengan merecord sesi finish pada test, berdasarkan id pengguna
+        $test = $request->user()->currentTest()->first();
+        # jika var test tidak ada maka, mengembalikan nilai error
         if (empty($test))
             return response()->json(['errors' => 'ID tes tidak ditemukan'], 419);
 
         # validasi inputan hasil persentase
+        /**
+         * disini digunakan untuk mengecek data yang dikirimkan ke server
+         */
         $request->validate([
             'present' => 'array|size:'. Dimensi::count(), # total yang harus dikirim
             'present.*' => 'array|size:2',  # setiap isian harus ada 2 field
             'present.*.id' => 'integer|distinct|exists:App\Models\Dimensi,id',
-            'present.*.value' => 'integer|between:0,100' # tidak lebih dari jumlah soal yang ada
+            'present.*.value' => 'integer|min:0' # tidak lebih dari jumlah soal yang ada
         ]);
-
-        $prodi = ProgramStudi::find($request->user()->programstudi_id);
+        
+        # memanggil relasi program studi dari user yang sedang melakukan test
+        $prodi = $request->user()->programstudi()->first();
 
         $columnID = array_column($request->get('present'), 'id');
         $hasil = '';
@@ -74,11 +73,10 @@ class TestKepribadianController extends Controller
             $kiri = $request->get('present')[array_search($dimensi->dimensiA, $columnID)]['value'] ?? 0;
             $kanan = $request->get('present')[array_search($dimensi->dimensiB, $columnID)]['value'] ?? 0;
 
-            // # cari apakah sisi sebelah kiri lebih besar dari kanan atau sebaliknya
+            # cari apakah sisi sebelah kiri lebih besar dari kanan atau sebaliknya
             $hasil .= $kiri > $kanan ? $dimensi->dimA->code : $dimensi->dimB->code;
 
-            // # validasi total wajib 100 persen
-            // if ($kiri + $kanan !== 100) return response()->json(['errors' => 'Hasil tidak seimbang'], 419);
+            # validasi total wajib 100 persen
             $left = $this->parsePresentasi($kiri, $kanan);
             $right = $this->parsePresentasi($kanan, $kiri);
             
@@ -86,7 +84,7 @@ class TestKepribadianController extends Controller
             $insert[] = ['dimensi_id' => $dimensi->dimensiA, 'test_id' => $id, 'totalpresent' => $left];
             $insert[] = ['dimensi_id' => $dimensi->dimensiB, 'test_id' => $id, 'totalpresent' => $right];
 
-            // Masukkan Ke Statistik
+            # memanggil fungsi fillStatic untuk memasukan data dimensi pada prodi
             $this->fillStatistic($prodi, $dimensi->dimensiA, $left);
             $this->fillStatistic($prodi, $dimensi->dimensiB, $right);
         }
@@ -97,36 +95,17 @@ class TestKepribadianController extends Controller
         # return $insert;
         # insert hasil Presentase dimensi
         Presentase::insert($insert);
-
         # selesaikan tes & output Tipe Keprtibadian
         $test->update([
             'finished_at' => now()->toDateTimeString(),
             'tipekep_id' => $tipe->id
         ]);
-
-        // Tambahkan total test dalam prodi
+        # Tambahkan total test dalam prodi
         $prodi->update(['jumlah_tes' => ++$prodi->jumlah_tes]);
 
         return response()->json($tipe, 201);
     }
 
-    /**
-     * View Hasil Kepribadian
-     *
-     *
-    */
-    public function hasil($id){
-        
-        return view('apps.hasil', [
-            'hasil' => TestKepribadian::where('user_id', Auth::id())
-            ->with(['tipe' => function($q) {
-                return $q->with('ciriTipekeps', 'kelebihanTipekeps', 'kekuranganTipekeps', 'profesiTipekeps', 'partnerTipekeps.partner');
-            }])->with('presentases')->findOrFail($id),
-            'dimensis' => DimensiPasangan::with('dimA', 'dimB')->get(),
-            'id' => $id
-        ]);
-    }
-        # nested data untuk mengambil value
     /**
      * [Fungsi Bersama] Parsing Persentase
      */
@@ -137,7 +116,9 @@ class TestKepribadianController extends Controller
 
 
     /**
-     * Isi Statistik
+     * Function fillStatistic digunakan untuk mendapatkan rekapitulasi hasil test dari pengguna yang digabungkan dengan data pengguna lain dalam prodi yang sama
+     * Dimana data yang direcord terdiri dari programstudi dan presentase yang didapatkan setiap dimensi 
+     * Fungsi ini dibuat tersendiri untuk mencegah duplikasi pembuatan, dan membuat code lebih reliable
      */
     private function fillStatistic(ProgramStudi $prodi, $dimensi, $presentase)
     {
@@ -159,7 +140,23 @@ class TestKepribadianController extends Controller
     }
 
     /**
-     * Cetak Hasil menjasi PDF
+     * View Hasil Kepribadian
+    */
+    public function hasil($id){
+        # mengirim collection pada view hasil
+        return view('apps.hasil', [
+            'hasil' => TestKepribadian::where('user_id', Auth::id())
+            ->with(['tipe' => function($q) {
+                return $q->with('ciriTipekeps', 'kelebihanTipekeps', 'kekuranganTipekeps', 'profesiTipekeps', 'partnerTipekeps.partner');
+            }])->with('presentases')->findOrFail($id),
+            'dimensis' => DimensiPasangan::with('dimA', 'dimB')->get(),
+            'id' => $id
+        ]);
+    }
+        # nested data untuk mengambil value
+
+    /**
+     * Cetak Hasil menjadi PDF
      */ 
     public function printPDF($id)
     {   

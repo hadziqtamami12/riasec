@@ -19,9 +19,7 @@ class UserAuthController extends Controller
     # mengarahkan pada form register
     public function register()
     {
-        $programstudi = DB::table('program_studis')
-        ->select('id','program_studi')
-        ->get();
+        $programstudi = ProgramStudi::all(); # relasi dengan program studi
         return view('auth.register', compact('programstudi'));
     }
 

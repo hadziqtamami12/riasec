@@ -55,9 +55,9 @@
 
                @include('layouts.alert.alert')
 
-               <form action="{{route('tipekep.update', $tipekep->id)}}" method="post" role="form" id="work-experience" class="section work-experience" enctype="multipart/form-data">
-                  @csrf
+               <form action="{{route('tipekep.update', $tipekep->id )}}" method="post" role="form" id="work-experience" class="section work-experience" enctype="multipart/form-data">
                   @method('PUT')
+                  @csrf
                   <div class="info">
                      <h5 class="">{{$pageName}}</h5>
                      <div class="row">

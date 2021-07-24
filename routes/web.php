@@ -72,7 +72,7 @@ Route::middleware(['auth'])->group(function () {
 */
     Route::group(['middleware' => 'role:admin'], function() {
     
-        // todo : Session Manage Account User
+        // todo : Route Managemen Account
         Route::get('account',[AcountAuthController::class,'index'])->name('account.index'); # view Semua Pengguna
         Route::get('account/insert_user', [AcountAuthController::class,'createUser'])->name('account.createUser'); # view form create
         Route::get('account/insert_admin', [AcountAuthController::class,'createAdmin'])->name('account.createAdmin'); # view form create
@@ -83,34 +83,28 @@ Route::middleware(['auth'])->group(function () {
         Route::get('account/{id}',[AcountAuthController::class,'show'])->name('account.show'); # view show
         Route::delete('account/{id}',[AcountAuthController::class,'destroy'])->name('account.destroy'); # delete data Pengguna via admin
     
-        // todo : Session CRUD Tipekepribadian
-        Route::get('tipekep',[TipeKepribadianController::class,'index'])->name('tipekep.index'); # view all tipe kerpibadian
-        Route::get('tipekep/insert', [TipeKepribadianController::class,'create'])->name('tipekep.create'); # view form create
-        Route::get('tipekep/{id}/edit',[TipeKepribadianController::class,'edit'])->name('tipekep.edit'); # view form edit
-        Route::get('tipekep/{id}',[TipeKepribadianController::class,'show'])->name('tipekep.show'); # view show
-        Route::post('tipekep', [TipeKepribadianController::class,'store'])->name('tipekep.store'); # tambah data baru tipekepribadian
-        Route::put('tipekep/{id}', [TipeKepribadianController::class, 'update'])->name('tipekep.update'); # update data tipekepribadian
-        Route::delete('tipekep/{id}',[TipeKepribadianController::class,'destroy'])->name('tipekep.destroy'); # delete data tipekepribadian
+        // todo : Route CRUD Tipekepribadian
+        Route::resource('tipekep', TipeKepribadianController::class)->except(['show']);
             
-        // todo : Session Tambahan Ciri Kepribadian
+        // todo : Route Tambahan Ciri Kepribadian
         Route::resource('ciritipe', CiriTipeController::class)->except(['show']);
         
-        // todo : Session Tambahan Kelebihan Kepribadian
+        // todo : Route Tambahan Kelebihan Kepribadian
         Route::resource('kelebihantipe', KelebihanTipeController::class)->except(['show']);
         
-        // todo : Session Tambahan Kekurangan Kepribadian
+        // todo : Route Tambahan Kekurangan Kepribadian
         Route::resource('kekurangantipe',KekuranganTipeController::class)->except(['show']);
             
-        // todo : Session Tambahan Profesi Kepribadian
+        // todo : Route Tambahan Profesi Kepribadian
         Route::resource('profesitipe', ProfesiTipeController::class)->except(['show']);
         
-        // todo : Session Tambahan Partner Kepribadian
+        // todo : Route Tambahan Partner Kepribadian
         Route::resource('partnertipe', PartnerTipeController::class)->except(['show']);
         
-        // todo : Session CRUD Program Studi
+        // todo : Route CRUD Program Studi
         Route::resource('programstudi', ProgramStudiController::class)->except(['show']);
 
-        // todo : Session CRUD Soal & Jawaban
+        // todo : Route CRUD Soal & Jawaban
         Route::get('soal', [SoalController::class,'index'])->name('soal.index'); # view index
         Route::get('soal/insert', [SoalController::class, 'view'])->name('soal.create'); # view create form
         Route::get('soal/{id}/edit', [SoalController::class, 'viewedit'])->name('soal.edit'); # view edit form

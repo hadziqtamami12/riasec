@@ -8,15 +8,11 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\{Hash,DB};
 use App\Models\{Role, User, ProgramStudi};
+use App\Http\Requests\{CreateAcountRequest, UpdateAcountRequest};
 
 class AcountAuthController extends Controller
 {
     use UploadTrait;
-
-    public function __construct()
-    {
-        $this->middleware('role:admin');
-    }
 
     /**
      * Display a listing of the resource.
@@ -48,7 +44,7 @@ class AcountAuthController extends Controller
      */
     public function createUser()
     {
-        $programstudi = ProgramStudi::all();
+        $programstudi = ProgramStudi::all(); # get relasi programstudi
 
         $pageActive = "Tambah Data Pengguna User";
 
@@ -57,23 +53,13 @@ class AcountAuthController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function storeUser(Request $request)
+    public function storeUser(CreateAcountRequest $request)
     {
-        $request->validate([
-            'name' => 'required|string|between:2,100',
-            'email' => 'required|email|string|max:150|unique:users',
-            'password' => 'required|string|confirmed|min:8|max:12',
-            'nim' => 'required|string|max:40',
-            'programstudi_id' =>'required',
-        ]);
         # create account
         $check = User::create([
             'name' => $request->name,
-            'slug' => Str::slug($request->name),
             'email' => $request->email,
             'password' => Hash::make($request['password']),
             'nim' => $request->nim,
@@ -91,33 +77,22 @@ class AcountAuthController extends Controller
      */
     public function createAdmin()
     {
-        $programstudi = ProgramStudi::all();
+        $programstudi = ProgramStudi::all(); # get relasi programstudi
 
-        $pageActive = "Tambah Data Pengguna";
-        $pageName = "Tambah Data Pengguna";
+        $pageActive = "Tambah Data Pengguna Admin";
 
-        return view('admin.user.createAdmin',compact('programstudi','pageActive','pageName'));
+        return view('admin.user.createAdmin',compact('programstudi','pageActive'));
     }
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function storeAdmin(Request $request)
+    public function storeAdmin(CreateAcountRequest $request)
     {
-        $request->validate([
-            'name' => 'required|string|between:2,100',
-            'email' => 'required|email|string|max:150|unique:users',
-            'password' => 'required|string|min:8|max:12',
-            'nim' => 'required|string|max:40',
-            'programstudi_id' =>'required',
-        ]);
         # create account
         $check = User::create([
             'name' => $request->name,
-            'slug' => Str::slug($request->name),
             'email' => $request->email,
             'password' => Hash::make($request['password']),
             'nim' => $request->nim,
@@ -150,22 +125,12 @@ class AcountAuthController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateAcountRequest $request, $id)
     {
-        # form validasi
-        $request->validate([
-            'name' => 'required|string',
-            'email' => 'required|email|string|max:250',
-            'nim' => 'required|string|max:40',
-            'programstudi_id' =>'required',
-            'profile_image' => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048|dimensions:min_width=100,min_height=100,max_width=1000,max_height=1000'
-        ]);
-
-        # Dapatkan pengguna saat ini
+        # mendapatkan user id
         $profile = User::findOrFail($request->id);
         # Tetapkan nama,nim,program,dll pengguna
         $profile->name = $request->input('name');
-        $profile->slug = Str::slug($request->input('name'));
         $profile->nim = $request->input('nim');
         $profile->programstudi_id = $request->input('programstudi_id');
         $profile->email = $request->input('email');

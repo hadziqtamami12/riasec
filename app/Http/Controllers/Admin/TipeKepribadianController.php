@@ -7,15 +7,11 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\TipeKepribadian;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CreateTipekepRequest;
 
 class TipeKepribadianController extends Controller
 {
     use UploadTrait;
-    
-    public function __construct()
-    {
-        $this->middleware('role:admin');
-    }
 
     /**
      * Display a listing of the resource.
@@ -48,24 +44,11 @@ class TipeKepribadianController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateTipekepRequest $request)
     {
-        # form validasi
-        $request->validate([
-            'namatipe'              => 'required|string|max:70', 
-            'keterangan_tipe'       => 'required|string',
-            'julukan_tipe'          => 'required|string',
-            'deskripsi_tipe'        => 'required|string',
-            'arti_sukses'           => 'required|string',
-            'saran_pengembangan'    => 'required|string',
-            'kebahagiaan_tipe'      => 'required|string',
-            'image_tipe'            => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048|dimensions:min_width=100,min_height=100,max_width=1000,max_height=1000'
-        ]);
-
         # create tipe kepribadian baru
         $tipekepribadian = new TipeKepribadian;
         $tipekepribadian->namatipe = $request->namatipe;
-        $tipekepribadian->slug = Str::slug($request->namatipe);
         $tipekepribadian->keterangan_tipe = $request->keterangan_tipe;
         $tipekepribadian->julukan_tipe = $request->julukan_tipe;
         $tipekepribadian->deskripsi_tipe = $request->deskripsi_tipe;
@@ -112,12 +95,11 @@ class TipeKepribadianController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int  TipeKepribadian $tipekep
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(TipeKepribadian $tipekep)
     {
-        $tipekep = TipeKepribadian::findOrFail($id);
         $pageActive = 'Edit Tipe Kepribadian';
         $pageName = 'Edit Tipe Kepribadian';
         return view('admin.tipekepribadian.edit', compact('tipekep','pageActive','pageName'));
@@ -127,27 +109,13 @@ class TipeKepribadianController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  int  TipeKepribadian $tipekep
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CreateTipekepRequest $request, TipeKepribadian $tipekep)
     {
-        # form validasi
-        $request->validate([
-            'namatipe'              => 'required|string|max:70', 
-            'keterangan_tipe'       => 'required|string',
-            'julukan_tipe'          => 'required|string',
-            'deskripsi_tipe'        => 'required|string',
-            'arti_sukses'           => 'required|string',
-            'saran_pengembangan'    => 'required|string',
-            'kebahagiaan_tipe'      => 'required|string',
-            'image_tipe'            => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048|dimensions:min_width=100,min_height=100,max_width=1000,max_height=1000'
-        ]);
-
-        # Dapatkan tipekepribadian saat ini
-        $tipekep = TipeKepribadian::findOrFail($id);
+        # generate tipekepribadian 
         $tipekep->namatipe = $request->input('namatipe');
-        $tipekep->slug = Str::slug($request->input('namatipe'));
         $tipekep->keterangan_tipe = $request->input('keterangan_tipe');
         $tipekep->julukan_tipe = $request->input('julukan_tipe');
         $tipekep->deskripsi_tipe = $request->input('deskripsi_tipe');
@@ -182,12 +150,12 @@ class TipeKepribadianController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int  TipeKepribadian $tipekep
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TipeKepribadian $id)
+    public function destroy(TipeKepribadian $tipekep)
     {
-        $id->delete();
+        $tipekep->delete();
         return redirect()->route('tipekep.index')->with('success','Data Tipe Kepribadian berhasi dihapus');
     }
 }

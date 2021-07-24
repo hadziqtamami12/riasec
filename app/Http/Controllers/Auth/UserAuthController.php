@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Models\{Role,User};
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use App\Models\{Role,User};
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CreateAcountRequest;
 use Illuminate\Support\Facades\{Auth, Hash, Session, Mail, DB};
 
 class UserAuthController extends Controller
@@ -25,19 +26,11 @@ class UserAuthController extends Controller
 
     
     # register new user with verfikasi email
-    public function postRegister(Request $request)
+    public function postRegister(CreateAcountRequest $request)
     {
-        $request->validate([
-            'name' => 'required|string|between:2,100',
-            'email' => 'required|email|string|max:150|unique:users',
-            'password' => 'required|string|confirmed|min:8|max:12',
-            'nim' => 'required|string|max:40',
-            'programstudi_id' =>'required',
-        ]);
         # create account
         $check = User::create([
             'name' => $request->name,
-            'slug' => Str::slug($request->name),
             'email' => $request->email,
             'password' => Hash::make($request['password']),
             'nim' => $request->nim,
@@ -75,6 +68,7 @@ class UserAuthController extends Controller
         $credentials = $request->only('email', 'password');
         # cek auth pengguna dengan melihat Role milik pengguna masing-masing
         if (Auth::attempt($credentials)) {
+            $token = auth()->user()->createApiToken(); # Generate token 
             return redirect('homecontroller')
                         ->with('success','Selamat Datang di Job Placement Center Poliwangi');
         }else{

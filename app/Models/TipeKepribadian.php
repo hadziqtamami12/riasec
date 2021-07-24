@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class TipeKepribadian extends Model
 {
@@ -24,6 +25,24 @@ class TipeKepribadian extends Model
     public function getImageAttribute()
     {
         return $this->image_tipe;
+    }
+
+    /**
+     * The "booted" method of the model.
+     *
+     * @return void
+     */
+    protected static function booted()
+    {
+        static::creating(function ($namkep) {
+            $namkep->slug = Str::slug($namkep->namatipe);
+            // $namkep->saveQuietly();
+        });
+
+        static::updating(function ($namkep) {
+            $namkep->slug = Str::slug($namkep->namatipe);
+            $namkep->saveQuietly();
+        });
     }
     
     /**

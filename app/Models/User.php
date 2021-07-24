@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Str;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\{BelongsTo, BelongsToMany, HasMany, HasOne};
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Relations\{BelongsTo, BelongsToMany, HasMany, HasOne};
 
 class User extends Authenticatable
 {
@@ -26,7 +27,8 @@ class User extends Authenticatable
         'nim',
         'programstudi_id',
         'profile_image',
-        'is_email_verified'
+        'is_email_verified',
+        'token_key'
     ];
 
     /**
@@ -37,6 +39,7 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'token_key'
     ];
     # soft delete 
     protected $dates = ['created_at', 'updated_at', 'deleted_at'];
@@ -49,6 +52,35 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * The "booted" method of the model.
+     *  make slug
+     * @return void
+     */
+    protected static function booted()
+    {
+        static::creating(function ($akuns) {
+            $akuns->slug = Str::slug($akuns->name);
+            // $akuns->saveQuietly();
+        });
+
+        static::updating(function ($akuns) {
+            $akuns->slug = Str::slug($akuns->name);
+            $akuns->saveQuietly();
+        });
+    }
+
+    /**
+     * craete token_key for user
+     */
+    public function createApiToken()
+    {
+        $token = Str::random(69);
+        $this->token_key = $token;
+        $this->save();
+        return $token;
+    }
 
     /**
      * Relasi dengan tabel Role

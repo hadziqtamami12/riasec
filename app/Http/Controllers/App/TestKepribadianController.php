@@ -166,7 +166,7 @@ class TestKepribadianController extends Controller
             'dimensis' => DimensiPasangan::with('dimA', 'dimB')->get()
         ]);
 
-        $pdf->setPaper('a4', 'landscape');
+        $pdf->setPaper('A4', 'landscape');
 
         return $pdf->stream('Test-Kerpibadian.pdf');
     }

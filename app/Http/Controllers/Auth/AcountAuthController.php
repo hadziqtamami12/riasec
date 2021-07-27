@@ -61,7 +61,7 @@ class AcountAuthController extends Controller
         $check = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request['password']),
+            'password' => bcrypt($request['password']),
             'nim' => $request->nim,
             'programstudi_id' => $request->programstudi_id,
         ]);
@@ -94,7 +94,7 @@ class AcountAuthController extends Controller
         $check = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request['password']),
+            'password' => bcrypt($request['password']),
             'nim' => $request->nim,
             'programstudi_id' => $request->programstudi_id,
         ]);

@@ -9,7 +9,7 @@
 
    <h1 class="">Register</h1>
    <p class="signup-link register">Sudah memiliki akun? <a href="{{Route('formlogin')}}">Masuk</a></p>
-   <form action="{{ route(auth.create) }}" method="post" class="text-left">
+   <form action="{{ route('auth.create') }}" method="post" class="text-left">
       @csrf
       <div class="form">
 
@@ -87,8 +87,6 @@
 @section('trigger')
 <script src="{{asset('plugins/select2/select2.min.js')}}"></script>
 <script>
-   $('select[name="programstudi_id"]').select2({
-      placeholder: "Pilih dimensi yang digunakan"
-   })
+   $('select[name="programstudi_id"]').select2()
 </script>
 @endsection

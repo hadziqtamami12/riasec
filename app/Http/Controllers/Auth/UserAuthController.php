@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Models\{Role,User};
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\{Role,User,ProgramStudi};
 use App\Http\Requests\CreateAcountRequest;
 use Illuminate\Support\Facades\{Auth, Hash, Session, Mail, DB};
 
@@ -32,7 +31,7 @@ class UserAuthController extends Controller
         $check = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request['password']),
+            'password' => bcrypt($request['password']),
             'nim' => $request->nim,
             'programstudi_id' => $request->programstudi_id,
         ]);

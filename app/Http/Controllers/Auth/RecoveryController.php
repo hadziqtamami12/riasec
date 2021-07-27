@@ -36,7 +36,7 @@ class RecoveryController extends Controller
 
         if (Hash::check($old_password,$currentPassword)) {
             auth()->user()->update([
-                'password' => Hash::make(request('password'))
+                'password' => bcrypt(request('password'))
             ]);
             return redirect()->intended('/profile')->with(['success' => 'Password telah berhasil diperbarui']);
         }else{

@@ -116,8 +116,8 @@
          font-size: 14px;
       }
       .footer {
-         margin-top: 5px;
-         padding: 5px;
+         margin-top: 15px;
+         /* padding: 5px; */
          color: rgba(33, 33, 33, 1);
       }
    </style>
@@ -126,10 +126,11 @@
    <div class="information">
       <table width="100%">
          <tr>
-            <td align="left" class="flex-row" style="width: 30%;">
-               <img src="{{ public_path('assets/images/logo/flag_lowongan.png') }}" alt="Logo" height="50px" width="auto" class="logo"/>
-               <img src="{{ public_path('assets/images/logo/logo.png') }}" alt="Logo" height="50px" width="auto" class="logo"/>
-               
+            <td align="left" {{--class="flex-row"--}} style="width: 30%;">
+               {{-- <img src="{{ public_path('assets/images/logo/flag_lowongan.png') }}" alt="Logo" height="50px" width="auto" class="logo"/>
+               <img src="{{ public_path('assets/images/logo/logo.png') }}" alt="Logo" height="50px" width="auto" class="logo"/> --}}
+               <h3>Hasil Tes # {{ $hasil->id }}</h3>
+               <p>Pada : &nbsp;{{ $hasil->created_at->format('d F, Y') }} </p>
             </td>
             <td align="center">
                <h1>Tes Kepribadian &middot; MBTI</h1>
@@ -177,7 +178,7 @@
                <p class="">Property © 2021 Job Placement Center - Politeknik Negeri Banyuwangi.</p>
             </td>
             <td align="right" style="width: 50%;">
-               Telah Dilaksanakan pada : &nbsp;{{ $hasil->created_at->format('d F, Y') }}
+               {{-- Telah Dilaksanakan pada : &nbsp;{{ $hasil->created_at->format('d F, Y') }} --}}
             </td>
          </tr>
       </table>

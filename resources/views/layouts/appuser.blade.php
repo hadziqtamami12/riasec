@@ -25,6 +25,12 @@
    <link rel="stylesheet" type="text/css" href="{{asset('plugins/dropify/dropify.min.css')}}"/>
    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/users/account-setting.css')}}"/>
    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/elements/alert.css')}}">
+   {{-- SweatAlert --}}
+   <link rel="stylesheet" type="text/css" href="{{asset('plugins/animate/animate.css')}}"/>
+   <script src="{{asset('plugins/sweetalerts/promise-polyfill.js')}}"></script>
+   <link rel="stylesheet" type="text/css" href="{{asset('plugins/sweetalerts/sweetalert2.min.css')}}" />
+   <link rel="stylesheet" type="text/css" href="{{asset('plugins/sweetalerts/sweetalert.css')}}" />
+   <link rel="stylesheet" type="text/css" href="{{asset('assets/css/components/custom-sweetalert.css')}}" />
    <!-- END GLOBAL MANDATORY STYLES -->
 </head>
 <body class="alt-menu" data-spy="scroll" data-offset="50">
@@ -79,6 +85,9 @@
    <script type="text/javascript">
       feather.replace();
    </script>
+   {{-- SweatAlert --}}
+   <script src="{{asset('plugins/sweetalerts/sweetalert2.min.js')}}"></script>
+   <script src="{{asset('plugins/sweetalerts/custom-sweetalert.js')}}"></script>
    <!-- END GLOBAL MANDATORY STYLES -->
    <!-- BEGIN PAGE LEVEL SCRIPTS -->
    @yield('trigger')

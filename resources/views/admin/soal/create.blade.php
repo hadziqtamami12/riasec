@@ -86,7 +86,7 @@
                   <div class="account-settings-footer">
                      <div class="as-footer-container">
                         <a href="{{ route('soal.index') }}" class="btn btn-dark" >Kembali</a>
-                        <button id="savesoal" type="submit" class="btn btn-primary">Simpan</button>
+                        <button id="savesoal" type="submit" class="btn btn-primary success">Simpan</button>
                      </div>
                   </div>  {{-- account-settings-footer --}}
 
@@ -126,7 +126,17 @@
          },
          "json"
       );
+      swal({
+         title: 'Good job!',
+         text: "You clicked the!",
+         type: 'success',
+         padding: '2em'
+      })
    })
-   
 </script>
+{{-- <script>
+   $('.as-footer-container .success').on('click', function () {
+
+   });
+</script> --}}
 @endsection

@@ -34,7 +34,7 @@
             </div>
             <div class="d-sm-flex justify-content-between">
                <div class="field-wrapper">
-                     <button type="submit" class="btn btn-primary" value="">Masuk</button>
+                     <button type="submit" class="btn btn-primary mixin" value="">Masuk</button>
                </div>
             </div>
 
@@ -44,5 +44,24 @@
       </form>
 
    </div>
+@endsection
+@section('trigger')
+   <script>
+      $('.widget-content .mixin').on('click', function () {
+      const toast = swal.mixin({
+         toast: true,
+         position: 'top-end',
+         showConfirmButton: false,
+         timer: 3000,
+         padding: '2em'
+      });
 
+      toast({
+         type: 'success',
+         title: 'Signed in successfully',
+         padding: '2em',
+      })
+
+      })
+   </script>
 @endsection

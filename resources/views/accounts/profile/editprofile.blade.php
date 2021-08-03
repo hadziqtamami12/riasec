@@ -132,7 +132,7 @@
                         <div class="as-footer-container">
                            
                            <a href="{{ \App\Models\RoleUser::where('user_id', Auth::id())->where('role_id', 1)->first() ? route('roleAdmin') : route('roleUser') }}" class="btn btn-dark" >Kembali</a>
-                           <button id="savesoal" type="submit" class="btn btn-primary">Simpan</button>
+                           <button class="mr-2 btn btn-primary success">Simpan</button>
                         </div>
                      </div>  {{-- account-settings-footer --}}
                   </form>
@@ -147,8 +147,16 @@
 @section('trigger')
 <script src="{{asset('plugins/select2/select2.min.js')}}"></script>
 <script>
-   $('select[name="programstudi_id"]').select2({
-      placeholder: "Pilih dimensi yang digunakan"
-   })
+   $('select[name="programstudi_id"]').select2()
+</script>
+<script>
+   $('.as-footer-container .success').on('click', function () {
+   swal({
+         title: 'Good job!',
+         text: "You clicked the!",
+         type: 'success',
+         padding: '2em'
+      })
+   });
 </script>
 @endsection

@@ -20,6 +20,12 @@
    <link rel="stylesheet" type="text/css" href="{{asset('plugins/select2/select2.min.css')}}"/>
    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/elements/alert.css')}}">
    <!-- END GLOBAL MANDATORY STYLES -->
+   {{-- SweatAlert --}}
+   <link rel="stylesheet" type="text/css" href="{{asset('plugins/animate/animate.css')}}"/>
+   <script src="{{asset('plugins/sweetalerts/promise-polyfill.js')}}"></script>
+   <link rel="stylesheet" type="text/css" href="{{asset('plugins/sweetalerts/sweetalert2.min.css')}}" />
+   <link rel="stylesheet" type="text/css" href="{{asset('plugins/sweetalerts/sweetalert.css')}}" />
+   <link rel="stylesheet" type="text/css" href="{{asset('assets/css/components/custom-sweetalert.css')}}" />
 </head>
 <body class="form">
 
@@ -38,6 +44,9 @@
    <script src="{{asset('bootstrap/js/popper.min.js')}}"></script>
    <script src="{{asset('bootstrap/js/bootstrap.min.js')}}"></script>
    <script src="{{asset('assets/js/authentication/form-2.js')}}"></script>
+   {{-- SweatAlert --}}
+   <script src="{{asset('plugins/sweetalerts/sweetalert2.min.js')}}"></script>
+   <script src="{{asset('plugins/sweetalerts/custom-sweetalert.js')}}"></script>
    <!-- END GLOBAL MANDATORY STYLES -->
    @yield('trigger')
 </body>

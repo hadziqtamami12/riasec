@@ -23,8 +23,8 @@
                   </div>
             </form>
          </div> {{-- widget-header --}}
-         <div class="table-responsive mb-4 style-1">
-            <table id="style-1" class="table style-1 table-hover non-hover">
+         <div class="table-responsive mb-4 style-2">
+            <table id="style-2" class="table style-2 table-hover non-hover">
                <thead>
                   <tr>
                      <th>No.</th>

@@ -27,8 +27,8 @@
                   </div>
             </form>
          </div> {{-- widget-header --}}
-         <div class="table-responsive mb-4 style-1">
-            <table id="style-1" class="table style-1 table-hover non-hover">
+         <div class="table-responsive mb-4 style-2">
+            <table id="style-2" class="table style-2 table-hover non-hover">
                <thead>
                   <tr>
                      <th>No.</th>
@@ -55,7 +55,7 @@
                               <a class="dropdown-item btn btn-sm text-warning" style="padding-left: 22px;" href="{{ route('soal.edit', $soal->id) }}">EDIT</a>
                               @csrf
                               @method('DELETE')
-                              <button type="submit" class="dropdown-item btn btn-sm text-danger" style="padding-left: 22px;" onclick="return confirm('yakin ingin dihapus?');">DELETE</button>
+                              <button type="submit" class="dropdown-item btn btn-sm text-danger warning confirm" onclick="return confirm('Yakin Ingin Dihapus?');" style="padding-left: 22px;">DELETE</button>
                            </div>
                         </form>
                      </td>
@@ -85,4 +85,27 @@
       <p class="">Hak Cipta © 2021 <a target="_blank" href="https://jpc.poliwangi.ac.id">Job Placement Center </a>- Politeknik Negeri Banyuwangi.</p>
    </div>
 </div>  {{-- footer-wrapper --}}
+@endsection
+
+@section('trigger')
+   <script>
+      $('.dropdown-menu .warning.confirm').on('click', function () {
+      swal({
+            title: 'Apa kamu yakin?',
+            text: "Anda tidak akan dapat mengembalikan ini!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Delete',
+            padding: '2em'
+         }).then(function(result) {
+            if (result.value) {
+            swal(
+               'Deleted!',
+               'File Anda telah dihapus.',
+               'success'
+            )
+            }
+         })
+      })
+   </script>
 @endsection

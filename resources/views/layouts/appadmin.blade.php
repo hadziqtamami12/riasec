@@ -30,6 +30,13 @@
    <link rel="stylesheet" type="text/css" href="{{asset('plugins/table/datatable/dt-global_style.css')}}" />
    <link rel="stylesheet" type="text/css" href="{{asset('plugins/table/datatable/custom_dt_custom.css')}}">
    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/elements/alert.css')}}">
+   {{-- SweatAlert --}}
+   <link rel="stylesheet" type="text/css" href="{{asset('assets/css/scrollspyNav.css')}}"/>
+   <link rel="stylesheet" type="text/css" href="{{asset('plugins/animate/animate.css')}}"/>
+   <script src="{{asset('plugins/sweetalerts/promise-polyfill.js')}}"></script>
+   <link rel="stylesheet" type="text/css" href="{{asset('plugins/sweetalerts/sweetalert2.min.css')}}" />
+   <link rel="stylesheet" type="text/css" href="{{asset('plugins/sweetalerts/sweetalert.css')}}" />
+   <link rel="stylesheet" type="text/css" href="{{asset('assets/css/components/custom-sweetalert.css')}}" />
    <!-- END GLOBAL MANDATORY STYLES -->
 
 
@@ -155,10 +162,16 @@
    <script type="text/javascript">
       feather.replace();
    </script>
+
+   {{-- SweatAlert --}}
+   <script src="{{asset('assets/js/scrollspyNav.js')}}"></script>
+   <script src="{{asset('plugins/sweetalerts/sweetalert2.min.js')}}"></script>
+   <script src="{{asset('plugins/sweetalerts/custom-sweetalert.js')}}"></script>
+
    {{-- datatable --}}
    <script src="{{asset('plugins/table/datatable/datatables.js')}}"></script>
    <script>
-      c1 = $('#style-1').DataTable({
+      c1 = $('#style-2').DataTable({
 
             "oLanguage": {
                "oPaginate": { "sPrevious": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>', "sNext": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>' },

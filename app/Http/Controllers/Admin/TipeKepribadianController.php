@@ -20,8 +20,8 @@ class TipeKepribadianController extends Controller
      */
     public function index()
     {
-        $pageActive = "tipe";
-        $pageName = "Daftar Tipe Kepribadiain";
+        $pageActive = "Tipe";
+        $pageName = "Daftar Tipe Kepribadian";
         $tipekepribadian = TipeKepribadian::all(); # get value tipekepribadian
         return view('admin.tipekepribadian.index', compact('pageActive','pageName','tipekepribadian'));
     }
@@ -56,25 +56,17 @@ class TipeKepribadianController extends Controller
         $tipekepribadian->saran_pengembangan = $request->saran_pengembangan;
         $tipekepribadian->kebahagiaan_tipe = $request->kebahagiaan_tipe;
         
-        # Periksa apakah gambar Tipe telah diunggah
-        if ($request->has('image_tipe')) {
-            # Dapatkan file gambar
-            $image = $request->file('image_tipe');
-            # Buat nama gambar berdasarkan tipekepribadian dan tandai waktu saat ini
-            $name = Str::slug($request->input('namatipe')).'_'.time();
-            # Folder path
-            $folder = '/uploads/TipeKepribadian/';
-            # Buat jalur file tempat gambar akan disimpan [ jalur folder + nama file + ekstensi file]
-            $filePath = $folder . $name. '.' . $image->getClientOriginalExtension();
-            # Menghapus foto yang sudah ada dan menganti dengan yang baru
-            if ($id->image != null) {
-                $this->deleteOne($id->image);
-            }
-            # Upload image
-            $this->uploadOne($image, $folder, 'public', $name);
-            # Setel jalur gambar profil pengguna di database ke filePath
-            $tipekepribadian->image_tipe = $filePath;
-        }
+        # save image
+        $image = $request->file('image_tipe');
+        # Buat nama gambar berdasarkan tipekepribadian dan tandai waktu saat ini
+        $name = Str::slug($request->input('namatipe')).'_'.time();
+        # Folder path
+        $folder = '/uploads/TipeKepribadian/';
+        # Buat jalur file tempat gambar akan disimpan [ jalur folder + nama file + ekstensi file]
+        $filePath = $folder . $name. '.' . $image->getClientOriginalExtension();
+        # Setel jalur gambar profil pengguna di database ke filePath
+        $tipekepribadian->image_tipe = $filePath;
+
         # simpan data User pada Database
         $tipekepribadian->save();
         return redirect('tipekep')->with('success','Data Tipe Kepribadian berhasil ditambahkan');

@@ -23,8 +23,8 @@
                   </div>
             </form>
          </div> {{-- widget-header --}}
-         <div class="table-responsive mb-4 style-1">
-            <table id="style-1" class="table style-1 table-hover non-hover">
+         <div class="table-responsive mb-4 style-2">
+            <table id="style-2" class="table style-2 table-hover non-hover">
                <thead>
                   <tr>
                      <th>No.</th>
@@ -38,18 +38,14 @@
                      <td scope="row">{{$loop->iteration}}</td>
                      <td>{{$prodi->program_studi}}</td>
                      <td class="text-center">
-                        <form action="{{ route('programstudi.destroy', $prodi->id) }}" method="post" class="dropdown custom-dropdown">
-                           <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
-                           </a>
-                           <div class="dropdown-menu" aria-labelledby="dropdownMenuLink1">
-                              {{-- <a class="dropdown-item btn btn-sm" style="padding-left: 22px;" href="{{route('showTipe', $tipe->id)}}">View</a> --}}
-                              <a class="dropdown-item btn btn-sm text-warning" style="padding-left: 22px;" href="{{ route('programstudi.edit', $prodi->id) }}">EDIT</a>
+                        <ul class="table-controls">
+                           <form action="{{ route('programstudi.destroy', $prodi->id) }}" method="POST">
+                              <a href="{{ route('programstudi.edit', $prodi->id) }}"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 text-success"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg></a>
                               @csrf
                               @method('DELETE')
-                              <button type="submit" class="dropdown-item btn btn-sm text-danger" style="padding-left: 22px;" onclick="return confirm('yakin ingin dihapus?');">DELETE</button>
-                           </div>
-                        </form>
+                              <button class="btn warning confirm" onclick="return confirm('Yakin Ingin Dihapus?');"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2 text-danger warning confirm"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg></button>
+                           </form>
+                        </ul>
                      </td>
                   </tr>
                   @endforeach
@@ -75,4 +71,26 @@
       <p class="">Hak Cipta © 2021 <a target="_blank" href="https://jpc.poliwangi.ac.id">Job Placement Center </a>- Politeknik Negeri Banyuwangi.</p>
    </div>
 </div>  {{-- footer-wrapper --}}
+@endsection
+@section('trigger')
+   <script>
+      $('.dropdown-menu .warning.confirm').on('click', function () {
+      swal({
+            title: 'Apa kamu yakin?',
+            text: "Anda tidak akan dapat mengembalikan ini!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Delete',
+            padding: '2em'
+         }).then(function(result) {
+            if (result.value) {
+            swal(
+               'Deleted!',
+               'File Anda telah dihapus.',
+               'success'
+            )
+            }
+         })
+      })
+   </script>
 @endsection

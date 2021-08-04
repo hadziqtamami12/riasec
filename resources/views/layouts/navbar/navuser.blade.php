@@ -30,7 +30,7 @@
                </li>
                <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-display="static" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                     <img src="{{ asset(auth()->user()->image) }}" style="width: auto; height: 35px; object-fit: cover; border-radius: 6px;" onerror="this.src='{{asset('assets/images/90x90.jpg')}}'" data-default-file="{{asset('assets/images/90x90.jpg')}}">
+                     <img src="{{ asset(auth()->user()->image) }}" style="width: 35px; height: 35px; object-fit: cover; object-position: top; border-radius: 6px; border: 1px solid #d3d3d3;" onerror="this.src='{{asset('assets/images/90x90.jpg')}}'" data-default-file="{{asset('assets/images/90x90.jpg')}}">
                   </a>
                   <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
             

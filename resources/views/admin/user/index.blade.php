@@ -27,11 +27,6 @@
                   <div class="d-flex justify-content-sm-start justify-content-center" style="text-align: left">
                      {{-- Button Pop-Up --}}
                      <svg id="btn-add-contact" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user-plus"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line></svg>
-
-                     <div class="switch align-self-center">
-                        {{-- <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list view-list active-view"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3" y2="6"></line><line x1="3" y1="12" x2="3" y2="12"></line><line x1="3" y1="18" x2="3" y2="18"></line></svg>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-grid view-grid"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg> --}}
-                     </div>
                   </div>
                   {{-- Pop-UP button --}}
                   <div class="modal fade" id="addContactModal" tabindex="-1" role="dialog" aria-labelledby="addContactModalTitle" aria-hidden="true">
@@ -70,8 +65,8 @@
                            <th>Email</th>
                            <th>NIM</th>
                            <th>Program Studi</th>
-                           <th class="text-center">Status</th>
-                           <th class="text-center">Action</th>
+                           {{-- <th class="text-center">Status</th> --}}
+                           <th class="text-center" style="">Action</th>
                         </tr>
                      </thead>
                      <tbody>
@@ -81,11 +76,13 @@
                            <td class="text-center">
                               <span><img src="{{asset($item->image)}}" class="profile-img"onerror="this.src='{{asset('assets/images/90x90.jpg')}}'"></span>
                            </td>
-                           <td>{{$item->name}}</td>
-                           <td>{{$item->email}}</td>
+                           <td>{{$item->name}} <br>
+                              <span class="text-info" style="font-size: 10px">{{$item->roles}}</span>
+                           </td>
+                           <td>{{Str::limit($item->email, 15, '..')}}</td>
                            <td>{{$item->nim}}</td>
                            <td>{{$item->programstudi->program_studi}}</td>
-                           <td><span class="shadow-none badge badge-primary">{{$item->roles}}</span></td>
+                           {{-- <td><span class="shadow-none badge badge-primary" style="font-size: 10px">{{$item->roles}}</span></td> --}}
                            <td class="text-center">
                               <ul class="table-controls">
                                  <form action="{{ route('account.destroy', $item->id) }}" method="POST">
@@ -107,7 +104,7 @@
                            <th>Email</th>
                            <th>NIM</th>
                            <th>Program Studi</th>
-                           <th class="text-center">Status</th>
+                           {{-- <th class="text-center">Status</th> --}}
                            <th class="text-center">Action</th>
                         </tr>
                      </tfoot>

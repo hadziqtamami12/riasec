@@ -67,12 +67,17 @@ class UserAuthController extends Controller
         $credentials = $request->only('email', 'password');
         # cek auth pengguna dengan melihat Role milik pengguna masing-masing
         if (Auth::attempt($credentials)) {
-            $token = auth()->user()->createApiToken(); # Generate token 
-            return redirect('homecontroller')
-                        ->with('success','Selamat Datang di Job Placement Center Poliwangi');
-        }else{
-            return back()->with('fail', 'Silakan Cek Kembali Email dan KataSandi anda');
+
+            $user = Auth::user(); // User model
+            $token = $user->createApiToken(); # Generate token 
+
+            $redirect = $user->roles()->first()->name; // Pilihan: user, superadmin, admin
+
+            // return redirect
+            return redirect($redirect == 'user' ? 'home' : $redirect)
+            ->with('success','Selamat Datang di Job Placement Center Poliwangi');
         }
+        return back()->with('fail', 'Silakan Cek Kembali Email dan KataSandi anda');
         
     }
 

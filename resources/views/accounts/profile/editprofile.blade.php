@@ -130,8 +130,8 @@
                      
                      <div class="account-settings-footer">
                         <div class="as-footer-container">
-                           
-                           <a href="{{ \App\Models\RoleUser::where('user_id', Auth::id())->where('role_id', 1)->first() ? route('roleAdmin') : route('roleUser') }}" class="btn btn-dark" >Kembali</a>
+                           \App\Models\Role::where('user_id', Auth::id())->where('role_id', 1)->first() ? route('roleAdmin') : route('roleUser') 
+                           <a href="{{Auth::user()->roles()->first()->name}}" class="btn btn-dark" >Kembali</a>
                            <button class="mr-2 btn btn-primary success">Simpan</button>
                         </div>
                      </div>  {{-- account-settings-footer --}}

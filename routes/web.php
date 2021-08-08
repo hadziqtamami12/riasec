@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Role\RoleController;
 use App\Http\Controllers\Auth\AcountAuthController;
 use App\Http\Controllers\App\{TestKepribadianController, ArtikelTipeController};
@@ -32,9 +31,9 @@ Route::middleware(['guest'])->group(function () {
 Route::middleware(['auth'])->group(function () {
 
     # auth proses 
-    Route::get('homecontroller',[HomeController::class,'index']);
     Route::post('logout',[UserAuthController::class,'signOut'])->name('logout');
-    Route::get('admin', [RoleController::class, 'roleAdmin'])->name('roleAdmin')->middleware('role:superadmin,admin');
+    Route::get('superadmin', [RoleController::class, 'roleAdmin'])->name('roleAdmin')->middleware('role:superadmin');
+    Route::get('admin', [RoleController::class, 'roleAdmin'])->name('roleAdmin')->middleware('role:admin');
     Route::get('home', [RoleController::class, 'roleUser'])->name('roleUser')->middleware('role:user');
     
     // todo : profile

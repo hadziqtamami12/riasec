@@ -95,15 +95,18 @@ class User extends Authenticatable
     /**
      * proteksi halaman, dimana ketika membuka halaman yang tidak sesuai
      * role dari user maka akan dialihkan ke halaman lain
+     * Check Roled User By Parameters
+     * @param array $role
+     * @return bool
      */
-    // public function hasRole($role){
-    //     return $this->roles()->where('name', $role)->count() == 1;
-    // }
+    public function hasRole(array $role): bool
+    {
+        return (bool) $this->roles()->whereIn('name', $role)->count();
+    }
 
     /**
      * Relasi User dengan ProgramStudi
      *  one(ProgramStudi) to many(User)
-     * 
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function programstudi(): BelongsTo

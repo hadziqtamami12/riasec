@@ -21,7 +21,7 @@ class CreateRolesTable extends Migration
 
         # insert role value
         DB::table('roles')->insert(
-            array(['name' => 'admin'],['name' => 'user'])
+            array(['name' => 'superadmin'],['name' => 'admin'],['name' => 'user'])
         );
     }
 

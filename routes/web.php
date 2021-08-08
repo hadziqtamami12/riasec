@@ -34,7 +34,7 @@ Route::middleware(['auth'])->group(function () {
     # auth proses 
     Route::get('homecontroller',[HomeController::class,'index']);
     Route::post('logout',[UserAuthController::class,'signOut'])->name('logout');
-    Route::get('admin', [RoleController::class, 'roleAdmin'])->name('roleAdmin')->middleware('role:admin');
+    Route::get('admin', [RoleController::class, 'roleAdmin'])->name('roleAdmin')->middleware('role:superadmin,admin');
     Route::get('home', [RoleController::class, 'roleUser'])->name('roleUser')->middleware('role:user');
     
     // todo : profile
@@ -70,7 +70,7 @@ Route::middleware(['auth'])->group(function () {
 			Session Admin
 	===============================
 */
-    Route::group(['middleware' => 'role:admin'], function() {
+    Route::group(['middleware' => 'role:superadmin,admin'], function() {
     
         // todo : Route Managemen Account
         Route::get('account',[AcountAuthController::class,'index'])->name('account.index'); # view Semua Pengguna
@@ -111,7 +111,7 @@ Route::middleware(['auth'])->group(function () {
     
     }); #  'middleware' => 'role:admin'
 
-});
+}); # middleware auth
 
 
 /*

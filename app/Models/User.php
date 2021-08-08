@@ -96,9 +96,9 @@ class User extends Authenticatable
      * proteksi halaman, dimana ketika membuka halaman yang tidak sesuai
      * role dari user maka akan dialihkan ke halaman lain
      */
-    public function hasRole($role){
-        return $this->roles()->where('name', $role)->count() == 1;
-    }
+    // public function hasRole($role){
+    //     return $this->roles()->where('name', $role)->count() == 1;
+    // }
 
     /**
      * Relasi User dengan ProgramStudi

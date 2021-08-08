@@ -14,18 +14,18 @@ class AdminSeeder extends Seeder
      */
     public function run()
     {
-        $admin = DB::table('users')->insert([
-            'name' => 'admin-jpc',
-            'slug' => 'admin-jpc',
-            'nim' => '123456789',
+        $superadmin = DB::table('users')->insert([
+            'name' => 'Super Admin',
+            'slug' => 'super-admin',
+            'nim' => '62123456789',
             'programstudi_id' => '1',
-            'email' => 'admin@gmail.com',
+            'email' => 'superadmin@gmail.com',
             'password' => bcrypt('katasandi'),
         ]);
 
 
         $role = DB::table('role_users')->insert([
-            'user_id' => $admin,
+            'user_id' => $superadmin,
             'role_id' => '1'
         ]);
     }

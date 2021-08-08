@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use Auth;
 use Closure;
 use Illuminate\Http\Request;
 
@@ -14,10 +15,21 @@ class UserRole
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle(Request $request, Closure $next, $role)
+    public function handle(Request $request, Closure $next, string $role)
     {
-        if (!$request->user()->hasRole($role))
+        $roles = [
+            'superadmin' => '1',
+            'admin'      => '2',
+            'user'       => '3',
+        ];
+
+        if (!in_array(auth()->user()->roleId, $roles[$role])) {
             abort(403);
+        }
         return $next($request);
+
+        // if (!$request->user()->hasRole($role)) {
+        //     abort(403);
+        // }
     }
 }

@@ -32,8 +32,7 @@ Route::middleware(['auth'])->group(function () {
 
     # auth proses 
     Route::post('logout',[UserAuthController::class,'signOut'])->name('logout');
-    Route::get('superadmin', [RoleController::class, 'roleAdmin'])->name('roleAdmin')->middleware('role:superadmin');
-    Route::get('admin', [RoleController::class, 'roleAdmin'])->name('roleAdmin')->middleware('role:admin');
+    Route::get('admin', [RoleController::class, 'roleAdmin'])->name('roleAdmin')->middleware('role:superadmin,admin');
     Route::get('home', [RoleController::class, 'roleUser'])->name('roleUser')->middleware('role:user');
     
     // todo : profile

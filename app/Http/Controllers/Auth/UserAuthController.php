@@ -64,18 +64,15 @@ class UserAuthController extends Controller
             'password' => 'required|alphaNum|min:6',
         ]);
 
-        $credentials = $request->only('email', 'password');
         # cek auth pengguna dengan melihat Role milik pengguna masing-masing
-        if (Auth::attempt($credentials)) {
+        if (Auth::attempt( $request->only('email', 'password') )) {
 
             $user = Auth::user(); // User model
             $token = $user->createApiToken(); # Generate token 
 
-            $redirect = $user->roles()->first()->name; // Pilihan: user, superadmin, admin
-
             // return redirect
-            return redirect($redirect == 'user' ? 'home' : $redirect)
-            ->with('success','Selamat Datang di Job Placement Center Poliwangi');
+            return redirect($user->roles()->first()->name == 'user' ? 'home' : 'admin')
+            ->with('success','Selamat Datang di Job Placement Center Poliwangi'); // Pilihan: user, superadmin, admin
         }
         return back()->with('fail', 'Silakan Cek Kembali Email dan KataSandi anda');
         

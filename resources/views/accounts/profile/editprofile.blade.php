@@ -130,17 +130,9 @@
                      
                      <div class="account-settings-footer">
                         <div class="as-footer-container">
-                           {{-- User::find(Auth::id()) opsionaljika mau memanggil dengan menggunakan modeluser lalu ditambah panggil func roles --}} 
-                           {{-- Auth::user()->roles()->first()->name --}}
-                           {{-- \App\Models\RoleUser::where('user_id', Auth::id())->where('role_id', 1)->first() ? route('roleAdmin') : route('roleUser') --}}
-                           <a href="{{ Auth::user()->roles()->first()->name ? route('roleAdmin') : route('roleUser') }}" class="btn btn-dark" >Kembali</a>
+                           <a href="{{ route('role'.(Auth::user()->roles()->first()->name == 'user' ? 'User' : 'Admin')) }}" class="btn btn-dark" >Kembali</a>
                            <button class="mr-2 btn btn-primary success">Simpan</button>
                         </div>
-                        {{-- 
-                           if(auth()->user()->roleId == 3 || auth()->user->roleId == 1)
-                           or 
-                           if(in_array(auth()->user->roleId, [3,1])
-                           --}}
                      </div>  {{-- account-settings-footer --}}
                   </form>
                </div> {{-- col-12 --}}

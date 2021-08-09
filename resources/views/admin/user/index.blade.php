@@ -39,7 +39,9 @@
                                        <form id="addContactModalTitle">
                                           <div class="row justify-content-center">
                                              <div class="col-10">
-                                                <a href="{{ route('account.createAdmin') }}" class="btn btn-secondary btn-lg">Tambah Admin&nbsp;<i class="fas fa-user-shield"></i></a> &nbsp;
+                                                @if (Auth::user()->roles()->first()->name === 'superadmin')
+                                                   <a href="{{ route('account.createAdmin') }}" class="btn btn-secondary btn-lg">Tambah Admin&nbsp;<i class="fas fa-user-shield"></i></a> &nbsp;
+                                                @endif
                                                 <a href="{{ route('account.createUser') }}" class="btn btn-info btn-lg"><i class="fas fa-user-graduate"></i>&nbsp;Tambah User</a>
                                              </div>
                                           </div>

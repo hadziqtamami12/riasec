@@ -57,14 +57,25 @@
                <div class="shadow-bottom"></div>
                <ul class="list-unstyled menu-categories" id="accordionExample">
 
-                  <li class="menu {{ (request()->segment(1) == 'admin') ? 'active' : '' }}">
-                     <a href="{{ route('roleAdmin') }}" aria-expanded="{{ (request()->segment(1) == 'admin') ? 'true' : 'false' }}" class="dropdown-toggle">
-                           <div class="">
-                              <i data-feather="trello"></i>
-                              <span>Recap Kunjungan</span>
-                           </div>
-                     </a>
-                  </li>
+                  {{-- @if (Auth::user()->roles()->first()->name === 'superadmin') --}}
+                     <li class="menu {{ (request()->segment(1) == 'superadmin') ? 'active' : ''  }}">
+                        <a href="{{ route('roleAdmin') }}" aria-expanded="{{ (request()->segment(1) == 'superadmin') ? 'true' : 'false' }}" class="dropdown-toggle">
+                              <div class="">
+                                 <i data-feather="trello"></i>
+                                 <span>Recap Kunjungan</span>
+                              </div>
+                        </a>
+                     </li>                      
+                  {{-- @else
+                     <li class="menu {{ (request()->segment(1) == 'admin') ? 'active' : '' }}">
+                        <a href="{{ route('roleAdmin') }}" aria-expanded="{{ (request()->segment(1) == 'admin') ? 'true' : 'false' }}" class="dropdown-toggle">
+                              <div class="">
+                                 <i data-feather="trello"></i>
+                                 <span>Recap Kunjungan</span>
+                              </div>
+                        </a>
+                     </li>  
+                  @endif --}}
 
                   <li class="menu {{ (request()->segment(1) == 'soal') ? 'active' : '' }}">
                      <a href="{{ route('soal.index') }}" aria-expanded="{{ (request()->segment(1) == 'soal') ? 'true' : 'false' }}" class="dropdown-toggle">

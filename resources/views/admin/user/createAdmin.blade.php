@@ -67,7 +67,7 @@
                      @csrf
                      {{-- @method('PATCH') --}}
                      <div class="info">
-                        <h6 class="" style="margin-bottom: 30px">Tambah Data User</h6>
+                        <h6 class="" style="margin-bottom: 30px">Tambah Data Admin</h6>
                         <div class="row">
                               <div class="col-md-11 mx-auto">
                                  <div class="row">

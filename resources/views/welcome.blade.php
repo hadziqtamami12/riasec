@@ -1,18 +1,10 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge,chrome=1">
-        <title>Job Placement Center - Politeknik Negeri Banyuwangi</title>
-        <link rel="icon" type="image/x-icon" href="https://www.poliwangi.ac.id/vendors/uploads/2019/11/kop-300x286.png"/>
-        <meta name="csrf-token" content="{{ csrf_token() }}">
-        <link rel="stylesheet" type="text/css" href="{{asset('bootstrap/css/bootstrap.min.css')}}" />
-        <link rel="stylesheet" type="text/css" href="{{asset('assets/css/plugins.css')}}" />
-        <link rel="stylesheet" type="text/css" href="{{asset('plugins/font-icons/fontawesome/css/all.min.css')}}" />
-    </head>
-    <body>
-<!--  BEGIN NAVBAR  -->
+@extends('layouts.appuser')
+@section('page_title')
+    {{"MBTI"}}
+@endsection
+
+@section('nav_header')
+    <!--  BEGIN NAVBAR  -->
     <header id="header">
         <nav class="navbar st-navbar fixed-top navbar-expand-md">
             <div class="container">
@@ -32,26 +24,22 @@
                 </button>
 
                 <div class="collapse navbar-collapse justify-content-end" id="st-navbar-collapse">
-
                     <ul class="nav navbar-nav ml-auto smooth-scroll">
-                        <li class="nav-item dropdown active">
-                            <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-display="static" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="26"
-                                            height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                            class="feather feather-user">
-                                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                                            <circle cx="12" cy="7" r="4"></circle>
-                                </svg>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('formlogin') }}">
-                                    Masuk</a>
-                                <a class="dropdown-item" href="{{ route('formregister') }}">
-                                    Daftar</a>
-                            </div>
+                        @auth
+                        <li class="nav-item {{ (request()->segment(1) == 'home') ? 'active' : '' }}">
+                            <a href="{{route('roleUser')}}" class="nav-link {{ (request()->segment(1) == 'home') ? 'active' : '' }}">Home</a>
                         </li>
+                        @endauth
+                        <li class="nav-item">
+                            <a href="{{ route('formregister') }}" class="nav-link" style="font-size: 14px">Daftar</a>
+                        </li>
+                            @if (Route::has('formregister'))                                
+                            <li class="nav-item">
+                                <a href="{{ route('formlogin') }}" class="nav-link" style="font-size: 14px">Login</a>
+                            </li>
+                            @endif
                     </ul>
+
 
                 </div><!-- navbar-collapse -->
                 
@@ -59,9 +47,79 @@
         </nav>
     </header>
 <!--  END NAVBAR  -->
+@endsection
 
-    <script src="{{asset('assets/js/libs/jquery-3.1.1.min.js')}}"></script>
-    <script src="{{asset('bootstrap/js/popper.min.js')}}"></script>
-    <script src="{{asset('bootstrap/js/bootstrap.min.js')}}"></script>
-    </body>
-</html>
+@section('content')
+
+<div class="layout-px-spacing">
+
+    <section id="landing">
+        <div class="landingContent">
+            <div class="landingText" data-aos="fade-right" data-aos-duration="2000">
+                <h1>Pentingkah Mengetahui <br> <span> Tipe Kepribadian</span> Diri?</h1>
+                <h3>Cari Tau Apa Tipe Kepribadianmu <br> Disini</h3>
+                <div class="btnmulai">
+                <a href="{{ route('formlogin') }}" class="btn btn-send">Mulai Tes</a>
+                </div>
+            </div>
+            <div class="landingImage" data-aos="fade-down" data-aos-duration="2000">
+                <img src="assets/images/bg/bg.png" alt="landing-image">
+            </div>
+        </div> <!-- landing-content -->
+    </section> {{-- Landing --}}
+
+    <div class="faq container">
+        <div class="faq-layouting layout-spacing">
+
+            <div class="rules-wrapper" data-aos="zoom-in-up" data-aos-duration="1000">
+                <div class="row">
+                <div class="col-md-12">
+                    <h3>Beberapa aturan dalam mengikuti Tes :</h3>
+                    
+                    <div class="row">
+                        <div class="col-md-12">
+                            <ul class="">
+                            <li class="list-unstyled">
+                                <div class="icon-svg">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                </div>
+                                Tidak ada jawaban yang benar untuk semua pertanyaan ini.
+                            </li>
+                            <li class="list-unstyled">
+                                <div class="icon-svg">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                </div>
+                                Jawab pertanyaan dengan cepat, jangan terlalu menganalisisnya. Beberapa tampak terselubung
+                            </li>
+                            <li class="list-unstyled">
+                                <div class="icon-svg">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                </div>
+                                Jawab pertanyaan sebagai "apa adanya", bukan "dengan cara yang Anda inginkan"
+                            </li>
+                            <li class="list-unstyled">
+                                <div class="icon-svg">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                </div>
+                                Hasil penilaian Tes akan tampil setelah Anda menyelesaikan semua pertanyaan yang diberikan.
+                            </li>
+                            </ul>
+                            <small class="text-right">Harley Friedman, MD. <cite title="Source Title">MBTI Personality Type Test</cite></small>
+                        </div>
+                    </div>
+
+                </div>
+                </div>
+            </div> {{-- Rules-Wrapper --}}
+
+        </div> <!-- Faq-Layouting -->
+
+    </div> {{--Faq Container  --}} 
+
+</div> {{-- layout-px-spacing --}}
+
+@endsection
+
+{{-- @section('footer')
+    @include('layouts.footer.foouser')
+@endsection --}}

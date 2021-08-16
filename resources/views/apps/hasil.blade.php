@@ -34,6 +34,9 @@
             <div class="landingContent">
                <div class="landingImage">
                   <img src="{{ $hasil->tipe->image }}" onerror="this.src='{{asset('assets/images/300x300.jpg')}}'">
+                  <small class="text-right" style="font-size: 8px">Illustrations by <cite title="Source Title"><a href="https://blush.design/collections/40G09koP55fYh86yZDnX/stuck-at-home/character-standing/2WYYj_i51y7t1dWK?c=skin_0%7Eecafa3">Mariana Gonzalez Vega</a></cite></small>
+               {{-- Illustrations by Mariana Gonzalez Vega --}}
+               {{-- https://blush.design/collections/40G09koP55fYh86yZDnX/stuck-at-home/character-standing/2WYYj_i51y7t1dWK?c=skin_0%7Eecafa3 --}}
                </div>
                <div class="landingText">
                   <h1>{{ $hasil->tipe->namatipe }}</h1>

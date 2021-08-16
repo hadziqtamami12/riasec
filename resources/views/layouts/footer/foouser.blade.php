@@ -12,6 +12,8 @@
             <!-- /SOCIAL ICONS -->
             <div class="col-md-6 order-sm-1 copyright">
                <p>&#xA9; 2021 <a href="https://jpc.poliwangi.ac.id/">Job Placement Center</a>. Politeknik Negeri Banyuwangi.</p>
+
+               {{-- <small class="text-right">Illustrations by <cite title="Source Title"><a href="https://blush.design/collections/40G09koP55fYh86yZDnX/stuck-at-home/character-standing/2WYYj_i51y7t1dWK?c=skin_0%7Eecafa3">Mariana Gonzalez Vega</a></cite></small> --}}
             </div>
          </div>
    </div>

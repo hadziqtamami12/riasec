@@ -38,6 +38,7 @@
                               <h2 class="cardTitle">{{ $tipe->namatipe }}</h2>
                            </div>
                            <div class="card-body">
+                              <small class="text-right">Illustrations by <cite title="Source Title"><a href="https://blush.design/collections/40G09koP55fYh86yZDnX/stuck-at-home/character-standing/2WYYj_i51y7t1dWK?c=skin_0%7Eecafa3" style="font-size: 10px">Mariana Gonzalez Vega</a></cite></small>
                               <p class="card-text">
                                  {{ $tipe->deskripsi_tipe}}
                               </p>
@@ -46,6 +47,8 @@
                               </a>
                            </div>
                         </div>
+                        {{-- Illustrations by Mariana Gonzalez Vega --}}
+                        {{-- https://blush.design/collections/40G09koP55fYh86yZDnX/stuck-at-home/character-standing/2WYYj_i51y7t1dWK?c=skin_0%7Eecafa3 --}}
                      </div>
                   @endforeach
                </div>

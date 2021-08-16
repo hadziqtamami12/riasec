@@ -85,7 +85,11 @@
                                                 <div class="form-group col-md-9">
                                                    <label for="email">Email</label>
                                                    <input type="text" class="form-control"
+                                                   @if (Auth::user()->roles()->first()->name === 'admin')
                                                    @error('email') is-invalid @enderror" name="email" value="{{ $acount->email }}" autofocus="1" readonly="1" />
+                                                   @else
+                                                   @error('email') is-invalid @enderror" name="email" value="{{ $acount->email }}" />
+                                                   @endif
                                                    @error('email') <div class="invalid-feedback">{{$message}}</div>@enderror
                                                 </div>
                            

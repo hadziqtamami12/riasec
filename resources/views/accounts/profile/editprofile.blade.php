@@ -85,7 +85,7 @@
                                                 <div class="form-group col-md-9">
                                                    <label for="email">Email</label>
                                                    <input type="text" class="form-control"
-                                                   @error('email') is-invalid @enderror" name="email" value="{{ Auth::user()->email }}" autofocus="1" readonly="1" />
+                                                   @error('email') is-invalid @enderror" name="email" value="{{ Auth::user()->email }}"/> {{--  autofocus="1" readonly="1"  --}} 
                                                    @error('email') <div class="invalid-feedback">{{$message}}</div>@enderror
                                                 </div>
                            

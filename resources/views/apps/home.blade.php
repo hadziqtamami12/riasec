@@ -21,7 +21,7 @@
             </div>
          </div>
          <div class="landingImage" data-aos="fade-down" data-aos-duration="2000">
-            <img src="assets/images/bg/bg.png" alt="landing-image">
+            <img src="{{asset('assets/images/bg/bg.png')}}" alt="landing-image">
          </div>
       </div> <!-- landing-content -->
    </section> {{-- Landing --}}

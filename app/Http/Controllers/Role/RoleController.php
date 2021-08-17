@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Role;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\{Dimensi,ProgramStudi,TipeKepribadian};
 
@@ -29,6 +30,7 @@ class RoleController extends Controller
         $tipe = TipeKepribadian::withCount('tests')->get();
         $pageName = "Recap Hasil Test Kepribadian";
         # get data hasil test kepribadian
+        $totalPengujian = DB::table('program_studis')->selectRaw('SUM(jumlah_tes) as total_tes')->first() ;
         
         return view('admin.beranda', [
             'dimensi' => Dimensi::orderBy('id')->get()->pluck('keterangan')->toJson(), # untuk mengambil data keterangan dimensi
@@ -43,9 +45,10 @@ class RoleController extends Controller
                     'backgroundColor' => $item->backgroundColor,
                     'borderColor' => $item->borderColor,
                     'pointBorderColor' => $item->pointBorderColor,
-                    'statistics' => $item->statistics->pluck('presentase')->toJson()
+                    'statistics' => $item->statistics->pluck('presentase')->toJson(),
+                    'jumlah_tes' => $item->jumlah_tes,
                 ];
             })
-        ],compact('pageName'));
+        ],compact('pageName','totalPengujian'));
     }
 }

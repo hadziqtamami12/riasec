@@ -16,7 +16,6 @@
             <div class="widget-heading">
                <h5 class="">Recap Hasil Keseluruhan</h5>
             </div>
-
             <div class="widget-content">
                <div class="tabs tab-content">
                   <canvas id="tipeChart" ></canvas>
@@ -24,7 +23,29 @@
             </div>
          </div>
       </div>
+      {{-- Statistik jumlah uji --}}
+      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 layout-spacing">
+         <div class="widget widget-chart-two">
+            <div class="widget-heading">
+               <h5>Total Pengujian</h5><br> 
+               <h4 style="color: #f8538d; font-size: 20px; letter-spacing: 1px; margin-bottom: 0;font-weight: 700;">{{($totalPengujian->total_tes) }}</h4>
+               <span style="font-weight: 600">Tes</span>
+            </div>
+            <div class="widget-content">
+            </div>
+         </div>
+      </div>
 
+      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 layout-spacing">
+         <div class="widget widget-chart-two">
+            <div class="widget-heading">
+            </div>
+            <div class="widget-content">
+            </div>
+         </div>
+      </div>
+
+      {{-- Statistik Program Studi --}}
       @foreach($prodi as $key)
       <div class="col-xl-4 col-lg-6 col-md-4 col-sm-6 col-12 layout-spacing">
          <div class="widget widget-chart-two">
@@ -34,6 +55,7 @@
             <div class="widget-content">
                <canvas id="chart{{ $key->id }}" style="padding: 30px;"></canvas>
             </div>
+            <p class="align-items-center" style="font-weight: 700; text-align: center; padding-bottom: 15px">{{"jumlah tes : " . $key->jumlah_tes}}</p>
          </div>
       </div>
       @endforeach

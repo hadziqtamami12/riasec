@@ -6,7 +6,11 @@
 @section('content')
    
 <div class="form-content">
-
+   <div class="maintanence-hero-img">
+      <a href="{{url('/')}}">
+         <img alt="Politeknik Negeri Banyuwangi" data-retina="{{asset('assets/images/logo/icon_poliwangi.png')}}" data-src="{{asset('assets/images/logo/icon_poliwangi.png')}}" class="m-0" src="{{asset('assets/images/logo/icon_poliwangi.png')}}" >
+      </a>
+   </div>
    <h1 class="">Register</h1>
    <p class="signup-link register">Sudah memiliki akun? <a href="{{Route('formlogin')}}">Masuk</a></p>
    <form action="{{ route('auth.create') }}" method="post" class="text-left">

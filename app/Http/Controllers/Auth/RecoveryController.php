@@ -8,12 +8,6 @@ use Illuminate\Support\Facades\Hash;
 
 class RecoveryController extends Controller
 {
-    # recovery lupa password
-    public function recovery()
-    {
-        return view('auth.recovery');
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -43,5 +37,5 @@ class RecoveryController extends Controller
             return back()->with(['fail' => 'Pastikan Anda mengisi kata sandi Anda']); 
         }
     }
-    
+
 }

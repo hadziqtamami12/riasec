@@ -26,6 +26,7 @@
    <link rel="stylesheet" type="text/css" href="{{asset('plugins/sweetalerts/sweetalert2.min.css')}}" />
    <link rel="stylesheet" type="text/css" href="{{asset('plugins/sweetalerts/sweetalert.css')}}" />
    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/components/custom-sweetalert.css')}}" />
+   <link href="{{asset('assets/css/pages/error/style-maintanence.css')}}" rel="stylesheet" type="text/css" />
 </head>
 <body class="form">
 

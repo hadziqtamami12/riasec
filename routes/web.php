@@ -2,9 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Role\RoleController;
-use App\Http\Controllers\Auth\AcountAuthController;
 use App\Http\Controllers\App\{TestKepribadianController, ArtikelTipeController};
-use App\Http\Controllers\Auth\{UserAuthController, ProfileController, RecoveryController};
+use App\Http\Controllers\Auth\{UserAuthController, ProfileController, RecoveryController, ForgetPasswordController, AcountAuthController};
 use App\Http\Controllers\Admin\{CiriTipeController, SoalController, PartnerTipeController, ProfesiTipeController,KelebihanTipeController, KekuranganTipeController, TipeKepribadianController, ProgramStudiController};
 
 Route::get('/', function () {
@@ -21,6 +20,11 @@ Route::middleware(['guest'])->group(function () {
     Route::get('register', [UserAuthController::class, 'register'])->name('formregister');
     Route::post('login', [UserAuthController::class, 'postLogin'])->name('auth.check');
     Route::post('register',[UserAuthController::class, 'postRegister'])->name('auth.create');
+    // Lupa Password
+    Route::get('forget-password', [ForgetPasswordController::class, 'showForgetPasswordForm'])->name('forget.password.get');
+    Route::post('forget-password', [ForgetPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post'); 
+    Route::get('reset-password/{token}', [ForgetPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
+    Route::post('reset-password', [ForgetPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
 });
 
 /*

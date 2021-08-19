@@ -20,7 +20,9 @@
       <div class="container-fluid maintanence-content">
          <div class="">
             <div class="maintanence-hero-img">
-               <img alt="Politeknik Negeri Banyuwangi" data-retina="https://jpc.poliwangi.ac.id/template/jpcthemebaru/img/poliwangi/logo/logo.png" data-src="https://jpc.poliwangi.ac.id/template/jpcthemebaru/img/poliwangi/logo/logo.png" class="m-0" src="https://jpc.poliwangi.ac.id/template/jpcthemebaru/img/poliwangi/logo/logo.png" >
+               <a href="{{url('/')}}">
+                  <img alt="Politeknik Negeri Banyuwangi" data-retina="{{asset('assets/images/logo/icon_poliwangi.png')}}" data-src="{{asset('assets/images/logo/icon_poliwangi.png')}}" class="m-0" src="{{asset('assets/images/logo/icon_poliwangi.png')}}" >
+               </a>
             </div>
             <h1 class="error-title">Under Maintenance</h1>
             <p class="error-text">Terima kasih telah mengunjungi kami.</p>

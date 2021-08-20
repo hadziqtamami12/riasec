@@ -65,7 +65,7 @@ table.dataTable {
 .table > thead > tr > th {
   color: #1b55e2;
   font-weight: 700;
-  font-size: 13px;
+  font-size: 12px;
   border: none;
   letter-spacing: 1px;
   text-transform: uppercase; }
@@ -73,7 +73,7 @@ table.dataTable {
 .table > tbody > tr > td {
   border: none;
   color: #2F313A;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
   letter-spacing: 1px; }
 

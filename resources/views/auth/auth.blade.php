@@ -6,7 +6,7 @@
    <meta http-equiv="X-UA-Compatible" content="ie=edge,chrome=1">
    <title>@yield('page_title')&nbsp;-&nbsp;Job Placement Center Politeknik Negeri Banyuwangi</title>
    <!-- Favicon -->
-	<link rel="icon" type="image/x-icon" href="https://www.poliwangi.ac.id/vendors/uploads/2019/11/kop-300x286.png"/>
+	<link rel="icon" type="image/x-icon" href="{{asset('assets/images/logo/icon_poliwangi.png')}}"/>
 	<meta name="csrf-token" content="{{ csrf_token() }}">
    <!-- loading -->
    <link href="{{asset('assets/css/loader.css')}}" rel="stylesheet" type="text/css" />

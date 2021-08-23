@@ -15,11 +15,13 @@
 
       <div class="widget-content widget-content-area">
          <div class="widget-header">
+            
             @include('layouts.alert.alert')
+
             <form class="form-inline mt-4 mb-1">
-               <h4 class="col-10"><b>{{$pageName}}</b></h4>
+               <h4 class="col-10">{{$pageName}}</h4>
                   <div class="col-auto">
-                     <a href="{{ route('programstudi.create') }}" class="btn btn-primary mb-2"><i data-feather="plus"></i>{{$pageActive}}</a>
+                     <a href="{{ route('programstudi.create') }}" class="btn btn-primary mb-2"><i data-feather="plus"></i></a>
                   </div>
             </form>
          </div> {{-- widget-header --}}
@@ -27,7 +29,7 @@
             <table id="style-2" class="table style-2 table-hover non-hover">
                <thead>
                   <tr>
-                     <th>No.</th>
+                     <th class="text-center">No.</th>
                      <th>Program Studi</th>
                      <th class="text-center">Action</th>
                   </tr> 
@@ -35,24 +37,26 @@
                <tbody>
                   @foreach ($data as $prodi)
                   <tr>
-                     <td scope="row">{{$loop->iteration}}</td>
+                     <td scope="row" class="text-center">{{$loop->iteration}}</td>
                      <td>{{$prodi->program_studi}}</td>
                      <td class="text-center">
-                        <ul class="table-controls">
-                           <form action="{{ route('programstudi.destroy', $prodi->id) }}" method="POST">
-                              <a href="{{ route('programstudi.edit', $prodi->id) }}"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2 text-success"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg></a>
-                              @csrf
-                              @method('DELETE')
-                              <button class="btn warning confirm" onclick="return confirm('Yakin Ingin Dihapus?');"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2 text-danger warning confirm"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg></button>
-                           </form>
-                        </ul>
+                        <div class="dropdown custom-dropdown">
+                           <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink12" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
+                           </a>
+                           <div class="dropdown-menu" aria-labelledby="dropdownMenuLink12">
+                              {{-- <a class="dropdown-item" href="javascript:void(0);">View</a> --}}
+                              <a class="dropdown-item btn btn-sm text-warning" href="{{ route('programstudi.edit', $prodi->id) }}">Edit</a>
+                              <a class="dropdown-item btn btn-sm text-danger" href="#" data-toggle="modal" data-target="#delete" data-id="{{ $prodi->id }}">Delete</a>
+                           </div>
+                        </div>
                      </td>
                   </tr>
                   @endforeach
                </tbody>
                <tfoot>
                   <tr>
-                     <th>No.</th>
+                     <th class="text-center">No.</th>
                      <th>Program Studi</th>
                      <th class="text-center">Action</th>
                   </tr>
@@ -60,9 +64,33 @@
             </table>
          </div> {{-- table-responsive --}}
       </div> {{-- widget-content-area --}}
+      {{-- modal pop-up --}}
+      <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+         <div class="modal-dialog modal-dialog-centered" role="document">
+            <form action="{{ route('programstudi.destroy', $prodi->id) }}" method="post">
+               @csrf
+               @method('DELETE')
+               <div class="modal-content">
+                  <div class="modal-header">
+                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                           <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                     </button>
+                  </div>
+                  <div class="modal-body">
+                     <p class="modal-text">Apa kamu yakin, akan menghapus data ini?</p>
+                  </div>
+                  <div class="modal-footer">
+                     <button type="button" class="btn" data-dismiss="modal"><i class="flaticon-cancel-12"></i>No, Cancel!</button>
+                     <button type="submit" class="btn btn-danger">Yes, Delete!</button>
+                  </div>
+               </div>
+            </form>
+         </div>
+      </div>
       
    </div> {{-- col-12 --}}
 </div> {{-- row layout-spacing --}}
+
 @endsection
 
 @section('footer')
@@ -71,26 +99,4 @@
       <p class="">Hak Cipta © 2021 <a target="_blank" href="https://jpc.poliwangi.ac.id">Job Placement Center </a>- Politeknik Negeri Banyuwangi.</p>
    </div>
 </div>  {{-- footer-wrapper --}}
-@endsection
-@section('trigger')
-   <script>
-      $('.dropdown-menu .warning.confirm').on('click', function () {
-      swal({
-            title: 'Apa kamu yakin?',
-            text: "Anda tidak akan dapat mengembalikan ini!",
-            type: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'Delete',
-            padding: '2em'
-         }).then(function(result) {
-            if (result.value) {
-            swal(
-               'Deleted!',
-               'File Anda telah dihapus.',
-               'success'
-            )
-            }
-         })
-      })
-   </script>
 @endsection

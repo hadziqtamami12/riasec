@@ -9,7 +9,7 @@
 	===============================
 */
 .maintanence-hero-img img {
-  width: auto;
+  width: 62px;
   height: 62px; }
 
 body.maintanence {
@@ -44,7 +44,7 @@ body.maintanence {
 .maintanence a.btn {
   width: 134px;
   padding: 6px;
-  font-size: 15px;
+  font-size: 17px;
   background-image: linear-gradient(135deg, #1b55e2 0%, #5c1ac3 100%);
   border: none;
   letter-spacing: 2px; }

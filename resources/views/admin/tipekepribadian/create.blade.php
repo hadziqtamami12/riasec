@@ -26,27 +26,27 @@
                               <div class="row">
                                  <div class="col-md-2">
                                     <div class="form-group text-center">
-                                       <a href="{{route('ciritipe.index')}}" class="btn btn-info"><i data-feather="plus-circle"></i>&nbsp;Ciri-ciri</a>
+                                       <a href="{{route('ciritipe.index')}}" class="btn btn-info">&nbsp;Ciri-ciri</a>
                                     </div>
                                  </div>
                                  <div class="col-md-2">
                                     <div class="form-group text-center">
-                                       <a href="{{route('kelebihantipe.index')}}" class="btn btn-info"><i data-feather="plus-circle"></i>&nbsp;Kelebihan</a>
+                                       <a href="{{route('kelebihantipe.index')}}" class="btn btn-info">&nbsp;Kelebihan</a>
                                     </div>
                                  </div>
                                  <div class="col-md-2">
                                     <div class="form-group text-center">
-                                       <a href="{{route('kekurangantipe.index')}}" class="btn btn-info"><i data-feather="plus-circle"></i>&nbsp;Kekurangan</a>
+                                       <a href="{{route('kekurangantipe.index')}}" class="btn btn-info">&nbsp;Kekurangan</a>
                                     </div>
                                  </div>
                                  <div class="col-md-2">
                                     <div class="form-group text-center">
-                                       <a href="{{route('profesitipe.index')}}" class="btn btn-info"><i data-feather="plus-circle"></i>&nbsp;Profesi</a>
+                                       <a href="{{route('profesitipe.index')}}" class="btn btn-info">&nbsp;Profesi</a>
                                     </div>
                                  </div>
                                  <div class="col-md-2">
                                     <div class="form-group text-center">
-                                       <a href="{{route('partnertipe.index')}}" class="btn btn-info"><i data-feather="plus-circle"></i>&nbsp;Partner</a>
+                                       <a href="{{route('partnertipe.index')}}" class="btn btn-info">&nbsp;Partner</a>
                                     </div>
                                  </div>
                               </div>

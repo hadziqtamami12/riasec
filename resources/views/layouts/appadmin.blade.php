@@ -6,7 +6,7 @@
    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
    <title>@yield('page_title')&nbsp;-&nbsp;Job Placement Center Politeknik Negeri Banyuwangi</title>
    <!-- Favicon -->
-   <link rel="icon" type="image/x-icon" href="https://www.poliwangi.ac.id/vendors/uploads/2019/11/kop-300x286.png"/>
+   <link rel="icon" type="image/x-icon" href="{{asset('assets/images/logo/icon_poliwangi.png')}}"/>
    <meta name="csrf-token" content="{{ csrf_token() }}">
 
    <!-- BEGIN GLOBAL MANDATORY STYLES -->
@@ -30,10 +30,11 @@
    <link rel="stylesheet" type="text/css" href="{{asset('plugins/table/datatable/dt-global_style.css')}}" />
    <link rel="stylesheet" type="text/css" href="{{asset('plugins/table/datatable/custom_dt_custom.css')}}">
    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/elements/alert.css')}}">
+   {{-- Modal --}}
+   <link rel="stylesheet" type="text/css" href="{{asset('assets/css/components/custom-modal.css')}}"  />
    {{-- SweatAlert --}}
    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/scrollspyNav.css')}}"/>
    <link rel="stylesheet" type="text/css" href="{{asset('plugins/animate/animate.css')}}"/>
-   <script src="{{asset('plugins/sweetalerts/promise-polyfill.js')}}"></script>
    <link rel="stylesheet" type="text/css" href="{{asset('plugins/sweetalerts/sweetalert2.min.css')}}" />
    <link rel="stylesheet" type="text/css" href="{{asset('plugins/sweetalerts/sweetalert.css')}}" />
    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/components/custom-sweetalert.css')}}" />
@@ -167,7 +168,7 @@
    <script src="{{asset('assets/js/scrollspyNav.js')}}"></script>
    <script src="{{asset('plugins/sweetalerts/sweetalert2.min.js')}}"></script>
    <script src="{{asset('plugins/sweetalerts/custom-sweetalert.js')}}"></script>
-
+   <script src="{{asset('plugins/sweetalerts/promise-polyfill.js')}}"></script>
    {{-- datatable --}}
    <script src="{{asset('plugins/table/datatable/datatables.js')}}"></script>
    <script>
@@ -180,8 +181,8 @@
                "sSearchPlaceholder": "Search...",
                "sLengthMenu": "Results :  _MENU_",
             },
-            "lengthMenu": [7, 10, 20],
-            "pageLength": 7
+            "lengthMenu": [8, 10, 20],
+            "pageLength": 8
       });
 
       multiCheck(c1);

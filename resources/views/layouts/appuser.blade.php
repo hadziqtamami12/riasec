@@ -6,14 +6,15 @@
    <meta http-equiv="X-UA-Compatible" content="ie=edge,chrome=1">
    <title>@yield('page_title')&nbsp;-&nbsp;Job Placement Center Politeknik Negeri Banyuwangi</title>
    <!-- Favicon -->
-	<link rel="icon" type="image/x-icon" href="https://www.poliwangi.ac.id/vendors/uploads/2019/11/kop-300x286.png"/>
+	<link rel="icon" type="image/x-icon" href="{{asset('assets/images/logo/icon_poliwangi.png')}}"/>
 	<meta name="csrf-token" content="{{ csrf_token() }}">
    <!-- loading -->
-   <link href="{{asset('assets/css/loader.css')}}" rel="stylesheet" type="text/css" />
-   <script src="{{asset('assets/js/loader.js')}}"></script>
+   {{-- <link href="{{asset('assets/css/loader.css')}}" rel="stylesheet" type="text/css" />
+   <script src="{{asset('assets/js/loader.js')}}"></script> --}}
    <!-- BEGIN GLOBAL MANDATORY STYLES -->
    <link rel="stylesheet" type="text/css" href="{{asset('bootstrap/css/bootstrap.min.css')}}" />
    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/plugins.css')}}" />
+   <link rel="stylesheet" type="text/css" href="{{asset('assets/css/user.css')}}" />
    <link rel="stylesheet" type="text/css" href="{{asset('css/app.css')}}" />
    <link rel="stylesheet" type="text/css" href="{{asset('plugins/font-icons/fontawesome/css/all.min.css')}}" />
    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/scrollspyNav.css')}}" />
@@ -27,7 +28,6 @@
    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/elements/alert.css')}}">
    {{-- SweatAlert --}}
    <link rel="stylesheet" type="text/css" href="{{asset('plugins/animate/animate.css')}}"/>
-   <script src="{{asset('plugins/sweetalerts/promise-polyfill.js')}}"></script>
    <link rel="stylesheet" type="text/css" href="{{asset('plugins/sweetalerts/sweetalert2.min.css')}}" />
    <link rel="stylesheet" type="text/css" href="{{asset('plugins/sweetalerts/sweetalert.css')}}" />
    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/components/custom-sweetalert.css')}}" />
@@ -36,9 +36,9 @@
 <body class="alt-menu" data-spy="scroll" data-offset="50">
 
    <!-- BEGIN LOADER -->
-      <div id="load_screen"> <div class="loader"> <div class="loader-content">
+      {{-- <div id="load_screen"> <div class="loader"> <div class="loader-content">
          <div class="spinner-grow align-self-center"></div>
-      </div></div></div>
+      </div></div></div> --}}
    <!-- END LOADER -->
 
       @yield('nav_header') {{-- NAVBAR HEADER --}}
@@ -88,6 +88,7 @@
    {{-- SweatAlert --}}
    <script src="{{asset('plugins/sweetalerts/sweetalert2.min.js')}}"></script>
    <script src="{{asset('plugins/sweetalerts/custom-sweetalert.js')}}"></script>
+   <script src="{{asset('plugins/sweetalerts/promise-polyfill.js')}}"></script>
    <!-- END GLOBAL MANDATORY STYLES -->
    <!-- BEGIN PAGE LEVEL SCRIPTS -->
    @yield('trigger')

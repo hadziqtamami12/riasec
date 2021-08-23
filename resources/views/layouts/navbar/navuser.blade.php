@@ -20,13 +20,13 @@
          <div class="collapse navbar-collapse justify-content-end" id="st-navbar-collapse">
             <ul class="nav navbar-nav ml-auto smooth-scroll">
                <li class="nav-item {{ (request()->segment(1) == 'home') ? 'active' : '' }}">
-                  <a href="{{route('roleUser')}}" class="nav-link {{ (request()->segment(1) == 'home') ? 'active' : '' }}">Home</a>
+                  <a href="{{route('roleUser')}}" class="nav-link {{ (request()->segment(1) == 'home') ? 'active' : '' }}">HOME</a>
                </li>
                <li class="nav-item {{ (request()->segment(1) == 'tipekepribadian') ? 'active' : '' }}">
-                  <a href="{{route('tipekepribadian')}}" class="nav-link {{ (request()->segment(1) == 'tipekepribadian') ? 'active' : '' }}">Tipe Kepribadian</a>
+                  <a href="{{route('tipekepribadian')}}" class="nav-link {{ (request()->segment(1) == 'tipekepribadian') ? 'active' : '' }}">TIPE KEPRIBADIAN</a>
                </li>
                <li class="nav-item {{ (request()->segment(1) == 'contact') ? 'active' : '' }}">
-                  <a href="{{route('contact')}}" class="nav-link {{ (request()->segment(1) == 'contact') ? 'active' : '' }}">Hubungi</a>
+                  <a href="{{route('contact')}}" class="nav-link {{ (request()->segment(1) == 'contact') ? 'active' : '' }}">CONTACT</a>
                </li>
                <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-display="static" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">

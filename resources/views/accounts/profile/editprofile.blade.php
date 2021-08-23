@@ -148,7 +148,7 @@
 <script>
    $('select[name="programstudi_id"]').select2()
 </script>
-<script>
+{{-- <script>
    $('.as-footer-container .success').on('click', function () {
    swal({
          title: 'Good job!',
@@ -157,5 +157,5 @@
          padding: '2em'
       })
    });
-</script>
+</script> --}}
 @endsection

@@ -221,9 +221,14 @@ body{
 .faq .faq-layouting .rules-wrapper h3 {
   font-size: 29px;
   font-weight: 700;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 }
-
+.faq .faq-layouting .rules-wrapper p{
+  font-size: 15px;
+  font-weight: 600;
+  text-align: justify;
+  text-indent: 40px;
+}
 .faq .faq-layouting .rules-wrapper ul {
   padding: 0;
 }
@@ -256,6 +261,24 @@ body{
   vertical-align: bottom;
 }
 
+.faq .faq-layouting .rules-wrapper .rules-image{
+  width: auto;
+  height: 45vh;
+  align-items: center;
+}
+
+@media (max-width: 991px) {
+  .faq .faq-layouting .rules-wrapper .rules-image{
+    height: 20vh;
+  }
+}
+
+@media (max-width: 767px) {
+  .faq .faq-layouting .rules-wrapper .rules-image{
+    height: 33vh;
+    width: auto;
+  }
+}
 .faq .faq-layouting .personality-section {
   margin-bottom: 50px;
 }
@@ -264,6 +287,7 @@ body{
   font-size: 29px;
   font-weight: 700;
   margin-bottom: 60px;
+  right: -16px;
 }
 
 .faq .faq-layouting .personality-section .infoHeader {

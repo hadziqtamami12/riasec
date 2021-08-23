@@ -54,9 +54,9 @@
                </div>
             </div>
 
-         </div> <!-- /Faq-layouting -->
+         </div> <!-- /-layouting -->
 
-      </div> <!-- /Faq Container --> 
+      </div> <!-- / Container --> 
 
    </div> <!-- layout-px-spacing -->
 @endsection

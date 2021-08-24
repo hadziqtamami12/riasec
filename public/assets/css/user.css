@@ -239,6 +239,7 @@ body{
   font-weight: 600;
   margin-bottom: 16px;
   color: #3b3f5c;
+  
 }
 
 .faq .faq-layouting .rules-wrapper ul li:hover {
@@ -256,7 +257,7 @@ body{
 }
 
 .faq .faq-layouting .rules-wrapper ul li svg {
-  color: #888ea8;
+  color: rgb(248, 164, 55);
   width: 19px;
   height: 19px;
   vertical-align: bottom;

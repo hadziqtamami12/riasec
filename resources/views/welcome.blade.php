@@ -112,11 +112,11 @@
             
             <div class="rules-wrapper" data-aos="zoom-in-up" data-aos-duration="1000">
                 <div class="row">
-                    <div class="col-md-5">
+                    <div class="col-md-4">
                         <img class="rules-image" src="{{asset('assets/images/mbti/untung.png')}}" alt="rules">
                     </div> 
 
-                    <div class="col-md-7">
+                    <div class="col-md-8">
                         <h3>Keuntungan mengikuti tes kepribadian MBTI :</h3>
                         <p>Dapat mengetahui tipe diri kamu itu seperti apa. MBTI atau Myers-Briggs Type Indicator memisahkan kepribadian seseorang menurut 4 dimensi berdasarkan 8 sifat dasar yaitu :</p>
                             <ul class="">
@@ -166,10 +166,10 @@
 
             <div class="rules-wrapper" data-aos="zoom-in-up" data-aos-duration="1000">
                 <div class="row">
-                    <div class="col-md-5">
+                    <div class="col-md-4">
                         <img class="rules-image" src="{{asset('assets/images/mbti/pekerjaan.png')}}" alt="rules">
                     </div>
-                    <div class="col-md-7">
+                    <div class="col-md-8">
                         <h3>Membantu menentukan pekerjaan yang cocok :</h3>
                         <p>
                             Selain dapat menolong kamu supaya lebih memahami diri sendiri, tes ini juga dapat menolong kamu menentukan pekerjaan, minat, serta karir seperti apa yang paling sesuai denganmu. Sehingga kamu dapat memahami lebih jauh diri sendiri serta menciptakan pekerjaan yang cocok dengan passion kalian.

@@ -199,6 +199,6 @@
 
 @endsection
 
-{{-- @section('footer')
+@section('footer')
     @include('layouts.footer.foouser')
-@endsection --}}
+@endsection

@@ -126,12 +126,12 @@
          },
          "json"
       );
-      // swal({
-      //    title: 'Good job!',
-      //    text: "You clicked the!",
-      //    type: 'success',
-      //    padding: '2em'
-      // })
+      swal({
+         title: 'Good job!',
+         text: "You clicked the!",
+         type: 'success',
+         padding: '2em'
+      })
    })
 </script>
 {{-- <script>

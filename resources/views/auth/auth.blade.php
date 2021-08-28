@@ -9,8 +9,8 @@
 	<link rel="icon" type="image/x-icon" href="{{asset('assets/images/logo/icon_poliwangi.png')}}"/>
 	<meta name="csrf-token" content="{{ csrf_token() }}">
    <!-- loading -->
-   <link href="{{asset('assets/css/loader.css')}}" rel="stylesheet" type="text/css" />
-   <script src="{{asset('assets/js/loader.js')}}"></script>
+   {{-- <link href="{{asset('assets/css/loader.css')}}" rel="stylesheet" type="text/css" />
+   <script src="{{asset('assets/js/loader.js')}}"></script> --}}
    <!-- BEGIN GLOBAL MANDATORY STYLES -->
    <link rel="stylesheet" type="text/css" href="{{asset('bootstrap/css/bootstrap.min.css')}}" />
    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/plugins.css')}}" />
@@ -22,11 +22,7 @@
    <!-- END GLOBAL MANDATORY STYLES -->
    {{-- SweatAlert --}}
    <link rel="stylesheet" type="text/css" href="{{asset('plugins/animate/animate.css')}}"/>
-   <script src="{{asset('plugins/sweetalerts/promise-polyfill.js')}}"></script>
-   <link rel="stylesheet" type="text/css" href="{{asset('plugins/sweetalerts/sweetalert2.min.css')}}" />
-   <link rel="stylesheet" type="text/css" href="{{asset('plugins/sweetalerts/sweetalert.css')}}" />
-   <link rel="stylesheet" type="text/css" href="{{asset('assets/css/components/custom-sweetalert.css')}}" />
-   <link href="{{asset('assets/css/pages/error/style-maintanence.css')}}" rel="stylesheet" type="text/css" />
+   <link rel="stylesheet" type="text/css" href="{{asset('assets/css/pages/error/style-maintanence.css')}}"/>
 </head>
 <body class="form">
 
@@ -42,12 +38,9 @@
 
    <!-- BEGIN GLOBAL MANDATORY STYLES -->
    <script src="{{asset('assets/js/libs/jquery-3.1.1.min.js')}}"></script>
-   <script src="{{asset('bootstrap/js/popper.min.js')}}"></script>
+   {{-- <script src="{{asset('bootstrap/js/popper.min.js')}}"></script> --}}
    <script src="{{asset('bootstrap/js/bootstrap.min.js')}}"></script>
    <script src="{{asset('assets/js/authentication/form-2.js')}}"></script>
-   {{-- SweatAlert --}}
-   <script src="{{asset('plugins/sweetalerts/sweetalert2.min.js')}}"></script>
-   <script src="{{asset('plugins/sweetalerts/custom-sweetalert.js')}}"></script>
    <!-- END GLOBAL MANDATORY STYLES -->
    @yield('trigger')
 </body>

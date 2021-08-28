@@ -10,11 +10,11 @@
             <div class="container">
 
                 <div class="navbar-brand">
-                    <a href="http://www.nationalvirtualcareerfair.id/" target="_blank">
-                        <img alt="Politeknik Negeri Banyuwangi" data-retina="https://jpc.poliwangi.ac.id/template/jpcthemebaru/img/poliwangi/logo/logo.png" data-src="https://jpc.poliwangi.ac.id/template/jpcthemebaru/img/poliwangi/logo/flag_lowongan.png" class="navimg" src="https://jpc.poliwangi.ac.id/template/jpcthemebaru/img/poliwangi/logo/flag_lowongan.png" >
+                    <a href="#" target="_blank">
+                        <img alt="Politeknik Negeri Banyuwangi" data-retina="{{asset('assets/images/logo/flag_lowongan.png')}}" data-src="{{asset('assets/images/logo/flag_lowongan.png')}}" class="navimg" src="{{asset('assets/images/logo/flag_lowongan.png')}}" >
                     </a>
                     <a href="">
-                        <img alt="Politeknik Negeri Banyuwangi" data-retina="https://jpc.poliwangi.ac.id/template/jpcthemebaru/img/poliwangi/logo/logo.png" data-src="https://jpc.poliwangi.ac.id/template/jpcthemebaru/img/poliwangi/logo/logo.png" class="navimg m-0" src="https://jpc.poliwangi.ac.id/template/jpcthemebaru/img/poliwangi/logo/logo.png" >
+                        <img alt="Politeknik Negeri Banyuwangi" data-retina="{{asset('assets/images/logo/logo.png')}}" data-src="{{asset('assets/images/logo/logo.png')}}" class="navimg m-0" src="{{asset('assets/images/logo/logo.png')}}" >
                     </a>
                 </div>
 
@@ -110,7 +110,7 @@
                 </div>
             </div> {{-- Rules-Wrapper --}}
             
-            <div class="rules-wrapper" data-aos="zoom-in-up" data-aos-duration="1000">
+            <div class="rules-wrapper" data-aos="zoom-in-up" data-aos-duration="700">
                 <div class="row">
                     <div class="col-md-4">
                         <img class="rules-image" src="{{asset('assets/images/mbti/untung.png')}}" alt="rules">
@@ -150,7 +150,7 @@
                 </div>
             </div> {{-- Rules-Wrapper --}}
 
-            <div class="rules-wrapper" data-aos="zoom-in-up" data-aos-duration="1000">
+            <div class="rules-wrapper" data-aos="zoom-in-up" data-aos-duration="700">
                 <div class="row">
                     <div class="col-md-8">
                         <h3>Mengenali Kelebihan dan Kelemahan diri sendiri :</h3>
@@ -164,7 +164,7 @@
                 </div>
             </div> {{-- Rules-Wrapper --}}
 
-            <div class="rules-wrapper" data-aos="zoom-in-up" data-aos-duration="1000">
+            <div class="rules-wrapper" data-aos="zoom-in-up" data-aos-duration="700">
                 <div class="row">
                     <div class="col-md-4">
                         <img class="rules-image" src="{{asset('assets/images/mbti/pekerjaan.png')}}" alt="rules">
@@ -178,7 +178,7 @@
                 </div>
             </div> {{-- Rules-Wrapper --}}
 
-            <div class="rules-wrapper" data-aos="zoom-in-up" data-aos-duration="1000">
+            <div class="rules-wrapper" data-aos="zoom-in-up" data-aos-duration="700">
                 <div class="row">
                     <div class="col-md-9">
                         <h3>Mengetahui Bakat dan Potensi paling Dominan :</h3>

@@ -124,7 +124,7 @@ code {
   -webkit-box-flex: 8;
       -ms-flex-positive: 8;
           flex-grow: 8;
-  margin-top: 106px;
+  margin-top: 100px;
   margin-bottom: 0;
   margin-left: 212px;
   -webkit-transition: .600s;
@@ -979,7 +979,7 @@ code {
 #header .st-navbar ul li a {
   color: #fff;
   font-family: 'Montserrat', sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
   padding: 0 !important;
   margin: 14px;
@@ -990,6 +990,10 @@ code {
   color: #ffab00;
   -webkit-transition: 0.4 ease-out;
   transition: 0.4 ease-out;
+}
+
+#header .st-navbar .nav-item .nav-link{
+  margin-top: 20px;
 }
 
 #header .st-navbar .navbar-brand {
@@ -1066,7 +1070,7 @@ code {
   -ms-touch-action: none;
       touch-action: none;
   -webkit-user-select: none;
-     -moz-user-select: none;
+    -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
   -webkit-user-drag: none;
@@ -1528,10 +1532,14 @@ code {
   .main-container.sidebar-closed #content {
     margin-left: 0;
   }
-  header .st-navbar ul li a {
+
+  #header .st-navbar ul li a {
     font-size: .9rem;
     margin: 10px;
     color: #fff;
+  }
+  #header .st-navbar .navbar-brand .navimg{
+    height: 40px;
   }
   /*
       =============
@@ -1689,10 +1697,10 @@ code {
   .header-container .navbar .language-dropdown {
     margin-left: 16px;
   }
-  .navbar-brand {
+  #header .st-navbar .navbar-brand{
     margin-left: 15px;
   }
-  .navbar-brand .navimg {
+  #header .st-navbar .navbar-brand .navimg{
     height: 40px;
   }
   #header .navbar {
@@ -1702,10 +1710,11 @@ code {
   .navbar-nav {
     background-color: #081e5b;
   }
-  header .st-navbar ul li a {
+
+  #header .st-navbar ul li a {
     font-size: .8rem;
-    margin: 0.5rem 2rem;
     color: #fff;
+    margin: 0px 14px;
   }
   .st-navbar .navbar-toggler {
     color: #fff;
@@ -1769,5 +1778,9 @@ code {
   .footer-wrapper .footer-section.f-section-2 {
     display: none;
   }
+}
+
+.select-prodi span {
+  margin-bottom: 0 !important;
 }
 /*# sourceMappingURL=structure.css.map */

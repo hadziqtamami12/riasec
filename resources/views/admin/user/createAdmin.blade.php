@@ -9,19 +9,19 @@
          <div class="container">
                <ul class="navbar-item theme-brand flex-row  text-center">
                   <li class="nav-item theme-logo">
-                     <a href="http://www.nationalvirtualcareerfair.id/" target="_blank" class="navbar-brand">
-                           <img alt="Politeknik Negeri Banyuwangi" data-retina="https://jpc.poliwangi.ac.id/template/jpcthemebaru/img/poliwangi/logo/logo.png" data-src="https://jpc.poliwangi.ac.id/template/jpcthemebaru/img/poliwangi/logo/flag_lowongan.png" class="navimg" src="https://jpc.poliwangi.ac.id/template/jpcthemebaru/img/poliwangi/logo/flag_lowongan.png" >
+                     {{-- <a href="#"class="navbar-brand"> --}}
+                        <img alt="Politeknik Negeri Banyuwangi" data-retina="{{asset('assets/images/logo/flag_lowongan.png')}}" data-src="{{asset('assets/images/logo/flag_lowongan.png')}}" class="navimg" src="{{asset('assets/images/logo/flag_lowongan.png')}}" >
+                     {{-- </a> --}}
+                     <a href="{{route('roleAdmin')}}">
+                        <img alt="Politeknik Negeri Banyuwangi" data-retina="{{asset('assets/images/logo/logo.png')}}" data-src="{{asset('assets/images/logo/logo.png')}}" class="navimg m-0" src="{{asset('assets/images/logo/logo.png')}}" >
                      </a>
-                  </li>
-                  <li class="nav-item theme-logo">
-                     <img alt="Politeknik Negeri Banyuwangi" data-retina="https://jpc.poliwangi.ac.id/template/jpcthemebaru/img/poliwangi/logo/logo.png" data-src="https://jpc.poliwangi.ac.id/template/jpcthemebaru/img/poliwangi/logo/logo.png" class="navimg m-0" src="https://jpc.poliwangi.ac.id/template/jpcthemebaru/img/poliwangi/logo/logo.png" >
                   </li>
                </ul>
 
                <ul class="navbar-item flex-row ml-md-auto">
                   <li class="nav-item dropdown user-profile-dropdown">
                      <a href="javascript:void(0);" class="nav-link dropdown-toggle user" id="userProfileDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                        <img src="{{asset(auth()->user()->image)}}" alt="avatar" style="width: auto; height: 30px; border-radius: 6px;">
+                        <img src="{{ asset(auth()->user()->image) }}" style="width: 35px; height: 35px; object-fit: cover; object-position: top; border-radius: 6px; border: 1px solid #d3d3d3;" onerror="this.src='{{asset('assets/images/90x90.jpg')}}'" data-default-file="{{asset('assets/images/90x90.jpg')}}">
                      </a>
                   </li>
                </ul>

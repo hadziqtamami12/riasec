@@ -458,6 +458,9 @@ body{
     margin: 30px 30px;
     height: 365px;
   }
+  .faq .faq-layouting .personality-section .card .card-body .btn{
+    margin-bottom: 10px;
+  }
 }
 
 #quiz {
@@ -963,12 +966,12 @@ body{
   border-radius: 15px;
   background: #fff;
   margin-bottom: 20px;
-  margin-top: 15px;
+  /* margin-top: 15px; */
 }
 
 #contact .contact .contact-heading {
   text-align: center;
-  font-size: 30px;
+  font-size: 25px;
   font-weight: 700;
   text-transform: uppercase;
   margin-bottom: 50px;
@@ -1031,4 +1034,3 @@ body{
     padding: 10px;
   }
 }
-/*# sourceMappingURL=titip.css.map */

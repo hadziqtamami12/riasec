@@ -31,9 +31,9 @@
                @error('name') <div class="invalid-feedback">{{$message}}</div>@enderror
          </div>
 
-         <div id="nim-field" class="field-wrapper input">
+         <div id="program studi" class="field-wrapper input select-prodi">
             <label for="nim">PROGRAM STUDI</label>
-            <select class="form-control prodi" name="programstudi_id">
+            <select class="form-control prodi" name="programstudi_id" style="margin-bottom: 0;">
                <option selected disabled>pilih jurusan anda</option>
                @foreach ($programstudi as $studi)
                   <option value="{{$studi->id}}">

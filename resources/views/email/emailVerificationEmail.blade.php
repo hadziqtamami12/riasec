@@ -23,7 +23,7 @@
                <table cellpadding="0" cellspacing="0" width="100%%">
                   <tr>
                   <td style="padding: 10px 0 10px 0; font-family: Nunito, sans-serif; font-size: 20px; font-weight: 900">
-                     Lupa Kata Sandi Email
+                     Aktifkan Akun Anda
                   </td>
                   </tr>
                </table>
@@ -39,21 +39,21 @@
                   </tr>
                   <tr>
                   <td style="padding: 0; font-family: Nunito, sans-serif; font-size: 16px;">
-                     Mohon konfirmasi email ini untuk memulihkan kata sandi Anda.
+                     Terimakasih anda telah mendaftarkan email anda untuk menjadi anggota JPC-Poliwangi. Mohon konfirmasi email ini untuk mengaktifkan akun Anda.
                   </td>
                   </tr>
                   <tr>
                   <td style="padding: 20px 0 20px 0; font-family: Nunito, sans-serif; font-size: 16px; text-align: center;">
-                     <a href="{{ route('reset.password.get', $token) }}" class="btn" style="background-color: rgba(255, 171, 0, 1); border: 1px solid rgba(255, 255, 255, 0.18); border-radius: 10px; color: white; padding: 15px 40px; text-align: center; display: inline-block; font-family: Nunito, sans-serif; font-size: 18px; font-weight: bold; cursor: pointer;">
-                        Reset Password
+                     <a href="{{ route('user.verify', $token) }}" class="btn" style="background-color: rgba(255, 171, 0, 1); border: 1px solid rgba(255, 255, 255, 0.18); border-radius: 10px; color: white; padding: 15px 40px; text-align: center; display: inline-block; font-family: Nunito, sans-serif; font-size: 18px; font-weight: bold; cursor: pointer;">
+                        Konfirmasi Email
                      </a>
                   </td>
                   </tr>
-                  {{-- <tr>
+                  <tr>
                   <td style="padding: 0; font-family: Nunito, sans-serif; font-size: 16px;">
                      <b>TETAPI</b> Jika anda tidak melakukan pendaftarkan anggota maka seseorang telah menggunakan email anda untuk mendaftarkan anggota, Maka abaikan email ini.
                   </td>
-                  </tr> --}}
+                  </tr>
                   <tr>
                   <td style="padding: 50px 0; font-family: Nunito, sans-serif; font-size: 16px;">
                      Regards,

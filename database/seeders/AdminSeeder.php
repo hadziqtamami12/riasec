@@ -14,19 +14,47 @@ class AdminSeeder extends Seeder
      */
     public function run()
     {
-        $superadmin = DB::table('users')->insert([
-            'name' => 'Super Admin',
-            'slug' => 'super-admin',
-            'nim' => '62123456789',
-            'programstudi_id' => '1',
-            'email' => 'superadmin@gmail.com',
-            'password' => bcrypt('katasandi'),
-        ]);
+        // Insert data superadmin, admin, pengguna default
+        DB::table('users')->insert(array(
+            [
+                'name' => 'Super Admin',
+                'slug' => 'super-admin',
+                'nim' => '62123456789',
+                'programstudi_id' => '1',
+                'email' => 'superadmin@gmail.com',
+                'password' => bcrypt('katasandi'),
+        ],
+            [
+                'name' => 'Admin JPC',
+                'slug' => 'admin-jpc',
+                'nim' => '123456789',
+                'programstudi_id' => '1',
+                'email' => 'adminjpc@gmail.com',
+                'password' => bcrypt('katasandi'),
+        ],
+            [
+                'name' => 'Pengguna JPC',
+                'slug' => 'pengguna-jpc',
+                'nim' => '234567890',
+                'programstudi_id' => '6',
+                'email' => 'penggunajpc@gmail.com',
+                'password' => bcrypt('password123'),
+        ]));
 
-
-        $role = DB::table('role_users')->insert([
-            'user_id' => $superadmin,
-            'role_id' => '1'
-        ]);
+        // insert role superadmin, admin, pengguna
+        DB::table('role_users')->insert(array(
+            [
+                'user_id' => '1',
+                'role_id' => '1'
+        ],
+            [
+                'user_id' => '2',
+                'role_id' => '2',
+        ],
+            [
+                'user_id' => '3',
+                'role_id' => '3'
+        ]));
+        
     }
 }

@@ -28,7 +28,7 @@ class User extends Authenticatable
         'programstudi_id',
         'profile_image',
         'is_email_verified',
-        'token_key'
+        // 'token_key'
     ];
 
     /**
@@ -39,7 +39,7 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
-        'token_key'
+        // 'token_key'
     ];
     # soft delete 
     protected $dates = ['created_at', 'updated_at', 'deleted_at'];
@@ -74,13 +74,13 @@ class User extends Authenticatable
     /**
      * craete token_key for user
      */
-    public function createApiToken()
-    {
-        $token = Str::random(69);
-        $this->token_key = $token;
-        $this->save();
-        return $token;
-    }
+    // public function createApiToken()
+    // {
+    //     $token = Str::random(69);
+    //     $this->token_key = $token;
+    //     $this->save();
+    //     return $token;
+    // }
 
     /**
      * Relasi dengan tabel Role

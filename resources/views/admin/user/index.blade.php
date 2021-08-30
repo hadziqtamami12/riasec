@@ -23,9 +23,11 @@
                   <div class="col-auto">
                      <div class="d-flex justify-content-sm-start justify-content-center" style="text-align: left">
                         {{-- Button Pop-Up --}}
-                        <button type="button" class="btn btn-primary mb-2 mr-2" data-toggle="modal" data-target="#exampleModalCenter">
-                           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user-plus"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line></svg>
-                        </button>
+                        @if (Auth::user()->roles()->first()->name === 'superadmin')
+                           <button type="button" class="btn btn-primary mb-2 mr-2" data-toggle="modal" data-target="#exampleModalCenter">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user-plus"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line></svg>
+                           </button>
+                        @endif
                      </div>
                      {{-- Pop-UP button --}}
                      <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -38,10 +40,10 @@
                                  </button>
                               </div>
                               <div class="modal-body align-items-center">
-                                 @if (Auth::user()->roles()->first()->name === 'superadmin')
-                                    <a href="{{ route('account.createAdmin') }}" class="btn btn-secondary btn-lg">Tambah Admin&nbsp;<i class="fas fa-user-shield"></i></a> &nbsp;
-                                 @endif
-                                    <a href="{{ route('account.createUser') }}" class="btn btn-info btn-lg"><i class="fas fa-user-graduate"></i>&nbsp;Tambah User</a>
+                                 {{-- tambah admin --}}
+                                 <a href="{{ route('account.createAdmin') }}" class="btn btn-secondary btn-lg">Tambah Admin&nbsp;<i class="fas fa-user-shield"></i></a> &nbsp;
+                                 {{-- tambah pengguna --}}
+                                 <a href="{{ route('account.createUser') }}" class="btn btn-info btn-lg"><i class="fas fa-user-graduate"></i>&nbsp;Tambah User</a>
                               </div>
                            </div>
                         </div>
@@ -83,8 +85,10 @@
                            </a>
                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink12">
                               {{-- <a class="dropdown-item" href="javascript:void(0);">View</a> --}}
-                              <a class="dropdown-item btn btn-sm text-warning" href="{{ route('account.edit', $item->id) }}">Edit</a>
-                              <a class="dropdown-item btn btn-sm text-danger" href="#" data-toggle="modal" data-target="#delete" data-id="{{ $item->id }}">Delete</a>
+                              @if (Auth::user()->roles()->first()->name === 'superadmin')
+                                 <a class="dropdown-item btn btn-sm text-warning" href="{{ route('account.edit', $item->id) }}">Edit</a>
+                                 <a class="dropdown-item btn btn-sm text-danger" href="#" data-toggle="modal" data-target="#delete" data-id="{{ $item->id }}">Delete</a>
+                              @endif
                            </div>
                         </div>
                      </td>

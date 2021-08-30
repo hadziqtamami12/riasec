@@ -26,7 +26,13 @@ Route::middleware(['guest'])->group(function () {
     Route::get('reset-password/{token}', [ForgetPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
     Route::post('reset-password', [ForgetPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
 });
-
+/*
+    ===============================
+        Session Verify Email
+	===============================
+*/
+Route::get('dashboard', [UserAuthController::class, 'dashboard'])->middleware(['auth', 'is_verify_email']); # opsi diganti pada get role user
+Route::get('account/verify/{token}', [UserAuthController::class, 'verifyAccount'])->name('user.verify');
 /*
     ===============================
 			Middleware AUTH
@@ -114,12 +120,3 @@ Route::middleware(['auth'])->group(function () {
     }); #  'middleware' => 'role:admin'
 
 }); # middleware auth
-
-
-/*
-    ===============================
-        Session Verify Email
-	===============================
-*/
-Route::get('dashboard', [UserAuthController::class, 'dashboard'])->middleware(['auth', 'is_verify_email']); # opsi diganti pada get role user
-Route::get('account/verify/{token}', [UserAuthController::class, 'verifyAccount'])->name('user.verify');

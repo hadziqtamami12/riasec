@@ -6,6 +6,7 @@
 @section('content')
    
 <div class="form-content">
+   @include('layouts.alert.alert')
    <div class="maintanence-hero-img">
       <a href="{{url('/')}}">
          <img alt="Politeknik Negeri Banyuwangi" data-retina="{{asset('assets/images/logo/icon_poliwangi.png')}}" data-src="{{asset('assets/images/logo/icon_poliwangi.png')}}" class="m-0" src="{{asset('assets/images/logo/icon_poliwangi.png')}}" >

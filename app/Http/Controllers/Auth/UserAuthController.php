@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\{Role,User,ProgramStudi};
 use App\Http\Requests\CreateAcountRequest;
+use App\Models\{Role, User, ProgramStudi, UserVerify};
 use Illuminate\Support\Facades\{Auth, Hash, Session, Mail, DB};
 
 class UserAuthController extends Controller
@@ -38,19 +39,19 @@ class UserAuthController extends Controller
         # default role = user
         $check->roles()->attach(Role::where('name', 'user')->first());
 
-        // # opsi verifikasi email
-        // $token = Str::random(64); #create token
+        # opsi verifikasi email
+        $token = Str::random(64); #create token
         
-        // UserVerify::create([
-        //     'user_id' => $createUser->id,
-        //     'token' => $token
-        // ]);
+        UserVerify::create([
+            'user_id' => $check->id,
+            'token' => $token
+        ]);
 
-        // # kirim email verifikasi pada pengguna
-        // Mail::send('email.emailVerificationEmail', ['token' => $token], function($message) use($request){
-        //     $message->to($request->email);
-        //     $message->subject('Email Verification Mail');
-        // });
+        # kirim email verifikasi pada pengguna
+        Mail::send('email.emailVerificationEmail', ['token' => $token], function($message) use($request){
+            $message->to($request->email);
+            $message->subject('Verification Account di JPC Politeknik Negeri Banyuwangi');
+        });
 
         return redirect()->intended('/login')->with('success','Anda telah berhasil terdaftar');
     }
@@ -68,9 +69,8 @@ class UserAuthController extends Controller
         if (Auth::attempt( $request->only('email', 'password') )) {
 
             $user = Auth::user(); // User model
-            $token = $user->createApiToken(); # Generate token 
-
-            // return redirect
+            // $token = $user->createApiToken(); # Generate token 
+            # redirect by role
             return redirect($user->roles()->first()->name == 'user' ? 'home' : 'admin')
             ->with('success','Selamat Datang di Job Placement Center Poliwangi'); // Pilihan: user, superadmin, admin
         }
@@ -92,27 +92,23 @@ class UserAuthController extends Controller
      * @return response()
      */
 
-    // public function verifyAccount($token)
-    // {
-    //     $verifyUser = UserVerify::where('token', $token)->first();
-    //     $message = 'Maaf email Anda tidak dapat diidentifikasi.';
+    public function verifyAccount($token)
+    {
+        $verifyUser = UserVerify::where('token', $token)->first();
+        $message = 'Maaf email Anda tidak dapat diidentifikasi.';
 
-    //     if(!is_null($verifyUser) ){
+        if(!is_null($verifyUser) ){
 
-    //         $user = $verifyUser->user;
+            $user = $verifyUser->user;
 
-    //         if(!$user->is_email_verified) {
-    //             $verifyUser->user->is_email_verified = 1;
-    //             $verifyUser->user->save();
-    //             $message = "Email Anda telah diverifikasi. Anda sekarang dapat masuk.";
-    //         } else {
-    //             $message = "Email Anda sudah diverifikasi. Anda sekarang dapat masuk.";
-    //         }
-    //     }
-    //     return redirect()->route('login')->with('message', $message);
-    // }
+            if(!$user->is_email_verified) {
+                $verifyUser->user->is_email_verified = 1;
+                $verifyUser->user->save();
+                $message = "Email Anda telah diverifikasi. Anda sekarang dapat masuk.";
+            } else {
+                $message = "Email Anda sudah diverifikasi. Anda sekarang dapat masuk.";
+            }
+        }
+        return redirect()->route('formlogin')->with('message', $message);
+    }
 }
-
-// if (Auth::attempt(['email' => $email, 'password' => $password], $remember)) {
-//     // The user is being remembered...
-// }

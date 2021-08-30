@@ -3,13 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\{Carbon, Str};
+use Illuminate\Support\Facades\{Hash, DB, Mail};
 
 class ForgetPasswordController extends Controller
 {
@@ -38,7 +35,7 @@ class ForgetPasswordController extends Controller
             $message->subject('Reset Password');
         });
 
-        return back()->with('message', 'We have e-mailed your password reset link!');
+        return back()->with('message', 'Kami telah mengirim email tautan reset kata sandi Anda!');
 
     }
 
@@ -61,13 +58,13 @@ class ForgetPasswordController extends Controller
         ])->first();
 
         if(!$updatePassword){
-            return back()->withInput()->with('error', 'Invalid token!');
+            return back()->withInput()->with('fail', 'Invalid token!');
         }
 
         $user = User::where('email', $request->email)->update(['password' => Hash::make($request->password)]);
 
         DB::table('password_resets')->where(['email'=> $request->email])->delete();
 
-        return redirect('/login')->with('message', 'Your password has been changed!');
+        return redirect('/login')->with('message', 'Kata sandi Anda telah diubah!');
     }
 }

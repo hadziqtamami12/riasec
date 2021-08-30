@@ -1752,10 +1752,13 @@ code {
   .sub-header-container .breadcrumb-one .breadcrumb-item:not(.active), .sub-header-container .breadcrumb-one .breadcrumb-item + .breadcrumb-item::before {
     display: none;
   }
-  .sub-header-container .breadcrumb-one .breadcrumb-item span {
+  .sub-header-container .breadcrumb-one .breadcrumb-item.active span {
+    /* display: none; */
+    background-color: #fff;
+    color: #2b3044;
     vertical-align: sub;
-    font-size: 15px;
-    font-weight: 700;
+    font-size: 14px;
+    font-weight: 600;
   }
   .sub-header-container .navbar .toggle-sidebar, .sub-header-container .navbar .sidebarCollapse {
     padding: 0 13px 0 16px;

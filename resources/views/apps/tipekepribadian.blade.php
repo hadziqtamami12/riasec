@@ -33,7 +33,7 @@
                      <div class="col-lg-3 col-md-6 tipekep">
                         <div class="card" data-aos="fade-up" data-aos-duration="1000">
                            {{-- Change Image Later --}}
-                           <img src="{{ $tipe->image }}" class="card-img-top cardImg" onerror="this.src='{{asset('assets/images/300x300.jpg')}}'">
+                           <img src="{{ asset($tipe->image) }}" class="card-img-top cardImg" onerror="this.src='{{asset('assets/images/300x300.jpg')}}'">
                            <div class="cardbg{{ ceil((1 + $key) / 4) }}">
                               <h2 class="cardTitle">{{ $tipe->namatipe }}</h2>
                            </div>

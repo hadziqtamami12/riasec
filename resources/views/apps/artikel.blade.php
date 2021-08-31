@@ -33,7 +33,7 @@
             <section id="artikelTop" class="col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
                <div class="landingContent ">
                   <div class="landingImage">
-                     <img src="{{ $readmore->image }}" onerror="this.src='{{asset('assets/images/300x300.jpg')}}'"><br>
+                     <img src="{{ asset($readmore->image) }}" onerror="this.src='{{asset('assets/images/300x300.jpg')}}'"><br>
                      <small class="text-right" style="font-size: 8px">Illustrations by <cite title="Source Title"><a href="https://blush.design/collections/40G09koP55fYh86yZDnX/stuck-at-home/character-standing/2WYYj_i51y7t1dWK?c=skin_0%7Eecafa3" target="_blank">Mariana Gonzalez Vega</a></cite></small>
                      {{-- Illustrations by Mariana Gonzalez Vega --}}
                      {{-- https://blush.design/collections/40G09koP55fYh86yZDnX/stuck-at-home/character-standing/2WYYj_i51y7t1dWK?c=skin_0%7Eecafa3 --}}

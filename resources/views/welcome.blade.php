@@ -31,11 +31,11 @@
                         </li>
                         @endauth
                         <li class="nav-item">
-                            <a href="{{ route('formregister') }}" class="nav-link" style="font-size: 14px">Daftar</a>
+                            <a href="{{ route('formregister') }}" class="nav-link" style="font-size: 16px">Daftar</a>
                         </li>
                             @if (Route::has('formregister'))                                
                             <li class="nav-item">
-                                <a href="{{ route('formlogin') }}" class="nav-link" style="font-size: 14px">Login</a>
+                                <a href="{{ route('formlogin') }}" class="nav-link" style="font-size: 16px">Login</a>
                             </li>
                             @endif
                     </ul>

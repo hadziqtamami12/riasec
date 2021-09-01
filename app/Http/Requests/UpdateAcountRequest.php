@@ -25,6 +25,7 @@ class UpdateAcountRequest extends FormRequest
     {
         return [
             'name' => 'required|string',
+            'username' => 'required|string',
             'email' => 'required|email|string|max:250',
             'nim' => 'required|string|max:40',
             'programstudi_id' =>'required',

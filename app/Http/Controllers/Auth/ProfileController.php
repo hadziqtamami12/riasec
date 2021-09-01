@@ -47,6 +47,7 @@ class ProfileController extends Controller
             # form validasi
             $request->validate([
                 'name' => 'required|string',
+                'username' => 'required|string',
                 'email' => 'required|email|string|max:250',
                 'nim' => 'required|string|max:40',
                 'programstudi_id' =>'required',
@@ -57,6 +58,7 @@ class ProfileController extends Controller
             $profile = User::findOrFail(auth()->user()->id);
             # Tetapkan nama,nim,program,dll pengguna
             $profile->name = $request->input('name');
+            $profile->username = $request->input('username');
             $profile->slug = Str::slug($request->input('name'));
             $profile->nim = $request->input('nim');
             $profile->programstudi_id = $request->input('programstudi_id');

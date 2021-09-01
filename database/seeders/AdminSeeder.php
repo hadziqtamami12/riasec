@@ -18,6 +18,7 @@ class AdminSeeder extends Seeder
         DB::table('users')->insert(array(
             [
                 'name' => 'Super Admin',
+                'username' => 'superadmin',
                 'slug' => 'super-admin',
                 'nim' => '62123456789',
                 'programstudi_id' => '1',
@@ -26,6 +27,7 @@ class AdminSeeder extends Seeder
         ],
             [
                 'name' => 'Admin JPC',
+                'username' => 'adminjpc',
                 'slug' => 'admin-jpc',
                 'nim' => '123456789',
                 'programstudi_id' => '1',
@@ -34,6 +36,7 @@ class AdminSeeder extends Seeder
         ],
             [
                 'name' => 'Pengguna JPC',
+                'username' => 'penggunajpc',
                 'slug' => 'pengguna-jpc',
                 'nim' => '234567890',
                 'programstudi_id' => '6',

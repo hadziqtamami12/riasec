@@ -14,7 +14,7 @@ class CreateTipekepProfesisTable extends Migration
     public function up()
     {
         Schema::create('tipekep_profesis', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->foreignId('tipekep_id');
             $table->string('profesi_tipe');
             $table->timestamps();

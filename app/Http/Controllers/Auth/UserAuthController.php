@@ -31,6 +31,7 @@ class UserAuthController extends Controller
         # create account
         $check = User::create([
             'name' => $request->name,
+            'username' => $request->username,
             'email' => $request->email,
             'password' => bcrypt($request['password']),
             'nim' => $request->nim,
@@ -61,12 +62,17 @@ class UserAuthController extends Controller
     {
         # validasi email, password
         $request->validate([
-            'email' => 'required|email',
+            'email' => 'required',
             'password' => 'required|alphaNum|min:6',
         ]);
 
+        $email = $request->get('email');
+        $password = $request->get('password');
+        # login menggunakan email atau username
+        $login_type = filter_var($email, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+
         # cek auth pengguna dengan melihat Role milik pengguna masing-masing
-        if (Auth::attempt( $request->only('email', 'password') )) {
+        if (Auth::attempt([$login_type => $email, 'password' => $password])) {
 
             $user = Auth::user(); // User model
             // $token = $user->createApiToken(); # Generate token 
@@ -74,7 +80,7 @@ class UserAuthController extends Controller
             return redirect($user->roles()->first()->name == 'user' ? 'home' : 'admin')
             ->with('success','Selamat Datang di Job Placement Center Poliwangi'); // Pilihan: user, superadmin, admin
         }
-        return back()->with('fail', 'Silakan Cek Kembali Email dan KataSandi anda');
+        return back()->with('fail', 'Silakan cek kembali Email/Username dan Password anda');
         
     }
 

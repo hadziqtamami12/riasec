@@ -14,7 +14,7 @@ class CreateTipeKepribadiansTable extends Migration
     public function up()
     {
         Schema::create('tipe_kepribadians', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->string('namatipe',70);
             $table->string('slug');
             $table->string('keterangan_tipe',70);

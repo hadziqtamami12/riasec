@@ -87,11 +87,11 @@
                                                    <label for="email">Email</label>
                                                    <input type="text" class="form-control"
                                                    @if (Auth::user()->roles()->first()->name === 'admin')
-                                                   @error('email') is-invalid @enderror" name="email" value="{{ $acount->email }}" autofocus="1" readonly="1" />
+                                                      @error('email') is-invalid @enderror" name="email" value="{{ $acount->email }}" autofocus="1" readonly="1" />
                                                    @else
-                                                   @error('email') is-invalid @enderror" name="email" value="{{ $acount->email }}" />
+                                                      @error('email') is-invalid @enderror" name="email" value="{{ $acount->email }}" />
                                                    @endif
-                                                   @error('email') <div class="invalid-feedback">{{$message}}</div>@enderror
+                                                      @error('email') <div class="invalid-feedback">{{$message}}</div>@enderror
                                                 </div>
                            
                                                 <div class="form-group col-md-3">
@@ -101,21 +101,28 @@
                                              </div>
 
                                              <div class="form-group">
-                                                <label for="profession">Nama</label>
+                                                <label for="name">Nama</label>
                                                 <input type="text" class="form-control mb-4"
                                                 @error('name') is-invalid @enderror" name="name" value="{{ $acount->name }}" />
                                                 @error('name') <div class="invalid-feedback">{{$message}}</div>@enderror
                                              </div>
 
                                              <div class="form-group">
-                                                <label for="profession">NIM</label>
+                                                <label for="username">Username</label>
+                                                <input type="text" class="form-control mb-4"
+                                                @error('username') is-invalid @enderror" name="username" value="{{ $acount->username }}" />
+                                                @error('username') <div class="invalid-feedback">{{$message}}</div>@enderror
+                                             </div>
+
+                                             <div class="form-group">
+                                                <label for="nim">NIM</label>
                                                 <input type="text" class="form-control mb-4"
                                                 @error('nim') is-invalid @enderror" name="nim" value="{{ $acount->nim }}" />
                                                 @error('nim') <div class="invalid-feedback">{{$message}}</div>@enderror
                                              </div>
 
                                              <div class="form-group">
-                                                <label for="profession">Program Studi</label>
+                                                <label for="programstudi">Program Studi</label>
                                                 <select class="form-control prodi" name="programstudi_id">
                                                    <option value="{{ $acount->programstudi_id }}" selected> {{ $acount->programstudi->program_studi }}</option>
                                                    @foreach ($programstudi as $prodi)

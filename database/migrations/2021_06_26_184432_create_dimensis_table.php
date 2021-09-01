@@ -14,7 +14,7 @@ class CreateDimensisTable extends Migration
     public function up()
     {
         Schema::create('dimensis', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->string('code',2);
             $table->string('keterangan',40);
             $table->timestamps();

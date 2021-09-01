@@ -96,21 +96,28 @@
                                              </div>
 
                                              <div class="form-group">
-                                                <label for="profession">Nama</label>
+                                                <label for="name">Nama</label>
                                                 <input type="text" class="form-control mb-4"
                                                 @error('name') is-invalid @enderror" name="name" value="{{ Auth::user()->name }}" />
                                                 @error('name') <div class="invalid-feedback">{{$message}}</div>@enderror
                                              </div>
 
                                              <div class="form-group">
-                                                <label for="profession">NIM</label>
+                                                <label for="username">Username</label>
+                                                <input type="text" class="form-control mb-4"
+                                                @error('username') is-invalid @enderror" name="username" value="{{ Auth::user()->username }}" />
+                                                @error('username') <div class="invalid-feedback">{{$message}}</div>@enderror
+                                             </div>
+
+                                             <div class="form-group">
+                                                <label for="nim">NIM</label>
                                                 <input type="text" class="form-control mb-4"
                                                 @error('nim') is-invalid @enderror" name="nim" value="{{ Auth::user()->nim }}" />
                                                 @error('nim') <div class="invalid-feedback">{{$message}}</div>@enderror
                                              </div>
 
                                              <div class="form-group">
-                                                <label for="profession">Program Studi</label>
+                                                <label for="programstudi">Program Studi</label>
                                                 <select class="form-control prodi" name="programstudi_id">
                                                    <option value="{{ Auth::user()->programstudi_id }}" selected> {{ Auth::user()->programstudi->program_studi }}</option>
                                                    @foreach ($programstudi as $prodi)

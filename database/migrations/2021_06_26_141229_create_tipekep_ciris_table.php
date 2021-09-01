@@ -14,7 +14,7 @@ class CreateTipekepCirisTable extends Migration
     public function up()
     {
         Schema::create('tipekep_ciris', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->foreignId('tipekep_id');
             $table->string('ciri_kepribadian');
             $table->timestamps();

@@ -60,6 +60,7 @@ class AcountAuthController extends Controller
         # create account
         $check = User::create([
             'name' => $request->name,
+            'username' => $request->username,
             'email' => $request->email,
             'password' => bcrypt($request['password']),
             'nim' => $request->nim,
@@ -93,6 +94,7 @@ class AcountAuthController extends Controller
         # create account
         $check = User::create([
             'name' => $request->name,
+            'username' => $request->username,
             'email' => $request->email,
             'password' => bcrypt($request['password']),
             'nim' => $request->nim,
@@ -131,6 +133,7 @@ class AcountAuthController extends Controller
         $profile = User::findOrFail($request->id);
         # Tetapkan nama,nim,program,dll pengguna
         $profile->name = $request->input('name');
+        $profile->username = $request->input('username');
         $profile->nim = $request->input('nim');
         $profile->programstudi_id = $request->input('programstudi_id');
         $profile->email = $request->input('email');

@@ -39,19 +39,19 @@ class UserAuthController extends Controller
         # default role = user
         $check->roles()->attach(Role::where('name', 'user')->first());
 
-        # opsi verifikasi email
-        $token = Str::random(64); #create token
+        // # opsi verifikasi email
+        // $token = Str::random(64); #create token
         
-        UserVerify::create([
-            'user_id' => $check->id,
-            'token' => $token
-        ]);
+        // UserVerify::create([
+        //     'user_id' => $check->id,
+        //     'token' => $token
+        // ]);
 
-        # kirim email verifikasi pada pengguna
-        Mail::send('email.emailVerificationEmail', ['token' => $token], function($message) use($request){
-            $message->to($request->email);
-            $message->subject('Verification Account di JPC Politeknik Negeri Banyuwangi');
-        });
+        // # kirim email verifikasi pada pengguna
+        // Mail::send('email.emailVerificationEmail', ['token' => $token], function($message) use($request){
+        //     $message->to($request->email);
+        //     $message->subject('Verification Account di JPC Politeknik Negeri Banyuwangi');
+        // });
 
         return redirect()->intended('/login')->with('success','Anda telah berhasil terdaftar');
     }

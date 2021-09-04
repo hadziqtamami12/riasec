@@ -1053,6 +1053,11 @@ code {
   width: 80%;
 }
 
+@media (max-width: 767px) {
+  #header .st-navbar .navbar-nav .nav-item .dropdown-menu .dropdown-item{
+    margin-top: 10px;
+  }
+}
 /* 
 ===============
     Sidebar

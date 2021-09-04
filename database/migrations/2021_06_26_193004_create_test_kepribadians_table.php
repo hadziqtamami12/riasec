@@ -14,7 +14,7 @@ class CreateTestKepribadiansTable extends Migration
     public function up()
     {
         Schema::create('test_kepribadians', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->foreignId('user_id');
             $table->foreignId('tipekep_id')->nullable();
             $table->timestamps();

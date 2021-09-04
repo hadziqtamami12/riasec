@@ -14,7 +14,7 @@ class CreatePernyataansTable extends Migration
     public function up()
     {
         Schema::create('pernyataans', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('pernyataan');
             $table->foreignId('dimensi_id');
             $table->timestamps();

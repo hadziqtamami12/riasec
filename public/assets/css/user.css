@@ -280,6 +280,15 @@ body{
     height: 33vh;
     width: auto;
   }
+  .faq .faq-layouting .rules-wrapper h3{
+    font-size: 20px;
+  }
+  .faq .faq-layouting .rules-wrapper ul li{
+    font-size: 14px;
+  }
+  .faq .faq-layouting .rules-wrapper p{
+    font-size: 14px;
+  }
 }
 .faq .faq-layouting .personality-section {
   margin-bottom: 50px;
@@ -938,7 +947,9 @@ body{
 @media (max-width: 767px) {
   #content .container .container .artikel-tipe {
     padding: 30px 15px;
-
+  }
+  #content .container .container .artikel-tipe h1{
+    font-size: 39px;
   }
   #content .container .container .artikel-tipe h3 {
     font-size: 23px;
@@ -947,6 +958,9 @@ body{
     font-size: 24px;
   }
   #content .container .container .artikel-tipe p {
+    font-size: 14px;
+  }
+  #content .container .container .artikel-tipe ul li{
     font-size: 14px;
   }
 }

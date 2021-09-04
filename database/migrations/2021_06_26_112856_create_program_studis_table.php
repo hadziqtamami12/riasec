@@ -14,7 +14,7 @@ class CreateProgramStudisTable extends Migration
     public function up()
     {
         Schema::create('program_studis', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('program_studi',100);
             $table->string('slug');
             $table->string('backgroundColor',100);

@@ -14,7 +14,7 @@ class CreatePresentasesTable extends Migration
     public function up()
     {
         Schema::create('presentases', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->foreignId('dimensi_id');
             $table->foreignId('test_id');
             $table->integer('totalpresent');

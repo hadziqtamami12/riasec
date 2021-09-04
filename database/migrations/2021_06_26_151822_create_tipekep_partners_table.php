@@ -14,7 +14,7 @@ class CreateTipekepPartnersTable extends Migration
     public function up()
     {
         Schema::create('tipekep_partners', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->foreignId('tipekep_id');
             $table->integer('partner_tipe');
             $table->timestamps();

@@ -14,7 +14,7 @@ class CreateDimensiPasangansTable extends Migration
     public function up()
     {
         Schema::create('dimensi_pasangans', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->integer('dimensiA');
             $table->integer('dimensiB');
             $table->string('color');

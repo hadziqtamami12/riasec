@@ -14,7 +14,7 @@ class CreateTipekepKelebihansTable extends Migration
     public function up()
     {
         Schema::create('tipekep_kelebihans', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->foreignId('tipekep_id');
             $table->string('kelebihan_tipe');
             $table->timestamps();

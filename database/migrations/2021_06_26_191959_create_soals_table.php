@@ -14,7 +14,7 @@ class CreateSoalsTable extends Migration
     public function up()
     {
         Schema::create('soals', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('soal');
             $table->integer('pernyataanA');
             $table->integer('pernyataanB');

@@ -28,64 +28,58 @@
          <div class="faq-layouting layout-spacing">
 
             <div class="rules-wrapper" data-aos="zoom-in-up" data-aos-duration="1000">
-               <div class="row">
-                  <div class="col-md-12">
+               <div class="rules-content">
+
+                  <div class="rules-text">
                      <h3>Visi:</h3>
                      <p>
                         Sebagai unit kerja yang menyediakan pusat informasi lowongan kerja dan menyediakan pelatihan untuk calon lulusan agar mampu bersaing dalam dunia kerja kerja di era industri 4.0.
                      </p> <br>
 
                      <h3>Misi :</h3>
-                     <div class="row">
-                        <div class="col-md-12">
-                           <ul class="">
-                              <li class="list-unstyled">
-                                    <div class="icon-svg">
-                                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                                    </div>
-                                    Mempersiapkan Mahasiswa dan Alumni Poliwangi untuk memiliki kemampuan dengan standart kompetensi di dunia usaha dan industri.
-                              </li>
-                              <li class="list-unstyled">
-                                    <div class="icon-svg">
-                                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                                    </div>
-                                    Menciptakan jaringan kerja ke seluruh perusahaan.
-                              </li>
-                              <li class="list-unstyled">
-                                    <div class="icon-svg">
-                                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                                    </div>
-                                    Memberikan informasi yang berkaitan dengan dunia kerja dan industri secara berkesinambungan kepada para Mahasiswa dan Alumni.
-                              </li>
-                           </ul>
-                        </div>
-                     </div> <br>
+                     <ul class="">
+                        <li class="list-unstyled">
+                              <div class="icon-svg">
+                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                              </div>
+                              Mempersiapkan Mahasiswa dan Alumni Poliwangi untuk memiliki kemampuan dengan standart kompetensi di dunia usaha dan industri.
+                        </li>
+                        <li class="list-unstyled">
+                              <div class="icon-svg">
+                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                              </div>
+                              Menciptakan jaringan kerja ke seluruh perusahaan.
+                        </li>
+                        <li class="list-unstyled">
+                              <div class="icon-svg">
+                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                              </div>
+                              Memberikan informasi yang berkaitan dengan dunia kerja dan industri secara berkesinambungan kepada para Mahasiswa dan Alumni.
+                        </li>
+                     </ul>
 
                      <h3>Tujuan :</h3>
-                     <div class="row">
-                        <div class="col-md-12">
-                           <ul class="">
-                              <li class="list-unstyled">
-                                    <div class="icon-svg">
-                                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                                    </div>
-                                    Pusat informasi bagi Mahasiswa dan Alumni tentang dunia kerja dan industri.
-                              </li>
-                              <li class="list-unstyled">
-                                    <div class="icon-svg">
-                                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                                    </div>
-                                    Membantu mempersiapkan Mahasiswa dan Alumni memasuki dunia kerja dan industri.
-                              </li>
-                              <li class="list-unstyled">
-                                    <div class="icon-svg">
-                                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                                    </div>
-                                    Menjadi jembatan penghubung antara Politeknik Negeri Banyuwangi dengan dunia industri.
-                              </li>
-                           </ul>
-                        </div>
-                     </div>
+                     <ul class="">
+                        <li class="list-unstyled">
+                              <div class="icon-svg">
+                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                              </div>
+                              Pusat informasi bagi Mahasiswa dan Alumni tentang dunia kerja dan industri.
+                        </li>
+                        <li class="list-unstyled">
+                              <div class="icon-svg">
+                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                              </div>
+                              Membantu mempersiapkan Mahasiswa dan Alumni memasuki dunia kerja dan industri.
+                        </li>
+                        <li class="list-unstyled">
+                              <div class="icon-svg">
+                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                              </div>
+                              Menjadi jembatan penghubung antara Politeknik Negeri Banyuwangi dengan dunia industri.
+                        </li>
+                     </ul>
+
                   </div>
                </div>
             </div> {{-- Rules-Wrapper --}}
@@ -124,8 +118,6 @@
 
          </div> <!-- Faq-Layouting -->
       </div> {{--Faq Container  --}} 
-
-
 
    </div> <!-- /layout-px-spasing -->
 @endsection

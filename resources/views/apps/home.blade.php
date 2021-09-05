@@ -30,126 +30,121 @@
       <div class="faq-layouting layout-spacing">
 
          <div class="rules-wrapper" data-aos="zoom-in-up" data-aos-duration="1000">
-            <div class="row">
-               <div class="col-md-12">
-                  <h3>Beberapa aturan dalam mengikuti Tes :</h3>
-                  
-                  <div class="row">
-                     <div class="col-md-12">
-                        <ul class="">
-                           <li class="list-unstyled">
-                              <div class="icon-svg">
-                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                              </div>
-                              Tidak ada jawaban yang benar untuk semua pertanyaan ini.
-                           </li>
-                           <li class="list-unstyled">
-                              <div class="icon-svg">
-                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                              </div>
-                              Jawab pertanyaan dengan cepat, jangan terlalu menganalisisnya. Beberapa tampak terselubung
-                           </li>
-                           <li class="list-unstyled">
-                              <div class="icon-svg">
-                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                              </div>
-                              Jawab pertanyaan sebagai "apa adanya", bukan "dengan cara yang Anda inginkan"
-                           </li>
-                           <li class="list-unstyled">
-                              <div class="icon-svg">
-                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                              </div>
-                              Hasil penilaian Tes akan tampil setelah Anda menyelesaikan semua pertanyaan yang diberikan.
-                           </li>
-                        </ul>
-                        <small class="text-right">Harley Friedman, MD. <cite title="Source Title">MBTI Personality Type Test</cite></small>
-                     </div>
-                  </div>
+            <div class="rules-content">
 
+               <div class="rules-text">
+                  <h3>Keuntungan mengikuti tes kepribadian MBTI :</h3>
+                  <ul class="">
+                     <li class="list-unstyled">
+                           <div class="icon-svg">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                           </div>
+                           Tidak ada jawaban yang benar untuk semua pertanyaan ini.
+                     </li>
+                     <li class="list-unstyled">
+                           <div class="icon-svg">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                           </div>
+                           Jawab pertanyaan dengan cepat, jangan terlalu menganalisisnya. Beberapa tampak terselubung
+                     </li>
+                     <li class="list-unstyled">
+                           <div class="icon-svg">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                           </div>
+                           Jawab pertanyaan sebagai "apa adanya", bukan "dengan cara yang Anda inginkan"
+                     </li>
+                     <li class="list-unstyled">
+                           <div class="icon-svg">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                           </div>
+                           Hasil penilaian Tes akan tampil setelah Anda menyelesaikan semua pertanyaan yang diberikan.
+                     </li>
+                  </ul>
+                     <small class="text-right">Harley Friedman, MD. <cite title="Source Title">MBTI Personality Type Test</cite></small>
                </div>
             </div>
          </div> {{-- Rules-Wrapper --}}
 
-         <div class="rules-wrapper" data-aos="zoom-in-up" data-aos-duration="700">
-            <div class="row">
-               <div class="col-md-4">
-                  <img class="rules-image" src="{{asset('assets/images/mbti/untung.png')}}" alt="rules">
-               </div> 
 
-               <div class="col-md-8">
+         <div class="rules-wrapper" data-aos="zoom-in-up" data-aos-duration="700">
+            <div class="rules-content">
+               <div class="rules-image">
+                  <img src="{{asset('assets/images/mbti/untung.png')}}" alt="rules">
+               </div>
+               <div class="rules-text">
                   <h3>Keuntungan mengikuti tes kepribadian MBTI :</h3>
                   <p>Dapat mengetahui tipe diri kamu itu seperti apa. MBTI atau Myers-Briggs Type Indicator memisahkan kepribadian seseorang menurut 4 dimensi berdasarkan 8 sifat dasar yaitu :</p>
-                     <ul class="">
+                        <ul class="">
                            <li class="list-unstyled">
                               <div class="icon-svg">
-                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
                               </div>
                               Introvert vs Extrovert
                            </li>
                            <li class="list-unstyled">
                               <div class="icon-svg">
-                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
                               </div>
                               Intuition vs Sensing
                            </li>
                            <li class="list-unstyled">
                               <div class="icon-svg">
-                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
                               </div>
                               Thinking vs Feeling
                            </li>
                            <li class="list-unstyled">
                               <div class="icon-svg">
-                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
                               </div>
                               Judging vs Perceiving
                            </li>
-                     </ul>
+                        </ul>
                   <p>Dimana dari 8 sifat dasar tersebut jika dipisahkan lebih dalam akan terdiri dari 16 tipe kepribadian manusia. Meski terdiri dari banyak karakter yang dikelompokan semua memiliki sisi positif dan negatif sendiri. Melalui tes kepribadian ini kamu dapat lebih baik dalam memahami orang lain.</p>
                </div>
             </div>
          </div> {{-- Rules-Wrapper --}}
 
          <div class="rules-wrapper" data-aos="zoom-in-up" data-aos-duration="700">
-               <div class="row">
-                  <div class="col-md-8">
-                     <h3>Mengenali Kelebihan dan Kelemahan diri sendiri :</h3>
-                     <p>
-                           Kamu bisa menemukan dimana titik lemah kamu terutama berkaitan dengan pekerjaan, bakat, dan minat. Tes kepribadian MBTI membantu kamu menempatkan kelebihan dan kelemahan sesuai porsinya. Kelemahan paling dalam hanya bisa diketahui oleh diri sendiri dan terbantu dengan tes. Jadi selama menjalani pekerjaan bisa menghindari hal-hal yang dapat mengganggu hubungan antar rekan kerja dan kelancaran tugas. Dari tes kepribadian kamu dapat memimpin diri sendiri.
-                     </p>
-                  </div>
-                  <div class="col-md-4">
-                     <img class="rules-image" src="{{asset('assets/images/mbti/evaluasi.png')}}" alt="rules">
-                  </div>
+            <div class="rules-content">
+               <div class="rules-text">
+                  <h3>Mengenali Kelebihan dan Kelemahan diri sendiri :</h3>
+                  <p>
+                        Kamu bisa menemukan dimana titik lemah kamu terutama berkaitan dengan pekerjaan, bakat, dan minat. Tes kepribadian MBTI membantu kamu menempatkan kelebihan dan kelemahan sesuai porsinya. Kelemahan paling dalam hanya bisa diketahui oleh diri sendiri dan terbantu dengan tes. Jadi selama menjalani pekerjaan bisa menghindari hal-hal yang dapat mengganggu hubungan antar rekan kerja dan kelancaran tugas. Dari tes kepribadian kamu dapat memimpin diri sendiri.
+                  </p>
                </div>
+               <div class="rules-image">
+                  <img src="{{asset('assets/images/mbti/evaluasi.png')}}" alt="rules">
+               </div>
+            </div>
          </div> {{-- Rules-Wrapper --}}
 
          <div class="rules-wrapper" data-aos="zoom-in-up" data-aos-duration="700">
-               <div class="row">
-                  <div class="col-md-4">
-                     <img class="rules-image" src="{{asset('assets/images/mbti/pekerjaan.png')}}" alt="rules">
-                  </div>
-                  <div class="col-md-8">
-                     <h3>Membantu menentukan pekerjaan yang cocok :</h3>
-                     <p>
+            <div class="rules-content">
+               <div class="rules-image">
+                  <img src="{{asset('assets/images/mbti/pekerjaan.png')}}" alt="rules">
+               </div>
+               <div class="rules-text">
+                  <h3>Membantu menentukan pekerjaan yang cocok :</h3>
+                  <p>
                         Selain dapat menolong kamu supaya lebih memahami diri sendiri, tes ini juga dapat menolong kamu menentukan pekerjaan, minat, serta karir seperti apa yang paling sesuai denganmu. Sehingga kamu dapat memahami lebih jauh diri sendiri serta menciptakan pekerjaan yang cocok dengan passion kalian.
-                     </p>
-                  </div>
+                  </p>
                </div>
+            </div>
          </div> {{-- Rules-Wrapper --}}
 
          <div class="rules-wrapper" data-aos="zoom-in-up" data-aos-duration="700">
-               <div class="row">
-                  <div class="col-md-9">
-                     <h3>Mengetahui Bakat dan Potensi paling Dominan :</h3>
-                     <p>
-                           Tes Kepribadian MBTI sangat penting karena bisa mengklasifikasikan bakat dan potensi paling baik dari diri kamu. Kamu akan membutuhkannya pada saat melamar pekerjaan yang lebih profesional. Bakat dan potensi seseorang pada dasarnya bisa dibaca dari pola kerjanya setiap hari. Kamu harus tahu bahwa bekerja sesuai bakat bisa membuatmu merasa lebih tenang dan hasilnya bisa lebih maksimal.
-                     </p>
-                  </div>
-                  <div class="col-md-3">
-                     <img class="rules-image" src="{{asset('assets/images/mbti/bakat.png')}}" alt="rules">
-                  </div>
+            <div class="rules-content">
+               <div class="rules-text">
+                  <h3>Mengetahui Bakat dan Potensi paling Dominan :</h3>
+                  <p>
+                        Tes Kepribadian MBTI sangat penting karena bisa mengklasifikasikan bakat dan potensi paling baik dari diri kamu. Kamu akan membutuhkannya pada saat melamar pekerjaan yang lebih profesional. Bakat dan potensi seseorang pada dasarnya bisa dibaca dari pola kerjanya setiap hari. Kamu harus tahu bahwa bekerja sesuai bakat bisa membuatmu merasa lebih tenang dan hasilnya bisa lebih maksimal.
+                  </p>
                </div>
+               <div class="rules-image">
+                  <img src="{{asset('assets/images/mbti/bakat.png')}}" alt="rules">
+               </div>
+            </div>
          </div> {{-- Rules-Wrapper --}}
 
       </div> <!-- Faq-Layouting -->

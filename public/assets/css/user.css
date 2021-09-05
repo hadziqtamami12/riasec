@@ -162,26 +162,27 @@ body{
     text-align: center;
   }
   #landing .landingContent .landingText h1 {
-    font-size: 1rem;
+    font-size: 1.1rem;
     margin: 0 !important;
     margin-bottom: 10px;
   }
   #landing .landingContent .landingText h1 span {
-    font-size: .9rem;
+    font-size: 1rem;
   }
   #landing .landingContent .landingText h3 {
-    font-size: .7rem;
+    font-size: .8rem;
   }
   #landing .landingContent .landingText .btnmulai {
     margin: 0 auto;
   }
   #landing .landingContent .landingText .btnmulai a {
-    font-size: 3vw;
+    font-size: .9rem;
   }
   #landing .landingContent .landingImage img {
-    width: 52vw;
+    width: 29vw;
     margin-bottom: 20px;
   }
+  /* landing content 2 */
   #landing .landingContent2 {
     -webkit-box-orient: vertical;
     -webkit-box-direction: reverse;
@@ -202,94 +203,166 @@ body{
     margin-bottom: 10px;
   }
   #landing .landingContent2 .landingText h1 span {
+    font-size: 1.2rem;
+  }
+  #landing .landingContent2 .landingText h3 {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 575.98px) {
+
+  #landing .landingContent .landingImage img {
+    width: 52vw;
+    margin-bottom: 20px;
+  }
+  #landing .landingContent .landingText h1 {
+    font-size: 1rem;
+    margin: 0 !important;
+    margin-bottom: 10px;
+  }
+  #landing .landingContent .landingText h1 span {
+    font-size: .9rem;
+  }
+  #landing .landingContent .landingText h3 {
+    font-size: .7rem;
+  }
+  #landing .landingContent .landingText .btnmulai {
+    margin: 0 auto;
+  }
+  #landing .landingContent .landingText .btnmulai a {
+    font-size: .8rem;
+  }
+
+/* landing content 2 */
+  #landing .landingContent2 .landingText h1 {
+    font-size: 1.4rem;
+    margin: 0 !important;
+    margin-bottom: 10px;
+  }
+  #landing .landingContent2 .landingText h1 span {
     font-size: 1.1rem;
   }
   #landing .landingContent2 .landingText h3 {
     font-size: .9rem;
   }
 }
-
+/* rules card */
 .faq .faq-layouting .rules-wrapper {
-  padding: 52px 52px;
   -webkit-box-shadow: 0 10px 30px 0 rgba(31, 45, 61, 0.1);
   box-shadow: 0 10px 30px 0 rgba(31, 45, 61, 0.1);
   border-radius: 15px;
   background: #fff;
-  margin-bottom: 70px;
+  padding: 52px 52px;
+  margin-top: 15px !important;
+  margin-bottom: 60px;
 }
-
-.faq .faq-layouting .rules-wrapper h3 {
+.faq .faq-layouting .rules-wrapper .rules-content .rules-text h3 {
   font-size: 29px;
   font-weight: 700;
   margin-bottom: 30px;
+  text-transform: capitalize;
 }
-.faq .faq-layouting .rules-wrapper p{
+.faq .faq-layouting .rules-wrapper .rules-content .rules-text p{
   font-size: 15px;
   font-weight: 600;
   text-align: justify;
   text-indent: 40px;
   line-height: 1.6;
 }
-.faq .faq-layouting .rules-wrapper ul {
+.faq .faq-layouting .rules-wrapper .rules-content .rules-text ul {
   padding: 0;
 }
-
-.faq .faq-layouting .rules-wrapper ul li {
+.faq .faq-layouting .rules-wrapper .rules-content .rules-text ul li {
   font-size: 15px;
   font-weight: 600;
   margin-bottom: 16px;
   color: #3b3f5c;
-  
 }
-
-.faq .faq-layouting .rules-wrapper ul li:hover {
+.faq .faq-layouting .rules-wrapper .rules-content .rules-text ul li:hover {
   cursor: pointer;
   color: #1b55e2;
 }
-
-.faq .faq-layouting .rules-wrapper ul li:hover svg {
+.faq .faq-layouting .rules-wrapper .rules-content .rules-text ul li:hover svg {
   color: #1b55e2;
 }
-
-.faq .faq-layouting .rules-wrapper ul li .icon-svg {
+.faq .faq-layouting .rules-wrapper .rules-content .rules-text ul li .icon-svg {
   display: inline-block;
   margin-right: 9px;
 }
-
-.faq .faq-layouting .rules-wrapper ul li svg {
+.faq .faq-layouting .rules-wrapper .rules-content .rules-text ul li svg {
   color: rgb(248, 164, 55);
   width: 19px;
   height: 19px;
   vertical-align: bottom;
 }
-
-.faq .faq-layouting .rules-wrapper .rules-image{
-  width: auto;
-  height: 45vh;
+.faq .faq-layouting .rules-wrapper .rules-content{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
+  padding: 0;
+}
+.faq .faq-layouting .rules-wrapper .rules-content .rules-image img{
+  /* width: 25vw; */
+  height: 262px;
+  width: auto;
 }
 
 @media (max-width: 991px) {
-  .faq .faq-layouting .rules-wrapper .rules-image{
-    height: 20vh;
+  .faq .faq-layouting .rules-wrapper{
+    padding: 0;
+    margin-bottom: 45px;
+  }
+  .faq .faq-layouting .rules-wrapper .rules-content{
+    padding: 33px 40px;
+  }
+  .faq .faq-layouting .rules-wrapper .rules-content{
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .faq .faq-layouting .rules-wrapper .rules-content .rules-image img{
+    /* width: 28vw; */
+    height: 23vh;
+    width: auto;
+  }
+  .faq .faq-layouting .rules-wrapper .rules-content .rules-text h3{
+    font-size: 1.5rem;
+  }
+  .faq .faq-layouting .rules-wrapper .rules-content .rules-text p{
+    font-size: .9rem;
+  }
+  .faq .faq-layouting .rules-wrapper .rules-content .rules-text ul li{
+    font-size: .9rem;
   }
 }
 
 @media (max-width: 767px) {
-  .faq .faq-layouting .rules-wrapper .rules-image{
-    height: 33vh;
-    width: auto;
-  }
-  .faq .faq-layouting .rules-wrapper h3{
-    font-size: 20px;
-  }
-  .faq .faq-layouting .rules-wrapper ul li{
-    font-size: 14px;
-  }
-  .faq .faq-layouting .rules-wrapper p{
-    font-size: 14px;
+  .faq .faq-layouting .rules-wrapper{
+    margin-top: 50px;
   }
 }
+
+@media (max-width: 575.98px) {
+  .faq .faq-layouting .rules-wrapper .rules-content .rules-image img{
+    /* width: 48vw; */
+    height: 30vh;
+    align-items: center;
+  }
+  .faq .faq-layouting .rules-wrapper .rules-content .rules-text h3{
+    font-size: 1.2rem;
+  }
+}
+
+
 .faq .faq-layouting .personality-section {
   margin-bottom: 50px;
 }
@@ -472,6 +545,11 @@ body{
   }
 }
 
+@media (max-width: 575.98px) {
+  .faq .faq-layouting .personality-section .card .card-body .btn{
+    margin-bottom: 30px;
+  }
+}
 #quiz {
   margin-top: -10px;
 }

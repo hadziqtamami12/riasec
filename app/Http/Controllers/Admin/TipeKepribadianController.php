@@ -63,7 +63,7 @@ class TipeKepribadianController extends Controller
         # Folder path
         $folder = '/uploads/TipeKepribadian/';
         # Buat jalur file tempat gambar akan disimpan [ jalur folder + nama file + ekstensi file]
-        $filePath = $folder . $name. '.' . $image->getClientOriginalExtension();
+        $filePath = $folder . $name. '.' . $image->guessExtension();
         # Setel jalur gambar profil pengguna di database ke filePath
         $tipekepribadian->image_tipe = $filePath;
 
@@ -124,7 +124,7 @@ class TipeKepribadianController extends Controller
             # Menetapkan folder path
             $folder = '/uploads/TipeKepribadian/';
             # Buat jalur file tempat gambar akan disimpan[ folder path + file name + file extension]
-            $filePath = $folder . $name. '.' . $image->getClientOriginalExtension();
+            $filePath = $folder . $name. '.' . $image->guessExtension();
             # menghapus foto yang sudah ada dan menganti dengan yang baru
             if ($tipekep->image != null) {
                 $this->deleteOne($tipekep->image);

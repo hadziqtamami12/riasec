@@ -5,7 +5,6 @@
 @section('nav_header')
    <!--  BEGIN NAVBAR  -->
    <div class="header-container fixed-top">
-      @include('layouts.alert.alert')
       <header class="header navbar navbar-expand-sm">
          <div class="container">
                <ul class="navbar-item theme-brand flex-row  text-center">

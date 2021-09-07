@@ -70,15 +70,15 @@
                               <div class="work-section">
                                  <div class="row">
 
-                                       <div class="col-xl-2 col-md-4">
+                                       {{-- <div class="col-xl-2 col-md-4">
                                           <div class="upload mt-4 pr-md-4">
                                              <input id="image_tipe" type="file" class="dropify" @error('image_tipe') is-invalid @enderror name="image_tipe" />
                                              @error('image_tipe') <div class="invalid-feedback">{{$message}}</div>@enderror
                                              <p class="mt-2"><i class="flaticon-cloud-upload mr-1"></i>Upload Foto, Max : 2MB</p>
                                           </div> 
-                                       </div>
+                                       </div> --}}
 
-                                       <div class="col-xl-10 col-md-8 mt-md-0">
+                                       <div class="col-xl-12 col-md-12 mt-md-0">
                                           <div class="form-group">
                                              <label for="namatipe">Tipe Kepribadian</label>
                                              <input type="text" class="form-control mb-4" @error('namatipe') is-invalid @enderror" name="namatipe" value="{{old('namatipe')}}">

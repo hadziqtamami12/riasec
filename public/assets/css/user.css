@@ -254,7 +254,7 @@ body{
   border-radius: 15px;
   background: #fff;
   padding: 52px 52px;
-  margin-top: 15px !important;
+  margin-top: 30px;
   margin-bottom: 60px;
 }
 .faq .faq-layouting .rules-wrapper .rules-content .rules-text h3 {
@@ -308,11 +308,18 @@ body{
   height: 262px;
   width: auto;
 }
+/* XX-Large devices (larger desktops, 1400px and up) */
+@media (min-width: 1400px) { 
+  .faq .faq-layouting .rules-wrapper{
+    margin-top: 65px;
+  }
+}
 
 @media (max-width: 991px) {
   .faq .faq-layouting .rules-wrapper{
     padding: 0;
     margin-bottom: 45px;
+    margin-top: 20px;
   }
   .faq .faq-layouting .rules-wrapper .rules-content{
     padding: 33px 40px;
@@ -347,7 +354,7 @@ body{
 
 @media (max-width: 767px) {
   .faq .faq-layouting .rules-wrapper{
-    margin-top: 50px;
+    margin-top: 30px;
   }
 }
 
@@ -550,6 +557,7 @@ body{
     margin-bottom: 30px;
   }
 }
+/* session pengisian tes */
 #quiz {
   margin-top: -10px;
 }
@@ -615,17 +623,14 @@ body{
   position: absolute;
   width: 610px;
 }
-
 #quiz .quiz-layouting .quiz-tab-section .card .selected-label input {
   display: none;
 }
-
 #quiz .quiz-layouting .quiz-tab-section .card .selected-label input:checked ~ .selected-content {
   -webkit-box-shadow: 0 2px 4px 0 rgba(219, 215, 215, 0);
           box-shadow: 0 2px 4px 0 rgba(219, 215, 215, 0);
   background-color: rgba(236, 190, 40, 1);
 }
-
 #quiz .quiz-layouting .quiz-tab-section .card .selected-label .selected-content {
   height: 248px;
   background: #fff;
@@ -644,7 +649,7 @@ body{
 
 #quiz .quiz-layouting .quiz-tab-section .card .selected-label .selected-content:hover {
   background-color: rgba(255, 171, 0, 1);
-  color: #fff;
+  /* color: #fff; */
 }
 
 #quiz .quiz-layouting .quiz-tab-section .card .selected-label .selected-content .jawaban {
@@ -662,7 +667,7 @@ body{
   margin-top: 60px;
   padding: 10px 20px;
 }
-
+/* `lg` applies to medium devices (tablets, less than 992px) */
 @media screen and (min-width: 768px) and (max-width: 991px) {
   #quiz .quiz-layouting .quiz-tab-section .soal {
     font-size: 1.2rem;
@@ -673,6 +678,8 @@ body{
     margin-bottom: 15px;
   }
   #quiz .quiz-layouting .quiz-tab-section .card .selected-label {
+    position: absolute;
+    /* width: auto; */
     width: 330px;
   }
   #quiz .quiz-layouting .quiz-tab-section .card .selected-label .selected-content .jawaban {
@@ -684,6 +691,7 @@ body{
   }
 }
 
+/* `md` applies to small devices (landscape phones, less than 768px) */
 @media screen and (max-width: 767px) {
   #quiz .quiz-layouting .quiz-tab-section .soal {
     font-size: 1rem;
@@ -693,6 +701,8 @@ body{
     width: auto;
   }
   #quiz .quiz-layouting .quiz-tab-section .card .selected-label {
+    position: absolute;
+    /* width: auto; */
     width: 275px;
   }
   #quiz .quiz-layouting .quiz-tab-section .card .selected-label .selected-content .jawaban {
@@ -703,6 +713,28 @@ body{
     padding: 10px 15px;
   }
 }
+
+/* `sm` applies to x-small devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px) {
+  #quiz .quiz-layouting .quiz-tab-section .title-section h3{
+    font-size: 1.2rem;
+  }
+  #quiz .quiz-layouting .quiz-tab-section .title-section h5{
+    font-size: 0.9rem;
+  }
+  #quiz .quiz-layouting .quiz-tab-section .card {
+    margin-top: 8px;
+    width: auto;
+  }
+  #quiz .quiz-layouting .quiz-tab-section .card .selected-label {
+    position: absolute;
+    width: auto;
+  }
+  #quiz .quiz-layouting .quiz-tab-section .card .selected-label .selected-content .jawaban {
+    font-size: .9rem;
+  }
+}
+
 
 #content .container {
   margin-bottom: 45px;

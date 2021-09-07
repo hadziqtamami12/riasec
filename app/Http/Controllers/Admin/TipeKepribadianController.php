@@ -56,16 +56,18 @@ class TipeKepribadianController extends Controller
         $tipekepribadian->saran_pengembangan = $request->saran_pengembangan;
         $tipekepribadian->kebahagiaan_tipe = $request->kebahagiaan_tipe;
         
-        # save image
-        $image = $request->file('image_tipe');
-        # Buat nama gambar berdasarkan tipekepribadian dan tandai waktu saat ini
-        $name = Str::slug($request->input('namatipe')).'_'.time();
-        # Folder path
-        $folder = '/uploads/TipeKepribadian/';
-        # Buat jalur file tempat gambar akan disimpan [ jalur folder + nama file + ekstensi file]
-        $filePath = $folder . $name. '.' . $image->guessExtension();
-        # Setel jalur gambar profil pengguna di database ke filePath
-        $tipekepribadian->image_tipe = $filePath;
+        // # save image
+        // $image = $request->file('image_tipe');
+        // # Buat nama gambar berdasarkan tipekepribadian dan tandai waktu saat ini
+        // $name = Str::slug($request->input('namatipe')).'_'.time();
+        // # Folder path
+        // $folder = '/uploads/TipeKepribadian/';
+        // # Buat jalur file tempat gambar akan disimpan [ jalur folder + nama file + ekstensi file]
+        // $filePath = $folder . $name. '.' . $image->guessExtension();
+        // # Unggah gambar
+        // $this->uploadOne($image, $folder, 'public', $name);
+        // # Setel jalur gambar profil pengguna di database ke filePath
+        // $tipekepribadian->image_tipe = $filePath;
 
         # simpan data User pada Database
         $tipekepribadian->save();
@@ -124,7 +126,7 @@ class TipeKepribadianController extends Controller
             # Menetapkan folder path
             $folder = '/uploads/TipeKepribadian/';
             # Buat jalur file tempat gambar akan disimpan[ folder path + file name + file extension]
-            $filePath = $folder . $name. '.' . $image->guessExtension();
+            $filePath = $folder . $name. '.' . $image->getClientOriginalExtension();
             # menghapus foto yang sudah ada dan menganti dengan yang baru
             if ($tipekep->image != null) {
                 $this->deleteOne($tipekep->image);

@@ -18,8 +18,8 @@ Route::get('/', function () {
 Route::middleware(['guest'])->group(function () {
     Route::get('login', [UserAuthController::class, 'login'])->name('formlogin');
     Route::get('register', [UserAuthController::class, 'register'])->name('formregister');
-    Route::post('login', [UserAuthController::class, 'postLogin'])->name('auth.check');
-    Route::post('register',[UserAuthController::class, 'postRegister'])->name('auth.create');
+    Route::post('post-login', [UserAuthController::class, 'postLogin'])->name('auth.check');
+    Route::post('post-register',[UserAuthController::class, 'postRegister'])->name('auth.create');
     // Lupa Password
     Route::get('forget-password', [ForgetPasswordController::class, 'showForgetPasswordForm'])->name('forget.password.get');
     Route::post('forget-password', [ForgetPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post'); 
@@ -29,9 +29,9 @@ Route::middleware(['guest'])->group(function () {
 /*
     ===============================
         Session Verify Email
-	===============================
+	===============================, 'is_verify_email'
 */
-Route::get('dashboard', [UserAuthController::class, 'dashboard'])->middleware(['auth', 'is_verify_email']); # opsi diganti pada get role user
+Route::get('dashboard', [UserAuthController::class, 'dashboard'])->middleware(['auth']); # opsi diganti pada get role user
 Route::get('account/verify/{token}', [UserAuthController::class, 'verifyAccount'])->name('user.verify');
 /*
     ===============================

@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Carbon\Carbon;
 use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\{Carbon, Str};
 use Illuminate\Support\Facades\{Hash, DB, Mail};
 
 class ForgetPasswordController extends Controller

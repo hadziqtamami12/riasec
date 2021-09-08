@@ -40,19 +40,19 @@ class UserAuthController extends Controller
         # default role = user
         $check->roles()->attach(Role::where('name', 'user')->first());
 
-        // # opsi verifikasi email
-        // $token = Str::random(64); #create token
+        # opsi verifikasi email
+        $token = Str::random(64); #create token
         
-        // UserVerify::create([
-        //     'user_id' => $check->id,
-        //     'token' => $token
-        // ]);
+        UserVerify::create([
+            'user_id' => $check->id,
+            'token' => $token
+        ]);
 
-        // # kirim email verifikasi pada pengguna
-        // Mail::send('email.emailVerificationEmail', ['token' => $token], function($message) use($request){
-        //     $message->to($request->email);
-        //     $message->subject('Verification Account di JPC Politeknik Negeri Banyuwangi');
-        // });
+        # kirim email verifikasi pada pengguna
+        Mail::send('email.emailVerificationEmail', ['token' => $token], function($message) use($request){
+            $message->to($request->email);
+            $message->subject('Verification Account di JPC Politeknik Negeri Banyuwangi');
+        });
 
         return redirect()->intended('/login')->with('success','Anda telah berhasil terdaftar');
     }
@@ -75,13 +75,27 @@ class UserAuthController extends Controller
         if (Auth::attempt([$login_type => $email, 'password' => $password])) {
 
             $user = Auth::user(); // User model
-            // $token = $user->createApiToken(); # Generate token 
-            # redirect by role
-            return redirect($user->roles()->first()->name == 'user' ? 'home' : 'admin')
-            ->with('success','Selamat Datang di Job Placement Center Poliwangi'); // Pilihan: user, superadmin, admin
+
+            return redirect()->intended('dashboard')
+                ->with('success','Selamat Datang di Job Placement Center Poliwangi'); // Pilihan: user, superadmin, admin
         }
         return back()->with('fail', 'Silakan cek kembali Email/Username dan Password anda');
-        
+    }
+
+    /**
+     * Write code on Method
+     *
+     * @return response()
+     */
+    public function dashboard()
+    {
+        if(Auth::check()){
+
+            $user = Auth::user(); // User model
+            
+            return redirect($user->roles()->first()->name == 'user' ? 'home' : 'admin');
+        }
+        return redirect("login")->with('fail','Ups! Anda tidak memiliki akses');
     }
 
     # User SignOut

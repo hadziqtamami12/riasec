@@ -8,11 +8,20 @@ if (formImage) {
 }
 if (togglePassword) {
 	togglePassword.addEventListener('click', function() {
-	  var x = document.getElementById("password");
-	  if (x.type === "password") {
-	    x.type = "text";
-	  } else {
-	    x.type = "password";
-	  }
+		var x = document.getElementById("password");
+		if (x.type === "password") {
+			x.type = "text";
+		} else {
+			x.type = "password";
+		}
 	});
 }
+// confirm toggle
+function myFunction() {
+	var x = document.getElementById("password-confirm");
+	if (x.type === "password") {
+		x.type = "text";
+	} else {
+		x.type = "password";
+	}
+} 

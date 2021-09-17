@@ -19,7 +19,29 @@
             @include('layouts.alert.alert')
 
             <form class="form-inline mt-4 mb-1">
-               <h4 class="col-10">{{$pageName}}</h4>
+               <h4 class="col-4 mr-5">{{$pageName}}</h4>
+               {{-- selec Tipekep --}}
+               <select class="selectpicker">
+                  <option>I</option>
+                  <option>Ketchup</option>
+                  <option>Relish</option>
+               </select>
+               <select class="selectpicker">
+                  <option>Mustard</option>
+                  <option>Ketchup</option>
+                  <option>Relish</option>
+               </select>
+               <select class="selectpicker">
+                  <option>I</option>
+                  <option>Ketchup</option>
+                  <option>Relish</option>
+               </select>
+               <select class="selectpicker">
+                  <option>Mustard</option>
+                  <option>Ketchup</option>
+                  <option>Relish</option>
+               </select>
+               {{-- select tipekep --}}
                   <div class="col-auto">
                      <div class="d-flex justify-content-sm-start justify-content-center" style="text-align: left">
                         {{-- Button Pop-Up --}}
@@ -57,8 +79,9 @@
                <thead>
                   <tr>
                      <th>ID</th>
-                     <th class="text-center">Foto</th>
+                     {{-- <th class="text-center">Foto</th> --}}
                      <th>Nama</th>
+                     <th>Tipe Kepribadian</th>
                      <th>Email</th>
                      <th>NIM</th>
                      <th>Program Studi</th>
@@ -67,14 +90,16 @@
                </thead>
                <tbody>
                   @foreach ($dataUser as $item)
+                  {{-- {{dd($item)}} --}}
                   <tr>
                      <td scope="row">{{$loop->iteration}}</td>
-                     <td class="text-center">
-                        <span><img src="{{asset($item->image)}}" class="profile-img"onerror="this.src='{{asset('assets/images/90x90.jpg')}}'"></span>
-                     </td>
+                     {{-- <td class="text-center">
+                        <span><img src="{{asset($dataUser->image)}}" class="profile-img"onerror="this.src='{{asset('assets/images/90x90.jpg')}}'"></span>
+                     </td> --}}
                      <td>{{$item->name}} <br>
                         <span class="text-info" style="font-size: 10px">{{$item->roles}}</span>
                      </td>
+                     <td>{{ $item->tipekep }}</td>
                      <td>{{Str::limit($item->email, 15, '..')}}</td>
                      <td>{{$item->nim}}</td>
                      <td>{{$item->programstudi->program_studi}}</td>
@@ -86,6 +111,7 @@
                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink12">
                               {{-- <a class="dropdown-item" href="javascript:void(0);">View</a> --}}
                               @if (Auth::user()->roles()->first()->name === 'superadmin')
+                                 <a class="dropdown-item btn btn-sm text-info" href="{{ route('account.show', $item->id) }}">Show</a>
                                  <a class="dropdown-item btn btn-sm text-warning" href="{{ route('account.edit', $item->id) }}">Edit</a>
                                  <a class="dropdown-item btn btn-sm text-danger" href="#" data-toggle="modal" data-target="#delete" data-id="{{ $item->id }}">Delete</a>
                               @endif
@@ -98,8 +124,9 @@
                <tfoot>
                   <tr>
                      <th>ID</th>
-                     <th class="text-center">Foto</th>
+                     {{-- <th class="text-center">Foto</th> --}}
                      <th>Nama</th>
+                     <th>Tipe Kepribadian</th>
                      <th>Email</th>
                      <th>NIM</th>
                      <th>Program Studi</th>

@@ -33,7 +33,7 @@
             <div class="rules-content">
 
                <div class="rules-text">
-                  <h3>Keuntungan mengikuti tes kepribadian MBTI :</h3>
+                  <h3>Beberapa Aturan Dalam Mengikuti Tes :</h3>
                   <ul class="">
                      <li class="list-unstyled">
                            <div class="icon-svg">

@@ -96,6 +96,13 @@
                                              </div>
 
                                              <div class="form-group">
+                                                <label for="phone">Nomor Telephone</label>
+                                                <input type="text" class="form-control mb-4"
+                                                @error('phone') is-invalid @enderror" name="phone" value="{{old('phone')}}" required/>
+                                                @error('phone') <div class="invalid-feedback">{{$message}}</div>@enderror
+                                             </div>
+
+                                             <div class="form-group">
                                                 <label for="programstudi">Program Studi</label>
                                                 <select class="form-control prodi" name="programstudi_id">
                                                 <option selected disabled>program studi</option>
@@ -123,6 +130,7 @@
                                                 <div class="form-group col-md-6">
                                                    <label for="password">Confirm Password</label><br>
                                                    <input id="password-confirm" name="password_confirmation" type="password" class="form-control" placeholder="ulangi kata sandi">
+                                                   <input type="checkbox" onclick="myFunction()">Show Password
                                                 </div>
                                              </div>
 

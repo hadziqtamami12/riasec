@@ -72,9 +72,8 @@
         
             <div class="rules-wrapper" data-aos="zoom-in-up" data-aos-duration="1000">
                 <div class="rules-content">
-
                     <div class="rules-text">
-                        <h3>Keuntungan mengikuti tes kepribadian MBTI :</h3>
+                        <h3>Beberapa Aturan Dalam Mengikuti Tes :</h3>
                         <ul class="">
                             <li class="list-unstyled">
                                 <div class="icon-svg">
@@ -101,8 +100,12 @@
                                 Hasil penilaian Tes akan tampil setelah Anda menyelesaikan semua pertanyaan yang diberikan.
                             </li>
                         </ul>
-                            <small class="text-right">Harley Friedman, MD. <cite title="Source Title">MBTI Personality Type Test</cite></small>
+                            <small class="text-right mr-4">Harley Friedman, MD. <cite title="Source Title">MBTI Personality Type Test</cite></small>
+
+                            
                     </div>
+                    
+                    <a href="{{asset('assets/panduan.pdf')}}" class="btn btn-primary btn-rounded" style="float: right; margin: 15px">Panduan Tes</a>
                 </div>
             </div> {{-- Rules-Wrapper --}}
             

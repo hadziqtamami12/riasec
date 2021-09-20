@@ -123,14 +123,15 @@
                                              
                                              <div class="form-row mb-2">
                                                 <div class="form-group col-md-6">
-                                                   <label for="password">Password</label><br>
-                                                   <input id="password" name="password" type="password" class="form-control" placeholder="kata sandi">
+                                                   <label for="password">Password &nbsp; min:8-10</label><br>
+                                                   <input type="password" name="password" id="myInput" class="form-control" placeholder="password">
+                                                   <input type="checkbox" onclick="myFunction()" class="mt-3">&nbsp;Show Password
                                                 </div>
                            
                                                 <div class="form-group col-md-6">
-                                                   <label for="password">Confirm Password</label><br>
-                                                   <input id="password-confirm" name="password_confirmation" type="password" class="form-control" placeholder="ulangi kata sandi">
-                                                   <input type="checkbox" onclick="myFunction()">Show Password
+                                                   <label for="password">Confirm Password &nbsp; min:8-10</label><br>
+                                                   <input type="password" name="password_confirmation" id="confirm-password" class="form-control" placeholder="confirm password">
+                                                   <input type="checkbox" onclick="myToggle()" class="mt-3">&nbsp;Show Password
                                                 </div>
                                              </div>
 
@@ -157,10 +158,31 @@
 </div>
 @endsection
 @section('trigger')
-<script src="{{asset('plugins/select2/select2.min.js')}}"></script>
-<script>
-   $('select[name="programstudi_id"]').select2({
-      placeholder: "Pilih Program Studi"
-   })
-</script>
+   <script src="{{asset('plugins/select2/select2.min.js')}}"></script>
+   <script>
+      $('select[name="programstudi_id"]').select2({
+         placeholder: "Pilih Program Studi"
+      })
+
+      // toggle password
+      function myFunction() {
+         var x = document.getElementById("myInput");
+         if (x.type === "password") {
+            x.type = "text";
+         } else {
+            x.type = "password";
+         }
+      }
+   </script>
+   <script>
+         // toggle confirm password
+      function myToggle() {
+         var x = document.getElementById("confirm-password");
+         if (x.type === "password") {
+            x.type = "text";
+         } else {
+            x.type = "password";
+         }
+      }
+   </script>
 @endsection

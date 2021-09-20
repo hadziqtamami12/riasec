@@ -36,6 +36,7 @@ class UserAuthController extends Controller
             'password' => bcrypt($request['password']),
             'nim' => $request->nim,
             'programstudi_id' => $request->programstudi_id,
+            'phone' => $request->phone
         ]);
         # default role = user
         $check->roles()->attach(Role::where('name', 'user')->first());
@@ -51,7 +52,7 @@ class UserAuthController extends Controller
         # kirim email verifikasi pada pengguna
         Mail::send('email.emailVerificationEmail', ['token' => $token], function($message) use($request){
             $message->to($request->email);
-            $message->subject('Verification Account di JPC Politeknik Negeri Banyuwangi');
+            $message->subject('Verifikasi Akun Pada JPC Politeknik Negeri Banyuwangi');
         });
 
         return redirect()->intended('/login')->with('success','Anda telah berhasil terdaftar');
@@ -115,7 +116,7 @@ class UserAuthController extends Controller
     public function verifyAccount($token)
     {
         $verifyUser = UserVerify::where('token', $token)->first();
-        $message = 'Maaf email Anda tidak dapat diidentifikasi.';
+        $message = 'Maaf email Anda tidak dapat di identifikasi.';
 
         if(!is_null($verifyUser) ){
 

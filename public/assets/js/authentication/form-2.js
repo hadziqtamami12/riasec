@@ -16,7 +16,8 @@ if (togglePassword) {
 		}
 	});
 }
-// confirm toggle
+
+// confirm toggle register
 function myFunction() {
 	var x = document.getElementById("password-confirm");
 	if (x.type === "password") {

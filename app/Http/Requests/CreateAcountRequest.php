@@ -30,7 +30,8 @@ class CreateAcountRequest extends FormRequest
             'password' => 'required|string|min:8|max:12',
             'nim' => 'required|string|max:40|min:10',
             'programstudi_id' =>'required',
-            'phone' => 'min:10'
+            'phone' => 'min:10',
+            'tahun_id' => 'required'
         ];
     }
 }

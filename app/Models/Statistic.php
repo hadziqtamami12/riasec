@@ -14,5 +14,7 @@ class Statistic extends Model
      *
      * @var array
      */
-    protected $fillable = ['program_studi_id', 'dimensi_id', 'presentase', 'total_used'];
+    protected $fillable = ['program_studi_id', 'dimensi_id', 'tahun', 'presentase', 'total_used'];
+
+    
 }

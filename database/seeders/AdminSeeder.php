@@ -24,6 +24,7 @@ class AdminSeeder extends Seeder
                 'programstudi_id' => '1',
                 'email' => 'superadmin@gmail.com',
                 'password' => bcrypt('katasandi'),
+                'phone' => '0912834585'
         ],
             [
                 'name' => 'Admin JPC',
@@ -33,6 +34,7 @@ class AdminSeeder extends Seeder
                 'programstudi_id' => '1',
                 'email' => 'adminjpc@gmail.com',
                 'password' => bcrypt('katasandi'),
+                'phone' => '0912834585'
         ],
             [
                 'name' => 'Pengguna JPC',
@@ -42,6 +44,7 @@ class AdminSeeder extends Seeder
                 'programstudi_id' => '6',
                 'email' => 'penggunajpc@gmail.com',
                 'password' => bcrypt('password123'),
+                'phone' => '082342334320'
         ]));
 
         // insert role superadmin, admin, pengguna

@@ -6,7 +6,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateAcountRequest;
-use App\Models\{Role, User, ProgramStudi, UserVerify};
+use App\Models\{Role, User, ProgramStudi, UserVerify, Tahun};
 use Illuminate\Support\Facades\{Auth, Hash, Session, Mail, DB};
 
 class UserAuthController extends Controller
@@ -20,8 +20,10 @@ class UserAuthController extends Controller
     # mengarahkan pada form register
     public function register()
     {
-        $programstudi = ProgramStudi::all(); # relasi dengan program studi
-        return view('auth.register', compact('programstudi'));
+        return view('auth.register',[ 
+            'programstudi' => ProgramStudi::all(),
+            'angkatan' => Tahun::all()
+        ]);
     }
 
     
@@ -36,24 +38,25 @@ class UserAuthController extends Controller
             'password' => bcrypt($request['password']),
             'nim' => $request->nim,
             'programstudi_id' => $request->programstudi_id,
-            'phone' => $request->phone
+            'phone' => $request->phone,
+            'tahun_id' => $request->tahun_id,
         ]);
         # default role = user
         $check->roles()->attach(Role::where('name', 'user')->first());
 
-        # opsi verifikasi email
-        $token = Str::random(64); #create token
+        // # opsi verifikasi email
+        // $token = Str::random(64); #create token
         
-        UserVerify::create([
-            'user_id' => $check->id,
-            'token' => $token
-        ]);
+        // UserVerify::create([
+        //     'user_id' => $check->id,
+        //     'token' => $token
+        // ]);
 
-        # kirim email verifikasi pada pengguna
-        Mail::send('email.emailVerificationEmail', ['token' => $token], function($message) use($request){
-            $message->to($request->email);
-            $message->subject('Verifikasi Akun Pada JPC Politeknik Negeri Banyuwangi');
-        });
+        // # kirim email verifikasi pada pengguna
+        // Mail::send('email.emailVerificationEmail', ['token' => $token], function($message) use($request){
+        //     $message->to($request->email);
+        //     $message->subject('Verifikasi Akun Pada JPC Politeknik Negeri Banyuwangi');
+        // });
 
         return redirect()->intended('/login')->with('success','Anda telah berhasil terdaftar');
     }

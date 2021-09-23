@@ -47,6 +47,7 @@ Route::middleware(['auth'])->group(function () {
     
     // todo : profile
     Route::get('profile', [ProfileController::class, 'showProfile'])->name('profile.show');
+    Route::get('edit-profile', [ProfileController::class, 'editProfile'])->name('profile.edit');
     Route::post('setting-profile', [ProfileController::class, 'updateProfile'])->name('profile.update');
     
     // todo : change password
@@ -116,6 +117,9 @@ Route::middleware(['auth'])->group(function () {
         Route::get('soal', [SoalController::class,'index'])->name('soal.index'); # view index
         Route::get('soal/insert', [SoalController::class, 'view'])->name('soal.create'); # view create form
         Route::get('soal/{id}/edit', [SoalController::class, 'viewedit'])->name('soal.edit'); # view edit form
+
+        // todo : get tipe kepribadian each prodi
+        Route::get('tipeprodi/{angkatan?}', [RoleController::class, 'tipe'])->name('tipeprodi');
     
     }); #  'middleware' => 'role:admin'
 

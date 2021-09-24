@@ -6,8 +6,8 @@ use App\Traits\UploadTrait;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\{Hash,DB};
-use App\Models\{Role, User, ProgramStudi};
+use App\Models\{Role, User, ProgramStudi, UserVerify, Tahun};
+use Illuminate\Support\Facades\{Auth, Hash, Session, Mail, DB};
 use App\Http\Requests\{CreateAcountRequest, UpdateAcountRequest};
 
 class AcountAuthController extends Controller
@@ -23,7 +23,8 @@ class AcountAuthController extends Controller
     {
         $pageActive = "Data Pengguna";
         $pageName = "Data Pengguna";
-        $dataUser = User::with('programstudi','roles')->get()->map(function($item){
+        $dataUser = User::with('programstudi','roles','tests','resultIndex.tipe')
+        ->get()->map(function($item){
             return(object)[
                 'id' => $item->id,
                 'name' => $item->name,
@@ -32,11 +33,13 @@ class AcountAuthController extends Controller
                 'image' =>$item->image,
                 'nim' => $item->nim,
                 'programstudi' => $item->programstudi,
+                'tipekep' => $item->resultIndex ? $item->resultIndex->tipe->namatipe : null,
             ];
         });
+
         return view('admin.user.index',compact('pageActive','pageName','dataUser'));
     }
-
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -45,10 +48,10 @@ class AcountAuthController extends Controller
     public function createUser()
     {
         $programstudi = ProgramStudi::all(); # get relasi programstudi
-
+        $angkatan = Tahun::all(); # get data tahun angkatan
         $pageActive = "Tambah Data Pengguna User";
 
-        return view('admin.user.createUser',compact('programstudi','pageActive'));
+        return view('admin.user.createUser',compact('programstudi','pageActive','angkatan'));
     }
 
     /**
@@ -65,9 +68,25 @@ class AcountAuthController extends Controller
             'password' => bcrypt($request['password']),
             'nim' => $request->nim,
             'programstudi_id' => $request->programstudi_id,
+            'phone' => $request->phone,
+            'tahun_id' => $request->tahun_id,
         ]);
         # default role = user
         $check->roles()->attach(Role::where('name', 'user')->first());
+        # opsi verifikasi email
+        $token = Str::random(64); #create token
+
+        UserVerify::create([
+            'user_id' => $check->id,
+            'token' => $token
+        ]);
+
+        # kirim email verifikasi pada pengguna
+        Mail::send('email.emailVerificationEmail', ['token' => $token], function($message) use($request){
+            $message->to($request->email);
+            $message->subject('Verifikasi Akun Pada JPC Politeknik Negeri Banyuwangi');
+        });
+
         return redirect()->route('account.index')->with('success','pengguna baru berhasil ditambahkan');
     }
 
@@ -79,10 +98,10 @@ class AcountAuthController extends Controller
     public function createAdmin()
     {
         $programstudi = ProgramStudi::all(); # get relasi programstudi
-
+        $angkatan = Tahun::all(); # get data tahun angkatan
         $pageActive = "Tambah Data Pengguna Admin";
 
-        return view('admin.user.createAdmin',compact('programstudi','pageActive'));
+        return view('admin.user.createAdmin',compact('programstudi','pageActive','angkatan'));
     }
 
     /**
@@ -99,10 +118,54 @@ class AcountAuthController extends Controller
             'password' => bcrypt($request['password']),
             'nim' => $request->nim,
             'programstudi_id' => $request->programstudi_id,
+            'phone' => $request->phone,
+            'tahun_id' => $request->tahun_id,
         ]);
         # default role = admin
         $check->roles()->attach(Role::where('name', 'admin')->first());
-        return redirect()->route('account.index')->with('success','pengguna baru berhasil ditambahkan');
+
+        # opsi verifikasi email
+        $token = Str::random(64); #create token
+
+        UserVerify::create([
+            'user_id' => $check->id,
+            'token' => $token
+        ]);
+
+        # kirim email verifikasi pada pengguna
+        Mail::send('email.emailVerificationEmail', ['token' => $token], function($message) use($request){
+            $message->to($request->email);
+            $message->subject('Verifikasi Akun Pada JPC Politeknik Negeri Banyuwangi');
+        });
+
+        return redirect()->route('account.index')->with('success','Admin baru berhasil ditambahkan');
+    }
+
+
+    /**
+     * Write code on Method
+     *
+     * @return response()
+     */
+
+    public function verifyAccount($token)
+    {
+        $verifyUser = UserVerify::where('token', $token)->first();
+        $message = 'Maaf email Anda tidak dapat di identifikasi.';
+
+        if(!is_null($verifyUser) ){
+
+            $user = $verifyUser->user;
+
+            if(!$user->is_email_verified) {
+                $verifyUser->user->is_email_verified = 1;
+                $verifyUser->user->save();
+                $message = "Email Anda telah diverifikasi. Anda sekarang dapat masuk.";
+            } else {
+                $message = "Email Anda sudah diverifikasi. Anda sekarang dapat masuk.";
+            }
+        }
+        return redirect()->route('formlogin')->with('message', $message);
     }
 
     /**
@@ -115,9 +178,8 @@ class AcountAuthController extends Controller
     {
         $acount = User::find($id);
         $programstudi = ProgramStudi::all(); # get data programstudi
-
-        // $prodi_select = DB::table('program_studis')->find($acount->programstudi_id);
-        return view('admin.user.edit',compact('acount','programstudi'));
+        $angkatan = Tahun::all(); # get data tahun angkatan
+        return view('admin.user.edit',compact('acount','programstudi', 'angkatan'));
     }
 
     /**
@@ -137,6 +199,8 @@ class AcountAuthController extends Controller
         $profile->nim = $request->input('nim');
         $profile->programstudi_id = $request->input('programstudi_id');
         $profile->email = $request->input('email');
+        $profile->phone = $request->input('phone');
+        $profile->tahun_id = $request->input('tahun_id');
         
         # Periksa apakah gambar profil telah diunggah
         if ($request->has('profile_image')) {

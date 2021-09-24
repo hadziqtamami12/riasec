@@ -33,9 +33,12 @@
          </div>
 
          <div id="nim-field" class="field-wrapper input">
-            <label for="nim">NIM</label>
+            <div class="d-flex justify-content-between">
+               <label for="nim">NIM</label>
+               <a href="https://pddikti.kemdikbud.go.id/" target="_blank" class="forgot-pass-link">Jika lupa NIM silahkan klik Link berikut.</a>
+            </div>
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-            <input type="text" class="form-control  @error('nim') is-invalid @enderror" name="nim" value="{{old('nim')}}" placeholder="nim">
+            <input type="text" class="form-control  @error('nim') is-invalid @enderror" name="nim" value="{{old('nim')}}" placeholder="nomor induk mahasiswa">
                @error('nim') <div class="invalid-feedback">{{$message}}</div>@enderror
          </div>
 
@@ -43,7 +46,7 @@
             <label for="phone">NOMOR TELEPHONE</label>
             {{-- <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-phone"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg> --}}
             <i data-feather="phone"></i>
-            <input type="text" class="form-control  @error('phone') is-invalid @enderror" name="phone" value="{{old('phone')}}" placeholder="nomor telephone" required>
+            <input type="text" class="form-control  @error('phone') is-invalid @enderror" name="phone" value="{{old('phone')}}" placeholder="Nomor Whatsapp" required>
                @error('phone') <div class="invalid-feedback">{{$message}}</div>@enderror
          </div>
 
@@ -54,6 +57,18 @@
                @foreach ($programstudi as $studi)
                   <option value="{{$studi->id}}">
                      {{ $studi->program_studi }}
+                  </option>
+               @endforeach
+            </select>
+         </div>
+
+         <div id="program studi" class="field-wrapper input select-prodi">
+            <label for="nim">TAHUN MASUK</label>
+            <select class="form-control prodi" name="tahun_id" style="margin-bottom: 0;">
+               <option selected disabled>tahun masuk kuliah</option>
+               @foreach ($angkatan as $tahun)
+                  <option value="{{$tahun->id}}">
+                     20{{ $tahun->tahun }}
                   </option>
                @endforeach
             </select>
@@ -108,5 +123,8 @@
 <script src="{{asset('plugins/select2/select2.min.js')}}"></script>
 <script>
    $('select[name="programstudi_id"]').select2()
+</script>
+<script>
+   $('select[name="tahun_id"]').select2()
 </script>
 @endsection

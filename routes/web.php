@@ -91,7 +91,7 @@ Route::middleware(['auth'])->group(function () {
         Route::patch('account/{id}', [AcountAuthController::class, 'update'])->name('account.update'); # update data Pengguna via admin
         Route::get('account/{id}',[AcountAuthController::class,'show'])->name('account.show'); # view show
         Route::delete('account/{id}',[AcountAuthController::class,'destroy'])->name('account.destroy'); # delete data Pengguna via admin
-    
+        
         // todo : Route CRUD Tipekepribadian
         Route::resource('tipekep', TipeKepribadianController::class)->except(['show']);
             

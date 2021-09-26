@@ -147,6 +147,18 @@
                                              </div>
 
                                              <div class="form-group">
+                                                <label for="programstudi">Tahun Angkatan</label>
+                                                <select class="form-control prodi" name="tahun_id">
+                                                   <option value="{{ Auth::user()->tahun_id }}" selected> 20{{ Auth::user()->tahun->tahun ?? null }}</option>
+                                                   @foreach ($angkatan as $tahun)
+                                                      <option value="{{$tahun->id}}">
+                                                         20{{ $tahun->tahun }}
+                                                      </option>
+                                                   @endforeach
+                                                </select>
+                                             </div>
+
+                                             <div class="form-group">
                                                 <label for="programstudi">Program Studi</label>
                                                 <select class="form-control prodi" name="programstudi_id">
                                                    <option value="{{ Auth::user()->programstudi_id }}" selected> {{ Auth::user()->programstudi->program_studi }}</option>
@@ -184,6 +196,9 @@
 <script src="{{asset('plugins/select2/select2.min.js')}}"></script>
 <script>
    $('select[name="programstudi_id"]').select2()
+</script>
+<script>
+   $('select[name="tahun_id"]').select2()
 </script>
 {{-- <script>
    $('.as-footer-container .success').on('click', function () {

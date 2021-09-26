@@ -19,29 +19,9 @@
             @include('layouts.alert.alert')
 
             <form class="form-inline mt-4 mb-1">
+
                <h4 class="col-4 mr-5">{{$pageName}}</h4>
-               {{-- selec Tipekep --}}
-               <select class="selectpicker">
-                  <option>I</option>
-                  <option>Ketchup</option>
-                  <option>Relish</option>
-               </select>
-               <select class="selectpicker">
-                  <option>Mustard</option>
-                  <option>Ketchup</option>
-                  <option>Relish</option>
-               </select>
-               <select class="selectpicker">
-                  <option>I</option>
-                  <option>Ketchup</option>
-                  <option>Relish</option>
-               </select>
-               <select class="selectpicker">
-                  <option>Mustard</option>
-                  <option>Ketchup</option>
-                  <option>Relish</option>
-               </select>
-               {{-- select tipekep --}}
+
                   <div class="col-auto">
                      <div class="d-flex justify-content-sm-start justify-content-center" style="text-align: left">
                         {{-- Button Pop-Up --}}
@@ -75,16 +55,18 @@
             </form>
          </div> {{-- widget-header --}}
          <div class="table-responsive mb-4 style-2">
-            <table id="style-2" class="table style-2 table-hover non-hover">
+            <table id="style-cus" class="table style-2 table-hover non-hover">
                <thead>
                   <tr>
                      <th>ID</th>
                      {{-- <th class="text-center">Foto</th> --}}
                      <th>Nama</th>
-                     <th>Tipe Kepribadian</th>
-                     <th>Email</th>
                      <th>NIM</th>
                      <th>Program Studi</th>
+                     <th>Angkatan</th>
+                     <th>Email</th>
+                     <th>Telefon</th>
+                     <th>Hasil Tes</th>
                      <th class="text-center" style="">Action</th>
                   </tr>
                </thead>
@@ -99,10 +81,12 @@
                      <td>{{$item->name}} <br>
                         <span class="text-info" style="font-size: 10px">{{$item->roles}}</span>
                      </td>
-                     <td>{{ $item->tipekep }}</td>
-                     <td>{{Str::limit($item->email, 15, '..')}}</td>
                      <td>{{$item->nim}}</td>
                      <td>{{$item->programstudi->program_studi}}</td>
+                     <td class="text-center">{{$item->tahun->tahun ?? null}}</td>
+                     <td>{{Str::limit($item->email, 15, '..')}}</td>
+                     <td>{{$item->phone ?? null}}</td>
+                     <td class="text-secondary" style="font-weight: 700">{{ $item->tipekep }}</td>
                      <td class="text-center">
                         <div class="dropdown custom-dropdown">
                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink12" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -126,10 +110,12 @@
                      <th>ID</th>
                      {{-- <th class="text-center">Foto</th> --}}
                      <th>Nama</th>
-                     <th>Tipe Kepribadian</th>
-                     <th>Email</th>
                      <th>NIM</th>
                      <th>Program Studi</th>
+                     <th>Angkatan</th>
+                     <th>Email</th>
+                     <th>Telefon</th>
+                     <th>Hasil Tes</th>
                      <th class="text-center">Action</th>
                   </tr>
                </tfoot>
@@ -173,9 +159,200 @@
    </div>
 </div>  {{-- footer-wrapper --}}
 @endsection
+
 @section('trigger')
-<script src="{{asset('plugins/select2/select2.min.js')}}"></script>
-<script>
-   $('select[name="programstudi_id"]').select2()
-</script>
+   <script src="{{asset('plugins/select2/select2.min.js')}}"></script>
+   <script>
+      $('select[name="programstudi_id"]').select2()
+   </script>
+{{-- datatable --}}
+   <script>
+
+      // Setup - add a text input to each footer cell
+      $('#style-cus tfoot th').each(function () {
+         var title = $(this).text();
+         $(this).html('<input type="text"  class="form-control" placeholder=" ' + title + '" />');
+      });
+
+      c1 = $('#style-cus').DataTable({
+            // "responsive" :true,
+            "oLanguage": {
+               // untuk menampilkan button halmaman keberapa
+               "oPaginate": { "sPrevious": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>', "sNext": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>' },
+               // untuk menampilkan info jumlah data yang masuk pada tabel
+               "sInfo": "Showing page _PAGE_ of _PAGES_",
+               // ikon search
+               "sSearch": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>',
+               // placeholder search
+               "sSearchPlaceholder": "Search...",
+               // menampilkan meu jumlah data setiap page (kolom pojok kiri atas)
+               "sLengthMenu": "Results :  _MENU_",
+            },
+            "lengthMenu": [15, 30, 60, 120],
+            "pageLength": 15,
+            "initComplete": function () {
+
+/*
+=========================================
+|           Apply Search Kolom         |
+=========================================
+*/ 
+               this.api().columns([1]).every(function () {
+                  var that = this;
+
+                  $('#style-cus tfoot tr').appendTo('#style-cus thead');   // To displays the search boxs at the top instead to the bottom of the table
+                  $('input', this.footer()).on('keyup change clear', function () {
+                     if (that.search() !== this.value) {
+                        that
+                              .search(this.value)
+                              .draw();
+                     }
+                  });
+               });
+
+               this.api().columns([2]).every(function () {
+                  var that = this;
+
+                  $('#style-cus tfoot tr').appendTo('#style-cus thead');   // To displays the search boxs at the top instead to the bottom of the table
+                  $('input', this.footer()).on('keyup change clear', function () {
+                     if (that.search() !== this.value) {
+                        that
+                              .search(this.value)
+                              .draw();
+                     }
+                  });
+               });
+
+               this.api().columns([5]).every(function () {
+                  var that = this;
+
+                  $('#style-cus tfoot tr').appendTo('#style-cus thead');   // To displays the search boxs at the top instead to the bottom of the table
+                  $('input', this.footer()).on('keyup change clear', function () {
+                     if (that.search() !== this.value) {
+                        that
+                              .search(this.value)
+                              .draw();
+                     }
+                  });
+               });
+
+               this.api().columns([6]).every(function () {
+                  var that = this;
+
+                  $('#style-cus tfoot tr').appendTo('#style-cus thead');   // To displays the search boxs at the top instead to the bottom of the table
+                  $('input', this.footer()).on('keyup change clear', function () {
+                     if (that.search() !== this.value) {
+                        that
+                              .search(this.value)
+                              .draw();
+                     }
+                  });
+               });
+/*
+=========================================
+|           Apply Select Kolom         |
+=========================================
+*/ 
+               // -------------- here we add dropdown selectors filters to specified columns  --------------
+               this.api().columns([3]).every(function () {
+                  var column = this;
+                  var select = $('<select class="form-control"><option  value=""></option></select>')
+                     .appendTo($(column.footer()).empty())
+                     .on('change', function () {
+                        var val = $.fn.dataTable.util.escapeRegex(
+                              $(this).val()
+                        );
+
+                        column
+                              .search(val ? '^' + val + '$' : '', true, false)
+                              .draw();
+                     });
+
+                  column.data().unique().sort().each(function (d, j) {
+                     select.append('<option value="' + d + '">' + d + '</option>');
+                  });
+               });
+
+               // -------------- here we add dropdown selectors filters to specified columns  --------------
+               this.api().columns([4]).every(function () {
+                  var column = this;
+                  var select = $('<select class="form-control"><option  value=""></option></select>')
+                     .appendTo($(column.footer()).empty())
+                     .on('change', function () {
+                        var val = $.fn.dataTable.util.escapeRegex(
+                              $(this).val()
+                        );
+
+                        column
+                              .search(val ? '^' + val + '$' : '', true, false)
+                              .draw();
+                     });
+
+                  column.data().unique().sort().each(function (d, j) {
+                     select.append('<option value="' + d + '">' + d + '</option>');
+                  });
+               });
+
+               // -------------- here we add dropdown selectors filters to specified columns  --------------
+               this.api().columns([7]).every(function () {
+                  var column = this;
+                  var select = $('<select class="form-control"><option  value=""></option></select>')
+                     .appendTo($(column.footer()).empty())
+                     .on('change', function () {
+                        var val = $.fn.dataTable.util.escapeRegex(
+                              $(this).val()
+                        );
+
+                        column
+                              .search(val ? '^' + val + '$' : '', true, false)
+                              .draw();
+                     });
+
+                  column.data().unique().sort().each(function (d, j) {
+                     select.append('<option value="' + d + '">' + d + '</option>');
+                  });
+               });
+
+               // -------------- here we add dropdown selectors specific for preview files  --------------
+               // this.api().columns([3]).every(function () {
+               //    var column = this;
+               //    var select = $('<select class="form-control"><option  value=""></option></select>')
+               //       .appendTo($(column.footer()).empty())
+               //       .on('change', function () {
+               //          var val = $.fn.dataTable.util.escapeRegex(
+               //                $(this).val()
+               //          );
+
+               //          column
+               //                .search(this.value)
+               //                .draw();
+               //       });
+
+               //    {
+               //       select.append('<option value="jpg">jpg</option>');
+               //       select.append('<option value="png">png</option>');
+               //       select.append('<option value="gif">gif</option>');
+               //       select.append('<option value="mp4">mp4</option>');
+               //    }
+               // });
+
+            },
+         });
+
+         function ClearFilters() {
+
+            $('.form-control').val('');  // Clear ext and select inputs with classname form-control
+            $('#chk').prop('checked', false).change();  // Clear checkbox and trigger change event
+
+            var table = $('#style-cus').DataTable();
+            table
+            .search( '' )
+            .columns().search( '' )
+            .draw();
+
+         }
+
+      multiCheck(c1);
+   </script>
+
 @endsection

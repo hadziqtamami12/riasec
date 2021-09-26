@@ -23,7 +23,7 @@ class AcountAuthController extends Controller
     {
         $pageActive = "Data Pengguna";
         $pageName = "Data Pengguna";
-        $dataUser = User::with('programstudi','roles','tests','resultIndex.tipe')
+        $dataUser = User::with('programstudi','roles','tests','resultIndex.tipe','tahun')
         ->get()->map(function($item){
             return(object)[
                 'id' => $item->id,
@@ -32,8 +32,10 @@ class AcountAuthController extends Controller
                 'roles' => $item->roles->implode('name',','),
                 'image' =>$item->image,
                 'nim' => $item->nim,
+                'phone' => $item->phone,
                 'programstudi' => $item->programstudi,
                 'tipekep' => $item->resultIndex ? $item->resultIndex->tipe->namatipe : null,
+                'tahun' => $item->tahun,
             ];
         });
 
@@ -47,11 +49,11 @@ class AcountAuthController extends Controller
      */
     public function createUser()
     {
-        $programstudi = ProgramStudi::all(); # get relasi programstudi
-        $angkatan = Tahun::all(); # get data tahun angkatan
-        $pageActive = "Tambah Data Pengguna User";
-
-        return view('admin.user.createUser',compact('programstudi','pageActive','angkatan'));
+        return view('admin.user.createUser', [
+            'programstudi' => ProgramStudi::all(),
+            'angkatan' => Tahun::all(),
+            'pageActive' => "Tambah Data Pengguna User"
+        ]);
     }
 
     /**
@@ -97,11 +99,11 @@ class AcountAuthController extends Controller
      */
     public function createAdmin()
     {
-        $programstudi = ProgramStudi::all(); # get relasi programstudi
-        $angkatan = Tahun::all(); # get data tahun angkatan
-        $pageActive = "Tambah Data Pengguna Admin";
-
-        return view('admin.user.createAdmin',compact('programstudi','pageActive','angkatan'));
+        return view('admin.user.createAdmin', [
+            'programstudi' => ProgramStudi::all(),
+            'angkatan' => Tahun::all(),
+            'pageActive' => "Tambah Data Pengguna Admin"
+        ]);
     }
 
     /**

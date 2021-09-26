@@ -72,11 +72,13 @@
                               <div class="col-lg-11 mx-auto">
                                  <div class="row">
                                     <div class="col-xl-2 col-lg-12 col-md-4">
+
                                        <div class="upload mt-4 pr-md-4">
-                                          <input id="profile_image" type="file" class="dropify" @error('profile_image') is-invalid @enderror name="profile_image" data-default-file="{{ asset($acount->image) }}"/>
+                                          <input id="profile_image" type="file" class="dropify" @error('profile_image') is-invalid @enderror name="profile_image" src="{{ asset($acount->image) }}" onerror="this.src='{{asset('assets/images/90x90.jpg')}}'" data-default-file="{{asset('assets/images/90x90.jpg')}}" value="{{ asset($acount->image) }}"/>
                                           @error('profile_image') <div class="invalid-feedback">{{$message}}</div>@enderror
                                           <p class="mt-2"><i class="flaticon-cloud-upload mr-1"></i>Upload Foto, Max : 2MB</p>
                                        </div> 
+                                       
                                     </div>
                                     <div class="col-xl-10 col-lg-12 col-md-8 mt-md-0 mt-4">
                                           <div class="form mb-5">
@@ -139,6 +141,18 @@
                                                 </select>
                                              </div>
 
+                                             <div class="form-group">
+                                                <label for="tahun">Tahun Masuk</label>
+                                                <select class="form-control tahun" name="tahun_id">
+                                                   <option value="{{ $acount->tahun_id }}" selected> 20{{ $acount->tahun->tahun ?? null }}</option>
+                                                   @foreach ($angkatan as $tahun)
+                                                      <option value="{{$tahun->id}}">
+                                                         20{{ $tahun->tahun }}
+                                                      </option>
+                                                   @endforeach
+                                                </select>
+                                             </div>
+
                                           </div>
                                     </div>
                                  </div>
@@ -164,8 +178,9 @@
 @section('trigger')
 <script src="{{asset('plugins/select2/select2.min.js')}}"></script>
 <script>
-   $('select[name="programstudi_id"]').select2({
-      placeholder: "Pilih Program Studi"
-   })
+   $('select[name="programstudi_id"]').select2({ })
+</script>
+<script>
+   $('select[name="tahun_id"]').select2({ })
 </script>
 @endsection

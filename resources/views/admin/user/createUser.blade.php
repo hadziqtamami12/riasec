@@ -115,6 +115,18 @@
                                              </div>
 
                                              <div class="form-group">
+                                                <label for="angkatan">Tahun Masuk</label>
+                                                <select class="form-control prodi" name="tahun_id">
+                                                <option selected disabled>tahun masuk</option>
+                                                   @foreach ($angkatan as $tahun)
+                                                      <option value="{{$tahun->id}}">
+                                                         20{{ $tahun->tahun }}
+                                                      </option>
+                                                   @endforeach
+                                                </select>
+                                             </div>
+
+                                             <div class="form-group">
                                                 <label for="email">Email</label>
                                                 <input type="text" class="form-control"
                                                 @error('email') is-invalid @enderror" name="email" value="{{old('email')}}"/>
@@ -184,5 +196,8 @@
             x.type = "password";
          }
       }
+   </script>
+   <script>
+      $('select[name="tahun_id"]').select2({ });
    </script>
 @endsection

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -29,7 +30,8 @@ class User extends Authenticatable
         'programstudi_id',
         'profile_image',
         'is_email_verified',
-        // 'token_key'
+        'phone',
+        'tahun_id'
     ];
 
     /**
@@ -136,7 +138,6 @@ class User extends Authenticatable
         return $this->hasMany(TestKepribadian::class);
     }
 
-
     /**
      * Get the currentTest associated with the User
      *
@@ -145,5 +146,45 @@ class User extends Authenticatable
     public function currentTest(): HasOne
     {
         return $this->hasOne(TestKepribadian::class)->where('finished_at', null);
+    }
+
+    /**
+     * Get the ResultIndex associated with the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function resultIndex(): HasOne
+    {
+        return $this->hasOne(TestKepribadian::class)->orderBy('finished_at', 'DESC')
+        ->whereNotNull('finished_at');
+    }
+
+    /**
+     * Get all of the recapHasil for the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function recapHasil(): HasMany
+    {
+        return $this->hasMany(TestKepribadian::class, 'user_id', 'id');
+    }
+
+    /**
+     * bismillah fungsi untuk kondisi pengguna
+     */
+    public function panggilSemua()
+    {
+        return $this->user_count() > 0 || (!is_null($this->dimensi_id) && !is_null($this->test_id)); 
+    }
+
+
+    /**
+     * Get the tahun that owns the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function tahun(): BelongsTo
+    {
+        return $this->belongsTo(Tahun::class);
     }
 }

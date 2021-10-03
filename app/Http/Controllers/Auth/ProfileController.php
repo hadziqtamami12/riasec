@@ -20,15 +20,11 @@ class ProfileController extends Controller
     public function showProfile()
     {
         return view('accounts.profile.show',[
-            'latest' => User::with(['resultIndex.tipe',
-                                    'resultIndex.presentases',
-                                    'recapHasil.tipe', 
-                                    ])->find(Auth::id()),
-                                    // dikasih function untuk mendapatkan has dari dimensi id jika ada maka apa jika tidak maka apa..
+            'latest' => User::with(['resultIndex.tipe','resultIndex.presentases','recapHasil.tipe'])->find(Auth::id()),
             'dimensis' => DimensiPasangan::with('dimA', 'dimB')->get(),
         ]);
     }
-    
+
     /**
      * Show the form for editing the specified resource.
      */

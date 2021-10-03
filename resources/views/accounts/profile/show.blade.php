@@ -76,8 +76,7 @@
 @endsection
 
 @section('content')
-<div class="layout-px-spacing">
-{{-- route('account.update', $acount->id) --}}
+   <div class="layout-px-spacing">
 
       <div class="row layout-spacing">
 
@@ -165,8 +164,7 @@
                         </div>
                   </div>
                </div>
-            </div>
-
+            </div> {{-- Profile --}}
 
             <div class="education layout-spacing ">
                <div class="widget-content widget-content-area">
@@ -198,7 +196,7 @@
 
                </div>
             </div> {{-- Recap Hasil Tes --}} 
-            
+
          </div>
 
          @if (Auth::user()->roles()->first()->name === 'user')
@@ -206,7 +204,7 @@
             <div class="col-xl-8 col-lg-6 col-md-7 col-sm-12 layout-top-spacing">
 
                {{-- isset($latest) && !empty($latest) --}}
-               @if($latest->resultIndex->presentases->count() < 1)
+               @if($latest->resultIndex)
 
                   <div class="skills layout-spacing ">
                      <div class="widget-content widget-content-area">
@@ -214,7 +212,6 @@
                         <h3 class="">Hasil Tes Kepribadian</h3>
 
                         <div class="present-content">
-
                            @foreach ($dimensis as $dimensi)
 
                               @php
@@ -246,7 +243,6 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-credit-card"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
                                  </div>
                               </div>
-
                            @endforeach
                         </div> <!-- /present-content -->
                         {{-- nama tipe --}}
@@ -262,17 +258,13 @@
                      </div> {{-- widget-content --}}
                   </div> {{-- skills layout-spacing --}}
 
-               @elseif ($latest->resultIndex->presentases->count() < 0)
-               
+               @else
+
                   <div class="skills layout-spacing ">
                      <div class="widget-content widget-content-area">
                         <h3 class="">Anda Belum Mengikuti Tes</h3>
                      </div>
                   </div>
-
-                  @else
-
-                  <p>not found</p>
 
                @endif
 
@@ -293,5 +285,5 @@
 
       </div> {{-- row layout-spacing --}}
 
-</div>
+   </div>
 @endsection

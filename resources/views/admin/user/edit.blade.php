@@ -162,7 +162,7 @@
                      
                      <div class="account-settings-footer">
                         <div class="as-footer-container">
-                           <a href="{{ route('account.index') }}" class="btn btn-dark" >Kembali</a>
+                           <a href="{{ route('account.show', $acount->id) }}" class="btn btn-dark" >Kembali</a>
                            <button id="savesoal" type="submit" class="btn btn-primary">Simpan</button>
                         </div>
                      </div>  {{-- account-settings-footer --}}

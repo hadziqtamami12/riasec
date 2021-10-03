@@ -6,9 +6,9 @@ use App\Traits\UploadTrait;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\{Role, User, ProgramStudi, UserVerify, Tahun};
 use Illuminate\Support\Facades\{Auth, Hash, Session, Mail, DB};
 use App\Http\Requests\{CreateAcountRequest, UpdateAcountRequest};
+use App\Models\{Role, User, ProgramStudi, UserVerify, Tahun, DimensiPasangan};
 
 class AcountAuthController extends Controller
 {
@@ -171,6 +171,20 @@ class AcountAuthController extends Controller
     }
 
     /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        return view('admin.user.show',[
+            'latest' => User::with(['resultIndex.tipe','resultIndex.presentases','recapHasil.tipe'])->find($id),
+            'dimensis' => DimensiPasangan::with('dimA', 'dimB')->get(),
+        ]);
+    }
+
+    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -178,10 +192,11 @@ class AcountAuthController extends Controller
      */
     public function edit($id)
     {
-        $acount = User::find($id);
-        $programstudi = ProgramStudi::all(); # get data programstudi
-        $angkatan = Tahun::all(); # get data tahun angkatan
-        return view('admin.user.edit',compact('acount','programstudi', 'angkatan'));
+        return view('admin.user.edit',[
+            'acount' => User::find($id),
+            'programstudi' => ProgramStudi::all(), # get data programstudi 
+            'angkatan' => Tahun::all(), # get data tahun angkatan   
+        ]);
     }
 
     /**

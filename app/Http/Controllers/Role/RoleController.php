@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Role;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\{Auth, DB};
 use Illuminate\Database\Eloquent\Builder;
 use App\Models\{Dimensi,ProgramStudi,TipeKepribadian, TestKepribadian, User};
 

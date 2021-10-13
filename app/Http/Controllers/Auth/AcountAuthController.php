@@ -7,7 +7,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\{Auth, Hash, Session, Mail, DB};
-use App\Http\Requests\{CreateAcountRequest, UpdateAcountRequest};
+use App\Http\Requests\{CreateAuthAdmin, UpdateAcountRequest};
 use App\Models\{Role, User, ProgramStudi, UserVerify, Tahun, DimensiPasangan};
 
 class AcountAuthController extends Controller
@@ -60,7 +60,7 @@ class AcountAuthController extends Controller
      * Store a newly created resource in storage.
      * @return \Illuminate\Http\Response
      */
-    public function storeUser(CreateAcountRequest $request)
+    public function storeUser(CreateAuthAdmin $request)
     {
         # create account
         $check = User::create([
@@ -70,8 +70,9 @@ class AcountAuthController extends Controller
             'password' => bcrypt($request['password']),
             'nim' => $request->nim,
             'programstudi_id' => $request->programstudi_id,
-            'phone' => $request->phone,
+            // 'phone' => $request->phone,
             'tahun_id' => $request->tahun_id,
+            'is_email_verified' => '1',
         ]);
         # default role = user
         $check->roles()->attach(Role::where('name', 'user')->first());
@@ -84,10 +85,10 @@ class AcountAuthController extends Controller
         ]);
 
         # kirim email verifikasi pada pengguna
-        Mail::send('email.emailVerificationEmail', ['token' => $token], function($message) use($request){
-            $message->to($request->email);
-            $message->subject('Verifikasi Akun Pada JPC Politeknik Negeri Banyuwangi');
-        });
+        // Mail::send('email.emailVerificationEmail', ['token' => $token], function($message) use($request){
+        //     $message->to($request->email);
+        //     $message->subject('Verifikasi Akun Pada JPC Politeknik Negeri Banyuwangi');
+        // });
 
         return redirect()->route('account.index')->with('success','pengguna baru berhasil ditambahkan');
     }
@@ -110,7 +111,7 @@ class AcountAuthController extends Controller
      * Store a newly created resource in storage.
      * @return \Illuminate\Http\Response
      */
-    public function storeAdmin(CreateAcountRequest $request)
+    public function storeAdmin(CreateAuthAdmin $request)
     {
         # create account
         $check = User::create([
@@ -120,8 +121,9 @@ class AcountAuthController extends Controller
             'password' => bcrypt($request['password']),
             'nim' => $request->nim,
             'programstudi_id' => $request->programstudi_id,
-            'phone' => $request->phone,
+            // 'phone' => $request->phone,
             'tahun_id' => $request->tahun_id,
+            'is_email_verified' => '1',
         ]);
         # default role = admin
         $check->roles()->attach(Role::where('name', 'admin')->first());
@@ -135,10 +137,10 @@ class AcountAuthController extends Controller
         ]);
 
         # kirim email verifikasi pada pengguna
-        Mail::send('email.emailVerificationEmail', ['token' => $token], function($message) use($request){
-            $message->to($request->email);
-            $message->subject('Verifikasi Akun Pada JPC Politeknik Negeri Banyuwangi');
-        });
+        // Mail::send('email.emailVerificationEmail', ['token' => $token], function($message) use($request){
+        //     $message->to($request->email);
+        //     $message->subject('Verifikasi Akun Pada JPC Politeknik Negeri Banyuwangi');
+        // });
 
         return redirect()->route('account.index')->with('success','Admin baru berhasil ditambahkan');
     }
@@ -150,25 +152,25 @@ class AcountAuthController extends Controller
      * @return response()
      */
 
-    public function verifyAccount($token)
-    {
-        $verifyUser = UserVerify::where('token', $token)->first();
-        $message = 'Maaf email Anda tidak dapat di identifikasi.';
+    // public function verifyAccount($token)
+    // {
+    //     $verifyUser = UserVerify::where('token', $token)->first();
+    //     $message = 'Maaf email Anda tidak dapat di identifikasi.';
 
-        if(!is_null($verifyUser) ){
+    //     if(!is_null($verifyUser) ){
 
-            $user = $verifyUser->user;
+    //         $user = $verifyUser->user;
 
-            if(!$user->is_email_verified) {
-                $verifyUser->user->is_email_verified = 1;
-                $verifyUser->user->save();
-                $message = "Email Anda telah diverifikasi. Anda sekarang dapat masuk.";
-            } else {
-                $message = "Email Anda sudah diverifikasi. Anda sekarang dapat masuk.";
-            }
-        }
-        return redirect()->route('formlogin')->with('message', $message);
-    }
+    //         if(!$user->is_email_verified) {
+    //             $verifyUser->user->is_email_verified = 1;
+    //             $verifyUser->user->save();
+    //             $message = "Email Anda telah diverifikasi. Anda sekarang dapat masuk.";
+    //         } else {
+    //             $message = "Email Anda sudah diverifikasi. Anda sekarang dapat masuk.";
+    //         }
+    //     }
+    //     return redirect()->route('formlogin')->with('message', $message);
+    // }
 
     /**
      * Display the specified resource.

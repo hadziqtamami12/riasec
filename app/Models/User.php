@@ -79,7 +79,7 @@ class User extends Authenticatable
      */
     // public function createApiToken()
     // {
-    //     $token = Str::random(69);
+    //     $token = Str::random(64);
     //     $this->token_key = $token;
     //     $this->save();
     //     return $token;

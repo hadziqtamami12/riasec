@@ -28,7 +28,7 @@ class CreateAcountRequest extends FormRequest
             'username' => 'required|string|max:50|unique:users',
             'email' => 'required|email|string|max:180|unique:users',
             'password' => 'required|string|min:8|max:12',
-            'nim' => 'required|string|max:40|min:10',
+            'nim' => 'required|string|max:40|min:10|unique:users',
             'programstudi_id' =>'required',
             'phone' => 'min:10',
             'tahun_id' => 'required'

@@ -105,7 +105,7 @@
                             
                     </div>
                     
-                    <a href="{{asset('assets/panduan.pdf')}}" target="_blank" class="btn btn-primary btn-rounded" style="float: right; margin: 15px">Panduan Tes</a>
+                    <a href="{{asset('assets/panduan.pdf')}}" target="_blank" rel="noopener" class="btn btn-primary btn-rounded" style="float: right; margin: 15px">Panduan Tes</a>
                 </div>
             </div> {{-- Rules-Wrapper --}}
             

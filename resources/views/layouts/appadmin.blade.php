@@ -29,6 +29,7 @@
    <link rel="stylesheet" type="text/css" href="{{asset('plugins/table/datatable/datatables.css')}}" />
    <link rel="stylesheet" type="text/css" href="{{asset('plugins/table/datatable/dt-global_style.css')}}" />
    <link rel="stylesheet" type="text/css" href="{{asset('plugins/table/datatable/custom_dt_custom.css')}}">
+   <link rel="stylesheet" type="text/css" href="{{asset('plugins/table/datatable/custom_dt_html5.css')}}">
    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/elements/alert.css')}}">
    {{-- Modal --}}
    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/components/custom-modal.css')}}"  />

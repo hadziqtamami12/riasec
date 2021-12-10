@@ -79,7 +79,7 @@
                         <span><img src="{{asset($dataUser->image)}}" class="profile-img"onerror="this.src='{{asset('assets/images/90x90.jpg')}}'"></span>
                      </td> --}}
                      <td>{{$item->name}} <br>
-                        <span class="text-info" style="font-size: 10px">{{$item->roles}}</span>
+                        {{-- <span class="text-info" style="font-size: 10px">{{$item->roles}}</span> --}}
                      </td>
                      <td>{{$item->nim}}</td>
                      <td>{{$item->programstudi->program_studi}}</td>
@@ -166,15 +166,27 @@
       $('select[name="programstudi_id"]').select2()
    </script>
 {{-- datatable --}}
+   <!-- NOTE TO Use Copy CSV Excel PDF Print Options You Must Include These Files  -->
+   <script src="{{asset('plugins/table/datatable/button-ext/dataTables.buttons.min.js')}}"></script>
+   <script src="{{asset('plugins/table/datatable/button-ext/jszip.min.js')}}"></script>    
+   <script src="{{asset('plugins/table/datatable/button-ext/buttons.html5.min.js')}}"></script>
+   <script src="{{asset('plugins/table/datatable/button-ext/buttons.print.min.js')}}"></script>
    <script>
-
-      // Setup - add a text input to each footer cell
+      // Setup - tambahkan input teks ke setiap sel header
       $('#style-cus tfoot th').each(function () {
          var title = $(this).text();
          $(this).html('<input type="text"  class="form-control" placeholder=" ' + title + '" />');
       });
 
       c1 = $('#style-cus').DataTable({
+         // import data
+            dom: '<"row"<"col-md-12"<"row"<"col-md-6"B><"col-md-6"f> > ><"col-md-12"rt> <"col-md-12"<"row"<"col-md-5"i><"col-md-7"p>>> >',
+            buttons: {
+               buttons: [
+                  { extend: 'csv', className: 'btn' },
+                  { extend: 'excel', className: 'btn' },
+               ]
+            },
             // "responsive" :true,
             "oLanguage": {
                // untuk menampilkan button halmaman keberapa
@@ -188,6 +200,7 @@
                // menampilkan meu jumlah data setiap page (kolom pojok kiri atas)
                "sLengthMenu": "Results :  _MENU_",
             },
+            "stripeClasses": [],
             "lengthMenu": [15, 30, 60, 120],
             "pageLength": 15,
             "initComplete": function () {

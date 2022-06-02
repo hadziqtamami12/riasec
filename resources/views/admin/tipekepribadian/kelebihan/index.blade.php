@@ -39,8 +39,8 @@
                   @foreach ($kelebihantipe as $tipe)
                   <tr>
                      <td scope="row">{{$loop->iteration}}</td>
-                     <td>{{$tipe->tipekepribadian->namatipe}}</td>
-                     <td>{{Str::limit($tipe->kelebihan_tipe, 30, '...')}}</td>
+                     <td>{{ $tipe->tipekepribadian->namatipe ? $tipe->tipekepribadian->namatipe : '-'}}</td>
+                     <td>{{Str::limit($tipe->kelebihan_tipe, 30, '...') ? Str::limit($tipe->kelebihan_tipe, 30, '...') : '-'}}</td>
                      <td class="text-center">
                         <div class="dropdown custom-dropdown">
                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink12" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -49,28 +49,33 @@
                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink12">
                               {{-- <a class="dropdown-item" href="javascript:void(0);">View</a> --}}
                               <a class="dropdown-item btn btn-sm text-warning" href="{{ route('kelebihantipe.edit', $tipe->id) }}">Edit</a>
-                              <a class="dropdown-item btn btn-sm text-danger" href="#" data-toggle="modal" data-target="#delete" data-id="{{ $tipe->id }}">Delete</a>
+                              <!-- <a class="dropdown-item btn btn-sm text-danger" href="#" data-toggle="modal" data-target="#delete" data-id="{{ $tipe->id }}">Delete</a> -->
+                              <a class="dropdown-item btn btn-sm text-danger" href="{{ route('kelebihantipe.destroy', $tipe->id) }}" onclick="return confirm('Apakah Anda Yakin Menghapus Data?');">Delete</a>
+
+                              
                            </div>
                         </div>
                      </td>
                   </tr>
                   @endforeach
                </tbody>
-               <tfoot>
+               <!-- <tfoot>
                   <tr>
                      <th>No.</th>
                      <th>Tipe Kepribadian</th>
                      <th>Kelebihan</th>
                      <th>Action</th>
                   </tr>
-               </tfoot>
+               </tfoot> -->
             </table>
          </div> {{-- table-responsive --}}
       </div> {{-- widget-content-area --}}
+
+      
       {{-- modal pop-up --}}
       <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
          <div class="modal-dialog modal-dialog-centered" role="document">
-            <form action="{{ route('kelebihantipe.destroy', $tipe->id) }}" method="post">
+            <form action="" method="post">
                @csrf
                @method('DELETE')
                <div class="modal-content">
@@ -90,6 +95,8 @@
             </form>
          </div>
       </div>
+
+
    </div> {{-- col-12 --}}
 </div> {{-- row layout-spacing --}}
 

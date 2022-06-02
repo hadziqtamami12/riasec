@@ -33,7 +33,7 @@
          <section id="artikelTop" class="col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
             <div class="landingContent">
                <div class="landingImage">
-                  <img src="{{ asset($hasil->tipe->image) }}" onerror="this.src='{{asset('assets/images/300x300.jpg')}}'"> <br>
+                  <!-- <img src="{{ asset($hasil->tipe->image) }}" onerror="this.src='{{asset('assets/images/300x300.jpg')}}'"> <br> -->
                   <small class="text-right" style="font-size: 8px">Illustrations by <cite title="Source Title"><a href="https://blush.design/collections/40G09koP55fYh86yZDnX/stuck-at-home/character-standing/2WYYj_i51y7t1dWK?c=skin_0%7Eecafa3" target="_blank">Mariana Gonzalez Vega</a></cite></small>
                {{-- Illustrations by Mariana Gonzalez Vega --}}
                {{-- https://blush.design/collections/40G09koP55fYh86yZDnX/stuck-at-home/character-standing/2WYYj_i51y7t1dWK?c=skin_0%7Eecafa3 --}}
@@ -54,7 +54,7 @@
                      <h3>Beberapa Kecenderungan Sifat Pada Tipe Kepribadian</span></h3>
                      <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-                           <div class="present-content">
+                           <!-- <div class="present-content">
                               @foreach($dimensis as $dimensi)
 
                               @php
@@ -73,13 +73,9 @@
                                     </div>
                                     <div class="w-summary-stats">
                                        <div class="progress">
-                                          <div class="{{ $a->totalpresent > $b->totalpresent ? 'progress-bar bg-gradient-'.$dimensi->color : '' }}" role="progressbar" style="width: {{ $a->totalpresent }}%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-                                          <div class="{{ $b->totalpresent >= $a->totalpresent ? 'progress-bar bg-gradient-'.$dimensi->color : '' }}" role="progressbar" style="width: {{ $b->totalpresent }}%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
                                        </div>
                                     </div>
                                     <div class="w-summary-info">
-                                          <h6>{{ $a->totalpresent }} &percnt;</h6> <!-- Dimensi A -->
-                                          <p class="summary-count">{{ $b->totalpresent }} &percnt;</p> <!-- Dimensi B -->
                                     </div>
                                  </div>
                                  <div class="w-icon">
@@ -88,13 +84,13 @@
                               </div>
                               @endforeach
 
-                           </div> <!-- /present-content -->
+                           </div> /present-content -->
                         </div> {{-- col-12 --}}
                         
                         {{-- button cetak --}}
                         <div class="col-12 cetak text-center"> 
-                           <a href="{{ route('cetak', ['id' => $id]) }}" target="_blank" class="btn btn-send" style="font-size: 16px; font-weight: 600;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-printer"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
-                              Print</a>
+                           <!-- <a href="{{ route('cetak', ['id' => $id]) }}" target="_blank" class="btn btn-send" style="font-size: 16px; font-weight: 600;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-printer"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+                              Print</a> -->
                         </div> {{-- button cetak --}}
 
                      </div> {{-- row --}}

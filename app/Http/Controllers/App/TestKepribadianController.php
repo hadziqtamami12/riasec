@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use App\Models\{TestKepribadian, TipeKepribadian, DimensiPasangan, Presentase, Dimensi, Soal, Statistic, ProgramStudi};
+use App\Models\{TestKepribadian, TipeKepribadian, DimensiPasangan, Presentase, Dimensi, Soal, Jawab, Statistic, ProgramStudi};
 
 class TestKepribadianController extends Controller
 {
@@ -32,86 +32,50 @@ class TestKepribadianController extends Controller
     {
         # Direct response json to view, buat id_test baru & ambil data soal(dari Trait)
         $tests = $this->createSoal();
-        $dimensis = Dimensi::select('id', DB::raw("0 as value"))->get()->toJson();
-
-        return view('apps.soal', compact('tests', 'dimensis'));
+        return view('apps.soal', compact('tests'));
     }
 
     /**
      * Selesai sesi
      * @return void|\Illuminate\Http\JsonResponse
     */
-    public function finish($id, Request $request){
+    public function finish($id, Request $request){     
+        
+        $hasil = DB::table("jawabs")
+	            ->select(DB::raw("jawaban, COUNT(jawaban) as jumlah"))
+                        ->where('nim', $id)
+                        ->where('jawaban', 'not like', "%-%")
+                        ->groupBy('jawaban')
+                        ->orderBy('jumlah', 'desc')
+                        ->first();
 
-        # mengecek sesi test, dengan merecord sesi finish pada test, berdasarkan id pengguna
-        $test = $request->user()->currentTest()->first();
-        # jika var test tidak ada maka, mengembalikan nilai error
-        if (empty($test))
-            return response()->json(['errors' => 'ID tes tidak ditemukan'], 419);
+        dd($hasil);
 
-        # validasi inputan hasil persentase
-        /**
-         * disini digunakan untuk mengecek data yang dikirimkan ke server
-         */
-        $request->validate([
-            'present' => 'array|size:'. Dimensi::count(), # total yang harus dikirim
-            'present.*' => 'array|size:2',  # setiap isian harus ada 2 field
-            'present.*.id' => 'integer|distinct|exists:App\Models\Dimensi,id',
-            'present.*.value' => 'integer|min:0' # tidak lebih dari jumlah soal yang ada
+                        
+        $karakter_id = TipeKepribadian::where('namatipe', 'like', '%' . $hasil->jawaban . '%')->first();
+        $update_karakter = TestKepribadian::where('user_id', Auth::user()->id)->first();
+        $update_karakter->tipekep_id = $karakter_id->id;
+        $update_karakter->update();
+
+        return redirect('hasil/'.$update_karakter->id);
+
+    }
+
+    public function jawab(Request $request){     
+        
+        $this->validate($request,[
+            'soal_id' => 'required',
+            'nim' => 'required',
+            'jawaban' => 'required',
         ]);
-        
-        
-        return DB::transaction(function() use ($request, $test, $id) {
 
-            # memanggil relasi program studi dari user yang sedang melakukan test
-            $prodi = $request->user()->programstudi()->first();
-    
-            # Tahun Mahasiswa
-            $tahun = (int) substr($request->user()->nim, 2, 2);
-    
-            $columnID = array_column($request->get('present'), 'id');
-            $hasil = '';
-            $insert = [];
+        $jawab = new Jawab();
+        $jawab->nim = $request->nim;
+        $jawab->soal_id = $request->soal_id;
+        $jawab->jawaban = $request->jawaban;
+        $jawab->save();
 
-            foreach(DimensiPasangan::with(['dimA', 'dimB'])->get() as $dimensi) {
-    
-                # mendapatkan hasil presentase masing-masing dimensi / 0
-                $kiri = $request->get('present')[array_search($dimensi->dimensiA, $columnID)]['value'] ?? 0;
-                $kanan = $request->get('present')[array_search($dimensi->dimensiB, $columnID)]['value'] ?? 0;
-    
-                # cari apakah sisi sebelah kiri lebih besar dari kanan atau sebaliknya
-                $hasil .= $kiri > $kanan ? $dimensi->dimA->code : $dimensi->dimB->code;
-    
-                # validasi total wajib 100 persen
-                $left = $this->parsePresentasi($kiri, $kanan);
-                $right = $this->parsePresentasi($kanan, $kiri);
-                
-                # insert hasil presentase pada masing-masing dimensi
-                $insert[] = ['dimensi_id' => $dimensi->dimensiA, 'test_id' => $id, 'totalpresent' => $left];
-                $insert[] = ['dimensi_id' => $dimensi->dimensiB, 'test_id' => $id, 'totalpresent' => $right];
-    
-                # memanggil fungsi fillStatic untuk memasukan data dimensi pada prodi
-                $this->fillStatistic($prodi, $dimensi->dimensiA, $left, $tahun);
-                $this->fillStatistic($prodi, $dimensi->dimensiB, $right, $tahun);
-            }
-    
-            # cari tipe kepribadian
-            $tipe = TipeKepribadian::where('namatipe', $hasil)->first();
-    
-            # return $insert;
-            # insert hasil Presentase dimensi
-            $test->presentases()->createMany($insert);
-            # selesaikan tes & output Tipe Keprtibadian
-            $test->update([
-                'finished_at' => now()->toDateTimeString(),
-                'tipekep_id' => $tipe->id
-            ]);
-            # Tambahkan total test dalam prodi
-            $prodi->update(['jumlah_tes' => ++$prodi->jumlah_tes]);
-
-            return response()->json($tipe, 201);
-        });
-        
+        return response()->json(['message' => 'task was successful']);
 
     }
 

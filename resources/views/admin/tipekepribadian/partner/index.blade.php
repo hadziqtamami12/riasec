@@ -61,14 +61,14 @@
                   </tr>
                   @endforeach
                </tbody>
-               <tfoot>
+               <!-- <tfoot>
                   <tr>
                      <th>No.</th>
                      <th>Tipe Kepribadian</th>
                      <th>Partner Tipe</th>
                      <th class="text-center">Action</th>
                   </tr>
-               </tfoot>
+               </tfoot> -->
             </table>
          </div> {{-- table-responsive --}}
       </div> {{-- widget-content-area --}}

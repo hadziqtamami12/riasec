@@ -22,7 +22,9 @@ trait TestTrait
          'user_id' => Auth::id(),
          'finished_at' => null
       ])->id,
-      'pernyataan' => Soal::inRandomOrder()->with(['jawabA', 'jawabB'])->get()
+      'pernyataan' => Soal::all(),
+      // 'pernyataan' => Soal::inRandomOrder()->get(),
+      'nim' => Auth::user()->nim,
       ];
    }
 }

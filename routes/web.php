@@ -56,7 +56,8 @@ Route::middleware(['auth'])->group(function () {
     
     // todo : session test
     Route::get('test',[TestKepribadianController::class, 'startTest'])->name('startTest');
-    Route::post('finish/{id}', [TestKepribadianController::class, 'finish'])->name('finishTest'); # simpan hasil tes dan prentase dimensi
+    Route::get('finish/{id}', [TestKepribadianController::class, 'finish'])->name('finishTest'); # simpan hasil tes dan prentase dimensi
+    Route::POST('jawab', [TestKepribadianController::class, 'jawab'])->name('jawabTest'); # simpan hasil tes dan prentase dimensi
     Route::get('hasil/{id}', [TestKepribadianController::class, 'hasil'])->name('hasil');
 
 /*

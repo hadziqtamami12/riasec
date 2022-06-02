@@ -49,28 +49,29 @@
                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink12">
                               {{-- <a class="dropdown-item" href="javascript:void(0);">View</a> --}}
                               <a class="dropdown-item btn btn-sm text-warning" href="{{ route('profesitipe.edit', $tipe->id) }}">Edit</a>
-                              <a class="dropdown-item btn btn-sm text-danger" href="#" data-toggle="modal" data-target="#delete" data-id="{{ $tipe->id }}">Delete</a>
+                              <!-- <a class="dropdown-item btn btn-sm text-danger" href="#" data-toggle="modal" data-target="#delete" data-id="{{ $tipe->id }}">Delete</a> -->
+                              <a class="dropdown-item btn btn-sm text-danger" href="{{ route('profesitipe.destroy', $tipe->id) }}" onclick="return confirm('Apakah Anda Yakin Menghapus Data?');">Delete</a>
                            </div>
                         </div>
                      </td>
                   </tr>
                   @endforeach
                </tbody>
-               <tfoot>
+               <!-- <tfoot>
                   <tr>
                      <th>No.</th>
                      <th>Tipe Kepribadian</th>
                      <th>Saran Profesi</th>
                      <th>Action</th>
                   </tr>
-               </tfoot>
+               </tfoot> -->
             </table>
          </div> {{-- table-responsive --}}
       </div> {{-- widget-content-area --}}
       {{-- modal pop-up --}}
       <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
          <div class="modal-dialog modal-dialog-centered" role="document">
-            <form action="{{ route('profesitipe.destroy', $tipe->id) }}" method="post">
+            <form action="" method="post">
                @csrf
                @method('DELETE')
                <div class="modal-content">

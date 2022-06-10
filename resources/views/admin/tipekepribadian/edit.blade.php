@@ -81,24 +81,24 @@
                                              @error('namatipe') <div class="invalid-feedback">{{$message}}</div>@enderror
                                           </div>
                                           <div class="form-group">
-                                             <label for="keterangan_tipe">Keterangan Tipe</label>
-                                             <input type="text" class="form-control mb-4" id="keterangan_tipe" @error('keterangan_tipe') is-invalid @enderror" name="keterangan_tipe" value="{{old('keterangan_tipe',$tipekep->keterangan_tipe )}}">
-                                             @error('keterangan_tipe') <div class="invalid-feedback">{{$message}}</div>@enderror
+                                             <label for="deskripsi">Deskripsi</label>
+                                             <input type="text" class="form-control mb-4" @error('deskripsi') is-invalid @enderror" name="deskripsi" value="{{old('deskripsi',$tipekep->deskripsi)}}" placeholder="&#40;Introvert Intuition Thinking Judging&#41;">
+                                             @error('deskripsi') <div class="invalid-feedback">{{$message}}</div>@enderror
                                           </div>
-                                          <div class="form-group">
+                                          <!-- <div class="form-group">
                                              <label for="julukan_tipe">Julukan Tipe</label>
                                              <input type="text" class="form-control mb-4" id="julukan_tipe" @error('julukan_tipe') is-invalid @enderror" name="julukan_tipe" value="{{old('julukan_tipe',$tipekep->julukan_tipe )}}">
                                              @error('julukan_tipe') <div class="invalid-feedback">{{$message}}</div>@enderror
-                                          </div>
+                                          </div> -->
                                        </div>
 
-                                       <div class="col-md-12 mb-5 mt-3">
+                                       <!-- <div class="col-md-12 mb-5 mt-3">
                                           <label for="deskripsi_tipe">Deskripsi Tipe</label>
                                           <textarea class="form-control" @error('deskripsi_tipe') is-invalid @enderror" name="deskripsi_tipe" placeholder="Description" rows="8">{{old('deskripsi_tipe',$tipekep->deskripsi_tipe )}}</textarea>
                                           @error('deskripsi_tipe') <div class="invalid-feedback">{{$message}}</div>@enderror
-                                       </div>
+                                       </div> -->
 
-                                       <div class="col-md-12 mb-5">
+                                       <!-- <div class="col-md-12 mb-5">
                                           <label for="arti_sukses">Arti Sukses</label>
                                           <textarea class="form-control" @error('arti_sukses') is-invalid @enderror" name="arti_sukses" placeholder="Description" rows="8">{{old('arti_sukses',$tipekep->arti_sukses )}}</textarea>
                                           @error('arti_sukses') <div class="invalid-feedback">{{$message}}</div>@enderror
@@ -114,7 +114,7 @@
                                           <label for="kebahagiaan_tipe">Kebahagiaan Tipe</label>
                                           <textarea class="form-control" @error('kebahagiaan_tipe') is-invalid @enderror" name="kebahagiaan_tipe" placeholder="Description" rows="8">{{old('kebahagiaan_tipe',$tipekep->kebahagiaan_tipe )}}</textarea>
                                           @error('kebahagiaan_tipe') <div class="invalid-feedback">{{$message}}</div>@enderror
-                                       </div>
+                                       </div> -->
                                        
                                  </div> {{-- row --}}
                               </div> {{-- work-section --}}

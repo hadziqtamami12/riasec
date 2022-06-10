@@ -112,9 +112,10 @@ class ProgramStudiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ProgramStudi $programstudi)
+    public function destroy($id)
     {
-        $programstudi->delete();
+        $programstudi = ProgramStudi::where('id', $id)->delete();
+        // $programstudi->delete();
         return redirect()->route('programstudi.index')->with('success','Program Studi Berhasi Dihapus');
     }
 }

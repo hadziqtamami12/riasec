@@ -31,8 +31,7 @@
                   <tr>
                      <th>No.</th>
                      <th>Soal</th>
-                     <th>Pernyataan A</th>
-                     <th>Pernyataan B</th>
+                     <th>Kategori</th>
                      <th>Action</th>
                   </tr> 
                </thead>
@@ -41,8 +40,7 @@
                   <tr>
                      <td scope="row">{{$loop->iteration}}</td>
                      <td>{{$soal->soal}}</td>
-                     <td>{{ $soal->jawabA->pernyataan ?? null }}</td>
-                     <td>{{ $soal->jawabB->pernyataan ?? null }}</td>
+                     <td>{{ $soal->kategori ?? null }}</td>
                      <td class="text-center">
                         <div class="dropdown custom-dropdown">
                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink12" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -51,22 +49,15 @@
                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink12">
                               {{-- <a class="dropdown-item" href="javascript:void(0);">View</a> --}}
                               <a class="dropdown-item btn btn-sm text-warning" href="{{ route('soal.edit', $soal->id) }}">Edit</a>
-                              <a class="dropdown-item btn btn-sm text-danger" href="#" data-toggle="modal" data-target="#delete" data-id="{{ $soal->id }}">Delete</a>
+                              <a class="dropdown-item btn btn-sm text-danger" href="{{ route('soal.delete', $soal->id) }}">Delete</a>
+                              <!-- <a class="dropdown-item btn btn-sm text-danger" href="#" data-toggle="modal" data-target="#delete" data-id="{{ $soal->id }}">Delete</a> -->
                            </div>
                         </div>
                      </td>
                   </tr>
                   @endforeach
                </tbody>
-               <tfoot>
-                  <tr>
-                     <th>No.</th>
-                     <th>Soal</th>
-                     <th>Pernyataan A</th>
-                     <th>Pernyataan B</th>
-                     <th>Action</th>
-                  </tr>
-               </tfoot>
+               
             </table>
          </div> {{-- table-responsive --}}
       </div> {{-- widget-content-area --}}

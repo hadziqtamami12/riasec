@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\{DimensiPasangan,Pernyataan, Soal};
+use App\Models\{DimensiPasangan,Pernyataan, Soal, TipeKepribadian};
 
 class SoalController extends Controller
 {
@@ -25,8 +25,9 @@ class SoalController extends Controller
     public function view() 
     {
         $pageName = "Tambah Soal & Jawaban";
+        $tipe_kep = TipeKepribadian::all();
         return view('admin.soal.create', [
-            'dimensi' => DimensiPasangan::with(['dimA', 'dimB'])->get()
+            'tipe_kepribadian' => $tipe_kep
         ],compact('pageName'));
     }
 
@@ -37,13 +38,13 @@ class SoalController extends Controller
      *  function insert digunakan untuk memasukan value baru pada table pernyataan 
      *  dimana fungsi ini berfungsi untuk multiple table antara table soal dan pernyataan
     */
-    public static function insert(int $id, $statement) 
-    {
-        return Pernyataan::create([
-            'pernyataan' => $statement,
-            'dimensi_id' => $id
-        ])->id;
-    }
+    // public static function insert(int $id, $statement) 
+    // {
+    //     return Pernyataan::create([
+    //         'pernyataan' => $statement,
+    //         'dimensi_id' => $id
+    //     ])->id;
+    // }
 
     /**
      * Store a newly created resource in storage.
@@ -55,28 +56,22 @@ class SoalController extends Controller
     {
         # validasi dimensi, apakah dimensi tersebut tersedia pada tabel sebelumnya
         $request->validate([
-            'dimensi' => 'required|integer|exists:'.DimensiPasangan::class.',id',
-            'a'       => 'required',
-            'b'       => 'required',
-            'soal'    => 'required|string'
-        ]);
-        # mencari dimensi pada pada tabel berdasarkan masukan dari admin
-        $find = DimensiPasangan::find($request->get('dimensi'));
-        /**
-         * Menambahkan pada tabel pernyataan berdasarkan function insert diatas
-         * Bersamaan dengan value pernyataan yang dimasukan oleh admin
-         */
-        $a = self::insert($find->dimensiA, $request->get('a'));
-        $b = self::insert($find->dimensiB, $request->get('b'));
-        
-        # menambahkan pada tabel soal dengan berdasarkan pasangan dimensi yang dipilih
-        Soal::create([
-            'soal'        => $request->soal,
-            'pernyataanA' => $a,
-            'pernyataanB' => $b
+            'tipe'       => 'required',
+            'soal'    => 'required'
         ]);
 
-        return response()->json('success', 201);
+        
+        $soal = new Soal;
+        $soal->soal = $request->soal;
+        $soal->kategori = $request->tipe;
+        $soal->save();
+        # menambahkan pada tabel soal dengan berdasarkan pasangan dimensi yang dipilih
+        // Soal::create([
+        //     'soal'        => $request->soal,
+        //     'kategori' => $request->tipe
+        // ]);
+
+        return redirect('soal')->with('success','Soal berhasil di perbarui');
     }
 
     /**
@@ -87,25 +82,25 @@ class SoalController extends Controller
     {
         $pageName = "Edit Soal Baru";
         # get soal dengan relasi pernyataan didalamnya
-        $daftarsoal = Soal::with('jawabA', 'jawabB')->find($id); 
+        $daftarsoal = Soal::find($id); 
+
         # membaca dimensi_id pada masing2 pernyataan untuk melihat pasangan dimensinya
-        $dimensi = [
-            $daftarsoal->jawabA->dimensi_id,
-            $daftarsoal->jawabB->dimensi_id
-        ];
+
+        $tipe_kep = TipeKepribadian::all();
+      
         /**
          * var pasDimSelect digunakan untuk menampilkan dimensi_id yang terbaca dari pernyataan yang akan diedit
          * yang ditampilkan berupa pasangan dimensi pada form edit
          */
-        $pasDimSelect = DimensiPasangan::whereIn('dimensiA', $dimensi)
-        ->whereIn('dimensiB', $dimensi)->first()->id;
+     
         /**
          * mengirim collection pada view soal
          * dan juga mengenalkan atribut pada table pasangan dimensi
          */
         return view('admin.soal.edit', [
-            'dimensi' => DimensiPasangan::with(['dimA', 'dimB'])->get()
-        ],compact('daftarsoal','pageName', 'pasDimSelect', 'id'));
+            'daftarsoal' => $daftarsoal,
+            'tipe_kep' => $tipe_kep
+        ],compact('daftarsoal','tipe_kep','pageName', 'id'));
     }
 
     /**
@@ -132,25 +127,17 @@ class SoalController extends Controller
     {
         # validasi dimensi, apakah dimensi tersebut tersedia pada tabel sebelumnya
         $request->validate([
-            'dimensi' => 'required|integer|exists:'.DimensiPasangan::class.',id',
-            'a'       => 'required',
-            'b'       => 'required',
+            'tipe'       => 'required',
             'soal'    => 'required|string'
         ]);
 
-        $find = DimensiPasangan::find($request->get('dimensi')); # mencocokan pasangan dimensi pada soal
         $soal = Soal::find($id); # mencocokan id soal yang akan diubah
-        /**
-         * Update isi pernyataan dan pasangan dimensi
-         * bersamaan dengan value yang dimasukan oleh admin
-         */
-        $a = self::edit($soal->pernyataanA, $request->get('a'), $find->dimensiA);
-        $b = self::edit($soal->pernyataanB, $request->get('b'), $find->dimensiB);
-        # mengubah value soal baru tanpa mengubah id pernyataan
-        $soal->update([
-            'soal'  => $request->soal
-        ]);
+        $soal->soal = $request->soal;
+        $soal->kategori = $request->tipe;
+        // dd($soal);
+        $soal->update();
 
+        
         return redirect('soal')->with('success','Soal berhasil di perbarui');
     }
 
@@ -162,7 +149,6 @@ class SoalController extends Controller
     public function destroy(Soal $id)
     {
         # menghapus data soal dan juga pernyataan yang ada didalamnya 
-        Pernyataan::whereIn('id', [$id->pernyataanA, $id->pernyataanB])->delete();
         $id->delete();
         return redirect('soal')->with('success','Soal berhasil di hapus');
     }

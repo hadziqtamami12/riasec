@@ -14,7 +14,7 @@
       <div class="col-12 layout-spacing">
          <div class="widget widget-chart-one">
             <div class="widget-heading">
-               <h5 class="">Recap Hasil Keseluruhan</h5>
+               <h5 class="">Rekap Hasil Keseluruhan</h5>
             </div>
             <div class="widget-content">
                <div class="tabs tab-content">
@@ -129,7 +129,7 @@
          options: {
             title: {
                display: true,
-               text: `Recap Tes Kepribadian {{ $item->program_studi }}`,
+               text: `Rekap Tes Kepribadian {{ $item->program_studi }}`,
                
                // fontSize = "value|initial|inherit"
             }

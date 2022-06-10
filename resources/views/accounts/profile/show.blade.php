@@ -170,9 +170,9 @@
                <div class="widget-content widget-content-area">
                   {{-- All --}}
                   @if (Auth::user()->roles()->first()->name === 'user')
-                     <h3 class="">Recap Hasil Tes</h3>
+                     <h3 class="">Rekap Hasil Tes</h3>
                      <div class="timeline-alter">
-                        @foreach ($latest->recapHasil as $recap)
+                        @foreach ($latest as $recap)
                            <div class="item-timeline">
                               <div class="t-meta-date">
                                  <p class="">{{ $recap->updated_at->format('d F, Y',) }}</p>
@@ -180,22 +180,22 @@
                               <div class="t-dot">
                               </div>
                               <div class="t-text">
-                                 <p>{{ $recap->tipe->namatipe }}</p>
+                                 <p>{{ $recap->namatipe }}</p>
                               </div>
                            </div>
                         @endforeach
                      </div>
                   @else
-                     <h3>Tidak ada Recap</h3>
+                     <h3>Tidak ada Rekap</h3>
                      <div class="timeline-alter">
                         <div class="t-meta-date">
-                           <p class="">Tidak Recap Tes</p>
+                           <p class="">Tidak Rekap Tes</p>
                         </div>
                      </div>
                   @endif
 
                </div>
-            </div> {{-- Recap Hasil Tes --}} 
+            </div> {{-- Rekap Hasil Tes --}} 
 
          </div>
 
@@ -204,7 +204,7 @@
             <div class="col-xl-8 col-lg-6 col-md-7 col-sm-12 layout-top-spacing">
 
                {{-- isset($latest) && !empty($latest) --}}
-               @if($latest->resultIndex)
+               @if($latest)
 
                   <div class="skills layout-spacing ">
                      <div class="widget-content widget-content-area">
@@ -212,12 +212,8 @@
                         <h3 class="">Hasil Tes Kepribadian</h3>
 
                         <div class="present-content">
-                           @foreach ($dimensis as $dimensi)
+                           @foreach ($tipe as $t)
 
-                              @php
-                              $a = $latest->resultIndex->presentases->firstWhere('dimensi_id', $dimensi->dimensiA ) ?? null;
-                              $b = $latest->resultIndex->presentases->firstWhere('dimensi_id', $dimensi->dimensiB ) ?? null;
-                              @endphp
 
                               <div class="summary-list">
                                  <div class="w-icon">
@@ -225,18 +221,15 @@
                                  </div>
                                  <div class="w-summary-details mr-2">
                                     <div class="w-summary-info">
-                                          <h6>({{ $dimensi->dimA->code }}) {{ $dimensi->dimA->keterangan }}</h6>
-                                          <p class="summary-count">({{ $dimensi->dimB->code }}) {{ $dimensi->dimB->keterangan }}</p>
+                                          <h6>({{ $t->namatipe }}) </h6>
                                     </div>
                                     <div class="w-summary-stats">
                                        <div class="progress">
-                                          <div class="{{ $a->totalpresent > $b->totalpresent ? 'progress-bar bg-gradient-'.$dimensi->color : '' }}" role="progressbar" style="width: {{ $a->totalpresent }}%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-                                          <div class="{{ $b->totalpresent >= $a->totalpresent ? 'progress-bar bg-gradient-'.$dimensi->color : '' }}" role="progressbar" style="width: {{ $b->totalpresent }}%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+                                          <div class="progress-bar bg-gradient-info progress-bar-striped" role="progressbar" style="width: {{ $t->presentase }}%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
                                        </div>
                                     </div>
                                     <div class="w-summary-info">
-                                          <h6>{{ $a->totalpresent }} &percnt;</h6> <!-- Dimensi A -->
-                                          <p class="summary-count">{{ $b->totalpresent }} &percnt;</p> <!-- Dimensi B -->
+                                          <h6>{{ $t->presentase }} &percnt;</h6> 
                                     </div>
                                  </div>
                                  <div class="w-icon">
@@ -249,8 +242,8 @@
                         <div class="col-12 col-xl-12 col-lg-12 mb-xl-6" style="text-align: center; margin-top: 30px;">
                            <div class="card component-card_1">
                               <div class="card-body">
-                                 <h2 class="card-title" style="text-transform: uppercase; font-weight: 700; color:rgba(255, 171, 0, 1);">{{ $latest->resultIndex->tipe->namatipe ?? null }}</h2>
-                                 <h6 class="card-text" style="text-transform: capitalize; font-style: italic;">&#40; {{ $latest->resultIndex->tipe->keterangan_tipe ?? null }} &#41;</h6>
+                                 <h2 class="card-title" style="text-transform: uppercase; font-weight: 700; color:rgba(255, 171, 0, 1);">{{ $hasil->namatipe ?? null }}</h2>
+                                 <h6 class="card-text" style="text-transform: capitalize; font-style: italic;">&#40; {{ $hasil->deskripsi ?? null }} &#41;</h6>
                               </div>
                            </div>
                         </div>

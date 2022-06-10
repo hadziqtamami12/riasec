@@ -132,7 +132,7 @@
                                              <div class="form-group">
                                                 <label for="programstudi">Program Studi</label>
                                                 <select class="form-control prodi" name="programstudi_id">
-                                                   <option value="{{ $acount->programstudi_id }}" selected> {{ $acount->programstudi->program_studi }}</option>
+                                                   <option value="{{ $acount->programstudi_id ?? null }}" selected> {{ $acount->programstudi->program_studi ?? null }}</option>
                                                    @foreach ($programstudi as $prodi)
                                                       <option value="{{$prodi->id}}">
                                                          {{ $prodi->program_studi }}

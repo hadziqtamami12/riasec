@@ -9,5 +9,5 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Soal extends Model
 {
     use HasFactory, SoftDeletes;
-    
+    protected $fillable = ['soal','kategori'];
 }

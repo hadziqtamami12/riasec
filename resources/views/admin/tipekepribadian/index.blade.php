@@ -32,11 +32,9 @@
                      <th>No.</th>
                      <th>Nama</th>
                      <th>Avatar</th>
-                     <th>Keterangan</th>
-                     <th>Julukan</th>
                      <th>Deskripsi</th>
-                     <th>ArtiSukses</th>
-                     <th>Pengembangan</th>
+                     <!-- <th>Bidang</th> -->
+     
                      <th class="text-center">Action</th>
                   </tr> 
                </thead>
@@ -48,11 +46,8 @@
                      <td class="text-center">
                         <span><img src="{{asset($tipe->image)}}" class="profile-img"onerror="this.src='{{asset('assets/images/90x90.jpg')}}'"></span>
                      </td>
-                     <td>{{$tipe->keterangan_tipe}}</td>
-                     <td>{{$tipe->julukan_tipe}}</td>
-                     <td>{{Str::limit($tipe->deskripsi_tipe, 50, '...')}}</td>
-                     <td>{{Str::limit($tipe->arti_sukses, 50, '...')}}</td>
-                     <td>{{Str::limit($tipe->saran_pengembangan, 50, '...')}}</td>
+                     <td>{{Str::limit($tipe->deskripsi, 50, '...')}}</td>
+                     <!-- <td>{{Str::limit($tipe->bidang, 50, '...')}}</td> -->
                      <td class="text-center">
                         <div class="dropdown custom-dropdown">
                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink12" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -68,19 +63,7 @@
                   </tr>
                   @endforeach
                </tbody>
-               <tfoot>
-                  <tr>
-                     <th>No.</th>
-                     <th>Nama</th>
-                     <th>Avatar</th>
-                     <th>Keterangan</th>
-                     <th>Julukan</th>
-                     <th>Deskripsi</th>
-                     <th>ArtiSukses</th>
-                     <th>Pengembangan</th>
-                     <th class="text-center">Action</th>
-                  </tr>
-               </tfoot>
+               
             </table>
          </div> {{-- table-responsive --}}
       </div> {{-- widget-content-area --}}

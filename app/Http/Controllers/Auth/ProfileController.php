@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\{Auth, DB};
-use App\Models\{User, ProgramStudi, DimensiPasangan, TestKepribadian, Tahun};
+use App\Models\{User, ProgramStudi, DimensiPasangan, TestKepribadian,TipeKepribadian,Soal, Jawab, Tahun};
 
 class ProfileController extends Controller
 {
@@ -17,11 +17,29 @@ class ProfileController extends Controller
     /**
      * Sdisplay user data and also recap test results.
      */
+
     public function showProfile()
     {
+        $jumlahsoal = Soal::all()->count();
+        $tipe = TipeKepribadian::all();
+        $tes = TestKepribadian::where('user_id', Auth::id())->latest()->first();
+
+        $hasil = TipeKepribadian::find($tes->tipekep_id);
+
+
+        foreach ($tipe as $t):
+            $t->jumlah = Jawab::where('NIM', Auth::user()->nim)->where('jawaban', $t->namatipe)->latest('jawabs.created_at')->take($jumlahsoal)
+                        ->get()->count();
+            $t->presentase = intval(($t->jumlah/$jumlahsoal) * 100);
+        endforeach;
+
+
+            
         return view('accounts.profile.show',[
-            'latest' => User::with(['resultIndex.tipe','resultIndex.presentases','recapHasil.tipe'])->find(Auth::id()),
-            'dimensis' => DimensiPasangan::with('dimA', 'dimB')->get(),
+            // 'latest' => User::with(['resultIndex.tipe','resultIndex.presentases','recapHasil.tipe'])->find(Auth::id()),
+            'latest' => TestKepribadian::select('test_kepribadians.*' , 'tipe_kepribadians.namatipe' ,'tipe_kepribadians.updated_at as tanggal')->join('tipe_kepribadians', 'tipe_kepribadians.id', '=','test_kepribadians.tipekep_id')->where('user_id', Auth::id())->take(3)->orderBy('test_kepribadians.updated_at', 'desc')->get(),
+            'tipe' => $tipe,
+            'hasil' => $hasil,
         ]);
     }
 

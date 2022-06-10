@@ -11,15 +11,20 @@ class TipeKepribadian extends Model
     use HasFactory;
     protected $fillable = [
         'namatipe',
-        'slug',
-        'keterangan_tipe',
-        'julukan_tipe',
-        'deskripsi_tipe',
-        'arti_sukses',
-        'saran_pengembangan',
-        'kebahagiaan_tipe',
-        'image_tipe'
+        'deskripsi',
     ];
+
+    // protected $fillable = [
+    //     'namatipe',
+    //     'slug',
+    //     'keterangan_tipe',
+    //     'julukan_tipe',
+    //     'deskripsi_tipe',
+    //     'arti_sukses',
+    //     'saran_pengembangan',
+    //     'kebahagiaan_tipe',
+    //     'image_tipe'
+    // ];
 
     # menambahkan metode pengakses baru untuk mendapatkan gambar
     public function getImageAttribute()
@@ -32,18 +37,18 @@ class TipeKepribadian extends Model
      *
      * @return void
      */
-    protected static function booted()
-    {
-        static::creating(function ($namkep) {
-            $namkep->slug = Str::slug($namkep->namatipe);
-            // $namkep->saveQuietly();
-        });
+    // protected static function booted()
+    // {
+    //     static::creating(function ($namkep) {
+    //         $namkep->slug = Str::slug($namkep->namatipe);
+    //         // $namkep->saveQuietly();
+    //     });
 
-        static::updating(function ($namkep) {
-            $namkep->slug = Str::slug($namkep->namatipe);
-            $namkep->saveQuietly();
-        });
-    }
+    //     static::updating(function ($namkep) {
+    //         $namkep->slug = Str::slug($namkep->namatipe);
+    //         $namkep->saveQuietly();
+    //     });
+    // }
     
     /**
      * Relasi one to many

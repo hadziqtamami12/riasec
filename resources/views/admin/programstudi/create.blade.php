@@ -39,21 +39,21 @@
                               </div>
                               <div class="col-md-12 mb-4">
                                     <div class="form-group">
-                                       <label for="backgroundColor">BackgroundColor <span>&#40; Warna background untuk Recap Chart &#41;</span></label>
+                                       <label for="backgroundColor">BackgroundColor <span>&#40; Warna background untuk Rekap Chart &#41;</span></label>
                                        <input type="color" class="form-control @error('backgroundColor') is-invalid @enderror" for="backgroundColor" value="{{old('backgroundColor')}}" opacity="0.5" placeholder="rgba(205, 161, 66, 0.3)">
                                        @error('backgroundColor') <div class="invalid-feedback">{{$message}}</div>@enderror
                                     </div>
                               </div>
                               <div class="col-md-12 mb-4">
                                     <div class="form-group">
-                                       <label for="borderColor">BorderColor <span>&#40; Warna garis untuk Recap Chart &#41;</span></label>
+                                       <label for="borderColor">BorderColor <span>&#40; Warna garis untuk Rekap Chart &#41;</span></label>
                                        <input type="color" class="form-control @error('borderColor') is-invalid @enderror" for="borderColor" value="{{old('borderColor')}}" opacity="1" placeholder="rgba(102, 62, 5, 1)">
                                        @error('borderColor') <div class="invalid-feedback">{{$message}}</div>@enderror
                                     </div>
                               </div>
                               <div class="col-md-12 mb-5">
                                     <div class="form-group">
-                                       <label for="pointBorderColor">PointBorderColor <span>&#40; Warna titik pembatas untuk Recap Chart &#41;</span></label>
+                                       <label for="pointBorderColor">PointBorderColor <span>&#40; Warna titik pembatas untuk Rekap Chart &#41;</span></label>
                                        <input type="color" class="form-control @error('pointBorderColor') is-invalid @enderror" for="pointBorderColor" value="{{old('pointBorderColor')}}" opacity="1" placeholder="rgba(235, 141, 7, 1)">
                                        @error('pointBorderColor') <div class="invalid-feedback">{{$message}}</div>@enderror
                                     </div>

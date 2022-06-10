@@ -47,9 +47,10 @@ class TestKepribadianController extends Controller
                         ->where('jawaban', 'not like', "%-%")
                         ->groupBy('jawaban')
                         ->orderBy('jumlah', 'desc')
+                        ->latest()
                         ->first();
 
-        dd($hasil);
+        // dd($hasil);
 
                         
         $karakter_id = TipeKepribadian::where('namatipe', 'like', '%' . $hasil->jawaban . '%')->first();

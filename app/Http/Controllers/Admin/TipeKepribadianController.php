@@ -23,6 +23,7 @@ class TipeKepribadianController extends Controller
         $pageActive = "Tipe";
         $pageName = "Daftar Tipe Kepribadian";
         $tipekepribadian = TipeKepribadian::all(); # get value tipekepribadian
+
         return view('admin.tipekepribadian.index', compact('pageActive','pageName','tipekepribadian'));
     }
 
@@ -44,17 +45,22 @@ class TipeKepribadianController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateTipekepRequest $request)
+    public function store(Request $request)
     {
+        $request->validate([
+            'namatipe' => 'required',
+            'deskripsi' => 'required',
+        ]);
         # create tipe kepribadian baru
-        $tipekepribadian = new TipeKepribadian;
+        $tipekepribadian = new TipeKepribadian; 
         $tipekepribadian->namatipe = $request->namatipe;
-        $tipekepribadian->keterangan_tipe = $request->keterangan_tipe;
-        $tipekepribadian->julukan_tipe = $request->julukan_tipe;
-        $tipekepribadian->deskripsi_tipe = $request->deskripsi_tipe;
-        $tipekepribadian->arti_sukses = $request->arti_sukses;
-        $tipekepribadian->saran_pengembangan = $request->saran_pengembangan;
-        $tipekepribadian->kebahagiaan_tipe = $request->kebahagiaan_tipe;
+        $tipekepribadian->deskripsi = $request->deskripsi;
+        // $tipekepribadian->keterangan_tipe = $request->keterangan_tipe;
+        // $tipekepribadian->julukan_tipe = $request->julukan_tipe;
+        // $tipekepribadian->deskripsi_tipe = $request->deskripsi_tipe;
+        // $tipekepribadian->arti_sukses = $request->arti_sukses;
+        // $tipekepribadian->saran_pengembangan = $request->saran_pengembangan;
+        // $tipekepribadian->kebahagiaan_tipe = $request->kebahagiaan_tipe;
         
         // # save image
         // $image = $request->file('image_tipe');
@@ -70,6 +76,7 @@ class TipeKepribadianController extends Controller
         // $tipekepribadian->image_tipe = $filePath;
 
         # simpan data User pada Database
+        // dd($tipekepribadian);
         $tipekepribadian->save();
         return redirect('tipekep')->with('success','Data Tipe Kepribadian berhasil ditambahkan');
 
@@ -106,16 +113,19 @@ class TipeKepribadianController extends Controller
      * @param  int  TipeKepribadian $tipekep
      * @return \Illuminate\Http\Response
      */
-    public function update(CreateTipekepRequest $request, TipeKepribadian $tipekep)
+    // public function update(CreateTipekepRequest $request, TipeKepribadian $tipekep)
+    public function update(Request $request, $id)
     {
         # generate tipekepribadian 
+        $tipekep = TipeKepribadian::find($id);
         $tipekep->namatipe = $request->input('namatipe');
-        $tipekep->keterangan_tipe = $request->input('keterangan_tipe');
-        $tipekep->julukan_tipe = $request->input('julukan_tipe');
-        $tipekep->deskripsi_tipe = $request->input('deskripsi_tipe');
-        $tipekep->arti_sukses = $request->input('arti_sukses');
-        $tipekep->saran_pengembangan = $request->input('saran_pengembangan');
-        $tipekep->kebahagiaan_tipe = $request->input('kebahagiaan_tipe');
+        $tipekep->deskripsi = $request->input('deskripsi');
+        // $tipekep->keterangan_tipe = $request->input('keterangan_tipe');
+        // $tipekep->julukan_tipe = $request->input('julukan_tipe');
+        // $tipekep->deskripsi_tipe = $request->input('deskripsi_tipe');
+        // $tipekep->arti_sukses = $request->input('arti_sukses');
+        // $tipekep->saran_pengembangan = $request->input('saran_pengembangan');
+        // $tipekep->kebahagiaan_tipe = $request->input('kebahagiaan_tipe');
         
         # Periksa apakah gambar tipekepribadian telah diungah
         if ($request->has('image_tipe')) {
@@ -137,8 +147,11 @@ class TipeKepribadianController extends Controller
             $tipekep->image_tipe = $filePath;
         }
         // simpan data User pada Database
-        $tipekep->save();
-        return redirect('tipekep')->with('success','Data Tipe Kepribadian berhasil ditambahkan');
+        $tipekep->update();
+
+        // dd($tipekep);
+        // $tipekep->save();
+        return redirect('tipekep')->with('success','Data Tipe Kepribadian berhasil diperbarui');
     }
 
     /**

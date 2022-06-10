@@ -68,7 +68,8 @@ Route::middleware(['auth'])->group(function () {
     Route::group(['middleware' => 'role:user'], function() {
 
         Route::get('tipekepribadian', [ArtikelTipeController::class, 'artikel'])->name('tipekepribadian');
-        Route::get('/artikel/{tipe:slug}', [ArtikelTipeController::class, 'readmore'])->name('artikel');
+        Route::get('/artikel/{tipe:namatipe}', [ArtikelTipeController::class, 'readmore'])->name('artikel');
+        // Route::get('/artikel/{tipe:slug}', [ArtikelTipeController::class, 'readmore'])->name('artikel');
         Route::view('/contact', 'apps.contact')->name('contact');
         # print hasil pdf
         Route::get('pdf/{id}', [TestKepribadianController::class,'printPDF'])->name('cetak');
@@ -112,12 +113,15 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('partnertipe', PartnerTipeController::class)->except(['show']);
         
         // todo : Route CRUD Program Studi
-        Route::resource('programstudi', ProgramStudiController::class)->except(['show']);
+        Route::resource('programstudi', ProgramStudiController::class)->except(['show', 'destroy']);
 
         // todo : Route CRUD Soal & Jawaban
         Route::get('soal', [SoalController::class,'index'])->name('soal.index'); # view index
         Route::get('soal/insert', [SoalController::class, 'view'])->name('soal.create'); # view create form
+        Route::post('soal/tambah', [SoalController::class, 'save'])->name('soal.tambah'); # view create form
         Route::get('soal/{id}/edit', [SoalController::class, 'viewedit'])->name('soal.edit'); # view edit form
+        Route::get('soal/{id}/delete', [SoalController::class, 'destroy'])->name('soal.delete'); # view edit form
+        Route::get('programstudi/{id}/delete', [ProgramStudiController::class, 'destroy'])->name('programstudi.delete'); # view edit form
 
         // todo : get tipe kepribadian each prodi
         Route::get('tipeprodi/{angkatan?}', [RoleController::class, 'tipe'])->name('tipeprodi');

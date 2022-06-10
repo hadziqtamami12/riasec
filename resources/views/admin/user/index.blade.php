@@ -24,14 +24,14 @@
 
                   <div class="col-auto">
                      <div class="d-flex justify-content-sm-start justify-content-center" style="text-align: left">
-                        {{-- Button Pop-Up --}}
+                        <!-- {{-- Button Pop-Up --}} -->
                         @if (Auth::user()->roles()->first()->name === 'superadmin')
                            <button type="button" class="btn btn-primary mb-2 mr-2" data-toggle="modal" data-target="#exampleModalCenter">
                               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user-plus"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line></svg>
                            </button>
                         @endif
                      </div>
-                     {{-- Pop-UP button --}}
+                     <!-- {{-- Pop-UP button --}} -->
                      <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
                            <div class="modal-content">
@@ -42,9 +42,9 @@
                                  </button>
                               </div>
                               <div class="modal-body align-items-center">
-                                 {{-- tambah admin --}}
+                                 <!-- {{-- tambah admin --}} -->
                                  <a href="{{ route('account.createAdmin') }}" class="btn btn-secondary btn-lg">Tambah Admin&nbsp;<i class="fas fa-user-shield"></i></a> &nbsp;
-                                 {{-- tambah pengguna --}}
+                                 <!-- {{-- tambah pengguna --}} -->
                                  <a href="{{ route('account.createUser') }}" class="btn btn-info btn-lg"><i class="fas fa-user-graduate"></i>&nbsp;Tambah User</a>
                               </div>
                            </div>
@@ -53,36 +53,38 @@
 
                   </div>
             </form>
-         </div> {{-- widget-header --}}
+         </div> 
+         <!-- {{-- widget-header --}} -->
          <div class="table-responsive mb-4 style-2">
             <table id="style-cus" class="table style-2 table-hover non-hover">
                <thead>
                   <tr>
                      <th>ID</th>
-                     {{-- <th class="text-center">Foto</th> --}}
+                     <!-- {{-- <th class="text-center">Foto</th> --}} -->
                      <th>Nama</th>
                      <th>NIM</th>
                      <th>Program Studi</th>
                      <th>Angkatan</th>
                      <th>Email</th>
-                     <th>Telefon</th>
+                     <th>Telepon</th>
                      <th>Hasil Tes</th>
                      <th class="text-center" style="">Action</th>
                   </tr>
                </thead>
                <tbody>
-                  @foreach ($dataUser as $item)
-                  {{-- {{dd($item)}} --}}
+                  @foreach ($dataUser as $item))
+                  @if ($item->roles == 'user')
+                  <!-- {{-- {{dd($item)}} --}} -->
                   <tr>
-                     <td scope="row">{{$loop->iteration}}</td>
-                     {{-- <td class="text-center">
+                     <td scope="row">{{$loop->iteration-1}}</td>
+                     <!-- {{-- <td class="text-center">
                         <span><img src="{{asset($dataUser->image)}}" class="profile-img"onerror="this.src='{{asset('assets/images/90x90.jpg')}}'"></span>
-                     </td> --}}
+                     </td> --}} -->
                      <td>{{$item->name}} <br>
-                        {{-- <span class="text-info" style="font-size: 10px">{{$item->roles}}</span> --}}
+                        <!-- {{-- <span class="text-info" style="font-size: 10px">{{$item->roles}}</span> --}} -->
                      </td>
                      <td>{{$item->nim}}</td>
-                     <td>{{$item->programstudi->program_studi}}</td>
+                     <td>{{$item->programstudi->program_studi ?? "-"}}</td>
                      <td class="text-center">{{$item->tahun->tahun ?? null}}</td>
                      <td>{{Str::limit($item->email, 15, '..')}}</td>
                      <td>{{$item->phone ?? null}}</td>
@@ -93,7 +95,7 @@
                               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
                            </a>
                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink12">
-                              {{-- <a class="dropdown-item" href="javascript:void(0);">View</a> --}}
+                              <!-- {{-- <a class="dropdown-item" href="javascript:void(0);">View</a> --}} -->
                               @if (Auth::user()->roles()->first()->name === 'superadmin')
                                  <a class="dropdown-item btn btn-sm text-info" href="{{ route('account.show', $item->id) }}">Show</a>
                                  <a class="dropdown-item btn btn-sm text-warning" href="{{ route('account.edit', $item->id) }}">Edit</a>
@@ -103,22 +105,10 @@
                         </div>
                      </td>
                   </tr>
+                  @endif
                   @endforeach
                </tbody>
-               <tfoot>
-                  <tr>
-                     <th>ID</th>
-                     {{-- <th class="text-center">Foto</th> --}}
-                     <th>Nama</th>
-                     <th>NIM</th>
-                     <th>Program Studi</th>
-                     <th>Angkatan</th>
-                     <th>Email</th>
-                     <th>Telefon</th>
-                     <th>Hasil Tes</th>
-                     <th class="text-center">Action</th>
-                  </tr>
-               </tfoot>
+              
             </table>
          </div> {{-- table-responsive --}}
       </div> {{-- widget-content-area --}}

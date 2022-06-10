@@ -63,7 +63,7 @@
                      <a href="{{ route('roleAdmin') }}" aria-expanded="{{ (request()->segment(1) == 'admin') ? 'true' : 'false' }}" class="dropdown-toggle">
                         <div class="">
                            <i data-feather="trello"></i>
-                           <span>Recap Kunjungan</span>
+                           <span>Rekap Kunjungan</span>
                         </div>
                      </a>
                   </li>                      

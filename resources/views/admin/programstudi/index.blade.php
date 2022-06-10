@@ -47,7 +47,8 @@
                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink12">
                               {{-- <a class="dropdown-item" href="javascript:void(0);">View</a> --}}
                               <a class="dropdown-item btn btn-sm text-warning" href="{{ route('programstudi.edit', $prodi->id) }}">Edit</a>
-                              <a class="dropdown-item btn btn-sm text-danger" href="#" data-toggle="modal" data-target="#delete" data-id="{{ $prodi->id }}">Delete</a>
+                              <a class="dropdown-item btn btn-sm text-danger" href="{{ route('programstudi.delete', $prodi->id) }}">Delete</a>
+                              {{-- <a class="dropdown-item btn btn-sm text-danger" href="#" data-toggle="modal" data-target="#delete" data-id="{{ $prodi->id }}">Delete</a> --}}
                            </div>
                         </div>
                      </td>
@@ -67,7 +68,7 @@
       {{-- modal pop-up --}}
       <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
          <div class="modal-dialog modal-dialog-centered" role="document">
-            <form action="{{ route('programstudi.destroy', $prodi->id) }}" method="post">
+            <form action="{{ route('programstudi.delete', $prodi->id) }}" method="post">
                @csrf
                @method('DELETE')
                <div class="modal-content">

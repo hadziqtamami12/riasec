@@ -32,7 +32,7 @@
                                        <label for="tipe">Pilih Tipe Kepribadian</label>
                                        <select id="tipe" name="tipe" class="form-control">
                                           @foreach($tipe_kep as $key)
-                                          <option value="{{ $key->namatipe }}" {{ $key->namatipe == $daftarsoal->kategori ? 'selected' : ''}}>
+                                          <option value="{{ $key->id }}" {{ $key->id == $daftarsoal->kategori ? 'selected' : ''}}>
                                              {{ $key->namatipe }}
                                           </option>
                                           @endforeach

@@ -34,9 +34,9 @@
                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                               <div class="card">
                                  <label class="selected-label">
-                                    <input class="selectJawaban" type="radio" name="soal{{ $test->id }}" value="{{$test->kategori }}">
+                                    <input class="selectJawaban" data-soalID="{{$test->id}}" type="radio" name="soal{{ $test->id }}" value="{{$test->kategori }}">
                                     <div class="selected-content">
-                                       <h4 id="jwb1" class="jawaban">{{ 'Ya' }}</h4>
+                                       <h4 id="jwb1"  class="jawaban">{{ 'Ya' }}</h4>
                                     </div>
                                  </label>
                               </div>
@@ -44,7 +44,7 @@
                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                               <div class="card">
                                  <label class="selected-label">
-                                    <input class="selectJawaban" type="radio" name="soal{{ $test->id }}" value="-">
+                                    <input class="selectJawaban" data-soalID="{{$test->id}}" type="radio" name="soal{{ $test->id }}" value="-">
                                     <div class="selected-content">
                                        <h4 id="jwb2" class="jawaban">{{ 'Tidak' }}</h4>
                                     </div>
@@ -70,10 +70,9 @@
 
 <script>
 
-   let selectedSoal = 1; // soal pertama
+   let selectedSoal = 0; // soal pertama
    const max = {{ $tests['pernyataan']->count() }} // Menunjukkan jumlah maksimum soal yang dapat dijawab
 
-   
    
    // Tampilkan soal saat ini
    $(`.data-soal[data-id="${selectedSoal}"]`).show()
@@ -84,13 +83,14 @@
       axios.post("{{route('jawabTest')}}",{
             jawaban :      $(this).val(),
             nim : {{$tests['nim']}},
-            soal_id : selectedSoal,
+            soal_id :  $(this).attr('data-soalID')
          })
          
 
       // // Simpan jawaban dalam dimensi
       // jawabans[index].value++
       ++selectedSoal // Melanjutkan ke soal berikutnya
+      // selectedSoal++ // Melanjutkan ke soal berikutnya
 
       // menampilkan progres bar pada test
       let width = (selectedSoal/max*100)

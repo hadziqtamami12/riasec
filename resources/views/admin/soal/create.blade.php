@@ -31,7 +31,7 @@
                                        <label for="tipe">Pilih Tipe Kepribadian</label>
                                        <select id="tipe" name="tipe" class="form-control">
                                              @foreach($tipe_kepribadian as $key)
-                                             <option value="{{ $key->namatipe }}">
+                                             <option value="{{ $key->id }}">
                                                 {{ $key->namatipe }}
                                              </option>
                                              @endforeach

@@ -18,10 +18,10 @@ trait TestTrait
    public function createSoal()
    {
       return [
-         'id' => TestKepribadian::updateOrCreate([
-         'user_id' => Auth::id(),
-         'finished_at' => null
-      ])->id,
+      //    'id' => TestKepribadian::updateOrCreate([
+      //    'user_id' => Auth::id(),
+      //    'finished_at' => null
+      // ])->id,
       'pernyataan' => Soal::all(),
       // 'pernyataan' => Soal::inRandomOrder()->get(),
       'nim' => Auth::user()->nim,

@@ -33,15 +33,14 @@
          <section id="artikelTop" class="col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
             <div class="landingContent">
                <div class="landingImage">
-                  <!-- <img src="{{ asset($hasil->tipe->image) }}" onerror="this.src='{{asset('assets/images/300x300.jpg')}}'"> <br> -->
                   <small class="text-right" style="font-size: 8px">Illustrations by <cite title="Source Title"><a href="https://blush.design/collections/40G09koP55fYh86yZDnX/stuck-at-home/character-standing/2WYYj_i51y7t1dWK?c=skin_0%7Eecafa3" target="_blank">Mariana Gonzalez Vega</a></cite></small>
                {{-- Illustrations by Mariana Gonzalez Vega --}}
                {{-- https://blush.design/collections/40G09koP55fYh86yZDnX/stuck-at-home/character-standing/2WYYj_i51y7t1dWK?c=skin_0%7Eecafa3 --}}
                </div>
                <div class="landingText">
-                  <h1>{{ $hasil->tipe->namatipe }}</h1>
-                  <h3>&#40; {{ $hasil->tipe->keterangan_tipe }} &#41;</h3>
-                  <h2>{{ $hasil->tipe->julukan_tipe }}</h2>
+                  <h1>{{ $hasil->tipe->namatipe ?? '-' }}</h1>
+                  <h3>&#40; {{ $hasil->tipe->keterangan_tipe ?? '-' }} &#41;</h3>
+                  <h2>{{ $hasil->tipe->julukan_tipe ?? '-' }}</h2>
                </div>
             </div> <!-- landing-content -->
          </section>
@@ -104,10 +103,10 @@
             <div class="artikel-tipe" data-aos="zoom-in-up" data-aos-duration="1000">
                <div class="row">
                   <div class="col-md-12">
-                     <h3>Tipe Kepribadian&nbsp;<span>{{ $hasil->tipe->namatipe }}</span></h3>
+                     <h3>Tipe Kepribadian&nbsp;<span>{{ $hasil->tipe->namatipe ?? '-' }}</span></h3>
                      <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-                           <p>{{ $hasil->tipe->deskripsi_tipe }}</p>
+                           <p>{{ $hasil->tipe->deskripsi_tipe ?? '-' }}</p>
                         </div>
                      </div>
                   </div>
@@ -119,7 +118,7 @@
             <div class="artikel-tipe" data-aos="zoom-in-up" data-aos-duration="800">
                <div class="row">
                   <div class="col-md-12">
-                     <h3>Ciri Kepribadian&nbsp;<span>{{ $hasil->tipe->namatipe }}</span></h3>
+                     <h3>Ciri Kepribadian&nbsp;<span>{{ $hasil->tipe->namatipe ?? '-' }}</span></h3>
                      <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-12">
                            <ul class="">

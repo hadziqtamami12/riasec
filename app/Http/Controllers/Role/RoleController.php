@@ -31,7 +31,7 @@ class RoleController extends Controller
         $tipe = TipeKepribadian::withCount('tests')->get();
         $pageName = "Recap Hasil Test Kepribadian";
         # get data hasil test kepribadian
-        $totalPengujian = TestKepribadian::whereNotNull('finished_at')->count()
+        $totalPengujian = TestKepribadian::all()->count()
         /*  DB::table('program_studis')->selectRaw('SUM(jumlah_tes) as total_tes')->first() */;
         
         return view('admin.beranda', [
@@ -66,6 +66,7 @@ class RoleController extends Controller
                         'data_all' => $item
                     ];
                 })
-            ]);   
+            ]);  
+            
     }
 }

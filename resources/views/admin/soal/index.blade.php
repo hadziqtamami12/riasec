@@ -36,11 +36,12 @@
                   </tr> 
                </thead>
                <tbody>
+                  @if ($daftarsoal)
                   @foreach ($daftarsoal as $soal)
                   <tr>
                      <td scope="row">{{$loop->iteration}}</td>
                      <td>{{$soal->soal}}</td>
-                     <td>{{ $soal->kategori ?? null }}</td>
+                     <td>{{ $soal->kategori->namatipe ?? null }}</td>
                      <td class="text-center">
                         <div class="dropdown custom-dropdown">
                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink12" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -56,7 +57,9 @@
                      </td>
                   </tr>
                   @endforeach
+                  @endif
                </tbody>
+
                
             </table>
          </div> {{-- table-responsive --}}
@@ -64,7 +67,7 @@
       {{-- modal pop-up --}}
       <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
          <div class="modal-dialog modal-dialog-centered" role="document">
-            <form action="{{ route('soal.destroy', $soal->id) }}" method="post">
+            <form action="#" method="post">
                @csrf
                @method('DELETE')
                <div class="modal-content">
@@ -86,6 +89,7 @@
       </div>
    </div> {{-- col-12 --}}
 </div> {{-- row layout-spacing --}}
+
 
 @endsection
 

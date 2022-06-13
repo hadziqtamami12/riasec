@@ -24,15 +24,30 @@ class ProfileController extends Controller
         $tipe = TipeKepribadian::all();
         $tes = TestKepribadian::where('user_id', Auth::id())->latest()->first();
 
-        $hasil = TipeKepribadian::find($tes->tipekep_id);
+        if ($tes):
+            $hasil = TipeKepribadian::find($tes->tipekep_id);
+        else:
+            $hasil = null;
+        endif;
+
+        // $test = TestKepribadian::where('user_id', Auth::user()->id)->latest()->first();
+        $test = Jawab::where('NIM', Auth::user()->nim)->max('test_id');
+
 
 
         foreach ($tipe as $t):
-            $t->jumlah = Jawab::where('NIM', Auth::user()->nim)->where('jawaban', $t->namatipe)->latest('jawabs.created_at')->take($jumlahsoal)
+            $t->jumlah = Jawab::where('NIM', Auth::user()->nim)
+                        ->where('teskep_id', $t->id)
+                        ->where('test_id', $test != null ? $test : '1')
+                        // ->where('jawaban', 'like', '%' . $t->namatipe . '%')
+                        // ->orderBy('created_at', 'desc')
+                        ->latest('jawabs.created_at')
+                        ->take($jumlahsoal)
                         ->get()->count();
-            $t->presentase = intval(($t->jumlah/$jumlahsoal) * 100);
-        endforeach;
+            // $t->presentase = intval(($t->jumlah/$jumlahsoal) * 100);
+            $t->presentase = $t->jumlah;
 
+        endforeach;
 
             
         return view('accounts.profile.show',[

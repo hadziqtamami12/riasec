@@ -16,6 +16,10 @@ class SoalController extends Controller
         $pageName = "Daftar Soal & Jawaban";
         $daftarsoal = Soal::all(); # get data soal
 
+        foreach ($daftarsoal as $soal):
+            $soal->kategori = TipeKepribadian::find($soal->kategori);
+        endforeach;
+
         return view('admin.soal.index', compact('pageName','daftarsoal', 'pageActive'));
     }
 

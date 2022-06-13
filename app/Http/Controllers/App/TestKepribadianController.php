@@ -40,23 +40,51 @@ class TestKepribadianController extends Controller
      * @return void|\Illuminate\Http\JsonResponse
     */
     public function finish($id, Request $request){     
+
         
+        $jumlahsoal = Soal::all()->count();
+    
+        // $tes = TestKepribadian::where('user_id', Auth::id())->latest()->first();
+
+        // $tes = Jawab::where('NIM', $id)
+        //             ->orderBy('created_at', 'desc')
+        //             ->take($jumlahsoal)
+        //             ->get();
+
+
+        // $kepribadian = $tes->select("teskep_id, COUNT(teskep_id) as jumlah")
+        //                 ->groupBy('teskep_id')
+        //                 ->orderBy('jumlah', 'desc')
+        //                 ->get();
+
+        // $test = TestKepribadian::where('user_id', Auth::user()->id)->latest()->first();
+        $test = TestKepribadian::where('user_id', Auth::user()->id)->get()->count();
+
+               
         $hasil = DB::table("jawabs")
-	            ->select(DB::raw("jawaban, COUNT(jawaban) as jumlah"))
-                        ->where('nim', $id)
-                        ->where('jawaban', 'not like', "%-%")
-                        ->groupBy('jawaban')
+	            ->select(DB::raw("teskep_id, COUNT(teskep_id) as jumlah"))
+                        ->where('NIM', $id)
+                        ->where('test_id', $test != null ? $test + 1 : '1')
+                        ->where('teskep_id', 'not like', '%-%')
+                        ->groupBy('teskep_id')
                         ->orderBy('jumlah', 'desc')
-                        ->latest()
+                        // ->latest('created_at', 'desc')
+                        ->take($jumlahsoal)
+                        // ->latest()
                         ->first();
 
-        // dd($hasil);
-
                         
-        $karakter_id = TipeKepribadian::where('namatipe', 'like', '%' . $hasil->jawaban . '%')->first();
-        $update_karakter = TestKepribadian::where('user_id', Auth::user()->id)->first();
-        $update_karakter->tipekep_id = $karakter_id->id;
-        $update_karakter->update();
+                        
+        $update_karakter = new TestKepribadian();
+        $update_karakter->user_id = Auth::user()->id;
+        $update_karakter->tipekep_id = $hasil->teskep_id;
+        $update_karakter->save();
+
+        
+        // $karakter_id = TipeKepribadian::where('namatipe', $hasil->teskep_id)->first();
+        // $update_karakter = TestKepribadian::where('user_id', Auth::user()->id)->first();
+        // $update_karakter->tipekep_id = $hasil->teskep_id;
+        // $update_karakter->update();
 
         return redirect('hasil/'.$update_karakter->id);
 
@@ -70,10 +98,15 @@ class TestKepribadianController extends Controller
             'jawaban' => 'required',
         ]);
 
+        // $jawaban = TipeKepribadian::where('namatipe', 'like', '%'. $request->jawaban . '%')->first();
+        $test = TestKepribadian::where('user_id', Auth::user()->id)->get()->count();
+
+
         $jawab = new Jawab();
         $jawab->nim = $request->nim;
         $jawab->soal_id = $request->soal_id;
-        $jawab->jawaban = $request->jawaban;
+        $jawab->teskep_id = $request->jawaban ;
+        $jawab->test_id = $test != null ? $test + 1 : '1' ;
         $jawab->save();
 
         return response()->json(['message' => 'task was successful']);
@@ -120,8 +153,11 @@ class TestKepribadianController extends Controller
     */
     public function hasil($id){
         # mengirim collection pada view hasil
+
+        $test = TestKepribadian::where('user_id', Auth::user()->id)->latest()->first();
+
         return view('apps.hasil', [
-            'hasil' => TestKepribadian::where('user_id', Auth::id())
+            'hasil' => TestKepribadian::where('user_id', Auth::id())->where('id', $test->id)
             ->with(['tipe' => function($q) {
                 return $q->with('ciriTipekeps', 'kelebihanTipekeps', 'kekuranganTipekeps', 'profesiTipekeps', 'partnerTipekeps.partner');
             }])->with('presentases')->findOrFail($id),

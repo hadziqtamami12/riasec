@@ -229,7 +229,8 @@
                                        </div>
                                     </div>
                                     <div class="w-summary-info">
-                                          <h6>{{ $t->presentase }} &percnt;</h6> 
+                                          <!-- <h6>{{ $t->presentase }} &percnt;</h6>  -->
+                                          <h6>{{ $t->presentase }} pilihan dipilih</h6> 
                                     </div>
                                  </div>
                                  <div class="w-icon">

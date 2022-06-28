@@ -34,7 +34,7 @@ class AcountAuthController extends Controller
                 'nim' => $item->nim,
                 'phone' => $item->phone,
                 'programstudi' => $item->programstudi,
-                'tipekep' => $item->resultIndex ? $item->resultIndex->tipe->namatipe : null,
+                // 'tipekep' => TestKepribadian::find($item)->pluck('namatipe'),
                 'tahun' => $item->tahun,
             ];
         });

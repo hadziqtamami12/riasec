@@ -85,6 +85,11 @@
                                              <input type="text" class="form-control mb-4" @error('deskripsi') is-invalid @enderror" name="deskripsi" value="{{old('deskripsi',$tipekep->deskripsi)}}" placeholder="&#40;Introvert Intuition Thinking Judging&#41;">
                                              @error('deskripsi') <div class="invalid-feedback">{{$message}}</div>@enderror
                                           </div>
+                                          <div class="form-group">
+                                             <label for="warna">Warna</label>
+                                             <input type="color" class="form-control mb-4" @error('warna') is-invalid @enderror" name="warna" value="{{old('warna',$tipekep->warna)}}" placeholder="&#40;Introvert Intuition Thinking Judging&#41;">
+                                             @error('warna') <div class="invalid-feedback">{{$message}}</div>@enderror
+                                          </div>
                                           <!-- <div class="form-group">
                                              <label for="julukan_tipe">Julukan Tipe</label>
                                              <input type="text" class="form-control mb-4" id="julukan_tipe" @error('julukan_tipe') is-invalid @enderror" name="julukan_tipe" value="{{old('julukan_tipe',$tipekep->julukan_tipe )}}">

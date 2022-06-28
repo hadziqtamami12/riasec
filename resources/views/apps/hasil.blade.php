@@ -33,57 +33,28 @@
          <section id="artikelTop" class="col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
             <div class="landingContent">
                <div class="landingImage">
-                  <small class="text-right" style="font-size: 8px">Illustrations by <cite title="Source Title"><a href="https://blush.design/collections/40G09koP55fYh86yZDnX/stuck-at-home/character-standing/2WYYj_i51y7t1dWK?c=skin_0%7Eecafa3" target="_blank">Mariana Gonzalez Vega</a></cite></small>
+                  <img src="{{ asset($hasil->tipe->image) }}" onerror="this.src='{{asset('assets/images/300x300.jpg')}}'"> <br>
+                  {{-- <small class="text-right" style="font-size: 8px">Illustrations by <cite title="Source Title"><a href="https://blush.design/collections/40G09koP55fYh86yZDnX/stuck-at-home/character-standing/2WYYj_i51y7t1dWK?c=skin_0%7Eecafa3" target="_blank">Mariana Gonzalez Vega</a></cite></small> --}}
                {{-- Illustrations by Mariana Gonzalez Vega --}}
                {{-- https://blush.design/collections/40G09koP55fYh86yZDnX/stuck-at-home/character-standing/2WYYj_i51y7t1dWK?c=skin_0%7Eecafa3 --}}
                </div>
                <div class="landingText">
                   <h1>{{ $hasil->tipe->namatipe ?? '-' }}</h1>
-                  <h3>&#40; {{ $hasil->tipe->keterangan_tipe ?? '-' }} &#41;</h3>
-                  <h2>{{ $hasil->tipe->julukan_tipe ?? '-' }}</h2>
+                  {{-- <h3>&#40; {{ $hasil->tipe->deskripsi ?? '-' }} &#41;</h3> --}}
+                  {{-- <h2>{{ $hasil->tipe->namatipe ?? '-' }}</h2> --}}
                </div>
             </div> <!-- landing-content -->
          </section>
          {{-- progress-bar --}}
 
          <section id="artikelPresent" class="col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
-            <div class="artikel-tipe presentase" data-aos="zoom-in-up" data-aos-duration="1000">
+            <div class="artikel-tipe presentase" data-aos="fade-down" data-aos-duration="1000">
                <div class="row">
                   <div class="col-md-12">
                      <h3>Beberapa Kecenderungan Sifat Pada Tipe Kepribadian</span></h3>
                      <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-                           <!-- <div class="present-content">
-                              @foreach($dimensis as $dimensi)
-
-                              @php
-                              $a = $hasil->presentases->firstWhere('dimensi_id', $dimensi->dimensiA);
-                              $b = $hasil->presentases->firstWhere('dimensi_id', $dimensi->dimensiB);
-                              @endphp
-
-                              <div class="summary-list">
-                                 <div class="w-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-credit-card"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
-                                 </div>
-                                 <div class="w-summary-details mr-2">
-                                    <div class="w-summary-info">
-                                          <h6>({{ $dimensi->dimA->code }}) {{ $dimensi->dimA->keterangan }}</h6>
-                                          <p class="summary-count">({{ $dimensi->dimB->code }}) {{ $dimensi->dimB->keterangan }}</p>
-                                    </div>
-                                    <div class="w-summary-stats">
-                                       <div class="progress">
-                                       </div>
-                                    </div>
-                                    <div class="w-summary-info">
-                                    </div>
-                                 </div>
-                                 <div class="w-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-credit-card"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
-                                 </div>
-                              </div>
-                              @endforeach
-
-                           </div> /present-content -->
+                           <h6>{{ $hasil->tipe->deskripsi ?? '-' }}</h6>
                         </div> {{-- col-12 --}}
                         
                         {{-- button cetak --}}
@@ -100,7 +71,7 @@
          {{-- progress-bar --}}
 
          <section id="artikelTipe" class="col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
-            <div class="artikel-tipe" data-aos="zoom-in-up" data-aos-duration="1000">
+            <div class="artikel-tipe" data-aos="fade-down" data-aos-duration="1000">
                <div class="row">
                   <div class="col-md-12">
                      <h3>Tipe Kepribadian&nbsp;<span>{{ $hasil->tipe->namatipe ?? '-' }}</span></h3>
@@ -115,7 +86,7 @@
          </section>
 
          <section id="artikelCiriTipe" class="col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
-            <div class="artikel-tipe" data-aos="zoom-in-up" data-aos-duration="800">
+            <div class="artikel-tipe" data-aos="fade-down" data-aos-duration="800">
                <div class="row">
                   <div class="col-md-12">
                      <h3>Ciri Kepribadian&nbsp;<span>{{ $hasil->tipe->namatipe ?? '-' }}</span></h3>
@@ -139,7 +110,7 @@
          </section>
 
          <section id="artikelKelebihan" class="col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
-            <div class="artikel-tipe" data-aos="zoom-in-up" data-aos-duration="800">
+            <div class="artikel-tipe" data-aos="fade-down" data-aos-duration="800">
                <div class="row">
                   <div class="col-md-12 col-12">
                      <h3>Kelebihan&nbsp;<span>{{ $hasil->tipe->namatipe  }}</span>&nbsp;:</h3>
@@ -163,7 +134,7 @@
          </section>
 
          <section id="artikelKekurangan" class="col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
-            <div class="artikel-tipe" data-aos="zoom-in-up" data-aos-duration="800">
+            <div class="artikel-tipe" data-aos="fade-down" data-aos-duration="800">
                   <div class="row">
                      <div class="col-md-12 col-12">
                         <h3>Kekurangan&nbsp;<span>{{ $hasil->tipe->namatipe  }}</span>&nbsp;:</h3>
@@ -213,7 +184,7 @@
          </section>
 
          <section id="artikelPekerjaan" class="col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
-            <div class="artikel-tipe" data-aos="zoom-in-up" data-aos-duration="800">
+            <div class="artikel-tipe" data-aos="fade-down" data-aos-duration="800">
                <div class="row">
                   <div class="col-md-12">
                         <h3>Saran Profesi <span>{{ $hasil->tipe->namatipe }}</span></h3>
@@ -237,7 +208,7 @@
          </section>
 
          <section id="artikelLain1" class="col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
-            <div class="artikel-tipe" data-aos="zoom-in-up" data-aos-duration="800">
+            <div class="artikel-tipe" data-aos="fade-down" data-aos-duration="800">
                <div class="row">
                   <div class="col-md-12">
                      <h3>Apa arti Sukses bagi <span>{{ $hasil->tipe->namatipe }}</span> &#63;</h3>

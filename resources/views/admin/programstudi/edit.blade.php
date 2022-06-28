@@ -23,9 +23,9 @@
                   @csrf
 
                   {{-- Hidden Colors --}}
-                  <input type="hidden" name="backgroundColor" value="{{ old('backgroundColor', $programstudi->backgroundColor) }}">
-                  <input type="hidden" name="borderColor" value="{{old('borderColor', $programstudi->borderColor)}}">
-                  <input type="hidden" name="pointBorderColor" value="{{old('pointBorderColor', $programstudi->pointBorderColor)}}">
+                  <!-- <input type="hidden" name="backgroundColor" value="{{ old('backgroundColor', $programstudi->backgroundColor) }}"> -->
+                  <!-- <input type="hidden" name="borderColor" value="{{old('borderColor', $programstudi->borderColor)}}"> -->
+                  <!-- <input type="hidden" name="pointBorderColor" value="{{old('pointBorderColor', $programstudi->pointBorderColor)}}"> -->
 
                   <div class="info">
                      <h5 class="">{{$pageName}}</h5>
@@ -42,21 +42,21 @@
                               <div class="col-md-12 mb-4">
                                     <div class="form-group">
                                        <label for="backgroundColor">BackgroundColor <span>&#40; Warna background untuk Recap Chart &#41;</span></label>
-                                       <input type="color" class="form-control @error('backgroundColor') is-invalid @enderror" id="bgInput" for="backgroundColor" placeholder="rgba(205, 161, 66, 0.3)" opacity="0.5">
+                                       <input type="color" name="backgroundColor" value="{{ old('backgroundColor', $programstudi->backgroundColor) }}" class="form-control @error('backgroundColor') is-invalid @enderror" id="bgInput" for="backgroundColor" placeholder="rgba(205, 161, 66, 0.3)" opacity="0.5">
                                        @error('backgroundColor') <div class="invalid-feedback">{{$message}}</div>@enderror
                                     </div>
                               </div>
                               <div class="col-md-12 mb-4">
                                     <div class="form-group">
                                        <label for="borderColor">BorderColor <span>&#40; Warna garis untuk Recap Chart &#41;</span></label>
-                                       <input type="color" class="form-control @error('borderColor') is-invalid @enderror" id="borderInput" for="borderColor" placeholder="rgba(102, 62, 5, 1)" opacity="1">
+                                       <input type="color" name="borderColor" value="{{old('borderColor', $programstudi->borderColor)}}" class="form-control @error('borderColor') is-invalid @enderror" id="borderInput" for="borderColor" placeholder="rgba(102, 62, 5, 1)" opacity="1">
                                        @error('borderColor') <div class="invalid-feedback">{{$message}}</div>@enderror
                                     </div>
                               </div>
                               <div class="col-md-12 mb-5">
                                     <div class="form-group">
                                        <label for="pointBorderColor">PointBorderColor <span>&#40; Warna titik pembatas untuk Recap Chart &#41;</span></label>
-                                       <input type="color" class="form-control @error('pointBorderColor') is-invalid @enderror" id="pointInput" for="pointBorderColor" value="{{old('pointBorderColor', $programstudi->pointBorderColor)}}" placeholder="rgba(235, 141, 7, 1)" opacity="1">
+                                       <input type="color" name="pointBorderColor" value="{{old('pointBorderColor', $programstudi->pointBorderColor)}}" class="form-control @error('pointBorderColor') is-invalid @enderror" id="pointInput" for="pointBorderColor" value="{{old('pointBorderColor', $programstudi->pointBorderColor)}}" placeholder="rgba(235, 141, 7, 1)" opacity="1">
                                        @error('pointBorderColor') <div class="invalid-feedback">{{$message}}</div>@enderror
                                     </div>
                               </div>

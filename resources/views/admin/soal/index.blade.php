@@ -24,6 +24,26 @@
                      <a href="{{ route('soal.create') }}" class="btn btn-primary mb-2"><i data-feather="plus"></i></a>
                   </div>
             </form>
+
+            <form action="{{route('waktu.update', $waktu->id )}}" method="post" role="form" class="form-inline mt-4 mb-1 " enctype="multipart/form-data">
+                  @method('PUT')
+                  @csrf
+                  
+                     <div class="col-xl-4 col-md-3 mt-md-0">
+                        
+                        <div class="input-group mb-2 mr-sm-2">
+                           <label class="form-control" for="timer">Timer</label>
+                           <input type="number" class="form-control" id="timer" placeholder="Timer" name="waktu" value="{{old('waktu',$waktu->waktu )}}" @error('waktu') is-invalid @enderror" name="waktu" value="{{old('waktu',$waktu->waktu )}}">
+                           @error('waktu')>  <div class="invalid-feedback">{{$message}}</div>@enderror
+                        </div>
+                     </div>
+                     <div class="col-xl-4 col-md-3 mt-md-0">
+                        <button type="submit" class="btn btn-primary">Simpan</button>
+                     </div>
+               </form> {{-- form --}}
+
+
+
          </div> {{-- widget-header --}}
          <div class="table-responsive mb-4 style-2">
             <table id="style-2" class="table style-2 table-hover non-hover">

@@ -41,6 +41,8 @@
       </div></div></div> --}}
    <!-- END LOADER -->
 
+      
+
       @yield('nav_header') {{-- NAVBAR HEADER --}}
 
       <!--  BEGIN MAIN CONTAINER  -->

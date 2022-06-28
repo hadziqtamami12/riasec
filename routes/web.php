@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Role\RoleController;
 use App\Http\Controllers\App\{TestKepribadianController, ArtikelTipeController};
 use App\Http\Controllers\Auth\{UserAuthController, ProfileController, RecoveryController, ForgetPasswordController, AcountAuthController};
-use App\Http\Controllers\Admin\{CiriTipeController, SoalController, PartnerTipeController, ProfesiTipeController,KelebihanTipeController, KekuranganTipeController, TipeKepribadianController, ProgramStudiController};
+use App\Http\Controllers\Admin\{CiriTipeController, SoalController, PartnerTipeController, ProfesiTipeController,KelebihanTipeController, KekuranganTipeController, TipeKepribadianController, ProgramStudiController, WaktuController};
 
 Route::get('/', function () {
     return view('welcome');
@@ -43,6 +43,8 @@ Route::middleware(['auth'])->group(function () {
     # auth proses 
     Route::post('logout',[UserAuthController::class,'signOut'])->name('logout');
     Route::get('admin', [RoleController::class, 'roleAdmin'])->name('roleAdmin')->middleware('role:superadmin,admin');
+    Route::get('cektahun', [RoleController::class, 'cektahun'])->name('cektahun')->middleware('role:superadmin,admin');
+    Route::get('adminfilter', [RoleController::class, 'adminfilter'])->name('adminfilter')->middleware('role:superadmin,admin');
     Route::get('home', [RoleController::class, 'roleUser'])->name('roleUser')->middleware('role:user');
     
     // todo : profile
@@ -122,6 +124,10 @@ Route::middleware(['auth'])->group(function () {
         Route::get('soal/{id}/edit', [SoalController::class, 'viewedit'])->name('soal.edit'); # view edit form
         Route::get('soal/{id}/delete', [SoalController::class, 'destroy'])->name('soal.delete'); # view edit form
         Route::get('programstudi/{id}/delete', [ProgramStudiController::class, 'destroy'])->name('programstudi.delete'); # view edit form
+        
+        Route::resource('waktu', WaktuController::class)->except(['show']);
+
+
 
         // todo : get tipe kepribadian each prodi
         Route::get('tipeprodi/{angkatan?}', [RoleController::class, 'tipe'])->name('tipeprodi');

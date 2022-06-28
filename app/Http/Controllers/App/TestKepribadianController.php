@@ -8,7 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use App\Models\{TestKepribadian, TipeKepribadian, DimensiPasangan, Presentase, Dimensi, Soal, Jawab, Statistic, ProgramStudi};
+use App\Models\{TestKepribadian, TipeKepribadian, DimensiPasangan, 
+    Presentase, Dimensi, Soal, Jawab, Statistic, ProgramStudi, Waktu};
 
 class TestKepribadianController extends Controller
 {
@@ -31,8 +32,9 @@ class TestKepribadianController extends Controller
     public function startTest()
     {
         # Direct response json to view, buat id_test baru & ambil data soal(dari Trait)
+        $waktu = Waktu::find(1);
         $tests = $this->createSoal();
-        return view('apps.soal', compact('tests'));
+        return view('apps.soal', compact('tests', 'waktu'));
     }
 
     /**

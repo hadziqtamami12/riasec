@@ -1,6 +1,6 @@
 @extends('layouts.appuser')
 @section('page_title')
-   {{"MBTI"}}
+   {{"RIASEC"}}
 @endsection
 
 @section('nav_header')

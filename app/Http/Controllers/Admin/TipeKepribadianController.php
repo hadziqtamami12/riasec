@@ -55,7 +55,7 @@ class TipeKepribadianController extends Controller
         $tipekepribadian = new TipeKepribadian; 
         $tipekepribadian->namatipe = $request->namatipe;
         $tipekepribadian->deskripsi = $request->deskripsi;
-        // $tipekepribadian->keterangan_tipe = $request->keterangan_tipe;
+        $tipekepribadian->warna = $request->warna;
         // $tipekepribadian->julukan_tipe = $request->julukan_tipe;
         // $tipekepribadian->deskripsi_tipe = $request->deskripsi_tipe;
         // $tipekepribadian->arti_sukses = $request->arti_sukses;
@@ -120,6 +120,7 @@ class TipeKepribadianController extends Controller
         $tipekep = TipeKepribadian::find($id);
         $tipekep->namatipe = $request->input('namatipe');
         $tipekep->deskripsi = $request->input('deskripsi');
+        $tipekep->warna = $request->warna;
         // $tipekep->keterangan_tipe = $request->input('keterangan_tipe');
         // $tipekep->julukan_tipe = $request->input('julukan_tipe');
         // $tipekep->deskripsi_tipe = $request->input('deskripsi_tipe');

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\{DimensiPasangan,Pernyataan, Soal, TipeKepribadian};
+use App\Models\Waktu;
 
 class SoalController extends Controller
 {
@@ -15,12 +16,13 @@ class SoalController extends Controller
         $pageActive = "Soal";
         $pageName = "Daftar Soal & Jawaban";
         $daftarsoal = Soal::all(); # get data soal
+        $waktu = Waktu::find(1); # get data soal
 
         foreach ($daftarsoal as $soal):
             $soal->kategori = TipeKepribadian::find($soal->kategori);
         endforeach;
 
-        return view('admin.soal.index', compact('pageName','daftarsoal', 'pageActive'));
+        return view('admin.soal.index', compact('pageName','daftarsoal', 'pageActive', 'waktu'));
     }
 
     /**

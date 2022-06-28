@@ -18,7 +18,7 @@
          height: 100%;
          margin: 0;
          padding: 0;
-         font-family: 'Nunito', sans-serif;
+         font-family: 'arial', sans-serif;
       }
       h1{
          font-weight: 700;

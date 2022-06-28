@@ -54,41 +54,41 @@
                   </div>
             </form>
          </div> 
-         <!-- {{-- widget-header --}} -->
+
+          {{-- widget-header  --}}
          <div class="table-responsive mb-4 style-2">
             <table id="style-cus" class="table style-2 table-hover non-hover">
                <thead>
                   <tr>
                      <th>ID</th>
-                     <!-- {{-- <th class="text-center">Foto</th> --}} -->
+                     <th class="text-center">Foto</th>
                      <th>Nama</th>
                      <th>NIM</th>
                      <th>Program Studi</th>
                      <th>Angkatan</th>
                      <th>Email</th>
                      <th>Telepon</th>
-                     <th>Hasil Tes</th>
+                     {{-- <th>Hasil Tes</th> --}}
                      <th class="text-center" style="">Action</th>
                   </tr>
                </thead>
                <tbody>
                   @foreach ($dataUser as $item))
                   @if ($item->roles == 'user')
-                  <!-- {{-- {{dd($item)}} --}} -->
                   <tr>
                      <td scope="row">{{$loop->iteration-1}}</td>
-                     <!-- {{-- <td class="text-center">
-                        <span><img src="{{asset($dataUser->image)}}" class="profile-img"onerror="this.src='{{asset('assets/images/90x90.jpg')}}'"></span>
-                     </td> --}} -->
+                     <td class="text-center">
+                        <span><img src="{{ $item->image ?? asset($item->image) }}" class="profile-img"onerror="this.src='{{asset('assets/images/90x90.jpg')}}'"></span>
+                     </td>
                      <td>{{$item->name}} <br>
-                        <!-- {{-- <span class="text-info" style="font-size: 10px">{{$item->roles}}</span> --}} -->
+                         <span class="text-info" style="font-size: 10px">{{$item->roles}}</span> 
                      </td>
                      <td>{{$item->nim}}</td>
                      <td>{{$item->programstudi->program_studi ?? "-"}}</td>
                      <td class="text-center">{{$item->tahun->tahun ?? null}}</td>
                      <td>{{Str::limit($item->email, 15, '..')}}</td>
                      <td>{{$item->phone ?? null}}</td>
-                     <td class="text-secondary" style="font-weight: 700">{{ $item->tipekep }}</td>
+                     {{-- <td class="text-secondary" style="font-weight: 700">{{ $item->tipekep }}</td> --}}
                      <td class="text-center">
                         <div class="dropdown custom-dropdown">
                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink12" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">

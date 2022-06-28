@@ -11,7 +11,7 @@
 
                 <div class="navbar-brand">
                     <a href="#" target="_blank">
-                        <img alt="Politeknik Negeri Banyuwangi" data-retina="{{asset('assets/images/logo/flag_lowongan.png')}}" data-src="{{asset('assets/images/logo/flag_lowongan.png')}}" class="navimg" src="{{asset('assets/images/logo/flag_lowongan.png')}}" >
+                        {{-- <img alt="Politeknik Negeri Banyuwangi" data-retina="{{asset('assets/images/logo/flag_lowongan.png')}}" data-src="{{asset('assets/images/logo/flag_lowongan.png')}}" class="navimg" src="{{asset('assets/images/logo/flag_lowongan.png')}}" > --}}
                     </a>
                     <a href="">
                         <img alt="Politeknik Negeri Banyuwangi" data-retina="{{asset('assets/images/logo/logo.png')}}" data-src="{{asset('assets/images/logo/logo.png')}}" class="navimg m-0" src="{{asset('assets/images/logo/logo.png')}}" >
@@ -100,7 +100,7 @@
                                 Hasil penilaian Tes akan tampil setelah Anda menyelesaikan semua pertanyaan yang diberikan.
                             </li>
                         </ul>
-                            <small class="text-right mr-4">Harley Friedman, MD. <cite title="Source Title">MBTI Personality Type Test</cite></small>
+                            <small class="text-right mr-4">Harley Friedman, MD. <cite title="Source Title">RIASEC Personality Type Test</cite></small>
 
                             
                     </div>
@@ -117,7 +117,7 @@
                         <img src="{{asset('assets/images/mbti/untung.png')}}" alt="rules">
                     </div>
                     <div class="rules-text">
-                        <h3>Keuntungan mengikuti tes kepribadian MBTI :</h3>
+                        <h3>Keuntungan mengikuti tes kepribadian RIASEC :</h3>
                         <p>Dapat mengetahui tipe diri kamu itu seperti apa. MBTI atau Myers-Briggs Type Indicator memisahkan kepribadian seseorang menurut 4 dimensi berdasarkan 8 sifat dasar yaitu :</p>
                             <ul class="">
                                 <li class="list-unstyled">

@@ -57,7 +57,7 @@
 
                      <nav class="breadcrumb-one" aria-label="breadcrumb">
                            <ol class="breadcrumb">
-                              <li class="breadcrumb-item"><a href="javascript:void(0);">Test Kepribadian MBTI</a></li>
+                              <li class="breadcrumb-item"><a href="javascript:void(0);">Test Kepribadian RIASEC</a></li>
                               <li class="breadcrumb-item active" aria-current="page"><span>{{$pageName}}</span></li>
                            </ol>
                      </nav>

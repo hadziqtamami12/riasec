@@ -50,6 +50,8 @@ class RoleController extends Controller
                                 ->get()->count();
         /*  DB::table('program_studis')->selectRaw('SUM(jumlah_tes) as total_tes')->first() */;
         $programstudi = ProgramStudi::get();
+
+        $angkatan_id = $request->angkatan_id ?? Tahun::orderBy('id', 'desc')->first(); 
         
         # get data hasil test kepribadian sesuai prodi
         foreach($programstudi as $p):
@@ -90,6 +92,7 @@ class RoleController extends Controller
             // ->groupBy(function ($item, $key){ return substr($item->nim, 2,2); })
             // ->sortKeys()->map(function($item, $key){ return 'Angkatan '.$key; }),
             'angkatan' => $angkatan,
+            'angkatan_id' => $angkatan_id,
             'dimensi' => Dimensi::orderBy('id')->get()->pluck('keterangan')->toJson(), # untuk mengambil data keterangan dimensi
             'tipe' => $tipe->pluck('namatipe')->toJson(), # untuk mengambil data nama tipekepribadian
             'dominasi' => $tipe->pluck('tests_count')->toJson(), # untuk statistik kecenderungan kepribadian
@@ -113,13 +116,16 @@ class RoleController extends Controller
     public function adminfilter(Request $request){
 
 
+        if($request->angkatan_id == 'all'):
+            return redirect('admin');
+        endif;
         $angkatan = User::select(DB::raw('users.tahun_id'))
         ->join('tahuns', 'tahuns.id', '=', 'users.tahun_id')
         ->orderBy('tahuns.id', 'desc')
         ->groupBy('tahun_id')->get();
 
         #get data request pilihan angkatan
-        $angkatan_id = $request->angkatan_id; 
+        $angkatan_id = $request->angkatan_id ?? Tahun::orderBy('id', 'desc')->first(); 
 
        
         $data = TestKepribadian::select(DB::raw('COUNT(test_kepribadians.tipekep_id) as totalss'))
@@ -132,7 +138,14 @@ class RoleController extends Controller
         
 
         #get relasi tabel test
-        $tipe = TipeKepribadian::withCount('tests')->get();
+        // $tipe = TipeKepribadian::withCount('tests')->get();
+        $tipe = TestKepribadian::select(DB::raw('tipe_kepribadians.namatipe'))
+                        ->join('users', 'users.id', '=', 'test_kepribadians.user_id')
+                        ->join('tipe_kepribadians', 'tipe_kepribadians.id', '=', 'test_kepribadians.tipekep_id')
+                        ->where('users.tahun_id', $angkatan_id)
+                        ->groupBy('namatipe')
+                        ->get();
+
         $pageName = "Rekap Hasil Test Kepribadian";
         # get data hasil test kepribadian
         // $totalPengujian = TestKepribadian::all()->count()
@@ -195,6 +208,7 @@ class RoleController extends Controller
             // ->groupBy(function ($item, $key){ return substr($item->nim, 2,2); })
             // ->sortKeys()->map(function($item, $key){ return 'Angkatan '.$key; }),
             'angkatan' => $angkatan,
+            'angkatan_id' => $angkatan_id,
             'dimensi' => Dimensi::orderBy('id')->get()->pluck('keterangan')->toJson(), # untuk mengambil data keterangan dimensi
             'tipe' => $tipe->pluck('namatipe')->toJson(), # untuk mengambil data nama tipekepribadian
             'dominasi' => $tipe->pluck('tests_count')->toJson(), # untuk statistik kecenderungan kepribadian

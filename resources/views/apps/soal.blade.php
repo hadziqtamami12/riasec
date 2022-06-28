@@ -15,17 +15,18 @@
             <div class="quiz-tab-section">
       
                <div class="row ">
+                  
                   <div class="col-md-12 text-center">
 
                      <div class="title-section">
                         <h3>Tes Kepribadian RIASEC</h3>
                         <h5>Jumlah pernyataan pada tes terdiri dari {{ $tests['pernyataan']->count()}} soal</h5>
-                        <h2 id="timer" class="text-danger"></h2>
                      </div>
                      <!-- {{-- Progres --}} -->
-                     <div class="progress br-30">
+                     <div class="progress">
                         <div class="progress-bar bg-gradient-warning" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0&percnt;</div>
                      </div>
+                     <h4 id="timer" class="text-danger"></h4>
                      <!-- {{-- Soal --}} -->
                      @foreach ($tests['pernyataan'] as $key => $test ) 
                      <div class="data-soal" data-id="{{$key}}" data-soal="{{$test->id}}" style="display: none"> {{-- data index ada pada class data-soal --}}

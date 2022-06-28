@@ -157,6 +157,38 @@ class TestKepribadianController extends Controller
         # mengirim collection pada view hasil
 
         $test = TestKepribadian::where('user_id', Auth::user()->id)->latest()->first();
+        $jumlahsoal = Soal::all()->count();
+        $tipe = TipeKepribadian::all();
+
+        $jawab = Jawab::where('NIM', Auth::user()->nim)->max('test_id');
+
+        $jawabanterakhir = Jawab::select(DB::raw('COUNT(jawabs.teskep_id) as totalss'), 'tipe_kepribadians.namatipe')
+                            ->join('tipe_kepribadians', 'tipe_kepribadians.id', '=', 'jawabs.teskep_id')
+                            ->where('jawabs.nim', Auth::user()->nim)
+                            ->where('test_id', $jawab != null ? $jawab : '1')
+                            ->latest('jawabs.created_at')
+                            ->take($jumlahsoal)
+                            ->groupBy('tipe_kepribadians.namatipe')
+                            ->orderBy('totalss', 'desc')
+                            ->get();
+
+        $hasil_terakhir = $jawabanterakhir->sortByDesc('totalss')->take(3);
+
+
+        foreach ($tipe as $t):
+            $t->jumlah = Jawab::where('NIM', Auth::user()->nim)
+                        ->where('teskep_id', $t->id)
+                        ->where('test_id', $jawab != null ? $jawab : '1')
+                        // ->where('jawaban', 'like', '%' . $t->namatipe . '%')
+                        // ->orderBy('created_at', 'desc')
+                        ->latest('jawabs.id')
+                        ->take($jumlahsoal)
+                        ->get()->count();
+            // $t->presentase = intval(($t->jumlah/$jumlahsoal) * 100);
+            $t->presentase = $t->jumlah;
+
+        endforeach;
+
 
         return view('apps.hasil', [
             'hasil' => TestKepribadian::where('user_id', Auth::id())->where('id', $test->id)
@@ -164,7 +196,9 @@ class TestKepribadianController extends Controller
                 return $q->with('ciriTipekeps', 'kelebihanTipekeps', 'kekuranganTipekeps', 'profesiTipekeps', 'partnerTipekeps.partner');
             }])->with('presentases')->findOrFail($id),
             'dimensis' => DimensiPasangan::with('dimA', 'dimB')->get(),
-            'id' => $id
+            'id' => $id,
+            'tipe' => $tipe,
+            'hasil_terakhir' => $hasil_terakhir,
         ]);
     }
         # nested data untuk mengambil value

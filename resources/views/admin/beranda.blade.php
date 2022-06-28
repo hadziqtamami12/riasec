@@ -29,7 +29,7 @@
             <div class="widget-heading">
                <h5>Data Berdasarkan Tahun Angkatan</h5><br> 
                <select class="form-control prodi" id="angkatan" name="angkatan">
-                  <option value="">Tahun Angkatan</option>
+                  <option value="all">Semua Angkatan</option>
                   @foreach($angkatan as $a)
                   <option value="{{ $a->tahun->id }}">Angkatan Tahun 20{{ $a->tahun->tahun }}</option>
                   @endforeach
@@ -87,9 +87,14 @@
    {{-- diagram chart --}}
    <script src="{{asset('chart.js/chart.js')}}"></script>
    
-   {{-- <script src="{{asset('assets/js/chart.js')}}"></script> --}}
+   <script src="{{asset('assets/js/chart.js')}}"></script> 
 
    <script>
+      $('#angkatan').val({{ $angkatan_id }}).trigger('change');
+   </script>
+
+   <script>
+
       // all tipe kerpribadian
       new Chart(document.getElementById('tipeChart').getContext('2d'), {
          type: 'pie',
@@ -133,6 +138,8 @@
       })
 
       grafik = []
+
+
    </script>
 
    

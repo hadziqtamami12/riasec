@@ -72,11 +72,20 @@ class UserAuthController extends Controller
 
         $email = $request->get('email');
         $password = $request->get('password');
+
+        $auth = User::where('username', $request->email)
+                    ->where('password', $request->password)
+                    ->first();
+
         # login menggunakan email atau username
         $login_type = filter_var($email, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
 
         # cek auth pengguna dengan melihat Role milik pengguna masing-masing
-        if (Auth::attempt([$login_type => $email, 'password' => $password])) {
+        if ($auth) {
+
+            // if (Auth::attempt([$login_type => $email, 'password' => $password])) {
+
+            Auth::login($auth);
 
             $user = Auth::user(); // User model
 

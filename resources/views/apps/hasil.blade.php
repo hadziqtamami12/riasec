@@ -33,19 +33,59 @@
          <section id="artikelTop" class="col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
             <div class="landingContent">
                <div class="landingImage">
-                  <img src="{{ asset($hasil->tipe->image) }}" onerror="this.src='{{asset('assets/images/300x300.jpg')}}'"> <br>
-                  {{-- <small class="text-right" style="font-size: 8px">Illustrations by <cite title="Source Title"><a href="https://blush.design/collections/40G09koP55fYh86yZDnX/stuck-at-home/character-standing/2WYYj_i51y7t1dWK?c=skin_0%7Eecafa3" target="_blank">Mariana Gonzalez Vega</a></cite></small> --}}
-               {{-- Illustrations by Mariana Gonzalez Vega --}}
-               {{-- https://blush.design/collections/40G09koP55fYh86yZDnX/stuck-at-home/character-standing/2WYYj_i51y7t1dWK?c=skin_0%7Eecafa3 --}}
+                  <img src="{{ asset('uploads/TipeKepribadian/' . $hasil->tipe->image) }}" onerror="this.src='{{asset('assets/images/300x300.jpg')}}'"> <br>
                </div>
                <div class="landingText">
-                  <h1>{{ $hasil->tipe->namatipe ?? '-' }}</h1>
-                  {{-- <h3>&#40; {{ $hasil->tipe->deskripsi ?? '-' }} &#41;</h3> --}}
-                  {{-- <h2>{{ $hasil->tipe->namatipe ?? '-' }}</h2> --}}
+                  @foreach($hasil_terakhir as $key => $h)
+                     @if($h->namatipe == $hasil->tipe->namatipe)
+                     <h1>{{ $h->namatipe ?? '-' }}</h1>
+                     @else
+                     <h4>{{ $h->namatipe ?? '-'}}</h4>
+                     @endif
+                  @endforeach
+                  <!-- <h3>&#40; {{ $hasil->tipe->deskripsi ?? '-' }} &#41;</h3> 
+                  <h2>{{ $hasil->tipe->namatipe ?? '-' }}</h2>  -->
                </div>
             </div> <!-- landing-content -->
          </section>
          {{-- progress-bar --}}
+
+         <div class="skills layout-spacing col-lg-12 col-md-12 col-sm-12 col-12" data-aos="fade-down" data-aos-duration="1000">
+                     <div class="widget-content widget-content-area">
+
+                        <h3 class="">Presentase Kepribadian</h3>
+
+                        <div class="present-content">
+                           @foreach ($tipe as $t)
+
+
+                              <div class="summary-list">
+                                 <div class="w-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-credit-card"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+                                 </div>
+                                 <div class="w-summary-details mr-2">
+                                    <div class="w-summary-info">
+                                          <h6>({{ $t->namatipe }}) </h6>
+                                    </div>
+                                    <div class="w-summary-stats">
+                                       <div class="progress">
+                                          <div class="progress-bar bg-gradient-info progress-bar-striped" role="progressbar" style="width: {{ $t->presentase }}%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+                                       </div>
+                                    </div>
+                                    <div class="w-summary-info">
+                                          <!-- <h6>{{ $t->presentase }} &percnt;</h6>  -->
+                                          <h6>{{ $t->presentase }} pilihan dipilih</h6> 
+                                    </div>
+                                 </div>
+                                 <div class="w-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-credit-card"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+                                 </div>
+                              </div>
+                           @endforeach
+                        </div> <!-- /present-content -->
+                        {{-- nama tipe --}}
+                     </div> {{-- widget-content --}}
+                  </div> {{-- skills layout-spacing --}}
 
          <section id="artikelPresent" class="col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
             <div class="artikel-tipe presentase" data-aos="fade-down" data-aos-duration="1000">

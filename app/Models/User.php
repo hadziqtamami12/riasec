@@ -155,8 +155,8 @@ class User extends Authenticatable
      */
     public function resultIndex(): HasOne
     {
-        return $this->hasOne(TestKepribadian::class)->orderBy('finished_at', 'DESC')
-        ->whereNotNull('finished_at');
+        return $this->hasOne(TestKepribadian::class)->orderBy('id', 'DESC');
+        // ->whereNotNull('finished_at');
     }
 
     /**

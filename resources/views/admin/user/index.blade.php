@@ -55,8 +55,42 @@
             </form>
          </div> 
 
+         <div class="col-md-12">
+            <button type="button" class="btn btn-primary mb-2 mr-2" data-toggle="modal" data-target="#importSiswaModal">
+               <i class="fa fa-user-plus"></i> Import Data User
+            </button>
+            <!-- {{-- Pop-UP button --}} -->
+            <div class="modal fade" id="importSiswaModal" tabindex="-1" role="dialog" aria-labelledby="importSiswaModalTitle" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h5 class="modal-title" id="importSiswaModalTitle">Import Data Pengguna Baru</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                        </button>
+                     </div>
+                     <div class="modal-body align-items-center">
+                     <form action="{{ route('account.import_excel_user') }}" method="post" enctype="multipart/form-data">
+                        {{ csrf_field() }}
+
+                        <label>Pilih file excel</label>
+                        <div class="form-group">
+                           <input type="file" name="file" required="required">
+                        </div>
+
+                     </div>
+                     <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Import</button>
+                     </div>
+                     </form>
+                  </div>
+               </div>
+            </div>
+         </div>
+
           {{-- widget-header  --}}
-         <div class="table-responsive mb-4 style-2">
+          <div class="table-responsive mb-4 style-2">
+            <!-- <table id="style-2" class="table style-2 table-hover non-hover"> -->
             <table id="style-cus" class="table style-2 table-hover non-hover">
                <thead>
                   <tr>
@@ -68,12 +102,12 @@
                      <th>Angkatan</th>
                      <th>Email</th>
                      <th>Telepon</th>
-                     {{-- <th>Hasil Tes</th> --}}
+                      <th>Hasil Tes</th> 
                      <th class="text-center" style="">Action</th>
                   </tr>
                </thead>
                <tbody>
-                  @foreach ($dataUser as $item))
+                  @foreach ($dataUser as $item)
                   @if ($item->roles == 'user')
                   <tr>
                      <td scope="row">{{$loop->iteration-1}}</td>
@@ -88,7 +122,7 @@
                      <td class="text-center">{{$item->tahun->tahun ?? null}}</td>
                      <td>{{Str::limit($item->email, 15, '..')}}</td>
                      <td>{{$item->phone ?? null}}</td>
-                     {{-- <td class="text-secondary" style="font-weight: 700">{{ $item->tipekep }}</td> --}}
+                      <td class="text-secondary"> {{ $item->tipe ? $item->tipe->tipe->namatipe : '-' }}</td> 
                      <td class="text-center">
                         <div class="dropdown custom-dropdown">
                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink12" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">

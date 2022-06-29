@@ -9,6 +9,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\{Auth, Hash, Session, Mail, DB};
 use App\Http\Requests\{CreateAuthAdmin, UpdateAcountRequest};
 use App\Models\{Role, User, ProgramStudi, UserVerify, Tahun, DimensiPasangan};
+use App\Imports\UsersImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AcountAuthController extends Controller
 {
@@ -34,12 +36,39 @@ class AcountAuthController extends Controller
                 'nim' => $item->nim,
                 'phone' => $item->phone,
                 'programstudi' => $item->programstudi,
+                'tipe' => $item->resultIndex,
                 // 'tipekep' => TestKepribadian::find($item)->pluck('namatipe'),
                 'tahun' => $item->tahun,
             ];
         });
 
         return view('admin.user.index',compact('pageActive','pageName','dataUser'));
+    }
+
+    /**
+     * import data from excel.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function import_excel_user(Request $request) 
+    {
+        $this->validate($request, [
+            'file' => 'required|mimes:csv,xls,xlsx'
+        ]);
+
+        // menangkap file excel
+		$file = $request->file('file');
+ 
+		// membuat nama file unik
+		$nama_file = rand().$file->getClientOriginalName();
+ 
+		// upload ke folder import di dalam folder public
+		$file->move('import',$nama_file);
+ 
+		// import data
+		Excel::import(new UsersImport, public_path('/import/'.$nama_file));
+        
+        return redirect('account')->with('success', 'All good!');
     }
     
     /**

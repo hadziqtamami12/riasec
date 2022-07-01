@@ -40,8 +40,8 @@
                   </div>
                   <div class="landingText">
                      <h1>{{ $readmore->namatipe }}</h1>
-                     <h3>&#40; {{ $readmore->keterangan_tipe }} &#41;</h3>
-                     <h2>{{ $readmore->julukan_tipe }}</h2>
+                     <h3>&#40; {{ $readmore->bidang }} &#41;</h3>
+                     <!-- <h2>{{ $readmore->julukan_tipe }}</h2> -->
                   </div>
                </div> <!-- landing-content -->
             </section>
@@ -53,7 +53,7 @@
                            <h3>Tipe Kepribadian&nbsp;<span>{{ $readmore->namatipe }}</span></h3>
                            <div class="row">
                                  <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-                                    <p>{{ $readmore->deskripsi_tipe }}</p>
+                                    <p>{{ $readmore->deskripsi }}</p>
                                  </div>
                            </div>
                         </div>

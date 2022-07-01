@@ -31,9 +31,12 @@
       <div class="row">
 
          <section id="artikelTop" class="col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
-            <div class="landingContent">
+            <div class="col-md-12 pl-5">
+               <h1 class="pl-5 pt-5 mb-n5 font-weight-bold">Hasil Tes Anda adalah..</h1>
+            </div>
+            <div class="landingContent mt-n5">
                <div class="landingImage">
-                  <img src="{{ asset('uploads/TipeKepribadian/' . $hasil->tipe->image) }}" onerror="this.src='{{asset('assets/images/300x300.jpg')}}'"> <br>
+                  <img src="{{ asset( $hasil->tipe->image) }}" onerror="this.src='{{asset('assets/images/300x300.jpg')}}'"> <br>
                </div>
                <div class="landingText">
                   @foreach($hasil_terakhir as $key => $h)

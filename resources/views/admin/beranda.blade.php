@@ -107,9 +107,11 @@
                // borderColor: 'rgba(255, 159, 64, 1)',
                backgroundColor: {!! $warna !!},
                borderColor: 'rgba(255, 255, 255, 1)',
-               borderWidth: 2
+               borderWidth: 2,
+               
             }]
-         }
+         },
+         
       })
 
       grafik = []

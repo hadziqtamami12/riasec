@@ -21,7 +21,7 @@
             <form class="form-inline mt-4 mb-1">
                <h4 class="col-10">{{$pageName}}</h4>
                   <div class="col-auto">
-                     <a href="{{ route('soal.create') }}" class="btn btn-primary mb-2"><i data-feather="plus"></i></a>
+                     <a href="{{ route('soal.create') }}" class="btn btn-primary mb-2"><i data-feather="plus"></i>  Tambah</a>
                   </div>
             </form>
 

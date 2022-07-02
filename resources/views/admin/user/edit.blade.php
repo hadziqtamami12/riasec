@@ -10,7 +10,7 @@
                <ul class="navbar-item theme-brand flex-row  text-center">
                   <li class="nav-item theme-logo">
                      {{-- <a href="#"class="navbar-brand"> --}}
-                        <img alt="Politeknik Negeri Banyuwangi" data-retina="{{asset('assets/images/logo/flag_lowongan.png')}}" data-src="{{asset('assets/images/logo/flag_lowongan.png')}}" class="navimg" src="{{asset('assets/images/logo/flag_lowongan.png')}}" >
+                        <!-- <img alt="Politeknik Negeri Banyuwangi" data-retina="{{asset('assets/images/logo/flag_lowongan.png')}}" data-src="{{asset('assets/images/logo/flag_lowongan.png')}}" class="navimg" src="{{asset('assets/images/logo/flag_lowongan.png')}}" > -->
                      {{-- </a> --}}
                      <a href="{{route('roleAdmin')}}">
                         <img alt="Politeknik Negeri Banyuwangi" data-retina="{{asset('assets/images/logo/logo.png')}}" data-src="{{asset('assets/images/logo/logo.png')}}" class="navimg m-0" src="{{asset('assets/images/logo/logo.png')}}" >
@@ -39,7 +39,7 @@
 
                      <nav class="breadcrumb-one" aria-label="breadcrumb">
                            <ol class="breadcrumb">
-                              <li class="breadcrumb-item"><a href="javascript:void(0);">MBTI</a></li>
+                              <li class="breadcrumb-item"><a href="javascript:void(0);">RIASEC</a></li>
                               <li class="breadcrumb-item active" aria-current="page"><span>Manage Account</span></li>
                            </ol>
                      </nav>
@@ -162,7 +162,7 @@
                      
                      <div class="account-settings-footer">
                         <div class="as-footer-container">
-                           <a href="{{ route('account.show', $acount->id) }}" class="btn btn-dark" >Kembali</a>
+                           <a href="{{ route('account.index') }}" class="btn btn-dark" >Kembali</a>
                            <button id="savesoal" type="submit" class="btn btn-primary">Simpan</button>
                         </div>
                      </div>  {{-- account-settings-footer --}}

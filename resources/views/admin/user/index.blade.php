@@ -131,7 +131,7 @@
                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink12">
                               <!-- {{-- <a class="dropdown-item" href="javascript:void(0);">View</a> --}} -->
                               @if (Auth::user()->roles()->first()->name === 'superadmin')
-                                 <a class="dropdown-item btn btn-sm text-info" href="{{ route('account.show', $item->id) }}">Show</a>
+                                 <!-- <a class="dropdown-item btn btn-sm text-info" href="{{ route('account.show', $item->id) }}">Show</a> -->
                                  <a class="dropdown-item btn btn-sm text-warning" href="{{ route('account.edit', $item->id) }}">Edit</a>
                                  <a class="dropdown-item btn btn-sm text-danger" href="#" data-toggle="modal" data-target="#delete" data-id="{{ $item->id }}">Delete</a>
                               @endif

@@ -59,6 +59,9 @@
             <button type="button" class="btn btn-primary mb-2 mr-2" data-toggle="modal" data-target="#importSiswaModal">
                <i class="fa fa-user-plus"></i> Import Data User
             </button>
+            <button type="button" class="btn btn-primary mb-2 mr-2" data-toggle="modal" data-target="#exportSiswaModal">
+               <i class="fa fa-user-plus"></i> Export Data User
+            </button>
             <!-- {{-- Pop-UP button --}} -->
             <div class="modal fade" id="importSiswaModal" tabindex="-1" role="dialog" aria-labelledby="importSiswaModalTitle" aria-hidden="true">
                <div class="modal-dialog modal-dialog-centered" role="document">
@@ -86,6 +89,47 @@
                   </div>
                </div>
             </div>
+
+            <div class="modal fade" id="exportSiswaModal" tabindex="-1" role="dialog" aria-labelledby="exportSiswaModalTitle" aria-hidden="true">
+               <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <h5 class="modal-title" id="exportSiswaModalTitle">Export Data Pengguna Baru</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                        </button>
+                     </div>
+                     <div class="modal-body align-items-center">
+                     <form action="{{ route('account.export_excel_user') }}" method="post" enctype="multipart/form-data">
+                        {{ csrf_field() }}
+
+                        <div class="form-group">
+                           <label for="tahun">Tahun Masuk</label>
+                           <select class="form-control tahun" id="tahun" name="tahun">
+                              @foreach($angkatan as $a)
+                              <option value="{{ $a->tahun->id }}">Angkatan Tahun 20{{ $a->tahun->tahun }}</option>
+                              @endforeach
+                           </select>
+                        </div>
+                        <div class="form-group">
+                        <label for="prodi">Program Studi</label>
+                           <select class="form-control prodi" id="prodi" name="prodi">
+                              @foreach($prodi as $p)
+                              <option value="{{ $p->id }}">{{ $p->program_studi }}</option>
+                              @endforeach
+                           </select>
+                        </div>
+
+                     </div>
+                     <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Export</button>
+                     </div>
+                     </form>
+                  </div>
+               </div>
+            </div>
+
+
          </div>
 
           {{-- widget-header  --}}
@@ -131,7 +175,6 @@
                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink12">
                               <!-- {{-- <a class="dropdown-item" href="javascript:void(0);">View</a> --}} -->
                               @if (Auth::user()->roles()->first()->name === 'superadmin')
-                                 <!-- <a class="dropdown-item btn btn-sm text-info" href="{{ route('account.show', $item->id) }}">Show</a> -->
                                  <a class="dropdown-item btn btn-sm text-warning" href="{{ route('account.edit', $item->id) }}">Edit</a>
                                  <a class="dropdown-item btn btn-sm text-danger" href="#" data-toggle="modal" data-target="#delete" data-id="{{ $item->id }}">Delete</a>
                               @endif

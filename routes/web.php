@@ -93,9 +93,10 @@ Route::middleware(['auth'])->group(function () {
         Route::post('account/admin', [AcountAuthController::class,'storeAdmin'])->name('account.storeAdmin'); # tambah data baru Pengguna via admin
         Route::get('account/{id}/edit',[AcountAuthController::class,'edit'])->name('account.edit'); # view form edit
         Route::patch('account/{id}', [AcountAuthController::class, 'update'])->name('account.update'); # update data Pengguna via admin
-        Route::get('account/{id}',[AcountAuthController::class,'show'])->name('account.show'); # view show
+        // Route::get('account/{id}',[AcountAuthController::class,'show'])->name('account.show'); # view show
         Route::delete('account/{id}',[AcountAuthController::class,'destroy'])->name('account.destroy'); # delete data Pengguna via admin
         Route::post('account/import_excel_user',[AcountAuthController::class,'import_excel_user'])->name('account.import_excel_user'); # delete data Pengguna via admin
+        Route::post('account/export_excel_user',[AcountAuthController::class,'export_excel_user'])->name('account.export_excel_user'); # delete data Pengguna via admin
         
         // todo : Route CRUD Tipekepribadian
         Route::resource('tipekep', TipeKepribadianController::class)->except(['show']);

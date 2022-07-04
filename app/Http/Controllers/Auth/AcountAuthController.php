@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\{Auth, Hash, Session, Mail, DB};
 use App\Http\Requests\{CreateAuthAdmin, UpdateAcountRequest};
 use App\Models\{Role, User, ProgramStudi, UserVerify, Tahun, DimensiPasangan};
 use App\Imports\UsersImport;
+use App\Exports\UsersExport;
 use Maatwebsite\Excel\Facades\Excel;
 
 class AcountAuthController extends Controller
@@ -42,7 +43,17 @@ class AcountAuthController extends Controller
             ];
         });
 
-        return view('admin.user.index',compact('pageActive','pageName','dataUser'));
+        $angkatan = User::select(DB::raw('users.tahun_id'))
+                    ->join('tahuns', 'tahuns.id', '=', 'users.tahun_id')
+                    ->orderBy('tahuns.id', 'desc')
+                    ->groupBy('tahun_id')->get();
+
+        $prodi = User::select('program_studis.*','users.programstudi_id')
+                    ->join('program_studis', 'program_studis.id', '=', 'users.programstudi_id')
+                    ->orderBy('program_studis.id', 'desc')
+                    ->groupBy('programstudi_id')->get();
+
+        return view('admin.user.index',compact('pageActive','pageName','dataUser','angkatan','prodi'));
     }
 
     /**
@@ -70,6 +81,34 @@ class AcountAuthController extends Controller
         
         return redirect('account')->with('success', 'All good!');
     }
+
+    public function export_excel_user(Request $request) 
+    {
+        $dataUser = User::where('id', '!=', 1)->where('programstudi_id', $request->prodi)->where('tahun_id', $request->tahun)->with('programstudi','roles','tests','resultIndex.tipe','tahun')
+        ->get()->map(function($item){
+            return(object)[
+                'id' => $item->id,
+                'name' => $item->name,
+                'email' => $item->email,
+                'roles' => $item->roles->implode('name',','),
+                'image' =>$item->image,
+                'nim' => $item->nim,
+                'phone' => $item->phone,
+                'programstudi' => $item->programstudi,
+                'tipe' => $item->resultIndex,
+                // 'tipekep' => TestKepribadian::find($item)->pluck('namatipe'),
+                'tahun' => $item->tahun,
+            ];
+        });
+
+        $prodi = ProgramStudi::where('id', $request->prodi)->first();
+        $tahun = Tahun::where('id', $request->tahun)->first();
+
+
+        return Excel::download(new UsersExport($dataUser, $prodi->program_studi, $tahun->tahun), 'users.xlsx');
+        // return Excel::download(new PenjualanExport($penjualan, $total), 'Penjualan.xlsx');
+    }
+
     
     /**
      * Show the form for creating a new resource.
@@ -207,13 +246,13 @@ class AcountAuthController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        return view('admin.user.show',[
-            'latest' => User::with(['resultIndex.tipe','resultIndex.presentases','recapHasil.tipe'])->find($id),
-            'dimensis' => DimensiPasangan::with('dimA', 'dimB')->get(),
-        ]);
-    }
+    // public function show($id)
+    // {
+    //     return view('admin.user.show',[
+    //         'latest' => User::with(['resultIndex.tipe','resultIndex.presentases','recapHasil.tipe'])->find($id),
+    //         'dimensis' => DimensiPasangan::with('dimA', 'dimB')->get(),
+    //     ]);
+    // }
 
     /**
      * Show the form for editing the specified resource.
